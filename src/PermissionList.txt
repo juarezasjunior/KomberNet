@@ -1,0 +1,6 @@
+User Permissions:
+
+d2e777be-cec8-40a8-b412-3ed6d0b18a8b - System - Only when we have an endpoint that should be accessed by system users.
+
+User Organization Permissions:
+

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeGeneratorSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					   xsi:noNamespaceSchemaLocation="../CodeGeneratorSettingsSchema.xsd">
+
+	<FrontendEntititesSettings
+		EntitiesNamespace="KomberNet.UI.WEB.Models"
+		ValidatorsNamespace="KomberNet.UI.WEB.Models.Validators"
+		GenerateAuthEntities="true"/>
+
+</CodeGeneratorSettings>

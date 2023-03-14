@@ -1,0 +1,94 @@
+﻿@using Radzen;
+@inject DialogService DialogService
+
+
+<RadzenSteps NextText="@NextStepText" PreviousText="ANTERIOR" Change="OnChangeAsync">
+    <Steps>
+        <RadzenStepsItem Text="Filtros">
+            <RadzenText TextStyle="TextStyle.DisplayH5">Vamos primeiro encontrar o cliente!</RadzenText>
+            <br />
+            <RadzenText TextStyle="TextStyle.DisplayH6">Preencha abaixo um ou mais filtros e clique em próximo, para visualizar os resultados.</RadzenText>
+            <RadzenText>ID: </RadzenText>
+            <RadzenNumeric TValue="int" @bind-Value=@ID />
+            <br />
+            <RadzenText>Nome do Cliente: </RadzenText>
+            <RadzenTextBox @bind-Value=@Name />
+        </RadzenStepsItem>
+        <RadzenStepsItem Text="Resultados">
+            <RadzenText TextStyle="TextStyle.DisplayH5">Abaixo, tem uma lista de clientes encontrados!</RadzenText>
+            <br />
+            <RadzenText TextStyle="TextStyle.DisplayH6">Selecione um cliente e clique em IMPRIMIR!</RadzenText>
+            <RadzenDataGrid Data="Customers" TItem="Customer" SelectionMode="Radzen.DataGridSelectionMode.Single" @bind-Value=@SelectedCustomers>
+                <Columns>
+                    <RadzenDataGridColumn TItem="Customer" Property="Id" Title="Id" />
+                    <RadzenDataGridColumn TItem="Customer" Property="Name" Title="Name" />
+                </Columns>
+            </RadzenDataGrid>
+        </RadzenStepsItem>
+        <RadzenStepsItem Text="IMPRIMIR">
+            <RadzenButton Text="Imprimir Novamente" Click="OpenCustomersAsync" />
+        </RadzenStepsItem>
+    </Steps>
+</RadzenSteps>
+
+@code {
+    public List<Customer> Customers { get; set; } = new List<Customer>();
+
+    public IList<Customer> SelectedCustomers { get; set; }
+
+    public int ID { get; set; }
+
+    public string Name { get; set; }
+
+    public string NextStepText { get; set; } = "PRÓXIMO";
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+    }
+
+    public class Customer
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+    }
+
+    public async Task OpenCustomersAsync()
+    {
+        await this.DialogService.OpenAsync<CustomersSearch>("Imprimir os dados do cliente");
+    }
+
+    public async Task OnChangeAsync(int index)
+    {
+        switch (index)
+        {
+            case 0:
+            default:
+                this.NextStepText = "PRÓXIMO";
+                break;
+            case 1:
+                this.Search();
+                this.NextStepText = "IMPRIMIR";
+                break;
+            case 2:
+                await OpenCustomersAsync();
+                break;
+
+        }
+    }
+
+    private void Search()
+    {
+        var customers = new List<Customer>();
+        customers.Add(new Customer() { Id = 1, Name = "John" });
+        customers.Add(new Customer() { Id = 2, Name = "Mary" });
+        customers.Add(new Customer() { Id = 3, Name = "Peter" });
+        customers.Add(new Customer() { Id = 4, Name = "Joseph" });
+
+        this.Customers = customers.Where(x => (this.ID == default && this.Name == default)
+            || x.Id == this.ID
+            || x.Name == this.Name).ToList();
+    }
+}

@@ -1,0 +1,27 @@
+﻿@page "/"
+
+@using System.Globalization
+@using Radzen;
+
+@inject IStringLocalizer<Resource> localizer
+
+@inject DialogService DialogService
+
+<PageTitle>Index</PageTitle>
+
+<h1>@string.Format(this.localizer["Index_Title"], "Your ERP Name")</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<RadzenButton Text="Editar Clientes" Click="OpenCustomersAsync" />
+
+@code{
+    public async Task OpenCustomersAsync()
+    {
+        await this.DialogService.OpenAsync<CustomersSearch>("Imprimir os dados do cliente");
+    }
+}
+
+

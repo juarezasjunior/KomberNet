@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KomberNet.UI.WEB.APIClient</name>
+    </assembly>
+    <members>
+        <member name="T:Refit.Implementation.Generated">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationUserClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationUserClient.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationUserClient.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationUserClient.PostAsync(KomberNet.UI.WEB.Models.OrganizationUserHandlerRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationUserClient.KomberNet#UI#WEB#APIClient#IOrganizationUserClient#PostAsync(KomberNet.UI.WEB.Models.OrganizationUserHandlerRequest)">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationUserQueryClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationUserQueryClient.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationUserQueryClient.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationUserQueryClient.GetEntityAsync(KomberNet.UI.WEB.Models.OrganizationUserQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationUserQueryClient.KomberNet#UI#WEB#APIClient#IOrganizationUserQueryClient#GetEntityAsync(KomberNet.UI.WEB.Models.OrganizationUserQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationUsersQueryClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationUsersQueryClient.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationUsersQueryClient.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationUsersQueryClient.GetEntitiesAsync(KomberNet.UI.WEB.Models.OrganizationUsersQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationUsersQueryClient.KomberNet#UI#WEB#APIClient#IOrganizationUsersQueryClient#GetEntitiesAsync(KomberNet.UI.WEB.Models.OrganizationUsersQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationClient.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationClient.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationClient.PostAsync(KomberNet.UI.WEB.Models.OrganizationHandlerRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationClient.KomberNet#UI#WEB#APIClient#IOrganizationClient#PostAsync(KomberNet.UI.WEB.Models.OrganizationHandlerRequest)">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationQueryClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationQueryClient.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationQueryClient.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationQueryClient.GetEntityAsync(KomberNet.UI.WEB.Models.OrganizationQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationQueryClient.KomberNet#UI#WEB#APIClient#IOrganizationQueryClient#GetEntityAsync(KomberNet.UI.WEB.Models.OrganizationQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationsQueryClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationsQueryClient.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationsQueryClient.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationsQueryClient.GetEntitiesAsync(KomberNet.UI.WEB.Models.OrganizationsQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIOrganizationsQueryClient.KomberNet#UI#WEB#APIClient#IOrganizationsQueryClient#GetEntitiesAsync(KomberNet.UI.WEB.Models.OrganizationsQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountryClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountryClient.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountryClient.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountryClient.PostAsync(KomberNet.UI.WEB.Models.CountryHandlerRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountryClient.KomberNet#UI#WEB#APIClient#ICountryClient#PostAsync(KomberNet.UI.WEB.Models.CountryHandlerRequest)">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountryQueryClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountryQueryClient.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountryQueryClient.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountryQueryClient.GetEntityAsync(KomberNet.UI.WEB.Models.CountryQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountryQueryClient.KomberNet#UI#WEB#APIClient#ICountryQueryClient#GetEntityAsync(KomberNet.UI.WEB.Models.CountryQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountriesQueryClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountriesQueryClient.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountriesQueryClient.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountriesQueryClient.GetEntitiesAsync(KomberNet.UI.WEB.Models.CountriesQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountriesQueryClient.KomberNet#UI#WEB#APIClient#ICountriesQueryClient#GetEntitiesAsync(KomberNet.UI.WEB.Models.CountriesQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountrySummaryQueryClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountrySummaryQueryClient.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountrySummaryQueryClient.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountrySummaryQueryClient.GetEntityAsync(KomberNet.UI.WEB.Models.CountrySummaryQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountrySummaryQueryClient.KomberNet#UI#WEB#APIClient#ICountrySummaryQueryClient#GetEntityAsync(KomberNet.UI.WEB.Models.CountrySummaryQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountrySummariesQueryClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountrySummariesQueryClient.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountrySummariesQueryClient.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountrySummariesQueryClient.GetEntitiesAsync(KomberNet.UI.WEB.Models.CountrySummariesQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientICountrySummariesQueryClient.KomberNet#UI#WEB#APIClient#ICountrySummariesQueryClient#GetEntitiesAsync(KomberNet.UI.WEB.Models.CountrySummariesQueryRequest)">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIAuthClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIAuthClient.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIAuthClient.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIAuthClient.InsertApplicationUserAsync(KomberNet.UI.WEB.Models.ApplicationUserInsertRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIAuthClient.LoginAsync(KomberNet.UI.WEB.Models.LoginRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIAuthClient.RefreshTokenAsync(KomberNet.UI.WEB.Models.RefreshTokenRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIAuthClient.LogoutAsync(KomberNet.UI.WEB.Models.LogoutRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIAuthClient.ChangePasswordAsync(KomberNet.UI.WEB.Models.ChangePasswordRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIAuthClient.KomberNet#UI#WEB#APIClient#IAuthClient#InsertApplicationUserAsync(KomberNet.UI.WEB.Models.ApplicationUserInsertRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIAuthClient.KomberNet#UI#WEB#APIClient#IAuthClient#LoginAsync(KomberNet.UI.WEB.Models.LoginRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIAuthClient.KomberNet#UI#WEB#APIClient#IAuthClient#RefreshTokenAsync(KomberNet.UI.WEB.Models.RefreshTokenRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIAuthClient.KomberNet#UI#WEB#APIClient#IAuthClient#LogoutAsync(KomberNet.UI.WEB.Models.LogoutRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientIAuthClient.KomberNet#UI#WEB#APIClient#IAuthClient#ChangePasswordAsync(KomberNet.UI.WEB.Models.ChangePasswordRequest)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

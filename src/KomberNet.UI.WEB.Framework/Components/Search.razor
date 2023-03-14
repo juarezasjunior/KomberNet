@@ -1,0 +1,124 @@
+﻿@inherits BodyBase
+
+@{
+    base.BuildRenderTree(__builder);
+}
+
+<RadzenCard>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm">
+                <RadzenLabel Text="@this.Localizer["Search_InputText"]" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <RadzenTextBox Placeholder="Digite um nome de país" class="w-100" />
+            </div>
+            <div class="col-sm">
+                <RadzenButton Text="Pesquisar" Click="ExecuteSearch" ButtonStyle="Radzen.ButtonStyle.Secondary" />
+            </div>
+        </div>
+
+        <br />
+        <RadzenCard Visible="IsShowingMoreFilter">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm">
+                        <RadzenLabel Text="Código" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <RadzenTextBox Placeholder="Digite o código" />
+                    </div>
+                </div>
+            </div>
+        </RadzenCard>
+
+        @if (this.IsShowingMoreFilter)
+        {
+            <br />
+        }
+
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <RadzenButton Icon="@FilterIcon" 
+                    Text="@this.FilterDescription"
+                    Size="Radzen.ButtonSize.Small"
+                    Click="() => this.IsShowingMoreFilter = !this.IsShowingMoreFilter" 
+                    ButtonStyle="Radzen.ButtonStyle.Secondary"
+                    />
+            </div>
+        </div>
+    </div>
+</RadzenCard>
+
+<br />
+
+<RadzenCard>
+    <div class="container-fluid">
+        <div class="row justify-content-end">
+            <div class="col-auto">
+                <RadzenButton Text="Editar" ButtonStyle="Radzen.ButtonStyle.Primary" />
+                <RadzenSplitButton Text="Mais" ButtonStyle="Radzen.ButtonStyle.Primary">
+                    <RadzenSplitButtonItem Text="Novo" />
+                </RadzenSplitButton>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <hr />
+            </div>
+        </div>
+
+        <RadzenDataGrid Data="Customers" TItem="Customer" SelectionMode="Radzen.DataGridSelectionMode.Single" @bind-Value=@SelectedCustomers>
+            <Columns>
+                <RadzenDataGridColumn TItem="Customer" Property="Id" Title="Id" />
+                <RadzenDataGridColumn TItem="Customer" Property="Name" Title="Name" />
+            </Columns>
+        </RadzenDataGrid>
+    </div>
+</RadzenCard>
+
+@code {
+    public List<Customer> Customers { get; set; } = new List<Customer>();
+
+    public IList<Customer> SelectedCustomers { get; set; }
+
+    public int ID { get; set; }
+
+    public string Name { get; set; }
+
+    public bool IsShowingMoreFilter { get; set; }
+
+    public string FilterIcon => this.IsShowingMoreFilter ? "expand_less" : "expand_more";
+
+    public string FilterDescription => this.IsShowingMoreFilter ? "Exibir Menos Filtros" : "Exibir Mais Filtros";
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+    }
+
+    public class Customer
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+    }
+
+    private void ExecuteSearch()
+    {
+        var customers = new List<Customer>();
+        customers.Add(new Customer() { Id = 1, Name = "John" });
+        customers.Add(new Customer() { Id = 2, Name = "Mary" });
+        customers.Add(new Customer() { Id = 3, Name = "Peter" });
+        customers.Add(new Customer() { Id = 4, Name = "Joseph" });
+
+        this.Customers = customers.Where(x => (this.ID == default && this.Name == default)
+            || x.Id == this.ID
+            || x.Name == this.Name).ToList();
+    }
+}

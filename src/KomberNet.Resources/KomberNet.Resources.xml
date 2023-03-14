@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KomberNet.Resources</name>
+    </assembly>
+    <members>
+        <member name="T:KomberNet.Resources.Resource">
+            <summary>
+              Uma classe de recurso de tipo de alta segurança, para pesquisar cadeias de caracteres localizadas etc.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.ResourceManager">
+            <summary>
+              Retorna a instância de ResourceManager armazenada em cache usada por essa classe.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Culture">
+            <summary>
+              Substitui a propriedade CurrentUICulture do thread atual para todas as
+              pesquisas de recursos que usam essa classe de recurso de tipo de alta segurança.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.BreadCrumbItem_Home">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Home.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Countries_PageTitle">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Countries.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Index_Title">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Welcome to {0}.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Search_InputText">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Search Field.
+            </summary>
+        </member>
+    </members>
+</doc>

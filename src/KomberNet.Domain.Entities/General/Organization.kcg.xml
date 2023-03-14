@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeGenerator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					   xsi:noNamespaceSchemaLocation="../../CodeGeneratorSchema.xsd">
+
+	<Entity Name="Organization" PluralName="Organizations">
+		<EntityFields>
+			<KeyField KeyType="Guid" Name="OrganizationId"/>
+			<StringField Name="Name" MaxLength="500" IsRequired="true"/>
+			<StringField Name="Description" IsRequired="false"/>
+		</EntityFields>
+
+		<GenerateDatabaseEntity>
+			<GenerateDatabaseEntityConfiguration />
+		</GenerateDatabaseEntity>
+
+		<GenerateAutoMapper AutoMapperSourceType="Entity" />
+		<GenerateAutoMapper AutoMapperSourceType="DatabaseEntity" />
+
+		<GenerateEntityHandlerRequest>
+			<GenerateController />
+			<GenerateEntityHandler />
+		</GenerateEntityHandlerRequest>
+
+		<GenerateEntityQueryRequest>
+			<GenerateController />
+		</GenerateEntityQueryRequest>
+
+		<GenerateEntitiesQueryRequest>
+			<GenerateController />
+		</GenerateEntitiesQueryRequest>
+	</Entity>
+
+</CodeGenerator>

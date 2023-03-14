@@ -1,0 +1,14 @@
+﻿<h1>@PageTitle</h1>
+
+<RadzenBreadCrumb>
+
+    <RadzenBreadCrumbItem Path="/" Text="@this.Localizer["BreadCrumbItem_Home"]" />
+
+    @foreach (var breadCrumbItem in this.BreadCrumbItems)
+    {
+        <RadzenBreadCrumbItem Path="@breadCrumbItem.Path" Text="@breadCrumbItem.Text" />
+    }
+
+</RadzenBreadCrumb>
+
+<hr />
