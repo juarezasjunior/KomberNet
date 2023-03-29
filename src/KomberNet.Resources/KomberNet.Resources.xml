@@ -20,9 +20,49 @@
               pesquisas de recursos que usam essa classe de recurso de tipo de alta segurança.
             </summary>
         </member>
-        <member name="P:KomberNet.Resources.Resource.BreadCrumbItem_Home">
+        <member name="P:KomberNet.Resources.Resource.Button_Add">
             <summary>
-              Consulta uma cadeia de caracteres localizada semelhante a Home.
+              Consulta uma cadeia de caracteres localizada semelhante a Add.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Button_Close">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Close.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Button_Delete">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Delete.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Button_Edit">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Edit.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Button_MoreOptions">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a More actions.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Button_New">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a New.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Button_Open">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Open.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Button_Run">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Run.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Button_Save">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Save.
             </summary>
         </member>
         <member name="P:KomberNet.Resources.Resource.Countries_PageTitle">
@@ -35,9 +75,34 @@
               Consulta uma cadeia de caracteres localizada semelhante a Welcome to {0}.
             </summary>
         </member>
+        <member name="P:KomberNet.Resources.Resource.Search_Button">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Search.
+            </summary>
+        </member>
         <member name="P:KomberNet.Resources.Resource.Search_InputText">
             <summary>
-              Consulta uma cadeia de caracteres localizada semelhante a Search Field.
+              Consulta uma cadeia de caracteres localizada semelhante a Search field.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Search_ShowLessFilterCriteria">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Show less filter criteria.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Search_ShowMoreFilterCriteria">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Show more filter criteria.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Search_TakeLabel">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Maximum number of results.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Search_TakePlaceholder">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Type a maximum quantity of results or leave it empty to show all results.
             </summary>
         </member>
     </members>

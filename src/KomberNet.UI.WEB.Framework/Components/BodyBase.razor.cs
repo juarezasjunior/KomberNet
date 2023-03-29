@@ -19,9 +19,6 @@ namespace KomberNet.UI.WEB.Framework.Components
         [Parameter]
         public string PageTitle { get; set; }
 
-        [Parameter]
-        public List<BreadCrumbItemData> BreadCrumbItems { get; set; } = new List<BreadCrumbItemData>();
-
         [Inject]
         protected IStringLocalizer<Resource> Localizer { get; set; }
     }

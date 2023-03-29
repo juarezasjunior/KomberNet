@@ -13,26 +13,19 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <RadzenTextBox Placeholder="Digite um nome de país" class="w-100" />
+                <RadzenTextBox Placeholder="@this.SearchPlaceholder" class="w-100" />
             </div>
             <div class="col-sm">
-                <RadzenButton Text="Pesquisar" Click="ExecuteSearch" ButtonStyle="Radzen.ButtonStyle.Secondary" />
+                <RadzenButton Text="@this.Localizer["Search_Button"]"
+                              Click="@ExecuteSearch"
+                              ButtonStyle="@Radzen.ButtonStyle.Secondary" />
             </div>
         </div>
 
         <br />
         <RadzenCard Visible="IsShowingMoreFilter">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm">
-                        <RadzenLabel Text="Código" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <RadzenTextBox Placeholder="Digite o código" />
-                    </div>
-                </div>
+                @FilterCriteriaArea
             </div>
         </RadzenCard>
 
@@ -43,16 +36,17 @@
 
         <div class="row justify-content-center">
             <div class="col-auto">
-                <RadzenButton Icon="@FilterIcon" 
-                    Text="@this.FilterDescription"
-                    Size="Radzen.ButtonSize.Small"
-                    Click="() => this.IsShowingMoreFilter = !this.IsShowingMoreFilter" 
-                    ButtonStyle="Radzen.ButtonStyle.Secondary"
-                    />
+                <RadzenButton Icon="@FilterIcon"
+                              Text="@this.FilterDescription"
+                              Size="@Radzen.ButtonSize.Small"
+                              Click="() => this.IsShowingMoreFilter = !this.IsShowingMoreFilter"
+                              ButtonStyle="@Radzen.ButtonStyle.Secondary" />
             </div>
         </div>
     </div>
 </RadzenCard>
+
+
 
 <br />
 
@@ -60,10 +54,35 @@
     <div class="container-fluid">
         <div class="row justify-content-end">
             <div class="col-auto">
-                <RadzenButton Text="Editar" ButtonStyle="Radzen.ButtonStyle.Primary" />
-                <RadzenSplitButton Text="Mais" ButtonStyle="Radzen.ButtonStyle.Primary">
-                    <RadzenSplitButtonItem Text="Novo" />
-                </RadzenSplitButton>
+
+                @{
+                    var allActionButtons = this.ActionButtons.OrderBy(x => x.Sequence).ToList();
+                    var firstThreeActionButtons = allActionButtons.Take(3);
+
+                    foreach (var actionButton in firstThreeActionButtons)
+                    {
+                        <RadzenButton Text="@actionButton.Text"
+                              Visible="@actionButton.IsVisible"
+                              ButtonStyle="@Radzen.ButtonStyle.Primary"
+                              Click="@actionButton.OnExecute" />
+                    }
+
+                    var moreActionButtons = allActionButtons.Skip(3);
+
+                    if (moreActionButtons.Any())
+                    {
+                        <RadzenSplitButton Text="@this.Localizer["Button_MoreOptions"]" ButtonStyle="Radzen.ButtonStyle.Primary">
+
+                            @foreach (var actionButton in moreActionButtons)
+                            {
+                                <RadzenSplitButtonItem Text="@actionButton.Text"
+                                           Visible="@actionButton.IsVisible"
+                                           onclick="@actionButton.OnExecute" />
+                            }
+
+                        </RadzenSplitButton>
+                    }
+                }
             </div>
         </div>
         <div class="row">
@@ -82,6 +101,34 @@
 </RadzenCard>
 
 @code {
+    [Parameter]
+    public string SearchPlaceholder { get; set; } = string.Empty;
+
+    [Parameter]
+    public bool ShouldSearchFirstHundredResults { get; set; } = true;
+
+    [Parameter]
+    public RenderFragment FilterCriteriaArea { get; set; }
+
+    [Parameter]
+    public IList<ActionButton> ActionButtons { get; set; } = new List<ActionButton>();
+
+    private bool IsShowingMoreFilter { get; set; }
+
+    private string FilterIcon => this.IsShowingMoreFilter ? "expand_less" : "expand_more";
+
+    private string FilterDescription => this.IsShowingMoreFilter ? this.Localizer["Search_ShowLessFilterCriteria"] : this.Localizer["Search_ShowMoreFilterCriteria"];
+
+
+
+
+
+    [Parameter]
+    public int? Take { get; set; }
+
+    [Parameter]
+    public EventCallback<int?> TakeChanged { get; set; }
+
     public List<Customer> Customers { get; set; } = new List<Customer>();
 
     public IList<Customer> SelectedCustomers { get; set; }
@@ -90,11 +137,6 @@
 
     public string Name { get; set; }
 
-    public bool IsShowingMoreFilter { get; set; }
-
-    public string FilterIcon => this.IsShowingMoreFilter ? "expand_less" : "expand_more";
-
-    public string FilterDescription => this.IsShowingMoreFilter ? "Exibir Menos Filtros" : "Exibir Mais Filtros";
 
     protected override void OnInitialized()
     {

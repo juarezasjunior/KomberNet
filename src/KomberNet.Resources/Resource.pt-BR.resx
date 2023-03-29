@@ -117,8 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BreadCrumbItem_Home" xml:space="preserve">
-    <value>Início</value>
+  <data name="Button_Add" xml:space="preserve">
+    <value>Adicionar</value>
+  </data>
+  <data name="Button_Close" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="Button_Delete" xml:space="preserve">
+    <value>Excluir</value>
+  </data>
+  <data name="Button_Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="Button_MoreOptions" xml:space="preserve">
+    <value>Mais ações</value>
+  </data>
+  <data name="Button_New" xml:space="preserve">
+    <value>Novo</value>
+  </data>
+  <data name="Button_Open" xml:space="preserve">
+    <value>Abrir</value>
+  </data>
+  <data name="Button_Run" xml:space="preserve">
+    <value>Executar</value>
+  </data>
+  <data name="Button_Save" xml:space="preserve">
+    <value>Salvar</value>
   </data>
   <data name="Countries_PageTitle" xml:space="preserve">
     <value>Países</value>
@@ -126,7 +150,22 @@
   <data name="Index_Title" xml:space="preserve">
     <value>Bem-vindo ao {0}</value>
   </data>
+  <data name="Search_Button" xml:space="preserve">
+    <value>Pesquisar</value>
+  </data>
   <data name="Search_InputText" xml:space="preserve">
-    <value>Filtro de Pesquisa</value>
+    <value>Campo de pesquisa</value>
+  </data>
+  <data name="Search_ShowLessFilterCriteria" xml:space="preserve">
+    <value>Exibir menos filtros</value>
+  </data>
+  <data name="Search_ShowMoreFilterCriteria" xml:space="preserve">
+    <value>Exibir mais filtros</value>
+  </data>
+  <data name="Search_TakeLabel" xml:space="preserve">
+    <value>Quantidade máxima de resultados</value>
+  </data>
+  <data name="Search_TakePlaceholder" xml:space="preserve">
+    <value>Digite a quantidade máxima de resultados ou deixe vazio para exibir todos</value>
   </data>
 </root>

@@ -61,11 +61,83 @@ namespace KomberNet.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Home.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Add.
         /// </summary>
-        public static string BreadCrumbItem_Home {
+        public static string Button_Add {
             get {
-                return ResourceManager.GetString("BreadCrumbItem_Home", resourceCulture);
+                return ResourceManager.GetString("Button_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Close.
+        /// </summary>
+        public static string Button_Close {
+            get {
+                return ResourceManager.GetString("Button_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Delete.
+        /// </summary>
+        public static string Button_Delete {
+            get {
+                return ResourceManager.GetString("Button_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Edit.
+        /// </summary>
+        public static string Button_Edit {
+            get {
+                return ResourceManager.GetString("Button_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a More actions.
+        /// </summary>
+        public static string Button_MoreOptions {
+            get {
+                return ResourceManager.GetString("Button_MoreOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a New.
+        /// </summary>
+        public static string Button_New {
+            get {
+                return ResourceManager.GetString("Button_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Open.
+        /// </summary>
+        public static string Button_Open {
+            get {
+                return ResourceManager.GetString("Button_Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Run.
+        /// </summary>
+        public static string Button_Run {
+            get {
+                return ResourceManager.GetString("Button_Run", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Save.
+        /// </summary>
+        public static string Button_Save {
+            get {
+                return ResourceManager.GetString("Button_Save", resourceCulture);
             }
         }
         
@@ -88,11 +160,56 @@ namespace KomberNet.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Search Field.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Search.
+        /// </summary>
+        public static string Search_Button {
+            get {
+                return ResourceManager.GetString("Search_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Search field.
         /// </summary>
         public static string Search_InputText {
             get {
                 return ResourceManager.GetString("Search_InputText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Show less filter criteria.
+        /// </summary>
+        public static string Search_ShowLessFilterCriteria {
+            get {
+                return ResourceManager.GetString("Search_ShowLessFilterCriteria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Show more filter criteria.
+        /// </summary>
+        public static string Search_ShowMoreFilterCriteria {
+            get {
+                return ResourceManager.GetString("Search_ShowMoreFilterCriteria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Maximum number of results.
+        /// </summary>
+        public static string Search_TakeLabel {
+            get {
+                return ResourceManager.GetString("Search_TakeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Type a maximum quantity of results or leave it empty to show all results.
+        /// </summary>
+        public static string Search_TakePlaceholder {
+            get {
+                return ResourceManager.GetString("Search_TakePlaceholder", resourceCulture);
             }
         }
     }
