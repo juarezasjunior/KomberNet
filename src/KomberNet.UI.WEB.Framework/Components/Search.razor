@@ -1,4 +1,15 @@
-﻿@inherits BodyBase
+﻿@using System.Collections.ObjectModel;
+@using System.Reactive.Subjects;
+@using System.Reactive.Linq;
+@using System.Collections.Specialized;
+@using System.Reactive;
+
+@inherits BodyBase
+
+@implements IDisposable
+
+@typeparam TSummariesQueryRequest
+@typeparam TSummary
 
 @{
     base.BuildRenderTree(__builder);
@@ -17,7 +28,7 @@
             </div>
             <div class="col-sm">
                 <RadzenButton Text="@this.Localizer["Search_Button"]"
-                              Click="@ExecuteSearch"
+                              Click="@OnSearchCallback"
                               ButtonStyle="@Radzen.ButtonStyle.Secondary" />
             </div>
         </div>
@@ -64,6 +75,7 @@
                         <RadzenButton Text="@actionButton.Text"
                               Visible="@actionButton.IsVisible"
                               ButtonStyle="@Radzen.ButtonStyle.Primary"
+                              Disabled="@(!actionButton.IsEnabled)"
                               Click="@actionButton.OnExecute" />
                     }
 
@@ -91,16 +103,19 @@
             </div>
         </div>
 
-        <RadzenDataGrid Data="Customers" TItem="Customer" SelectionMode="Radzen.DataGridSelectionMode.Single" @bind-Value=@SelectedCustomers>
+        <RadzenDataGrid Data="@Results" TItem="TSummary" SelectionMode="Radzen.DataGridSelectionMode.Multiple" @bind-Value="@SelectedResults"
+                        RowSelect="@OnRowSelection">
             <Columns>
-                <RadzenDataGridColumn TItem="Customer" Property="Id" Title="Id" />
-                <RadzenDataGridColumn TItem="Customer" Property="Name" Title="Name" />
+                @SearchColumnsArea
             </Columns>
         </RadzenDataGrid>
     </div>
 </RadzenCard>
 
 @code {
+    private IDisposable selectedResultsObservable;
+    private Subject<TSummary> summarySubject = new Subject<TSummary>();
+
     [Parameter]
     public string SearchPlaceholder { get; set; } = string.Empty;
 
@@ -113,13 +128,26 @@
     [Parameter]
     public IList<ActionButton> ActionButtons { get; set; } = new List<ActionButton>();
 
+    [Parameter]
+    public ObservableCollection<TSummary> Results { get; set; }
+
+    [Parameter]
+    public IList<TSummary> SelectedResults { get; set; }
+
+    [Parameter]
+    public EventCallback<IList<TSummary>> SelectedResultsChanged { get; set; }
+
+    [Parameter]
+    public RenderFragment SearchColumnsArea { get; set; }
+
+    [Parameter]
+    public EventCallback OnSearchCallback { get; set; }
+
     private bool IsShowingMoreFilter { get; set; }
 
     private string FilterIcon => this.IsShowingMoreFilter ? "expand_less" : "expand_more";
 
     private string FilterDescription => this.IsShowingMoreFilter ? this.Localizer["Search_ShowLessFilterCriteria"] : this.Localizer["Search_ShowMoreFilterCriteria"];
-
-
 
 
 
@@ -129,38 +157,38 @@
     [Parameter]
     public EventCallback<int?> TakeChanged { get; set; }
 
-    public List<Customer> Customers { get; set; } = new List<Customer>();
 
-    public IList<Customer> SelectedCustomers { get; set; }
-
-    public int ID { get; set; }
-
-    public string Name { get; set; }
-
+    private void OnRowSelection(TSummary summary)
+    {
+        this.summarySubject.OnNext(summary);
+    }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
+        this.selectedResultsObservable = summarySubject
+            .Throttle(TimeSpan.FromMilliseconds(200))
+            .Subscribe(x =>
+                   {
+                       foreach (var actionButton in this.ActionButtons)
+                       {
+                           if (actionButton.CanExecute != null)
+                           {
+                               actionButton.IsEnabled = actionButton.CanExecute.Invoke();
+                           }
+                           else
+                           {
+                               actionButton.IsEnabled = true;
+                           }
+                       }
+
+                       this.StateHasChanged();
+                   });
     }
 
-    public class Customer
+    public void Dispose()
     {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-    }
-
-    private void ExecuteSearch()
-    {
-        var customers = new List<Customer>();
-        customers.Add(new Customer() { Id = 1, Name = "John" });
-        customers.Add(new Customer() { Id = 2, Name = "Mary" });
-        customers.Add(new Customer() { Id = 3, Name = "Peter" });
-        customers.Add(new Customer() { Id = 4, Name = "Joseph" });
-
-        this.Customers = customers.Where(x => (this.ID == default && this.Name == default)
-            || x.Id == this.ID
-            || x.Name == this.Name).ToList();
+        this.selectedResultsObservable?.Dispose();
     }
 }

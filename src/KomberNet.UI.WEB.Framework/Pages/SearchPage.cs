@@ -7,21 +7,35 @@ namespace KomberNet.UI.WEB.Framework.Pages
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
     using System.Linq;
+    using System.Reactive.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using KangarooNet.Domain.Entities;
+    using KomberNet.UI.WEB.Framework.Components;
 
     public abstract partial class SearchPage<TSummariesQueryRequest, TSummariesQueryResponse, TSummary> : BasePage
         where TSummariesQueryRequest : ISummariesQueryRequest
         where TSummary : class, ISummary
         where TSummariesQueryResponse : class, ISummariesQueryResponse<TSummary, ObservableCollection<TSummary>>
     {
-        public ObservableCollection<TSummary> Results { get; set; }
 
-        public TSummary SelectedResult { get; set; }
+        public ObservableCollection<TSummary> Results { get; set; } = new ObservableCollection<TSummary>();
+
+        public IList<TSummary> SelectedResults { get; set; } = new List<TSummary>();
+
+        public List<ActionButton> ActionButtons { get; set; }
+
 
         protected abstract Task<TSummariesQueryResponse> OnSearchAsync();
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            
+        }
 
         private async Task SearchAsync()
         {

@@ -28,6 +28,8 @@ namespace KomberNet.UI.WEB.Framework.Components
 
         public bool IsVisible { get; set; } = true;
 
+        public bool IsEnabled { get; set; } = true;
+
         public Func<bool> CanExecute { get; set; }
 
         public Action OnExecute { get; set; }

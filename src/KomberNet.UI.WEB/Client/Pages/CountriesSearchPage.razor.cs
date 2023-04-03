@@ -10,8 +10,6 @@ namespace KomberNet.UI.WEB.Client.Pages
 
     public partial class CountriesSearchPage
     {
-        public List<ActionButton> ActionButtons { get; set; }
-
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -19,7 +17,7 @@ namespace KomberNet.UI.WEB.Client.Pages
             this.ActionButtons = new List<ActionButton>();
 
             this.ActionButtons.Add(ActionButton.NewActionButton(this.Localizer, () => true, () => Console.WriteLine("On New")));
-            this.ActionButtons.Add(ActionButton.OpenActionButton(this.Localizer, () => this.Results.Any(), () => Console.WriteLine("On Open")));
+            this.ActionButtons.Add(ActionButton.OpenActionButton(this.Localizer, () => this.SelectedResults.Count() >= 2, () => Console.WriteLine("On Open")));
         }
 
         protected override Task<CountrySummariesQueryResponse> OnSearchAsync()
@@ -31,6 +29,24 @@ namespace KomberNet.UI.WEB.Client.Pages
                     new CountrySummary() { CountryId = Guid.NewGuid(), Name = "Brazil" },
                 },
             });
+        }
+
+        public class Customer
+        {
+            public int Id { get; set; }
+
+            public string Name { get; set; }
+        }
+
+        private void ExecuteSearch()
+        {
+            var countries = new List<CountrySummary>();
+            countries.Add(new CountrySummary() { CountryId = Guid.NewGuid(), Name = "Brazil" });
+            countries.Add(new CountrySummary() { CountryId = Guid.NewGuid(), Name = "EUA" });
+            countries.Add(new CountrySummary() { CountryId = Guid.NewGuid(), Name = "Mexico" });
+            countries.Add(new CountrySummary() { CountryId = Guid.NewGuid(), Name = "Japan" });
+
+            this.Results = new ObservableCollection<CountrySummary>(countries.ToList());
         }
     }
 }

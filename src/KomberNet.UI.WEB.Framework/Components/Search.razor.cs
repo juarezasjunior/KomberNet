@@ -10,7 +10,7 @@ namespace KomberNet.UI.WEB.Framework.Components
     using System.Text;
     using System.Threading.Tasks;
 
-    public partial class Search : BodyBase
+    public partial class Search<TSummariesQueryRequest, TSummary> : BodyBase
     {
     }
 }

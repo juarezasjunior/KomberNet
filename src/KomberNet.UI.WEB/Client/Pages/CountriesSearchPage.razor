@@ -5,5 +5,15 @@
 <PageTitle>@this.Localizer["Countries_PageTitle"]</PageTitle>
 
 <Search PageTitle="@this.Localizer["Countries_PageTitle"]"
-        ActionButtons="@this.ActionButtons" />
+        TSummariesQueryRequest="CountrySummariesQueryRequest"
+        TSummary="CountrySummary"
+        Results="@this.Results"
+        @bind-SelectedResults="@this.SelectedResults"
+        ActionButtons="@this.ActionButtons"
+        OnSearchCallback="@this.ExecuteSearch">
+    <SearchColumnsArea>
+        <RadzenDataGridColumn TItem="CountrySummary" Property="CountryId" Title="Id" />
+        <RadzenDataGridColumn TItem="CountrySummary" Property="Name" Title="Name" />
+    </SearchColumnsArea>
+</Search>
 
