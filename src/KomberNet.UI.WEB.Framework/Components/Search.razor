@@ -133,10 +133,7 @@
     public ObservableCollection<TSummary> Results { get; set; }
 
     [Parameter]
-    public IList<TSummary> SelectedResults { get; set; }
-
-    [Parameter]
-    public EventCallback<IList<TSummary>> SelectedResultsChanged { get; set; }
+    public ObservableCollection<TSummary> SelectedResults { get; set; }
 
     [Parameter]
     public RenderFragment SearchColumnsArea { get; set; }

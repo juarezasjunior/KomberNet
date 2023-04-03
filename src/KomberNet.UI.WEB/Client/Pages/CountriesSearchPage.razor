@@ -5,11 +5,11 @@
 <PageTitle>@this.Localizer["Countries_PageTitle"]</PageTitle>
 
 <Search PageTitle="@this.Localizer["Countries_PageTitle"]"
+        @ref="@this.Search"
         TSummariesQueryRequest="CountrySummariesQueryRequest"
         TSummary="CountrySummary"
         Results="@this.Results"
-        @ref="@this.Search"
-        @bind-SelectedResults="@this.SelectedResults"
+        SelectedResults="@this.SelectedResults"
         ActionButtons="@this.ActionButtons"
         OnSearchCallback="@this.ExecuteSearch">
     <SearchColumnsArea>

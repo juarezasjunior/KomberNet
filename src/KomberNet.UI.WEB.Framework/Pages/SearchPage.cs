@@ -24,7 +24,7 @@ namespace KomberNet.UI.WEB.Framework.Pages
 
         public ObservableCollection<TSummary> Results { get; set; } = new ObservableCollection<TSummary>();
 
-        public IList<TSummary> SelectedResults { get; set; } = new List<TSummary>();
+        public ObservableCollection<TSummary> SelectedResults { get; set; } = new ObservableCollection<TSummary>();
 
         public List<ActionButton> ActionButtons { get; set; }
 
