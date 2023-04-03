@@ -104,7 +104,7 @@
         </div>
 
         <RadzenDataGrid Data="@Results" TItem="TSummary" SelectionMode="Radzen.DataGridSelectionMode.Multiple" @bind-Value="@SelectedResults"
-                        RowSelect="@OnRowSelection">
+                        RowSelect="@OnRowSelection" RowDeselect="@OnRowSelection">
             <Columns>
                 @SearchColumnsArea
             </Columns>
