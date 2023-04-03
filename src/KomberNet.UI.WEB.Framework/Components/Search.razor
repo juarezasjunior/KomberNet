@@ -103,8 +103,8 @@
             </div>
         </div>
 
-        <RadzenDataGrid Data="@Results" TItem="TSummary" SelectionMode="Radzen.DataGridSelectionMode.Multiple" @bind-Value="@SelectedResults"
-                        RowSelect="@OnRowSelection" RowDeselect="@OnRowSelection">
+        <RadzenDataGrid Data="@Results" TItem="TSummary" SelectionMode="Radzen.DataGridSelectionMode.Multiple" @bind-Value="@InternalSelectedResults"
+                        RowSelect="@OnRowSelect" RowDeselect="@OnRowDeselect">
             <Columns>
                 @SearchColumnsArea
             </Columns>
@@ -115,6 +115,7 @@
 @code {
     private IDisposable selectedResultsObservable;
     private Subject<TSummary> summarySubject = new Subject<TSummary>();
+    private IList<TSummary> InternalSelectedResults { get; set; } = new List<TSummary>();
 
     [Parameter]
     public string SearchPlaceholder { get; set; } = string.Empty;
@@ -158,8 +159,15 @@
     public EventCallback<int?> TakeChanged { get; set; }
 
 
-    private void OnRowSelection(TSummary summary)
+    private void OnRowSelect(TSummary summary)
     {
+        this.SelectedResults.Add(summary);
+        this.summarySubject.OnNext(summary);
+    }
+
+    private void OnRowDeselect(TSummary summary)
+    {
+        this.SelectedResults.Remove(summary);
         this.summarySubject.OnNext(summary);
     }
 

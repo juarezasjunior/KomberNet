@@ -20,6 +20,7 @@ namespace KomberNet.UI.WEB.Framework.Pages
         where TSummary : class, ISummary
         where TSummariesQueryResponse : class, ISummariesQueryResponse<TSummary, ObservableCollection<TSummary>>
     {
+        public Search<TSummariesQueryRequest, TSummary> Search { get; set; }
 
         public ObservableCollection<TSummary> Results { get; set; } = new ObservableCollection<TSummary>();
 
