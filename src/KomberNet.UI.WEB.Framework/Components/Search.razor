@@ -3,12 +3,13 @@
 @using System.Reactive.Linq;
 @using System.Collections.Specialized;
 @using System.Reactive;
+@using KangarooNet.Domain.Entities;
+@using KomberNet.UI.WEB.Framework.Pages;
 
 @inherits BodyBase
 
-@implements IDisposable
-
 @typeparam TSummariesQueryRequest
+@typeparam TSummariesQueryResponse
 @typeparam TSummary
 
 @{
@@ -24,41 +25,54 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <RadzenTextBox Placeholder="@this.SearchPlaceholder" class="w-100" />
+                <RadzenTextBox Placeholder="@this.SearchPlaceholder"
+                               @bind-Value="@this.SearchInputText"
+                               class="w-100" />
             </div>
             <div class="col-sm">
                 <RadzenButton Text="@this.Localizer["Search_Button"]"
-                              Click="@OnSearchCallback"
+                              Click="@SearchAsync"
                               ButtonStyle="@Radzen.ButtonStyle.Secondary" />
             </div>
         </div>
 
         <br />
-        <RadzenCard Visible="IsShowingMoreFilter">
-            <div class="container-fluid">
-                @FilterCriteriaArea
-            </div>
-        </RadzenCard>
 
-        @if (this.IsShowingMoreFilter)
+        @if (this.FilterCriteriaArea != null)
         {
-            <br />
-        }
+            <RadzenCard Visible="IsShowingMoreFilter">
+                <div class="container-fluid">
+                    @FilterCriteriaArea
+                </div>
+            </RadzenCard>
 
-        <div class="row justify-content-center">
-            <div class="col-auto">
-                <RadzenButton Icon="@FilterIcon"
+            @if (this.IsShowingMoreFilter)
+            {
+                <br />
+            }
+
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <RadzenButton Icon="@FilterIcon"
                               Text="@this.FilterDescription"
                               Size="@Radzen.ButtonSize.Small"
                               Click="() => this.IsShowingMoreFilter = !this.IsShowingMoreFilter"
                               ButtonStyle="@Radzen.ButtonStyle.Secondary" />
+                </div>
             </div>
-        </div>
+        }
     </div>
 </RadzenCard>
 
+@if (this.IsShowingFirstHundredResults)
+{
+    <RadzenButton ButtonStyle="Radzen.ButtonStyle.Warning"
+              Size="Radzen.ButtonSize.ExtraSmall"
+              Text="@string.Format(this.Localizer["Search_ShowingFirstHundredResults"], this.Take)"
+              Click="@this.RemoveTakeAsync" />
+}
 
-
+<br />
 <br />
 
 <RadzenCard>
@@ -67,7 +81,7 @@
             <div class="col-auto">
 
                 @{
-                    var allActionButtons = this.ActionButtons.OrderBy(x => x.Sequence).ToList();
+                    var allActionButtons = this.SearchPage.ActionButtons.OrderBy(x => x.Sequence).ToList();
                     var firstThreeActionButtons = allActionButtons.Take(3);
 
                     foreach (var actionButton in firstThreeActionButtons)
@@ -89,6 +103,7 @@
                             {
                                 <RadzenSplitButtonItem Text="@actionButton.Text"
                                            Visible="@actionButton.IsVisible"
+                                           Disabled="@(!actionButton.IsEnabled)"
                                            onclick="@actionButton.OnExecute" />
                             }
 
@@ -103,7 +118,7 @@
             </div>
         </div>
 
-        <RadzenDataGrid Data="@Results" TItem="TSummary" SelectionMode="Radzen.DataGridSelectionMode.Multiple" @bind-Value="@InternalSelectedResults"
+        <RadzenDataGrid Data="@this.SearchPage.Results" TItem="TSummary" SelectionMode="Radzen.DataGridSelectionMode.Multiple" @bind-Value="@InternalSelectedResults"
                         RowSelect="@OnRowSelect" RowDeselect="@OnRowDeselect">
             <Columns>
                 @SearchColumnsArea
@@ -111,89 +126,3 @@
         </RadzenDataGrid>
     </div>
 </RadzenCard>
-
-@code {
-    private IDisposable selectedResultsObservable;
-    private Subject<TSummary> summarySubject = new Subject<TSummary>();
-    private IList<TSummary> InternalSelectedResults { get; set; } = new List<TSummary>();
-
-    [Parameter]
-    public string SearchPlaceholder { get; set; } = string.Empty;
-
-    [Parameter]
-    public bool ShouldSearchFirstHundredResults { get; set; } = true;
-
-    [Parameter]
-    public RenderFragment FilterCriteriaArea { get; set; }
-
-    [Parameter]
-    public IList<ActionButton> ActionButtons { get; set; } = new List<ActionButton>();
-
-    [Parameter]
-    public ObservableCollection<TSummary> Results { get; set; }
-
-    [Parameter]
-    public ObservableCollection<TSummary> SelectedResults { get; set; }
-
-    [Parameter]
-    public RenderFragment SearchColumnsArea { get; set; }
-
-    [Parameter]
-    public EventCallback OnSearchCallback { get; set; }
-
-    private bool IsShowingMoreFilter { get; set; }
-
-    private string FilterIcon => this.IsShowingMoreFilter ? "expand_less" : "expand_more";
-
-    private string FilterDescription => this.IsShowingMoreFilter ? this.Localizer["Search_ShowLessFilterCriteria"] : this.Localizer["Search_ShowMoreFilterCriteria"];
-
-
-
-    [Parameter]
-    public int? Take { get; set; }
-
-    [Parameter]
-    public EventCallback<int?> TakeChanged { get; set; }
-
-
-    private void OnRowSelect(TSummary summary)
-    {
-        this.SelectedResults.Add(summary);
-        this.summarySubject.OnNext(summary);
-    }
-
-    private void OnRowDeselect(TSummary summary)
-    {
-        this.SelectedResults.Remove(summary);
-        this.summarySubject.OnNext(summary);
-    }
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        this.selectedResultsObservable = summarySubject
-            .Throttle(TimeSpan.FromMilliseconds(200))
-            .Subscribe(x =>
-                   {
-                       foreach (var actionButton in this.ActionButtons)
-                       {
-                           if (actionButton.CanExecute != null)
-                           {
-                               actionButton.IsEnabled = actionButton.CanExecute.Invoke();
-                           }
-                           else
-                           {
-                               actionButton.IsEnabled = true;
-                           }
-                       }
-
-                       this.StateHasChanged();
-                   });
-    }
-
-    public void Dispose()
-    {
-        this.selectedResultsObservable?.Dispose();
-    }
-}

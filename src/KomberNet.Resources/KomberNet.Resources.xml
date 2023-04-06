@@ -85,6 +85,11 @@
               Consulta uma cadeia de caracteres localizada semelhante a Search field.
             </summary>
         </member>
+        <member name="P:KomberNet.Resources.Resource.Search_ShowingFirstHundredResults">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Showing first {0} results. Click here to show all results. This may take a while..
+            </summary>
+        </member>
         <member name="P:KomberNet.Resources.Resource.Search_ShowLessFilterCriteria">
             <summary>
               Consulta uma cadeia de caracteres localizada semelhante a Show less filter criteria.

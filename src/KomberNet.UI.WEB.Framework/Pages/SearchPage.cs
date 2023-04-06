@@ -10,35 +10,35 @@ namespace KomberNet.UI.WEB.Framework.Pages
     using System.Collections.Specialized;
     using System.Linq;
     using System.Reactive.Linq;
+    using System.Reactive.Subjects;
     using System.Text;
     using System.Threading.Tasks;
     using KangarooNet.Domain.Entities;
     using KomberNet.UI.WEB.Framework.Components;
 
-    public abstract partial class SearchPage<TSummariesQueryRequest, TSummariesQueryResponse, TSummary> : BasePage
-        where TSummariesQueryRequest : ISummariesQueryRequest
+    public abstract partial class SearchPage<TSummariesQueryRequest, TSummariesQueryResponse, TSummary> : BasePage, IDisposable
+        where TSummariesQueryRequest : class, ISummariesQueryRequest, new()
         where TSummary : class, ISummary
         where TSummariesQueryResponse : class, ISummariesQueryResponse<TSummary, ObservableCollection<TSummary>>
     {
-        public Search<TSummariesQueryRequest, TSummary> Search { get; set; }
+        private IDisposable selectedResultsObservable;
 
-        public ObservableCollection<TSummary> Results { get; set; } = new ObservableCollection<TSummary>();
+        public TSummariesQueryRequest Request { get; } = new TSummariesQueryRequest();
 
-        public ObservableCollection<TSummary> SelectedResults { get; set; } = new ObservableCollection<TSummary>();
+        public ObservableCollection<TSummary> Results { get; private set; } = new ObservableCollection<TSummary>();
 
-        public List<ActionButton> ActionButtons { get; set; }
+        public ObservableCollection<TSummary> SelectedResults { get; private set; } = new ObservableCollection<TSummary>();
 
+        public Subject<TSummary> SelectedSummarySubject { get; } = new Subject<TSummary>();
 
-        protected abstract Task<TSummariesQueryResponse> OnSearchAsync();
+        public List<ActionButton> ActionButtons { get; } = new List<ActionButton>();
 
-        protected override void OnInitialized()
+        public void Dispose()
         {
-            base.OnInitialized();
-
-            
+            this.selectedResultsObservable?.Dispose();
         }
 
-        private async Task SearchAsync()
+        public async Task SearchAsync()
         {
             try
             {
@@ -46,7 +46,38 @@ namespace KomberNet.UI.WEB.Framework.Pages
             }
             catch (Exception ex)
             {
+                this.Results = new ObservableCollection<TSummary>();
             }
+
+            this.SelectedResults = new ObservableCollection<TSummary>();
+
+            this.StateHasChanged();
+        }
+
+        protected abstract Task<TSummariesQueryResponse> OnSearchAsync();
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            this.selectedResultsObservable = this.SelectedSummarySubject
+            .Throttle(TimeSpan.FromMilliseconds(200))
+            .Subscribe(x =>
+            {
+                foreach (var actionButton in this.ActionButtons)
+                {
+                    if (actionButton.CanExecute != null)
+                    {
+                        actionButton.IsEnabled = actionButton.CanExecute.Invoke();
+                    }
+                    else
+                    {
+                        actionButton.IsEnabled = true;
+                    }
+                }
+
+                this.StateHasChanged();
+            });
         }
     }
 }

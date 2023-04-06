@@ -178,6 +178,15 @@ namespace KomberNet.Resources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Showing first {0} results. Click here to show all results. This may take a while..
+        /// </summary>
+        public static string Search_ShowingFirstHundredResults {
+            get {
+                return ResourceManager.GetString("Search_ShowingFirstHundredResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Show less filter criteria.
         /// </summary>
         public static string Search_ShowLessFilterCriteria {

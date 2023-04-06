@@ -156,6 +156,9 @@
   <data name="Search_InputText" xml:space="preserve">
     <value>Search field</value>
   </data>
+  <data name="Search_ShowingFirstHundredResults" xml:space="preserve">
+    <value>Showing first {0} results. Click here to show all results. This may take a while.</value>
+  </data>
   <data name="Search_ShowLessFilterCriteria" xml:space="preserve">
     <value>Show less filter criteria</value>
   </data>
