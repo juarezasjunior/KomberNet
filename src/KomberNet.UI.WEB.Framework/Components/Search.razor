@@ -118,8 +118,19 @@
             </div>
         </div>
 
-        <RadzenDataGrid Data="@this.SearchPage.Results" TItem="TSummary" SelectionMode="Radzen.DataGridSelectionMode.Multiple" @bind-Value="@InternalSelectedResults"
-                        RowSelect="@OnRowSelect" RowDeselect="@OnRowDeselect">
+        <RadzenDataGrid Data="@this.SearchPage.Results" 
+                        TItem="TSummary" 
+                        SelectionMode="Radzen.DataGridSelectionMode.Multiple" 
+                        AllowColumnReorder="true"
+                        AllowMultiColumnSorting="true"
+                        AllowAlternatingRows="true"
+                        AllowFiltering="true"
+                        AllowSorting="true"
+                        AllowColumnResize="true"
+                        AllowGrouping="true"
+                        @bind-Value="@InternalSelectedResults"
+                        RowSelect="@OnRowSelect" 
+                        RowDeselect="@OnRowDeselect">
             <Columns>
                 @SearchColumnsArea
             </Columns>

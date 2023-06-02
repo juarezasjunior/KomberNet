@@ -18,8 +18,8 @@ namespace KomberNet.UI.WEB.Framework.Pages
 
     public abstract partial class SearchPage<TSummariesQueryRequest, TSummariesQueryResponse, TSummary> : BasePage, IDisposable
         where TSummariesQueryRequest : class, ISummariesQueryRequest, new()
-        where TSummary : class, ISummary
         where TSummariesQueryResponse : class, ISummariesQueryResponse<TSummary, ObservableCollection<TSummary>>
+        where TSummary : class, ISummary
     {
         private IDisposable selectedResultsObservable;
 
@@ -36,6 +36,7 @@ namespace KomberNet.UI.WEB.Framework.Pages
         public void Dispose()
         {
             this.selectedResultsObservable?.Dispose();
+            this.OnDisposing();
         }
 
         public async Task SearchAsync()
@@ -44,7 +45,7 @@ namespace KomberNet.UI.WEB.Framework.Pages
             {
                 this.Results = (await this.OnSearchAsync()).Summaries;
             }
-            catch (Exception ex)
+            catch
             {
                 this.Results = new ObservableCollection<TSummary>();
             }
@@ -53,8 +54,6 @@ namespace KomberNet.UI.WEB.Framework.Pages
 
             this.StateHasChanged();
         }
-
-        protected abstract Task<TSummariesQueryResponse> OnSearchAsync();
 
         protected override void OnInitialized()
         {
@@ -78,6 +77,12 @@ namespace KomberNet.UI.WEB.Framework.Pages
 
                 this.StateHasChanged();
             });
+        }
+
+        protected abstract Task<TSummariesQueryResponse> OnSearchAsync();
+
+        protected virtual void OnDisposing()
+        {
         }
     }
 }

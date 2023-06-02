@@ -151,6 +151,24 @@ namespace KomberNet.Resources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Country.
+        /// </summary>
+        public static string Country_PageTitle {
+            get {
+                return ResourceManager.GetString("Country_PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a General.
+        /// </summary>
+        public static string EntityForm_Tab_General {
+            get {
+                return ResourceManager.GetString("EntityForm_Tab_General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Welcome to {0}.
         /// </summary>
         public static string Index_Title {

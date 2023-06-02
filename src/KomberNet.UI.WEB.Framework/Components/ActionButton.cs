@@ -22,6 +22,13 @@ namespace KomberNet.UI.WEB.Framework.Components
             this.OnExecute = onExecute;
         }
 
+        public ActionButton(string text, int sequence, Action onExecute)
+        {
+            this.Text = text;
+            this.Sequence = sequence;
+            this.OnExecute = onExecute;
+        }
+
         public string Text { get; set; }
 
         public int Sequence { get; set; }
@@ -36,6 +43,10 @@ namespace KomberNet.UI.WEB.Framework.Components
 
         public static ActionButton NewActionButton(
             IStringLocalizer<Resource> localizer,
+            Action onExecute) => NewActionButton(localizer, null, onExecute);
+
+        public static ActionButton NewActionButton(
+            IStringLocalizer<Resource> localizer,
             Func<bool> canExecute,
             Action onExecute) => new ActionButton()
         {
@@ -44,6 +55,10 @@ namespace KomberNet.UI.WEB.Framework.Components
             CanExecute = canExecute,
             OnExecute = onExecute,
         };
+
+        public static ActionButton AddActionButton(
+            IStringLocalizer<Resource> localizer,
+            Action onExecute) => AddActionButton(localizer, null, onExecute);
 
         public static ActionButton AddActionButton(
             IStringLocalizer<Resource> localizer,
@@ -58,6 +73,10 @@ namespace KomberNet.UI.WEB.Framework.Components
 
         public static ActionButton CloseActionButton(
             IStringLocalizer<Resource> localizer,
+            Action onExecute) => CloseActionButton(localizer, null, onExecute);
+
+        public static ActionButton CloseActionButton(
+            IStringLocalizer<Resource> localizer,
             Func<bool> canExecute,
             Action onExecute) => new ActionButton()
         {
@@ -66,6 +85,10 @@ namespace KomberNet.UI.WEB.Framework.Components
             CanExecute = canExecute,
             OnExecute = onExecute,
         };
+
+        public static ActionButton OpenActionButton(
+            IStringLocalizer<Resource> localizer,
+            Action onExecute) => OpenActionButton(localizer, null, onExecute);
 
         public static ActionButton OpenActionButton(
             IStringLocalizer<Resource> localizer,
@@ -80,6 +103,10 @@ namespace KomberNet.UI.WEB.Framework.Components
 
         public static ActionButton EditActionButton(
             IStringLocalizer<Resource> localizer,
+            Action onExecute) => EditActionButton(localizer, null, onExecute);
+
+        public static ActionButton EditActionButton(
+            IStringLocalizer<Resource> localizer,
             Func<bool> canExecute,
             Action onExecute) => new ActionButton()
         {
@@ -88,6 +115,10 @@ namespace KomberNet.UI.WEB.Framework.Components
             CanExecute = canExecute,
             OnExecute = onExecute,
         };
+
+        public static ActionButton SaveActionButton(
+            IStringLocalizer<Resource> localizer,
+            Action onExecute) => SaveActionButton(localizer, null, onExecute);
 
         public static ActionButton SaveActionButton(
             IStringLocalizer<Resource> localizer,
@@ -102,6 +133,10 @@ namespace KomberNet.UI.WEB.Framework.Components
 
         public static ActionButton RunActionButton(
             IStringLocalizer<Resource> localizer,
+            Action onExecute) => RunActionButton(localizer, null, onExecute);
+
+        public static ActionButton RunActionButton(
+            IStringLocalizer<Resource> localizer,
             Func<bool> canExecute,
             Action onExecute) => new ActionButton()
         {
@@ -110,6 +145,10 @@ namespace KomberNet.UI.WEB.Framework.Components
             CanExecute = canExecute,
             OnExecute = onExecute,
         };
+
+        public static ActionButton DeleteActionButton(
+            IStringLocalizer<Resource> localizer,
+            Action onExecute) => DeleteActionButton(localizer, null, onExecute);
 
         public static ActionButton DeleteActionButton(
             IStringLocalizer<Resource> localizer,

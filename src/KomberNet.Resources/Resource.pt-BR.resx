@@ -147,6 +147,12 @@
   <data name="Countries_PageTitle" xml:space="preserve">
     <value>Países</value>
   </data>
+  <data name="Country_PageTitle" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="EntityForm_Tab_General" xml:space="preserve">
+    <value>Geral</value>
+  </data>
   <data name="Index_Title" xml:space="preserve">
     <value>Bem-vindo ao {0}</value>
   </data>

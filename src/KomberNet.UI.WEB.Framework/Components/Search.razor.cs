@@ -16,11 +16,9 @@ namespace KomberNet.UI.WEB.Framework.Components
 
     public partial class Search<TSummariesQueryRequest, TSummariesQueryResponse, TSummary> : BodyBase
         where TSummariesQueryRequest : class, ISummariesQueryRequest, new()
-        where TSummary : class, ISummary
         where TSummariesQueryResponse : class, ISummariesQueryResponse<TSummary, ObservableCollection<TSummary>>
+        where TSummary : class, ISummary
     {
-        private IList<TSummary> InternalSelectedResults { get; set; } = new List<TSummary>();
-
         [Parameter]
         public SearchPage<TSummariesQueryRequest, TSummariesQueryResponse, TSummary> SearchPage { get; set; }
 
@@ -31,13 +29,12 @@ namespace KomberNet.UI.WEB.Framework.Components
         public string SearchPlaceholder { get; set; } = string.Empty;
 
         [Parameter]
-        public bool ShouldSearchFirstHundredResults { get; set; } = true;
-
-        [Parameter]
         public RenderFragment FilterCriteriaArea { get; set; }
 
         [Parameter]
         public RenderFragment SearchColumnsArea { get; set; }
+
+        private IList<TSummary> InternalSelectedResults { get; set; } = new List<TSummary>();
 
         private string SearchInputText { get; set; }
 

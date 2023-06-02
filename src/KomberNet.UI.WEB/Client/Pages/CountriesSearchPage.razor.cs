@@ -8,14 +8,19 @@ namespace KomberNet.UI.WEB.Client.Pages
     using KomberNet.UI.WEB.Framework.Components;
     using KomberNet.UI.WEB.Framework.Pages;
     using KomberNet.UI.WEB.Models;
+    using Microsoft.AspNetCore.Components;
+    using Radzen;
 
     public partial class CountriesSearchPage : SearchPage<CountrySummariesQueryRequest, CountrySummariesQueryResponse, CountrySummary>
     {
+        [Inject]
+        public DialogService DialogService { get; set; }
+
         protected override void OnInitialized()
         {
             base.OnInitialized();
 
-            this.ActionButtons.Add(ActionButton.NewActionButton(this.Localizer, () => true, () => Console.WriteLine("On New")));
+            this.ActionButtons.Add(ActionButton.NewActionButton(this.Localizer, () => true, async () => await this.NewCountry()));
             this.ActionButtons.Add(ActionButton.OpenActionButton(this.Localizer, () => this.SelectedResults.Count() >= 2, () => Console.WriteLine("On Open")));
         }
 
@@ -30,6 +35,24 @@ namespace KomberNet.UI.WEB.Client.Pages
             return Task.FromResult(new CountrySummariesQueryResponse()
             {
                 Summaries = countries,
+            });
+        }
+
+        private async Task NewCountry()
+        {
+            var parameters = new Dictionary<string, object>();
+
+            parameters.Add("Id", 1);
+
+            await this.DialogService.OpenAsync<CountryEntityFormPage>("Test Country", parameters, new DialogOptions()
+            {
+                ShowTitle = false,
+                ShowClose = false,
+                Draggable = true,
+                Resizable = true,
+                CloseDialogOnEsc = false,
+                //Width = "700px",
+                //Height = "512px",
             });
         }
 

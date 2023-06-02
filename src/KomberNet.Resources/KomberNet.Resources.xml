@@ -70,6 +70,16 @@
               Consulta uma cadeia de caracteres localizada semelhante a Countries.
             </summary>
         </member>
+        <member name="P:KomberNet.Resources.Resource.Country_PageTitle">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Country.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.EntityForm_Tab_General">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a General.
+            </summary>
+        </member>
         <member name="P:KomberNet.Resources.Resource.Index_Title">
             <summary>
               Consulta uma cadeia de caracteres localizada semelhante a Welcome to {0}.
