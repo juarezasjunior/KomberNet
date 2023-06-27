@@ -8,19 +8,23 @@ namespace KomberNet.UI.WEB.Framework.Components
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Reactive.Subjects;
     using System.Text;
     using System.Threading.Tasks;
+    using FluentValidation;
+    using FluentValidation.Results;
     using KangarooNet.Domain.Entities;
     using KomberNet.UI.WEB.Framework.Pages;
     using Microsoft.AspNetCore.Components;
 
-    public partial class EntityForm<TEntityHandlerRequest, TEntityHandlerResponse, TEntity> : BodyBase
+    public partial class EntityFormControl<TEntityHandlerRequest, TEntityHandlerResponse, TEntity, TValidator> : FormControl
         where TEntityHandlerRequest : class, IEntityHandlerRequest<TEntity>, new()
         where TEntity : class, IEntity, new()
         where TEntityHandlerResponse : class, IEntityHandlerResponse<TEntity>, new()
+        where TValidator : AbstractValidator<TEntityHandlerRequest>, new()
     {
         [Parameter]
-        public EntityFormPage<TEntityHandlerRequest, TEntityHandlerResponse, TEntity> EntityFormPage { get; set; }
+        public EntityFormPage<TEntityHandlerRequest, TEntityHandlerResponse, TEntity, TValidator> EntityFormPage { get; set; }
 
         [Parameter]
         public RenderFragment FieldsArea { get; set; }

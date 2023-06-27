@@ -10,14 +10,13 @@ namespace KomberNet.UI.WEB.Framework.Components
     using System.Text;
     using System.Threading.Tasks;
     using KomberNet.Resources;
-    using KomberNet.UI.WEB.Framework.Pages;
     using Microsoft.AspNetCore.Components;
     using Microsoft.Extensions.Localization;
 
-    public partial class BodyBase : ComponentBase
+    public partial class ActionButtonsControl
     {
         [Parameter]
-        public string PageTitle { get; set; }
+        public List<ActionButton> ActionButtons { get; set; } = new List<ActionButton>();
 
         [Inject]
         protected IStringLocalizer<Resource> Localizer { get; set; }

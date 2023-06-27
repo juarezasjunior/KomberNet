@@ -1,0 +1,8 @@
+﻿<RadzenFormField Text="@this.FormattedDescription">
+    @ChildContent
+
+    @if (this.IsRequired)
+    {
+        <RadzenRequiredValidator Component="@this.FieldName" Popup="true" Text="@this.Localizer["Field_Required"]" />
+    }
+</RadzenFormField>

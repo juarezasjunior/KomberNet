@@ -12,10 +12,26 @@ namespace KomberNet.UI.WEB.Framework.Pages
     using KomberNet.Resources;
     using Microsoft.AspNetCore.Components;
     using Microsoft.Extensions.Localization;
+    using Radzen;
 
-    public abstract partial class BasePage : ComponentBase
+    public abstract partial class BasePage : ComponentBase, IDisposable
     {
         [Inject]
         protected IStringLocalizer<Resource> Localizer { get; set; }
+
+        [Inject]
+        protected NotificationService NotificationService { get; set; }
+
+        [Inject]
+        protected DialogService DialogService { get; set; }
+
+        public void Dispose()
+        {
+            this.OnDisposing();
+        }
+
+        protected virtual void OnDisposing()
+        {
+        }
     }
 }

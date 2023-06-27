@@ -4,23 +4,18 @@
 
 namespace KomberNet.UI.WEB.Framework.Pages
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Collections.Specialized;
-    using System.Linq;
-    using System.Reactive.Linq;
     using System.Reactive.Subjects;
-    using System.Runtime.CompilerServices;
-    using System.Text;
     using System.Threading.Tasks;
+    using FluentValidation;
+    using FluentValidation.Results;
     using KangarooNet.Domain.Entities;
-    using KomberNet.UI.WEB.Framework.Components;
+    using Radzen;
 
-    public abstract partial class EntityFormPage<TEntityHandlerRequest, TEntityHandlerResponse, TEntity> : BodyBase
+    public abstract partial class EntityFormPage<TEntityHandlerRequest, TEntityHandlerResponse, TEntity, TValidator> : FormPage
         where TEntityHandlerRequest : class, IEntityHandlerRequest<TEntity>, new()
         where TEntity : class, IEntity, new()
         where TEntityHandlerResponse : class, IEntityHandlerResponse<TEntity>, new()
+        where TValidator : AbstractValidator<TEntityHandlerRequest>, new()
     {
         public TEntityHandlerRequest Request { get; } = new TEntityHandlerRequest() { Entity = new TEntity() };
 
@@ -28,34 +23,57 @@ namespace KomberNet.UI.WEB.Framework.Pages
 
         public bool IsBusy { get; protected set; }
 
-        public List<ActionButton> ActionButtons { get; } = new List<ActionButton>();
+        public Subject<ValidationFailure> ValidationSubject { get; } = new Subject<ValidationFailure>();
 
-        public void Dispose()
-        {
-            this.OnDisposing();
-        }
-
-        protected async Task ExecuteRequestAsync(bool validateRequest = true)
+        public async Task ExecuteRequestAsync(bool validateRequest = true)
         {
             this.IsBusy = true;
 
-            this.OnExecuteRequest();
-            await this.OnExecuteRequestAsync();
+            if (validateRequest)
+            {
+                await this.ValidateRequestAsync();
+            }
+
+            this.OnExecutingRequest();
+            await this.OnExecutingRequestAsync();
 
             this.IsBusy = false;
         }
 
-        protected virtual void OnExecuteRequest()
+        protected virtual void OnValidatingRequest()
         {
         }
 
-        protected virtual async Task OnExecuteRequestAsync()
+        protected virtual async Task OnValidatingRequestAsync()
         {
             await Task.CompletedTask;
         }
 
-        protected virtual void OnDisposing()
+        protected virtual void OnExecutingRequest()
         {
+        }
+
+        protected virtual async Task OnExecutingRequestAsync()
+        {
+            await Task.CompletedTask;
+        }
+
+        private async Task ValidateRequestAsync()
+        {
+            var validator = new TValidator();
+            var validations = (await validator.ValidateAsync(this.Request))?.Errors;
+
+            foreach (var validation in validations)
+            {
+                this.NotificationService.Notify(new NotificationMessage()
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = validation.ErrorMessage,
+                });
+            }
+
+            this.OnValidatingRequest();
+            await this.OnValidatingRequestAsync();
         }
     }
 }

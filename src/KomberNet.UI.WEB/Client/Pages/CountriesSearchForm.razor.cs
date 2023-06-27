@@ -8,23 +8,18 @@ namespace KomberNet.UI.WEB.Client.Pages
     using KomberNet.UI.WEB.Framework.Components;
     using KomberNet.UI.WEB.Framework.Pages;
     using KomberNet.UI.WEB.Models;
-    using Microsoft.AspNetCore.Components;
+    using KomberNet.UI.WEB.Models.Validators;
     using Radzen;
 
-    public partial class CountriesSearchPage : SearchPage<CountrySummariesQueryRequest, CountrySummariesQueryResponse, CountrySummary>
+    public partial class CountriesSearchForm : SearchFormPage<CountrySummariesQueryRequest, CountrySummariesQueryResponse, CountrySummary, CountrySummariesQueryRequestValidator>
     {
-        [Inject]
-        public DialogService DialogService { get; set; }
-
-        protected override void OnInitialized()
+        protected override void CreateActionButtons()
         {
-            base.OnInitialized();
-
             this.ActionButtons.Add(ActionButton.NewActionButton(this.Localizer, () => true, async () => await this.NewCountry()));
             this.ActionButtons.Add(ActionButton.OpenActionButton(this.Localizer, () => this.SelectedResults.Count() >= 2, () => Console.WriteLine("On Open")));
         }
 
-        protected override Task<CountrySummariesQueryResponse> OnSearchAsync()
+        protected override Task<CountrySummariesQueryResponse> OnSearchingAsync()
         {
             var countries = new ObservableCollection<CountrySummary>();
             countries.Add(new CountrySummary() { CountryId = Guid.NewGuid(), Name = "Brazil" });
@@ -44,7 +39,7 @@ namespace KomberNet.UI.WEB.Client.Pages
 
             parameters.Add("Id", 1);
 
-            await this.DialogService.OpenAsync<CountryEntityFormPage>("Test Country", parameters, new DialogOptions()
+            await this.DialogService.OpenAsync<CountryEntityForm>("Test Country", parameters, new DialogOptions()
             {
                 ShowTitle = false,
                 ShowClose = false,

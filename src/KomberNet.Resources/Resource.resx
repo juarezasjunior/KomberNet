@@ -147,11 +147,17 @@
   <data name="Countries_PageTitle" xml:space="preserve">
     <value>Countries</value>
   </data>
+  <data name="Country_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="Country_PageTitle" xml:space="preserve">
     <value>Country</value>
   </data>
   <data name="EntityForm_Tab_General" xml:space="preserve">
     <value>General</value>
+  </data>
+  <data name="Field_Required" xml:space="preserve">
+    <value>Required</value>
   </data>
   <data name="Index_Title" xml:space="preserve">
     <value>Welcome to {0}</value>

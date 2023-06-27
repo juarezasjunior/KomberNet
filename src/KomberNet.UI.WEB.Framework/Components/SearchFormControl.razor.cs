@@ -10,17 +10,19 @@ namespace KomberNet.UI.WEB.Framework.Components
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using FluentValidation;
     using KangarooNet.Domain.Entities;
     using KomberNet.UI.WEB.Framework.Pages;
     using Microsoft.AspNetCore.Components;
 
-    public partial class Search<TSummariesQueryRequest, TSummariesQueryResponse, TSummary> : BodyBase
+    public partial class SearchFormControl<TSummariesQueryRequest, TSummariesQueryResponse, TSummary, TValidator> : FormControl
         where TSummariesQueryRequest : class, ISummariesQueryRequest, new()
         where TSummariesQueryResponse : class, ISummariesQueryResponse<TSummary, ObservableCollection<TSummary>>
         where TSummary : class, ISummary
+        where TValidator : AbstractValidator<TSummariesQueryRequest>, new()
     {
         [Parameter]
-        public SearchPage<TSummariesQueryRequest, TSummariesQueryResponse, TSummary> SearchPage { get; set; }
+        public SearchFormPage<TSummariesQueryRequest, TSummariesQueryResponse, TSummary, TValidator> SearchFormPage { get; set; }
 
         [Parameter]
         public int? Take { get; set; } = 100;
@@ -50,35 +52,35 @@ namespace KomberNet.UI.WEB.Framework.Components
         {
             base.OnInitialized();
 
-            if (this.SearchPage is null)
+            if (this.SearchFormPage is null)
             {
-                throw new NullReferenceException($"Missing parameter {nameof(this.SearchPage)}");
+                throw new NullReferenceException($"Missing parameter {nameof(this.SearchFormPage)}");
             }
         }
 
         private void OnRowSelect(TSummary summary)
         {
-            this.SearchPage.SelectedResults.Add(summary);
-            this.SearchPage.SelectedSummarySubject.OnNext(summary);
+            this.SearchFormPage.SelectedResults.Add(summary);
+            this.SearchFormPage.SelectedSummarySubject.OnNext(summary);
         }
 
         private void OnRowDeselect(TSummary summary)
         {
-            this.SearchPage.SelectedResults.Remove(summary);
-            this.SearchPage.SelectedSummarySubject.OnNext(summary);
+            this.SearchFormPage.SelectedResults.Remove(summary);
+            this.SearchFormPage.SelectedSummarySubject.OnNext(summary);
         }
 
         private async Task SearchAsync()
         {
-            if (this.SearchPage.Request is IHasSearchableDefaultCriteria defaultCriteria)
+            if (this.SearchFormPage.Request is IHasSearchableDefaultCriteria defaultCriteria)
             {
                 defaultCriteria.Search = this.SearchInputText;
                 defaultCriteria.Take = this.Take;
             }
 
-            await this.SearchPage.SearchAsync();
+            await this.SearchFormPage.SearchAsync();
 
-            if (this.Take.HasValue && this.SearchPage.Results.Count() == this.Take.Value)
+            if (this.Take.HasValue && this.SearchFormPage.Results.Count() == this.Take.Value)
             {
                 this.IsShowingFirstHundredResults = true;
             }

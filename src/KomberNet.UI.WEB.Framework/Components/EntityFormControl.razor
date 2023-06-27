@@ -1,0 +1,42 @@
+﻿@using System.Collections.ObjectModel;
+@using System.Reactive.Subjects;
+@using System.Reactive.Linq;
+@using System.Collections.Specialized;
+@using System.Reactive;
+@using KangarooNet.Domain.Entities;
+@using KomberNet.UI.WEB.Framework.Pages;
+
+@inherits FormControl
+
+@typeparam TEntityHandlerRequest
+@typeparam TEntityHandlerResponse
+@typeparam TEntity
+@typeparam TValidator
+
+@{
+    base.BuildRenderTree(__builder);
+}
+
+<RadzenTemplateForm TItem="TEntityHandlerRequest" Data="@this.EntityFormPage.Request" Submit="async () => await this.EntityFormPage.ExecuteRequestAsync()">
+    <RadzenCard>
+        <div class="container-fluid">
+            <div class="row justify-content-end">
+                <div class="col-auto">
+                    <ActionButtonsControl ActionButtons="@this.EntityFormPage.ActionButtons" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <hr />
+                </div>
+            </div>
+
+            <RadzenAccordion Multiple="true">
+                <Items>
+                    @FieldsArea
+                </Items>
+            </RadzenAccordion>
+
+        </div>
+    </RadzenCard>
+</RadzenTemplateForm>

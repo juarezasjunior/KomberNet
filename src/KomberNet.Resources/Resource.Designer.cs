@@ -151,6 +151,15 @@ namespace KomberNet.Resources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Name.
+        /// </summary>
+        public static string Country_Name {
+            get {
+                return ResourceManager.GetString("Country_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Country.
         /// </summary>
         public static string Country_PageTitle {
@@ -165,6 +174,15 @@ namespace KomberNet.Resources {
         public static string EntityForm_Tab_General {
             get {
                 return ResourceManager.GetString("EntityForm_Tab_General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Required.
+        /// </summary>
+        public static string Field_Required {
+            get {
+                return ResourceManager.GetString("Field_Required", resourceCulture);
             }
         }
         

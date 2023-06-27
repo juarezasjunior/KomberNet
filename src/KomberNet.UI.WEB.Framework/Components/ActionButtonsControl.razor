@@ -1,0 +1,31 @@
+﻿@{
+    var allActionButtons = this.ActionButtons.OrderBy(x => x.Sequence).ToList();
+    var firstThreeActionButtons = allActionButtons.Take(3);
+
+    foreach (var actionButton in firstThreeActionButtons)
+    {
+        <RadzenButton Text="@actionButton.Text"
+                      ButtonStyle="@Radzen.ButtonStyle.Primary"
+                      ButtonType="@actionButton.ButtonType"
+                      Visible="@actionButton.IsVisible"
+                      Disabled="@(!actionButton.IsEnabled)"
+                      Click="@actionButton.TryExecute" />
+    }
+
+    var moreActionButtons = allActionButtons.Skip(3);
+
+    if (moreActionButtons.Any())
+    {
+        <RadzenSplitButton Text="@this.Localizer["Button_MoreOptions"]" ButtonStyle="Radzen.ButtonStyle.Primary">
+
+            @foreach (var actionButton in moreActionButtons)
+            {
+                <RadzenSplitButtonItem Text="@actionButton.Text"
+                                       Visible="@actionButton.IsVisible"
+                                       Disabled="@(!actionButton.IsEnabled)"
+                                       onclick="() => actionButton.TryExecute()" />
+            }
+
+        </RadzenSplitButton>
+    }
+}

@@ -13,7 +13,6 @@ namespace KomberNet.UI.WEB.Client.Bootstraps
     using KomberNet.UI.WEB.Client.Providers;
     using Microsoft.AspNetCore.Components.Authorization;
     using Microsoft.AspNetCore.Components.Web;
-    using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.JSInterop;
@@ -34,6 +33,7 @@ namespace KomberNet.UI.WEB.Client.Bootstraps
             builder.Services.AddBlazoredLocalStorage();
 
             builder.Services.AddScoped<DialogService>();
+            builder.Services.AddScoped<NotificationService>();
 
             builder.Services.AddAuthorizationCore();
 
