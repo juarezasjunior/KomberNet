@@ -12,6 +12,10 @@ namespace KomberNet.UI.WEB.Framework.Components
 
     public class ActionButton
     {
+        private ActionButton()
+        {
+        }
+
         public string Text { get; private set; }
 
         public int Sequence { get; private set; }

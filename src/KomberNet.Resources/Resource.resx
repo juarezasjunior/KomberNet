@@ -156,11 +156,23 @@
   <data name="EntityForm_Tab_General" xml:space="preserve">
     <value>General</value>
   </data>
+  <data name="Field_InvalidEmail" xml:space="preserve">
+    <value>Invalid email</value>
+  </data>
   <data name="Field_Required" xml:space="preserve">
     <value>Required</value>
   </data>
   <data name="Index_Title" xml:space="preserve">
     <value>Welcome to {0}</value>
+  </data>
+  <data name="Login_Button" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Login_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Password</value>
   </data>
   <data name="Search_Button" xml:space="preserve">
     <value>Search</value>

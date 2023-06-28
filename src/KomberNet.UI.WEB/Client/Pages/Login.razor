@@ -2,34 +2,43 @@
 @using KomberNet.UI.WEB.Client.Auth;
 @using KomberNet.UI.WEB.Models;
 
+@inherits BasePage
+
 @inject IAuthService authService;
 
 <RadzenCard>
-    <h4 class="mb-4">Full Name</h4>
-    <RadzenTextBox Class="w-100" @bind-Value="FullName" />
 
-    <h4 class="mb-4">Login</h4>
-    <RadzenTextBox Class="w-100" @bind-Value="Email" />
+    <RadzenTemplateForm TItem="Login" Data="@this" Submit="async () => await this.LoginAsync()">
 
-    <h4 class="mb-4">Password</h4>
-    <RadzenPassword Class="w-100" @bind-Value="Password" />
+        <RadzenFormField class="w-100" Text="@this.Localizer["Login_Email"]">
+            <RadzenTextBox Name="@nameof(this.Email)" @bind-Value="Email" />
+            <RadzenRequiredValidator Component="@nameof(this.Email)" Popup="true" Text="@this.Localizer["Field_Required"]" />
+            <RadzenEmailValidator Component="@nameof(this.Email)" Popup="true" Text="@this.Localizer["Field_InvalidEmail"]" />
+        </RadzenFormField>
 
-    <RadzenButton Click=@(args => LoginAsync()) Text="Login" />
+        <RadzenFormField class="w-100" Text="@this.Localizer["Login_Password"]">
+            <RadzenPassword Name="@nameof(this.Password)" @bind-Value="Password" />
+            <RadzenRequiredValidator Component="@nameof(this.Password)" Popup="true" Text="@this.Localizer["Field_Required"]" />
+        </RadzenFormField>
+
+        <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="@this.Localizer["Login_Button"]" />
+
+    </RadzenTemplateForm>
 
 </RadzenCard>
 
 @code {
-    public string FullName { get; set; }
+    private string FullName { get; set; }
 
-    public string Email { get; set; }
+    private string Email { get; set; }
 
-    public string Password { get; set; }
+    private string Password { get; set; }
 
     private async Task LoginAsync()
     {
         await this.authService.InsertApplicationUserAsync(new ApplicationUserInsertRequest()
             {
-                FullName = this.FullName,
+                FullName = this.FullName ?? this.Email,
                 Email = this.Email,
                 Password = this.Password,
             });
