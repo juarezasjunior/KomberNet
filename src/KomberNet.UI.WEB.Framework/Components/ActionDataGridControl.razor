@@ -1,0 +1,32 @@
+﻿@typeparam TItem
+
+<div class="container-fluid">
+    <div class="row justify-content-end">
+        <div class="col-auto">
+            <ActionButtonsControl ActionButtons="@this.ActionButtons" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <hr />
+        </div>
+    </div>
+
+    <RadzenDataGrid Data="@this.Data"
+                    TItem="TItem"
+                    SelectionMode="Radzen.DataGridSelectionMode.Multiple"
+                    AllowColumnReorder="true"
+                    AllowMultiColumnSorting="true"
+                    AllowAlternatingRows="true"
+                    AllowFiltering="true"
+                    AllowSorting="true"
+                    AllowColumnResize="true"
+                    AllowGrouping="true"
+                    RowSelect="@this.OnRowSelect"
+                    RowDeselect="@this.OnRowDeselect"
+                    @bind-Value="@this.InternalSelectedResults">
+        <Columns>
+            @Columns
+        </Columns>
+    </RadzenDataGrid>
+</div>

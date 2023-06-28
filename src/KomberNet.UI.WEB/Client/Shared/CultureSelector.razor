@@ -1,15 +1,14 @@
-﻿@using  System.Globalization
+﻿@using System.Globalization
 
 @inject IJSRuntime JS
 @inject NavigationManager Nav
 
 <p>
     <RadzenLabel Text="Select your locale:" />
-    <RadzenDropDown 
-            TValue="CultureInfo" 
-            Data=@SupportedCultures
-            TextProperty="DisplayName"
-            @bind-Value=Culture/>
+    <RadzenDropDown TValue="CultureInfo"
+                    Data=@SupportedCultures
+                    TextProperty="DisplayName"
+                    @bind-Value=Culture />
 </p>
 
 @code {

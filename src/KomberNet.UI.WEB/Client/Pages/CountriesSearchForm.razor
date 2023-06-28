@@ -11,9 +11,9 @@
                    TSummary="CountrySummary"
                    TValidator="CountrySummariesQueryRequestValidator"
                    Take="4">
-    <SearchColumnsArea>
+    <Columns>
         <RadzenDataGridColumn TItem="CountrySummary" Property="CountryId" Title="Id" />
-        <RadzenDataGridColumn TItem="CountrySummary" Property="Name" Title="Name" />
-    </SearchColumnsArea>
+        <RadzenDataGridColumn TItem="CountrySummary" Property="Name" Title="@this.Localizer["Country_Name"]" />
+    </Columns>
 </SearchFormControl>
 

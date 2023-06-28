@@ -5,10 +5,8 @@
 namespace KomberNet.UI.WEB.Framework.Components
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using FluentValidation;
     using KangarooNet.Domain.Entities;
@@ -31,12 +29,10 @@ namespace KomberNet.UI.WEB.Framework.Components
         public string SearchPlaceholder { get; set; } = string.Empty;
 
         [Parameter]
-        public RenderFragment FilterCriteriaArea { get; set; }
+        public RenderFragment FilterCriteria { get; set; }
 
         [Parameter]
-        public RenderFragment SearchColumnsArea { get; set; }
-
-        private IList<TSummary> InternalSelectedResults { get; set; } = new List<TSummary>();
+        public RenderFragment Columns { get; set; }
 
         private string SearchInputText { get; set; }
 
@@ -56,18 +52,6 @@ namespace KomberNet.UI.WEB.Framework.Components
             {
                 throw new NullReferenceException($"Missing parameter {nameof(this.SearchFormPage)}");
             }
-        }
-
-        private void OnRowSelect(TSummary summary)
-        {
-            this.SearchFormPage.SelectedResults.Add(summary);
-            this.SearchFormPage.SelectedSummarySubject.OnNext(summary);
-        }
-
-        private void OnRowDeselect(TSummary summary)
-        {
-            this.SearchFormPage.SelectedResults.Remove(summary);
-            this.SearchFormPage.SelectedSummarySubject.OnNext(summary);
         }
 
         private async Task SearchAsync()

@@ -10,13 +10,13 @@
             TEntityHandlerResponse="CountryHandlerResponse"
             TEntity="Country"
             TValidator="CountryHandlerRequestValidator">
-    <FieldsArea>
+    <Fields>
         <RadzenAccordionItem Text="@this.Localizer["EntityForm_Tab_General"]" Selected="true">
-            <FieldControl FieldName="@nameof(this.Request.Entity.Name)"
+            <FieldControl FieldName="@nameof(this.Entity.Name)"
                           FieldDescription="@this.Localizer["Country_Name"]"
                           IsRequired=true>
-                <RadzenTextBox Name="@nameof(this.Request.Entity.Name)" @bind-Value="@this.Entity.Name" />
+                <RadzenTextBox Name="@nameof(this.Entity.Name)" @bind-Value="@this.Entity.Name" />
             </FieldControl>
         </RadzenAccordionItem>
-    </FieldsArea>
+    </Fields>
 </EntityFormControl>

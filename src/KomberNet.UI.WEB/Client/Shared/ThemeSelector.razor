@@ -1,0 +1,31 @@
+﻿@inject IJSRuntime JS
+@inject NavigationManager Nav
+
+<p>
+    <RadzenDropDown TValue="string"
+                    Data=@SupportedThemes
+                    @bind-Value=Theme />
+</p>
+
+@code {
+    public static string[] SupportedThemes => new[]
+    {
+        "Light",
+        "Dark",
+    };
+
+    private string Theme
+    {
+        get
+        {
+            var js = (IJSInProcessRuntime)JS;
+            return js.Invoke<string>("theme.get") ?? SupportedThemes.FirstOrDefault();
+        }
+        set
+        {
+            var js = (IJSInProcessRuntime)JS;
+            js.InvokeVoid("theme.set", value);
+            js.InvokeVoid("setTheme", value);
+        }
+    }
+}

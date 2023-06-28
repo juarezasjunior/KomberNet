@@ -6,8 +6,6 @@ namespace KomberNet.UI.WEB.Framework.Pages
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.Reactive.Linq;
-    using System.Reactive.Subjects;
     using System.Threading.Tasks;
     using FluentValidation;
     using KangarooNet.Domain.Entities;
@@ -19,18 +17,16 @@ namespace KomberNet.UI.WEB.Framework.Pages
         where TSummary : class, ISummary
         where TValidator : AbstractValidator<TSummariesQueryRequest>, new()
     {
-        private IDisposable selectedResultsObservable;
-
         public TSummariesQueryRequest Request { get; } = new TSummariesQueryRequest();
 
         public ObservableCollection<TSummary> Results { get; private set; } = new ObservableCollection<TSummary>();
 
-        public ObservableCollection<TSummary> SelectedResults { get; private set; } = new ObservableCollection<TSummary>();
-
-        public Subject<TSummary> SelectedSummarySubject { get; } = new Subject<TSummary>();
+        public ObservableCollection<TSummary> SelectedResults { get; set; } = new ObservableCollection<TSummary>();
 
         public async Task SearchAsync(bool validateRequest = true)
         {
+            this.IsBusy = true;
+
             if (validateRequest)
             {
                 await this.ValidateRequestAsync();
@@ -47,21 +43,19 @@ namespace KomberNet.UI.WEB.Framework.Pages
 
             this.SelectedResults = new ObservableCollection<TSummary>();
 
+            this.IsBusy = false;
+
             this.StateHasChanged();
         }
 
-        protected override void OnInitialized()
+        public virtual void OnResultSelected(TSummary summary)
         {
-            base.OnInitialized();
+            this.SelectedResults.Add(summary);
+        }
 
-            this.selectedResultsObservable = this.SelectedSummarySubject
-            .Throttle(TimeSpan.FromMilliseconds(200))
-            .Subscribe(x =>
-            {
-                this.EnableActionButtons();
-            });
-
-            this.EnableActionButtons();
+        public virtual void OnResultDeselected(TSummary summary)
+        {
+            this.SelectedResults.Remove(summary);
         }
 
         protected virtual void OnValidatingRequest()
@@ -74,29 +68,6 @@ namespace KomberNet.UI.WEB.Framework.Pages
         }
 
         protected abstract Task<TSummariesQueryResponse> OnSearchingAsync();
-
-        protected override void OnDisposing()
-        {
-            base.OnDisposing();
-            this.selectedResultsObservable?.Dispose();
-        }
-
-        private void EnableActionButtons()
-        {
-            foreach (var actionButton in this.ActionButtons)
-            {
-                if (actionButton.CanExecute != null)
-                {
-                    actionButton.IsEnabled = actionButton.CanExecute.Invoke();
-                }
-                else
-                {
-                    actionButton.IsEnabled = true;
-                }
-            }
-
-            this.StateHasChanged();
-        }
 
         private async Task ValidateRequestAsync()
         {

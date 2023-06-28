@@ -14,7 +14,7 @@
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
     <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
 
-    <link rel="stylesheet" href="_content/Radzen.Blazor/css/default.css">
+    <link id="theme" rel="stylesheet" href="_content/Radzen.Blazor/css/default.css">
 </head>
 
 <body>
@@ -36,12 +36,35 @@
 
 
     <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
+
     <script>
         window.blazorCulture = {
             get: () => window.localStorage['BlazorCulture'],
             set: (value) => window.localStorage['BlazorCulture'] = value
         };
     </script>
+
+
+    <script>
+        window.theme = {
+            get: () => window.localStorage['Theme'],
+            set: (value) => window.localStorage['Theme'] = value
+        };
+    </script>
+
+    <script>
+        function setTheme(theme) {
+            let currentTheme = document.getElementById('theme');
+
+            if (theme == 'Dark') {
+                currentTheme.href = '_content/Radzen.Blazor/css/dark.css';
+            }
+            else {
+                currentTheme.href = '_content/Radzen.Blazor/css/default.css';
+            }
+        }
+    </script>
+
 </body>
 
 </html>

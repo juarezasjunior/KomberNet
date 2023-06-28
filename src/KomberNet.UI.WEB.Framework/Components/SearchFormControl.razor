@@ -40,11 +40,11 @@
 
             <br />
 
-            @if (this.FilterCriteriaArea != null)
+            @if (this.FilterCriteria != null)
             {
                 <RadzenCard Visible="IsShowingMoreFilter">
                     <div class="container-fluid">
-                        @FilterCriteriaArea
+                        @FilterCriteria
                     </div>
                 </RadzenCard>
 
@@ -79,34 +79,10 @@
 <br />
 
 <RadzenCard>
-    <div class="container-fluid">
-        <div class="row justify-content-end">
-            <div class="col-auto">
-                <ActionButtonsControl ActionButtons="@this.SearchFormPage.ActionButtons" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm">
-                <hr />
-            </div>
-        </div>
-
-        <RadzenDataGrid Data="@this.SearchFormPage.Results"
-                        TItem="TSummary"
-                        SelectionMode="Radzen.DataGridSelectionMode.Multiple"
-                        AllowColumnReorder="true"
-                        AllowMultiColumnSorting="true"
-                        AllowAlternatingRows="true"
-                        AllowFiltering="true"
-                        AllowSorting="true"
-                        AllowColumnResize="true"
-                        AllowGrouping="true"
-                        @bind-Value="@InternalSelectedResults"
-                        RowSelect="@OnRowSelect"
-                        RowDeselect="@OnRowDeselect">
-            <Columns>
-                @SearchColumnsArea
-            </Columns>
-        </RadzenDataGrid>
-    </div>
+    <ActionDataGridControl TItem="TSummary"
+                           Data="@this.SearchFormPage.Results"
+                           OnRowSelected="@this.SearchFormPage.OnResultSelected"
+                           OnRowDeselected="@this.SearchFormPage.OnResultDeselected"
+                           Columns="@Columns"
+                           ActionButtons="@this.SearchFormPage.ActionButtons"/>
 </RadzenCard>

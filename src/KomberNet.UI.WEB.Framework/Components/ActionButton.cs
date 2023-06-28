@@ -171,5 +171,20 @@ namespace KomberNet.UI.WEB.Framework.Components
             CanExecute = canExecute,
             OnExecuting = onExecuting,
         };
+
+        public static void EnableActionButtons(List<ActionButton> actionButtons)
+        {
+            foreach (var actionButton in actionButtons)
+            {
+                if (actionButton.CanExecute != null)
+                {
+                    actionButton.IsEnabled = actionButton.CanExecute.Invoke();
+                }
+                else
+                {
+                    actionButton.IsEnabled = true;
+                }
+            }
+        }
     }
 }

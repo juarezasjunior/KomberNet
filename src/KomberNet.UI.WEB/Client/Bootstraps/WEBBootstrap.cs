@@ -11,6 +11,7 @@ namespace KomberNet.UI.WEB.Client.Bootstraps
     using KomberNet.UI.WEB.Client.Auth;
     using KomberNet.UI.WEB.Client.Handlers;
     using KomberNet.UI.WEB.Client.Providers;
+    using KomberNet.UI.WEB.Client.Shared;
     using Microsoft.AspNetCore.Components.Authorization;
     using Microsoft.AspNetCore.Components.Web;
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -43,6 +44,7 @@ namespace KomberNet.UI.WEB.Client.Bootstraps
 
             var host = builder.Build();
 
+            await SetTheme(host);
             await SetDefaultCulture(host);
 
             await host.RunAsync();
@@ -52,6 +54,19 @@ namespace KomberNet.UI.WEB.Client.Bootstraps
         {
             builder.RootComponents.Add<App>("#app");
             builder.RootComponents.Add<HeadOutlet>("head::after");
+        }
+
+        private static async Task SetTheme(WebAssemblyHost host)
+        {
+            var js = host.Services.GetRequiredService<IJSRuntime>();
+            var theme = await js.InvokeAsync<string>("theme.get");
+
+            if (string.IsNullOrEmpty(theme))
+            {
+                theme = ThemeSelector.SupportedThemes.FirstOrDefault();
+            }
+
+            await js.InvokeVoidAsync("setTheme", theme);
         }
 
         private static async Task SetDefaultCulture(WebAssemblyHost host)

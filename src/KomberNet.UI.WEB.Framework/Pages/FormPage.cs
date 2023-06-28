@@ -15,11 +15,15 @@ namespace KomberNet.UI.WEB.Framework.Pages
     {
         public List<ActionButton> ActionButtons { get; } = new List<ActionButton>();
 
+        public bool IsBusy { get; protected set; }
+
         protected override void OnInitialized()
         {
             base.OnInitialized();
 
             this.CreateActionButtons();
+
+            ActionButton.EnableActionButtons(this.ActionButtons);
         }
 
         protected abstract void CreateActionButtons();

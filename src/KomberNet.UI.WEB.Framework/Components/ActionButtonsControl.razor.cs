@@ -13,7 +13,7 @@ namespace KomberNet.UI.WEB.Framework.Components
     using Microsoft.AspNetCore.Components;
     using Microsoft.Extensions.Localization;
 
-    public partial class ActionButtonsControl
+    public partial class ActionButtonsControl : ComponentBase
     {
         [Parameter]
         public List<ActionButton> ActionButtons { get; set; } = new List<ActionButton>();

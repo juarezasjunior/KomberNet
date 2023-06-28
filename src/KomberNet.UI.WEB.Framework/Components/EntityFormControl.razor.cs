@@ -27,7 +27,7 @@ namespace KomberNet.UI.WEB.Framework.Components
         public EntityFormPage<TEntityHandlerRequest, TEntityHandlerResponse, TEntity, TValidator> EntityFormPage { get; set; }
 
         [Parameter]
-        public RenderFragment FieldsArea { get; set; }
+        public RenderFragment Fields { get; set; }
 
         protected override void OnInitialized()
         {

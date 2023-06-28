@@ -4,10 +4,8 @@
 
 namespace KomberNet.UI.WEB.Framework.Pages
 {
-    using System.Reactive.Subjects;
     using System.Threading.Tasks;
     using FluentValidation;
-    using FluentValidation.Results;
     using KangarooNet.Domain.Entities;
     using Radzen;
 
@@ -20,10 +18,6 @@ namespace KomberNet.UI.WEB.Framework.Pages
         public TEntityHandlerRequest Request { get; } = new TEntityHandlerRequest() { Entity = new TEntity() };
 
         public TEntity Entity => this.Request.Entity;
-
-        public bool IsBusy { get; protected set; }
-
-        public Subject<ValidationFailure> ValidationSubject { get; } = new Subject<ValidationFailure>();
 
         public async Task ExecuteRequestAsync(bool validateRequest = true)
         {
