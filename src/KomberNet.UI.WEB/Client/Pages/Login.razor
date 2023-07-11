@@ -6,26 +6,39 @@
 
 @inject IAuthService authService;
 
-<RadzenCard>
+<PageTitle>@this.Localizer["Login_PageTitle"]</PageTitle>
 
-    <RadzenTemplateForm TItem="Login" Data="@this" Submit="async () => await this.LoginAsync()">
+<RadzenRow JustifyContent="Radzen.JustifyContent.Center">
+    <RadzenColumn SizeLG="4" SizeMD="5">
+        <RadzenCard>
+            <RadzenTemplateForm TItem="Login" Data="@this" Submit="async () => await this.LoginAsync()">
+                <RadzenRow>
+                    <RadzenColumn>
+                        <RadzenStack>
 
-        <RadzenFormField class="w-100" Text="@this.Localizer["Login_Email"]">
-            <RadzenTextBox Name="@nameof(this.Email)" @bind-Value="Email" />
-            <RadzenRequiredValidator Component="@nameof(this.Email)" Popup="true" Text="@this.Localizer["Field_Required"]" />
-            <RadzenEmailValidator Component="@nameof(this.Email)" Popup="true" Text="@this.Localizer["Field_InvalidEmail"]" />
-        </RadzenFormField>
+                            <RadzenFormField Text="@this.Localizer["Login_Email"]">
+                                <RadzenTextBox Name="@nameof(this.Email)" @bind-Value="Email" />
+                                <RadzenRequiredValidator Component="@nameof(this.Email)" Text="@this.Localizer["Field_Required"]" />
+                                <RadzenEmailValidator Component="@nameof(this.Email)" Text="@this.Localizer["Field_InvalidEmail"]" />
+                            </RadzenFormField>
 
-        <RadzenFormField class="w-100" Text="@this.Localizer["Login_Password"]">
-            <RadzenPassword Name="@nameof(this.Password)" @bind-Value="Password" />
-            <RadzenRequiredValidator Component="@nameof(this.Password)" Popup="true" Text="@this.Localizer["Field_Required"]" />
-        </RadzenFormField>
+                            <RadzenFormField Text="@this.Localizer["Login_Password"]">
+                                <RadzenPassword Name="@nameof(this.Password)" @bind-Value="Password" />
+                                <RadzenRequiredValidator Component="@nameof(this.Password)" Text="@this.Localizer["Field_Required"]" />
+                            </RadzenFormField>
 
-        <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="@this.Localizer["Login_Button"]" />
+                            <RadzenStack Orientation="Radzen.Orientation.Horizontal">
+                                <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="@this.Localizer["Login_Button"]" />
+                                <RadzenButton Text="@this.Localizer["Login_ForgotPassword_Button"]" />
+                            </RadzenStack>
 
-    </RadzenTemplateForm>
-
-</RadzenCard>
+                        </RadzenStack>
+                    </RadzenColumn>
+                </RadzenRow>
+            </RadzenTemplateForm>
+        </RadzenCard>
+    </RadzenColumn>
+</RadzenRow>
 
 @code {
     private string FullName { get; set; }

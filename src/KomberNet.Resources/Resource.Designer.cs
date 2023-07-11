@@ -223,6 +223,24 @@ namespace KomberNet.Resources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Forgot password.
+        /// </summary>
+        public static string Login_ForgotPassword_Button {
+            get {
+                return ResourceManager.GetString("Login_ForgotPassword_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Login.
+        /// </summary>
+        public static string Login_PageTitle {
+            get {
+                return ResourceManager.GetString("Login_PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Password.
         /// </summary>
         public static string Login_Password {

@@ -110,6 +110,16 @@
               Consulta uma cadeia de caracteres localizada semelhante a Email.
             </summary>
         </member>
+        <member name="P:KomberNet.Resources.Resource.Login_ForgotPassword_Button">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Forgot password.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Login_PageTitle">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Login.
+            </summary>
+        </member>
         <member name="P:KomberNet.Resources.Resource.Login_Password">
             <summary>
               Consulta uma cadeia de caracteres localizada semelhante a Password.

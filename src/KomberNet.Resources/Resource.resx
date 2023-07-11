@@ -171,6 +171,12 @@
   <data name="Login_Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="Login_ForgotPassword_Button" xml:space="preserve">
+    <value>Forgot password</value>
+  </data>
+  <data name="Login_PageTitle" xml:space="preserve">
+    <value>Login</value>
+  </data>
   <data name="Login_Password" xml:space="preserve">
     <value>Password</value>
   </data>
