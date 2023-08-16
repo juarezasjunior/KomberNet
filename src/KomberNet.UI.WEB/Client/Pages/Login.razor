@@ -27,12 +27,10 @@
                                 <RadzenRequiredValidator Component="@nameof(this.Password)" Text="@this.Localizer["Field_Required"]" />
                             </RadzenFormField>
 
-                            <RadzenStack Orientation="Radzen.Orientation.Horizontal">
-                                <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="@this.Localizer["Login_Button"]" />
-                            </RadzenStack>
+                            <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="@this.Localizer["Login_Button"]" />
 
-                            <RadzenStack Orientation="Radzen.Orientation.Horizontal">
-                                <RadzenButton Text="@this.Localizer["Login_Button"]" />
+                            <RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Center">
+                                <RadzenButton Text="@this.Localizer["Login_New"]" />
                                 <RadzenButton Text="@this.Localizer["Login_ForgotPassword_Button"]" />
                             </RadzenStack>
 

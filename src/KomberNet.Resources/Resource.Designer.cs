@@ -232,6 +232,15 @@ namespace KomberNet.Resources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a New login.
+        /// </summary>
+        public static string Login_New {
+            get {
+                return ResourceManager.GetString("Login_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Login.
         /// </summary>
         public static string Login_PageTitle {

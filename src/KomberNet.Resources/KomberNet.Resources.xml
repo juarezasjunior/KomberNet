@@ -115,6 +115,11 @@
               Consulta uma cadeia de caracteres localizada semelhante a Forgot password.
             </summary>
         </member>
+        <member name="P:KomberNet.Resources.Resource.Login_New">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a New login.
+            </summary>
+        </member>
         <member name="P:KomberNet.Resources.Resource.Login_PageTitle">
             <summary>
               Consulta uma cadeia de caracteres localizada semelhante a Login.
