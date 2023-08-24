@@ -8,7 +8,7 @@ namespace KomberNet.UI.WEB.Framework.Pages
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
     using FluentValidation;
-    using KangarooNet.Domain.Entities;
+    using KomberNet.Models.Contracts;
     using Radzen;
 
     public abstract partial class SearchFormPage<TSummariesQueryRequest, TSummariesQueryResponse, TSummary, TValidator> : FormPage

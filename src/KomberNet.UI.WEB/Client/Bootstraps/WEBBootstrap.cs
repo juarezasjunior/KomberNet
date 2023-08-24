@@ -6,8 +6,8 @@ namespace KomberNet.UI.WEB.Client.Bootstraps
 {
     using System.Globalization;
     using Blazored.LocalStorage;
-    using KangarooNet.UI.APIClient;
     using KomberNet.UI.WEB.APIClient;
+    using KomberNet.UI.WEB.APIClient.Auth;
     using KomberNet.UI.WEB.Client.Auth;
     using KomberNet.UI.WEB.Client.Handlers;
     using KomberNet.UI.WEB.Client.Providers;

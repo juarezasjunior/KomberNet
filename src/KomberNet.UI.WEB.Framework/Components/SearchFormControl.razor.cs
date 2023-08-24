@@ -9,7 +9,7 @@ namespace KomberNet.UI.WEB.Framework.Components
     using System.Linq;
     using System.Threading.Tasks;
     using FluentValidation;
-    using KangarooNet.Domain.Entities;
+    using KomberNet.Models.Contracts;
     using KomberNet.UI.WEB.Framework.Pages;
     using Microsoft.AspNetCore.Components;
 

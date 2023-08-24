@@ -22,29 +22,14 @@
 		<AdditionalFiles Include="..\Stylecop.json">
 			<Link>Stylecop.json</Link>
 		</AdditionalFiles>
-		<AdditionalFiles Include="GeneratorSettings.kcgs.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <AdditionalFiles Include="..\KomberNet.Domain.Entities\General\ApplicationUser.kcg.xml" Link="KCGFiles\General\ApplicationUser.kcg.xml" />
-	  <AdditionalFiles Include="..\KomberNet.Domain.Entities\General\Organization.kcg.xml" Link="KCGFiles\General\Organization.kcg.xml" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <AdditionalFiles Include="..\KomberNet.Domain.Entities\General\OrganizationUser.kcg.xml" Link="KCGFiles\General\OrganizationUser.kcg.xml" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <AdditionalFiles Include="..\KomberNet.Domain.Entities\General\Country.kcg.xml" Link="KCGFiles\General\Country.kcg.xml" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <AdditionalFiles Include="..\KomberNet.Domain.Entities\General\CountrySummary.xml" Link="KCGFiles\General\CountrySummary.xml" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="KangarooNet.CodeGenerators" Version="23.4.6.1" />
-		<PackageReference Include="KangarooNet.UI.API.Auth" Version="23.4.6.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.10" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+		<PackageReference Include="FluentValidation" Version="11.7.1" />
+		<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+		<PackageReference Include="Scrutor" Version="4.2.2" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
@@ -56,32 +41,23 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\KomberNet.Application.Billing\KomberNet.Application.Billing.csproj" />
-	  <ProjectReference Include="..\KomberNet.Application.Financial\KomberNet.Application.Financial.csproj" />
-	  <ProjectReference Include="..\KomberNet.Application.Inventory\KomberNet.Application.Inventory.csproj" />
-	  <ProjectReference Include="..\KomberNet.Application.Manufacturing\KomberNet.Application.Manufacturing.csproj" />
-	  <ProjectReference Include="..\KomberNet.Application.Purchasing\KomberNet.Application.Purchasing.csproj" />
-	  <ProjectReference Include="..\KomberNet.Application\KomberNet.Application.csproj" />
-	  <ProjectReference Include="..\KomberNet.Domain.Entities.Billing\KomberNet.Domain.Entities.Billing.csproj" />
-	  <ProjectReference Include="..\KomberNet.Domain.Entities.Financial\KomberNet.Domain.Entities.Financial.csproj" />
-	  <ProjectReference Include="..\KomberNet.Domain.Entities.Inventory\KomberNet.Domain.Entities.Inventory.csproj" />
-	  <ProjectReference Include="..\KomberNet.Domain.Entities.Manufacturing\KomberNet.Domain.Entities.Manufacturing.csproj" />
-	  <ProjectReference Include="..\KomberNet.Domain.Entities.Purchasing\KomberNet.Domain.Entities.Purchasing.csproj" />
-	  <ProjectReference Include="..\KomberNet.Domain.Entities\KomberNet.Domain.Entities.csproj" />
-	  <ProjectReference Include="..\KomberNet.Infrastructure.DatabaseRepositories\KomberNet.Infrastructure.DatabaseRepositories.csproj" />
-	  <ProjectReference Include="..\KomberNet.Infrastructure.Emails\KomberNet.Infrastructure.Emails.csproj" />
-	  <ProjectReference Include="..\KomberNet.Infrastructure.NFe\KomberNet.Infrastructure.NFe.csproj" />
-	  <ProjectReference Include="..\KomberNet.Utils\KomberNet.Utils.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Controllers\" />
-	  <Folder Include="KCGFiles\Billing\" />
-	  <Folder Include="KCGFiles\Financial\" />
-	  <Folder Include="KCGFiles\General\" />
-	  <Folder Include="KCGFiles\Inventory\" />
-	  <Folder Include="KCGFiles\Manufacturing\" />
-	  <Folder Include="KCGFiles\Purchasing\" />
+		<ProjectReference Include="..\KomberNet.Exceptions\KomberNet.Exceptions.csproj" />
+		<ProjectReference Include="..\KomberNet.Infrastructure.DatabaseRepositories\KomberNet.Infrastructure.DatabaseRepositories.csproj" />
+		<ProjectReference Include="..\KomberNet.Infrastructure.Emails\KomberNet.Infrastructure.Emails.csproj" />
+		<ProjectReference Include="..\KomberNet.Infrastructure.NFe\KomberNet.Infrastructure.NFe.csproj" />
+		<ProjectReference Include="..\KomberNet.Models\KomberNet.Models.csproj" />
+		<ProjectReference Include="..\KomberNet.Models.Billing\KomberNet.Models.Billing.csproj" />
+		<ProjectReference Include="..\KomberNet.Models.Financial\KomberNet.Models.Financial.csproj" />
+		<ProjectReference Include="..\KomberNet.Models.Inventory\KomberNet.Models.Inventory.csproj" />
+		<ProjectReference Include="..\KomberNet.Models.Manufacturing\KomberNet.Models.Manufacturing.csproj" />
+		<ProjectReference Include="..\KomberNet.Models.Purchasing\KomberNet.Models.Purchasing.csproj" />
+		<ProjectReference Include="..\KomberNet.Services\KomberNet.Services.csproj" />
+		<ProjectReference Include="..\KomberNet.Services.Billing\KomberNet.Services.Billing.csproj" />
+		<ProjectReference Include="..\KomberNet.Services.Financial\KomberNet.Services.Financial.csproj" />
+		<ProjectReference Include="..\KomberNet.Services.Inventory\KomberNet.Services.Inventory.csproj" />
+		<ProjectReference Include="..\KomberNet.Services.Manufacturing\KomberNet.Services.Manufacturing.csproj" />
+		<ProjectReference Include="..\KomberNet.Services.Purchasing\KomberNet.Services.Purchasing.csproj" />
+		<ProjectReference Include="..\KomberNet.Utils\KomberNet.Utils.csproj" />
 	</ItemGroup>
 
 </Project>

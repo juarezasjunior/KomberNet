@@ -1,10 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CodeGeneratorSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-					   xsi:noNamespaceSchemaLocation="../CodeGeneratorSettingsSchema.xsd">
-
+					   xsi:noNamespaceSchemaLocation="../KomberNet.Models.CodeGenerator/Structure/CodeGeneratorSettingsSchema.xsd">
+	
+	<FrontendEnumsSettings
+		EnumsNamespace="KomberNet.UI.WEB.Models"/>
+	
 	<FrontendEntititesSettings
 		EntitiesNamespace="KomberNet.UI.WEB.Models"
-		ValidatorsNamespace="KomberNet.UI.WEB.Models.Validators"
-		GenerateAuthEntities="true"/>
+		ValidatorsNamespace="KomberNet.UI.WEB.Models.Validators"/>
 
+	<FrontendCustomRequestsSettings
+		CustomRequestsNamespace="KomberNet.UI.WEB.Models"
+		ValidatorsNamespace="KomberNet.UI.WEB.Models.Validators"/>
+
+	<FrontendCustomResponsesSettings
+		CustomResponsesNamespace="KomberNet.UI.WEB.Models"
+		ValidatorsNamespace="KomberNet.UI.WEB.Models.Validators"/>
+	
 </CodeGeneratorSettings>

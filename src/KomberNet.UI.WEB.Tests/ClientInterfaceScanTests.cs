@@ -9,8 +9,8 @@ namespace KomberNet.UI.WEB.Tests
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using KangarooNet.UI.APIClient;
     using KomberNet.UI.WEB.APIClient;
+    using KomberNet.UI.WEB.APIClient.Auth;
     using NUnit.Framework;
 
     [TestFixture]

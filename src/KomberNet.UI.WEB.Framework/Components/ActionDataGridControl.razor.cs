@@ -11,7 +11,6 @@ namespace KomberNet.UI.WEB.Framework.Components
     using System.Reactive.Subjects;
     using System.Text;
     using System.Threading.Tasks;
-    using KangarooNet.Domain.Entities;
     using Microsoft.AspNetCore.Components;
 
     public partial class ActionDataGridControl<TItem> : ComponentBase, IDisposable

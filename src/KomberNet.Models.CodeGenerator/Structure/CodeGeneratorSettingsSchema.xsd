@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="CodeGeneratorSettings" nillable="true" type="CodeGeneratorSettings" />
+	<xs:complexType name="CodeGeneratorSettings">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="BackendEnumsSettings" type="BackendEnumsSettings" />
+			<xs:element minOccurs="0" maxOccurs="1" name="FrontendEnumsSettings" type="FrontendEnumsSettings" />
+			<xs:element minOccurs="0" maxOccurs="1" name="BackendEntititesSettings" type="BackendEntititesSettings" />
+			<xs:element minOccurs="0" maxOccurs="1" name="FrontendEntititesSettings" type="FrontendEntititesSettings" />
+			<xs:element minOccurs="0" maxOccurs="1" name="BackendCustomRequestsSettings" type="BackendCustomRequestsSettings" />
+			<xs:element minOccurs="0" maxOccurs="1" name="FrontendCustomRequestsSettings" type="FrontendCustomRequestsSettings" />
+			<xs:element minOccurs="0" maxOccurs="1" name="BackendCustomResponsesSettings" type="BackendCustomResponsesSettings" />
+			<xs:element minOccurs="0" maxOccurs="1" name="FrontendCustomResponsesSettings" type="FrontendCustomResponsesSettings" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BackendEnumsSettings">
+		<xs:attribute name="EnumsNamespace" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="FrontendEnumsSettings">
+		<xs:attribute name="EnumsNamespace" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="BackendEntititesSettings">
+		<xs:attribute name="EntitiesNamespace" type="xs:string" />
+		<xs:attribute name="ValidatorsNamespace" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="FrontendEntititesSettings">
+		<xs:attribute name="EntitiesNamespace" type="xs:string" />
+		<xs:attribute name="ValidatorsNamespace" type="xs:string" />
+		<xs:attribute default="true" name="GenerateNotifyPropertyChanges" type="xs:boolean" />
+		<xs:attribute default="true" name="UseObservableCollection" type="xs:boolean" />
+	</xs:complexType>
+	<xs:complexType name="BackendCustomRequestsSettings">
+		<xs:attribute name="CustomRequestsNamespace" type="xs:string" />
+		<xs:attribute name="ValidatorsNamespace" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="FrontendCustomRequestsSettings">
+		<xs:attribute name="CustomRequestsNamespace" type="xs:string" />
+		<xs:attribute name="ValidatorsNamespace" type="xs:string" />
+		<xs:attribute default="true" name="GenerateNotifyPropertyChanges" type="xs:boolean" />
+		<xs:attribute default="true" name="UseObservableCollection" type="xs:boolean" />
+	</xs:complexType>
+	<xs:complexType name="BackendCustomResponsesSettings">
+		<xs:attribute name="CustomResponsesNamespace" type="xs:string" />
+		<xs:attribute name="ValidatorsNamespace" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="FrontendCustomResponsesSettings">
+		<xs:attribute name="CustomResponsesNamespace" type="xs:string" />
+		<xs:attribute name="ValidatorsNamespace" type="xs:string" />
+		<xs:attribute default="true" name="GenerateNotifyPropertyChanges" type="xs:boolean" />
+		<xs:attribute default="true" name="UseObservableCollection" type="xs:boolean" />
+	</xs:complexType>
+</xs:schema>

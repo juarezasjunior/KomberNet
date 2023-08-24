@@ -25,10 +25,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="KangarooNet.Domain.Entities.Auth" Version="23.4.6.1" />
+		<PackageReference Include="FluentValidation" Version="11.7.1" />
 		<PackageReference Include="Blazored.LocalStorage" Version="4.4.0" />
 		<PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.10" />
-		<PackageReference Include="Radzen.Blazor" Version="4.15.4" />
+		<PackageReference Include="Radzen.Blazor" Version="4.15.6" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
@@ -46,6 +46,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\KomberNet.Models.Contracts\KomberNet.Models.Contracts.csproj" />
 	  <ProjectReference Include="..\KomberNet.Resources\KomberNet.Resources.csproj" />
 	  <ProjectReference Include="..\KomberNet.Utils\KomberNet.Utils.csproj" />
 	</ItemGroup>

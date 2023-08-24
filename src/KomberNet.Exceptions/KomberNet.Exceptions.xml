@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KomberNet.Exceptions</name>
+    </assembly>
+    <members>
+        <member name="M:KomberNet.Exceptions.KomberNetException.#ctor(KomberNet.Exceptions.ExceptionCode,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KomberNet.Exceptions.KomberNetException"/> class.
+            </summary>
+            <param name="exceptionCode">Error code used by KomberNet to register some specific internal exceptions.</param>
+            <param name="additionalInfo">Add any other information that you want to.</param>
+        </member>
+        <member name="M:KomberNet.Exceptions.SecurityException.#ctor(KomberNet.Exceptions.ExceptionCode,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KomberNet.Exceptions.SecurityException"/> class.
+            </summary>
+            <param name="exceptionCode">Error code used by KomberNet to register some specific internal exceptions.</param>
+            <param name="additionalInfo">Add any other information that you want to.</param>
+        </member>
+    </members>
+</doc>

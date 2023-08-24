@@ -19,6 +19,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="GeneratorSettings.kcgs.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<AdditionalFiles Include="..\Stylecop.json">
 			<Link>Stylecop.json</Link>
 		</AdditionalFiles>
@@ -26,25 +30,26 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <AdditionalFiles Include="..\KomberNet.Domain.Entities\General\ApplicationUser.kcg.xml" Link="General\ApplicationUser.kcg.xml" />
-	  <AdditionalFiles Include="..\KomberNet.Domain.Entities\General\Organization.kcg.xml" Link="General\Organization.kcg.xml" />
+		<Compile Include="..\KomberNet.Models\Auth\ApplicationUser.cs" Link="Auth\ApplicationUser.cs" />
+		<Compile Include="..\KomberNet.Models\Auth\ApplicationUserInsertRequest.cs" Link="Auth\ApplicationUserInsertRequest.cs" />
+		<Compile Include="..\KomberNet.Models\Auth\ApplicationUserInsertResponse.cs" Link="Auth\ApplicationUserInsertResponse.cs" />
+		<Compile Include="..\KomberNet.Models\Auth\ChangePasswordRequest.cs" Link="Auth\ChangePasswordRequest.cs" />
+		<Compile Include="..\KomberNet.Models\Auth\ChangePasswordResponse.cs" Link="Auth\ChangePasswordResponse.cs" />
+		<Compile Include="..\KomberNet.Models\Auth\LoginRequest.cs" Link="Auth\LoginRequest.cs" />
+		<Compile Include="..\KomberNet.Models\Auth\LoginResponse.cs" Link="Auth\LoginResponse.cs" />
+		<Compile Include="..\KomberNet.Models\Auth\LogoutRequest.cs" Link="Auth\LogoutRequest.cs" />
+		<Compile Include="..\KomberNet.Models\Auth\LogoutResponse.cs" Link="Auth\LogoutResponse.cs" />
+		<Compile Include="..\KomberNet.Models\Auth\RefreshTokenRequest.cs" Link="Auth\RefreshTokenRequest.cs" />
+		<Compile Include="..\KomberNet.Models\Auth\RefreshTokenResponse.cs" Link="Auth\RefreshTokenResponse.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <AdditionalFiles Include="..\KomberNet.Domain.Entities\General\OrganizationUser.kcg.xml" Link="General\OrganizationUser.kcg.xml" />
+	  <AdditionalFiles Include="..\KomberNet.Models\General\Country.kcg.xml" Link="General\Country.kcg.xml" />
+	  <AdditionalFiles Include="..\KomberNet.Models\General\CountrySummary.kcg.xml" Link="General\CountrySummary.kcg.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <AdditionalFiles Include="..\KomberNet.Domain.Entities\General\Country.kcg.xml" Link="General\Country.kcg.xml" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <AdditionalFiles Include="..\KomberNet.Domain.Entities\General\CountrySummary.kcg.xml" Link="General\CountrySummary.kcg.xml" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="KangarooNet.CodeGenerators" Version="23.4.6.1" />
-		<PackageReference Include="KangarooNet.Domain.Entities.Auth" Version="23.4.6.1" />
+		<PackageReference Include="FluentValidation" Version="11.7.1" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
@@ -52,16 +57,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="General\" />
-	  <Folder Include="Billing\" />
-	  <Folder Include="Financial\" />
-	  <Folder Include="Inventory\" />
-	  <Folder Include="Manufacturing\" />
-	  <Folder Include="Purchasing\" />
+		<Folder Include="General\" />
+		<Folder Include="Billing\" />
+		<Folder Include="Financial\" />
+		<Folder Include="Inventory\" />
+		<Folder Include="Manufacturing\" />
+		<Folder Include="Auth\" />
+		<Folder Include="Purchasing\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\KomberNet.Utils\KomberNet.Utils.csproj" />
+		<ProjectReference Include="..\KomberNet.Models.CodeGenerator\KomberNet.Models.CodeGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<ProjectReference Include="..\KomberNet.Models.Contracts\KomberNet.Models.Contracts.csproj" />
+		<ProjectReference Include="..\KomberNet.Utils\KomberNet.Utils.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -4,7 +4,7 @@
 
 namespace KomberNet.UI.WEB.Client.Auth
 {
-    using KomberNet.UI.WEB.Models;
+    using KomberNet.Models.Auth;
 
     public interface IAuthService
     {

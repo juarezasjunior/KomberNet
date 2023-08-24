@@ -1,0 +1,48 @@
+﻿// Copyright Contributors to the KomberNet project.
+// This file is licensed to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICE files in the project root for full license information.
+
+namespace KomberNet.Services.Auth
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using KomberNet.Exceptions;
+    using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
+    using KomberNet.Models.Auth;
+    using Microsoft.AspNetCore.Identity;
+
+    public class ApplicationUserHandlerService : IApplicationUserHandlerService
+    {
+        private readonly UserManager<TbApplicationUser> userManager;
+
+        public ApplicationUserHandlerService(UserManager<TbApplicationUser> userManager)
+        {
+            this.userManager = userManager;
+        }
+
+        public async Task<ApplicationUserInsertResponse> InsertApplicationUserAsync(ApplicationUserInsertRequest request, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var applicationUser = new TbApplicationUser()
+            {
+                FullName = request.FullName,
+                UserName = request.Email,
+                Email = request.Email,
+            };
+
+            var result = await this.userManager.CreateAsync(applicationUser, request.Password);
+
+            if (!result.Succeeded)
+            {
+                var errors = string.Join(", ", result.Errors.Select(x => x.Description));
+                throw new KomberNetException(exceptionCode: ExceptionCode.InvalidPassword, additionalInfo: errors);
+            }
+
+            return new ApplicationUserInsertResponse();
+        }
+    }
+}

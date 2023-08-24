@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="CodeGenerator" nillable="true" type="CodeGenerator" />
+	<xs:complexType name="CodeGenerator">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Entity" type="Entity" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Summary" type="Summary" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Enum" type="EnumEntity" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="CustomRequest" type="CustomRequest" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="CustomResponse" type="CustomResponse" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Entity">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="EntityFields" type="Fields" />
+			<xs:element minOccurs="0" maxOccurs="1" name="GenerateEntityHandlerRequest" type="GenerateEntityHandlerRequest" />
+			<xs:element minOccurs="0" maxOccurs="1" name="GenerateEntityQueryRequest" type="GenerateEntityQueryRequest" />
+			<xs:element minOccurs="0" maxOccurs="1" name="GenerateEntitiesQueryRequest" type="GenerateEntitiesQueryRequest" />
+		</xs:sequence>
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute name="PluralName" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="true" name="IncludeAuditLog" type="xs:boolean" />
+		<xs:attribute default="true" name="IncludeRowVersionControl" type="xs:boolean" />
+		<xs:attribute default="true" name="IncludeDataState" type="xs:boolean" />
+	</xs:complexType>
+	<xs:complexType name="Fields">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="KeyField" type="KeyField" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="GuidField" type="GuidField" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="StringField" type="StringField" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="BoolField" type="BoolField" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="DateTimeField" type="DateTimeField" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="DateTimeOffsetField" type="DateTimeOffsetField" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="DecimalField" type="DecimalField" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="IntField" type="IntField" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="CollectionField" type="CollectionField" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="EntityCollectionField" type="EntityCollectionField" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="SummaryField" type="SummaryField" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="EnumField" type="EnumField" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="EntityField" type="EntityField" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KeyField">
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+	</xs:complexType>
+	<xs:simpleType name="Location">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Both" />
+			<xs:enumeration value="Backend" />
+			<xs:enumeration value="Frontend" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="GuidField">
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="false" name="IsRequired" type="xs:boolean" />
+	</xs:complexType>
+	<xs:complexType name="StringField">
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="false" name="IsRequired" type="xs:boolean" />
+		<xs:attribute default="" name="DefaultValue" type="xs:string" />
+		<xs:attribute default="0" name="MaxLength" type="xs:int" />
+	</xs:complexType>
+	<xs:complexType name="BoolField">
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="false" name="IsRequired" type="xs:boolean" />
+		<xs:attribute default="false" name="DefaultValue" type="xs:boolean" />
+	</xs:complexType>
+	<xs:complexType name="DateTimeField">
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="false" name="IsRequired" type="xs:boolean" />
+	</xs:complexType>
+	<xs:complexType name="DateTimeOffsetField">
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="false" name="IsRequired" type="xs:boolean" />
+	</xs:complexType>
+	<xs:complexType name="DecimalField">
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="false" name="IsRequired" type="xs:boolean" />
+		<xs:attribute default="0" name="DefaultValue" type="xs:decimal" />
+		<xs:attribute name="Precision" type="xs:int" use="required" />
+		<xs:attribute name="Scale" type="xs:int" use="required" />
+	</xs:complexType>
+	<xs:complexType name="IntField">
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="false" name="IsRequired" type="xs:boolean" />
+		<xs:attribute default="0" name="DefaultValue" type="xs:int" />
+	</xs:complexType>
+	<xs:complexType name="CollectionField">
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="false" name="IsRequired" type="xs:boolean" />
+		<xs:attribute name="Type" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="EntityCollectionField">
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="false" name="IsRequired" type="xs:boolean" />
+		<xs:attribute name="Type" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="SummaryField">
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="false" name="IsRequired" type="xs:boolean" />
+		<xs:attribute name="Type" type="xs:string" />
+		<xs:attribute default="" name="IsSummaryFor" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="EnumField">
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="false" name="IsRequired" type="xs:boolean" />
+		<xs:attribute name="Type" type="xs:string" />
+		<xs:attribute default="" name="IsEnumFor" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="EntityField">
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="false" name="IsRequired" type="xs:boolean" />
+		<xs:attribute name="Type" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="GenerateEntityHandlerRequest">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="AdditionalFields" type="Fields" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GenerateEntityQueryRequest">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="AdditionalFields" type="Fields" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GenerateEntitiesQueryRequest">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="RequestFields" type="Fields" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Summary">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="SummaryFields" type="Fields" />
+			<xs:element minOccurs="0" maxOccurs="1" name="GenerateSummaryQueryRequest" type="GenerateSummaryQueryRequest" />
+			<xs:element minOccurs="0" maxOccurs="1" name="GenerateSummariesQueryRequest" type="GenerateSummariesQueryRequest" />
+		</xs:sequence>
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute name="PluralName" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="false" name="IncludeAuditLog" type="xs:boolean" />
+		<xs:attribute default="false" name="IncludeRowVersionControl" type="xs:boolean" />
+	</xs:complexType>
+	<xs:complexType name="GenerateSummaryQueryRequest">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="AdditionalFields" type="Fields" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GenerateSummariesQueryRequest">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="RequestFields" type="Fields" />
+		</xs:sequence>
+		<xs:attribute default="true" name="GenerateSearchableDefaultCriteria" type="xs:boolean" />
+	</xs:complexType>
+	<xs:complexType name="EnumEntity">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="EnumValue" type="EnumValue" />
+		</xs:sequence>
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="false" name="AutoGenSequenceNumber" type="xs:boolean" />
+	</xs:complexType>
+	<xs:complexType name="EnumValue">
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="" name="DefaultValue" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="CustomRequest">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="RequestFields" type="Fields" />
+		</xs:sequence>
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+	</xs:complexType>
+	<xs:complexType name="CustomResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="ResponseFields" type="Fields" />
+		</xs:sequence>
+		<xs:attribute name="Name" type="xs:string" />
+		<xs:attribute default="Both" name="Location" type="Location" />
+	</xs:complexType>
+</xs:schema>

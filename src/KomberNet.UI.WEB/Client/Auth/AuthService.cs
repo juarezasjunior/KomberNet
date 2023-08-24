@@ -5,10 +5,10 @@
 namespace KomberNet.UI.WEB.Client.Auth
 {
     using Blazored.LocalStorage;
-    using KomberNet.UI.WEB.APIClient;
+    using KomberNet.Models.Auth;
+    using KomberNet.UI.WEB.APIClient.Auth;
     using KomberNet.UI.WEB.Client.Helpers;
     using KomberNet.UI.WEB.Client.Providers;
-    using KomberNet.UI.WEB.Models;
     using Microsoft.AspNetCore.Components.Authorization;
 
     public class AuthService : IAuthService

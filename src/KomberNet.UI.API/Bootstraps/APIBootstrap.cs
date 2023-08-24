@@ -7,15 +7,13 @@ namespace KomberNet.UI.API.Bootstraps
     using System.Configuration;
     using FluentValidation;
     using FluentValidation.AspNetCore;
-    using KangarooNet.Domain.OptionsSettings;
-    using KangarooNet.UI.API.Auth.ActionFilters;
-    using KangarooNet.UI.API.Auth.Extensions;
-    using KangarooNet.UI.API.Extensions;
-    using KomberNet.Application;
-    using KomberNet.Domain.Entities;
-    using KomberNet.Infrastructure.DatabaseRepositories.DatabaseEntities;
-    using KomberNet.Infrastructure.DatabaseRepositories.DBContexts;
+    using KomberNet.Infrastructure.DatabaseRepositories;
+    using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Infrastructure.DatabaseRepositories.Mapper;
+    using KomberNet.Models.Auth;
+    using KomberNet.UI.API.ActionFilters;
+    using KomberNet.UI.API.Extensions;
+    using KomberNet.UI.API.Middlewares;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.OpenApi.Models;
@@ -32,9 +30,9 @@ namespace KomberNet.UI.API.Bootstraps
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
 
-            builder.Services.AddKangarooNetApplicationAuth(typeof(LoginHandler).Assembly, typeof(OrganizationHandler).Assembly);
-            builder.Services.AddKangarooNetDatabaseRepositories(typeof(ApplicationDbContext).Assembly);
-            builder.Services.AddKangarooNetAuthenticationJwt(builder.Configuration);
+            builder.Services.AddServices();
+            builder.Services.AddDatabaseRepositories(typeof(ApplicationDbContext).Assembly);
+            builder.Services.AddAuthenticationJwt(builder.Configuration);
             builder.Services.AddDistributedMemoryCache();
 
             builder.Services.AddIdentityCore<TbApplicationUser>()
@@ -71,7 +69,7 @@ namespace KomberNet.UI.API.Bootstraps
 
             builder.Services.AddMvc(x =>
             {
-                x.Filters.Add(typeof(KangarooNetAuthorizationActionFilter));
+                x.Filters.Add(typeof(AuthorizationActionFilter));
                 x.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true;
             });
 
@@ -105,7 +103,8 @@ namespace KomberNet.UI.API.Bootstraps
                 });
             });
 
-            builder.ConfigureKangarooNetJWTOptions();
+            builder.Services.Configure<JwtOptions>(
+                builder.Configuration.GetSection(JwtOptions.Jwt));
 
             var app = builder.Build();
 
@@ -116,7 +115,7 @@ namespace KomberNet.UI.API.Bootstraps
                 app.UseSwaggerUI();
             }
 
-            app.UseKangarooNetException();
+            app.UseMiddleware<ExceptionMiddleware>(Array.Empty<object>());
 
             app.UseHttpsRedirection();
 

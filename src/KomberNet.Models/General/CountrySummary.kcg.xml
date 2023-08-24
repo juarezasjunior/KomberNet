@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeGenerator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:noNamespaceSchemaLocation="../../KomberNet.Models.CodeGenerator/Structure/CodeGeneratorSchema.xsd">
+	<Summary Name="CountrySummary" PluralName="CountrySummaries">
+		<SummaryFields>
+			<KeyField Name="CountryId"/>
+			<StringField Name="Name" MaxLength="500" IsRequired="true"/>
+		</SummaryFields>
+
+		<GenerateSummaryQueryRequest />
+		<GenerateSummariesQueryRequest />
+	</Summary>
+</CodeGenerator>

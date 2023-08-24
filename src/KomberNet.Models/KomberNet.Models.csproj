@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<!--
+		  Make sure any documentation comments which are included in code get checked for syntax during the build, but do
+		  not report warnings for missing comments.
+    
+		  CS1573: Parameter 'parameter' has no matching param tag in the XML comment for 'parameter' (but other parameters do)
+		  CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
+		-->
+		<DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
+		<NoWarn>$(NoWarn),1573,1591,1712</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="General\Country.kcg.xml" />
+	  <None Remove="General\CountrySummary.kcg.xml" />
+	  <None Remove="GeneratorSettings.kcgs.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="..\Stylecop.json">
+			<Link>Stylecop.json</Link>
+		</AdditionalFiles>
+		<AdditionalFiles Include="General\Country.kcg.xml" />
+		<AdditionalFiles Include="General\CountrySummary.kcg.xml" />
+		<AdditionalFiles Include="GeneratorSettings.kcgs.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentValidation" Version="11.7.1" />
+		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Billing\" />
+		<Folder Include="Financial\" />
+		<Folder Include="Inventory\" />
+		<Folder Include="Manufacturing\" />
+		<Folder Include="Purchasing\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\KomberNet.Models.CodeGenerator\KomberNet.Models.CodeGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<ProjectReference Include="..\KomberNet.Models.Contracts\KomberNet.Models.Contracts.csproj" />
+		<ProjectReference Include="..\KomberNet.Utils\KomberNet.Utils.csproj" />
+	</ItemGroup>
+
+</Project>
