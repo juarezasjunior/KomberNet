@@ -17,6 +17,7 @@
 			<xs:element minOccurs="0" maxOccurs="1" name="GenerateEntityQueryRequest" type="GenerateEntityQueryRequest" />
 			<xs:element minOccurs="0" maxOccurs="1" name="GenerateEntitiesQueryRequest" type="GenerateEntitiesQueryRequest" />
 		</xs:sequence>
+		<xs:attribute name="Namespace" type="xs:string" />
 		<xs:attribute name="Name" type="xs:string" />
 		<xs:attribute name="PluralName" type="xs:string" />
 		<xs:attribute default="Both" name="Location" type="Location" />
@@ -147,6 +148,7 @@
 			<xs:element minOccurs="0" maxOccurs="1" name="GenerateSummaryQueryRequest" type="GenerateSummaryQueryRequest" />
 			<xs:element minOccurs="0" maxOccurs="1" name="GenerateSummariesQueryRequest" type="GenerateSummariesQueryRequest" />
 		</xs:sequence>
+		<xs:attribute name="Namespace" type="xs:string" />
 		<xs:attribute name="Name" type="xs:string" />
 		<xs:attribute name="PluralName" type="xs:string" />
 		<xs:attribute default="Both" name="Location" type="Location" />
@@ -168,6 +170,7 @@
 		<xs:sequence>
 			<xs:element minOccurs="0" maxOccurs="unbounded" name="EnumValue" type="EnumValue" />
 		</xs:sequence>
+		<xs:attribute name="Namespace" type="xs:string" />
 		<xs:attribute name="Name" type="xs:string" />
 		<xs:attribute default="Both" name="Location" type="Location" />
 		<xs:attribute default="false" name="AutoGenSequenceNumber" type="xs:boolean" />
@@ -181,6 +184,7 @@
 		<xs:sequence>
 			<xs:element minOccurs="0" maxOccurs="1" name="RequestFields" type="Fields" />
 		</xs:sequence>
+		<xs:attribute name="Namespace" type="xs:string" />
 		<xs:attribute name="Name" type="xs:string" />
 		<xs:attribute default="Both" name="Location" type="Location" />
 	</xs:complexType>
@@ -188,6 +192,7 @@
 		<xs:sequence>
 			<xs:element minOccurs="0" maxOccurs="1" name="ResponseFields" type="Fields" />
 		</xs:sequence>
+		<xs:attribute name="Namespace" type="xs:string" />
 		<xs:attribute name="Name" type="xs:string" />
 		<xs:attribute default="Both" name="Location" type="Location" />
 	</xs:complexType>

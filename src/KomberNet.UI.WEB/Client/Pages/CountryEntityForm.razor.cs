@@ -4,10 +4,9 @@
 
 namespace KomberNet.UI.WEB.Client.Pages
 {
+    using KomberNet.Models.General;
     using KomberNet.UI.WEB.Framework.Components;
     using KomberNet.UI.WEB.Framework.Pages;
-    using KomberNet.UI.WEB.Models;
-    using KomberNet.UI.WEB.Models.Validators;
     using Microsoft.AspNetCore.Components;
     using Radzen;
 

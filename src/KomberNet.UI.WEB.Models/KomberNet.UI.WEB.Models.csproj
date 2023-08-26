@@ -30,22 +30,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="..\KomberNet.Models\Auth\ApplicationUser.cs" Link="Auth\ApplicationUser.cs" />
-		<Compile Include="..\KomberNet.Models\Auth\ApplicationUserInsertRequest.cs" Link="Auth\ApplicationUserInsertRequest.cs" />
-		<Compile Include="..\KomberNet.Models\Auth\ApplicationUserInsertResponse.cs" Link="Auth\ApplicationUserInsertResponse.cs" />
-		<Compile Include="..\KomberNet.Models\Auth\ChangePasswordRequest.cs" Link="Auth\ChangePasswordRequest.cs" />
-		<Compile Include="..\KomberNet.Models\Auth\ChangePasswordResponse.cs" Link="Auth\ChangePasswordResponse.cs" />
-		<Compile Include="..\KomberNet.Models\Auth\LoginRequest.cs" Link="Auth\LoginRequest.cs" />
-		<Compile Include="..\KomberNet.Models\Auth\LoginResponse.cs" Link="Auth\LoginResponse.cs" />
-		<Compile Include="..\KomberNet.Models\Auth\LogoutRequest.cs" Link="Auth\LogoutRequest.cs" />
-		<Compile Include="..\KomberNet.Models\Auth\LogoutResponse.cs" Link="Auth\LogoutResponse.cs" />
-		<Compile Include="..\KomberNet.Models\Auth\RefreshTokenRequest.cs" Link="Auth\RefreshTokenRequest.cs" />
-		<Compile Include="..\KomberNet.Models\Auth\RefreshTokenResponse.cs" Link="Auth\RefreshTokenResponse.cs" />
+	  <AdditionalFiles Include="..\KomberNet.Models\General\Country.kcg.xml" Link="General\Country.kcg.xml" />
+	  <AdditionalFiles Include="..\KomberNet.Models\General\CountrySummary.kcg.xml" Link="General\CountrySummary.kcg.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <AdditionalFiles Include="..\KomberNet.Models\General\Country.kcg.xml" Link="General\Country.kcg.xml" />
-	  <AdditionalFiles Include="..\KomberNet.Models\General\CountrySummary.kcg.xml" Link="General\CountrySummary.kcg.xml" />
+	  <AdditionalFiles Include="..\KomberNet.Models\Auth\Auth.kcg.xml" Link="Auth\Auth.kcg.xml" />
+	  <AdditionalFiles Include="..\KomberNet.Models\Auth\Permissions.kcg.xml" Link="Auth\Permissions.kcg.xml" />
 	</ItemGroup>
 
 	<ItemGroup>

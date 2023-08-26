@@ -56,6 +56,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
             WriteEntity(
                 codeGeneratorSettings,
                 sourceProductionContext,
+                entityNamespace: entity.Namespace,
                 entityName: entity.Name,
                 defaultInheritance: "IEntity",
                 fields: entity.EntityFields,
@@ -70,6 +71,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                     codeGeneratorSettings,
                     sourceProductionContext,
                     isRequest: true,
+                    classNamespace: entity.Namespace,
                     classPrefix: $"{entity.Name}Handler",
                     inheritance: $"IEntityHandlerRequest<{entity.Name}>",
                     fields: entity.GenerateEntityHandlerRequest.AdditionalFields,
@@ -82,6 +84,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                     codeGeneratorSettings,
                     sourceProductionContext,
                     isRequest: false,
+                    classNamespace: entity.Namespace,
                     classPrefix: $"{entity.Name}Handler",
                     inheritance: $"IEntityHandlerResponse<{entity.Name}>",
                     fields: null,
@@ -108,6 +111,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                     codeGeneratorSettings,
                     sourceProductionContext,
                     isRequest: true,
+                    classNamespace: entity.Namespace,
                     classPrefix: $"{entity.Name}Query",
                     inheritance: entityQueryRequestInheritance,
                     fields: entityQueryRequestFields,
@@ -117,6 +121,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                     codeGeneratorSettings,
                     sourceProductionContext,
                     isRequest: false,
+                    classNamespace: entity.Namespace,
                     classPrefix: $"{entity.Name}Query",
                     inheritance: $"IEntityQueryResponse<{entity.Name}>",
                     fields: null,
@@ -131,6 +136,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                     codeGeneratorSettings,
                     sourceProductionContext,
                     isRequest: true,
+                    classNamespace: entity.Namespace,
                     classPrefix: $"{entity.PluralName}Query",
                     inheritance: "IEntitiesQueryRequest",
                     fields: entity.GenerateEntityQueryRequest.AdditionalFields,
@@ -144,6 +150,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                     codeGeneratorSettings,
                     sourceProductionContext,
                     isRequest: false,
+                    classNamespace: entity.Namespace,
                     classPrefix: $"{entity.PluralName}Query",
                     inheritance: $"IEntitiesQueryResponse<{entity.Name}, {collectionType}<{entity.Name}>>",
                     fields: null,
@@ -161,6 +168,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
             WriteEntity(
                 codeGeneratorSettings,
                 sourceProductionContext,
+                entityNamespace: summary.Namespace,
                 entityName: summary.Name,
                 defaultInheritance: "ISummary",
                 fields: summary.SummaryFields,
@@ -187,6 +195,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                     codeGeneratorSettings,
                     sourceProductionContext,
                     isRequest: true,
+                    classNamespace: summary.Namespace,
                     classPrefix: $"{summary.Name}Query",
                     inheritance: summaryQueryRequestInheritance,
                     fields: summaryQueryRequestFields,
@@ -196,6 +205,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                     codeGeneratorSettings,
                     sourceProductionContext,
                     isRequest: false,
+                    classNamespace: summary.Namespace,
                     classPrefix: $"{summary.Name}Query",
                     inheritance: $"ISummaryQueryResponse<{summary.Name}>",
                     fields: null,
@@ -227,6 +237,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                     codeGeneratorSettings,
                     sourceProductionContext,
                     isRequest: true,
+                    classNamespace: summary.Namespace,
                     classPrefix: $"{summary.PluralName}Query",
                     inheritance: requestInheritance,
                     fields: requestFields,
@@ -240,6 +251,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                     codeGeneratorSettings,
                     sourceProductionContext,
                     isRequest: false,
+                    classNamespace: summary.Namespace,
                     classPrefix: $"{summary.PluralName}Query",
                     inheritance: $"ISummariesQueryResponse<{summary.Name}, {collectionType}<{summary.Name}>>",
                     fields: null,
@@ -255,6 +267,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
         private static void WriteEntity(
             CodeGeneratorSettings codeGeneratorSettings,
             SourceProductionContext sourceProductionContext,
+            string entityNamespace,
             string entityName,
             string defaultInheritance,
             Fields fields,
@@ -265,8 +278,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
         {
             var currentLocation = isBackend ? Structure.Location.Backend : Structure.Location.Frontend;
             var keyField = fields?.KeyField;
-            var entityNamespace = isBackend ? codeGeneratorSettings.BackendEntititesSettings?.EntitiesNamespace : codeGeneratorSettings.FrontendEntititesSettings?.EntitiesNamespace;
-            var entityValidatorNamespace = isBackend ? codeGeneratorSettings.BackendEntititesSettings?.ValidatorsNamespace : codeGeneratorSettings.FrontendEntititesSettings?.ValidatorsNamespace;
+            var entityValidatorNamespace = entityNamespace;
             var shouldGenerateNotifyPropertyChanges = isBackend ? false : codeGeneratorSettings.FrontendEntititesSettings?.GenerateNotifyPropertyChanges ?? false;
             var useObservableCollection = isBackend ? false : codeGeneratorSettings.FrontendEntititesSettings?.UseObservableCollection ?? false;
 
@@ -349,6 +361,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
             CodeGeneratorSettings codeGeneratorSettings,
             SourceProductionContext sourceProductionContext,
             bool isRequest,
+            string classNamespace,
             string classPrefix,
             string inheritance,
             Fields fields,
@@ -360,8 +373,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
             bool entityPropertyIsObservableCollection = false)
         {
             var currentLocation = isBackend ? Structure.Location.Backend : Structure.Location.Frontend;
-            var classNamespace = isBackend ? codeGeneratorSettings.BackendEntititesSettings?.EntitiesNamespace : codeGeneratorSettings.FrontendEntititesSettings?.EntitiesNamespace;
-            var validatorNamespace = isBackend ? codeGeneratorSettings.BackendEntititesSettings?.ValidatorsNamespace : codeGeneratorSettings.FrontendEntititesSettings?.ValidatorsNamespace;
+            var validatorNamespace = classNamespace;
             var shouldGenerateNotifyPropertyChanges = isBackend ? false : codeGeneratorSettings.FrontendEntititesSettings?.GenerateNotifyPropertyChanges ?? false;
             var useObservableCollection = isBackend ? false : codeGeneratorSettings.FrontendEntititesSettings?.UseObservableCollection ?? false;
 

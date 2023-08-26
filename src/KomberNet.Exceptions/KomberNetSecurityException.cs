@@ -6,14 +6,14 @@ namespace KomberNet.Exceptions
 {
     using System;
 
-    public class SecurityException : KomberNetException
+    public class KomberNetSecurityException : KomberNetException
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SecurityException"/> class.
+        /// Initializes a new instance of the <see cref="KomberNetSecurityException"/> class.
         /// </summary>
         /// <param name="exceptionCode">Error code used by KomberNet to register some specific internal exceptions.</param>
         /// <param name="additionalInfo">Add any other information that you want to.</param>
-        public SecurityException(ExceptionCode exceptionCode = ExceptionCode.SecurityValidation, string additionalInfo = null)
+        public KomberNetSecurityException(ExceptionCode exceptionCode = ExceptionCode.SecurityValidation, string additionalInfo = null)
             : base(exceptionCode, additionalInfo)
         {
         }

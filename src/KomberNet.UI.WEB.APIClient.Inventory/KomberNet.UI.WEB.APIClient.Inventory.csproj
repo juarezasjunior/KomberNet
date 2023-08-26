@@ -25,6 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Refit" Version="7.0.0" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
@@ -32,6 +33,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\KomberNet.UI.WEB.Models.Inventory\KomberNet.UI.WEB.Models.Inventory.csproj" />
+		<ProjectReference Include="..\KomberNet.UI.WEB.Models\KomberNet.UI.WEB.Models.csproj" />
+		<ProjectReference Include="..\KomberNet.UI.WEB.APIClient\KomberNet.UI.WEB.APIClient.csproj" />
 		<ProjectReference Include="..\KomberNet.Utils\KomberNet.Utils.csproj" />
 	</ItemGroup>
 

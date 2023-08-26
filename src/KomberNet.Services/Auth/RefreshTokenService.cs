@@ -54,7 +54,7 @@ namespace KomberNet.Services.Auth
             if (applicationUser == null
                 || applicationUser.Id != currentUserId)
             {
-                throw new SecurityException();
+                throw new KomberNetSecurityException();
             }
 
             var refreshToken = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.RefreshTokenKey, applicationUser.Email));
@@ -64,17 +64,17 @@ namespace KomberNet.Services.Auth
                 || string.IsNullOrEmpty(refreshTokenExpiration)
                 || request.RefreshToken != refreshToken)
             {
-                throw new SecurityException();
+                throw new KomberNetSecurityException();
             }
 
             if (!DateTime.TryParse(refreshTokenExpiration, out var refreshTokenExpirationDateTime))
             {
-                throw new SecurityException();
+                throw new KomberNetSecurityException();
             }
 
             if (refreshTokenExpirationDateTime < DateTime.Now)
             {
-                throw new SecurityException();
+                throw new KomberNetSecurityException();
             }
 
             var result = await this.tokenService.GenerateTokenAsync(applicationUser, cancellationToken);
@@ -113,7 +113,7 @@ namespace KomberNet.Services.Auth
             if (securityToken is not JwtSecurityToken jwtSecurityToken
                 || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
             {
-                throw new SecurityException();
+                throw new KomberNetSecurityException();
             }
 
             return principal;

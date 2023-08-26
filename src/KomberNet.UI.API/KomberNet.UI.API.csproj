@@ -60,4 +60,12 @@
 		<ProjectReference Include="..\KomberNet.Utils\KomberNet.Utils.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Controllers\General\" />
+	  <Folder Include="Controllers\Billing\" />
+	  <Folder Include="Controllers\Inventory\" />
+	  <Folder Include="Controllers\Manufacturing\" />
+	  <Folder Include="Controllers\Purchasing\" />
+	</ItemGroup>
+
 </Project>

@@ -2,19 +2,12 @@
 <CodeGeneratorSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 					   xsi:noNamespaceSchemaLocation="../KomberNet.Models.CodeGenerator/Structure/CodeGeneratorSettingsSchema.xsd">
 
-	<BackendEnumsSettings
-		EnumsNamespace="KomberNet.Models"/>
+	<BackendEnumsSettings/>
 
-	<BackendEntititesSettings
-		EntitiesNamespace="KomberNet.Models"
-		ValidatorsNamespace="KomberNet.Models.Validators"/>
+	<BackendEntititesSettings/>
 
-	<BackendCustomRequestsSettings
-		CustomRequestsNamespace="KomberNet.Models"
-		ValidatorsNamespace="KomberNet.Models.Validators"/>
+	<BackendCustomRequestsSettings/>
 
-	<BackendCustomResponsesSettings
-		CustomResponsesNamespace="KomberNet.Models"
-		ValidatorsNamespace="KomberNet.Models.Validators"/>
+	<BackendCustomResponsesSettings/>
 
 </CodeGeneratorSettings>

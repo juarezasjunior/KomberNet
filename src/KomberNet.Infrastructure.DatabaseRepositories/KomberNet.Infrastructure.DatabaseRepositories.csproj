@@ -36,7 +36,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\KomberNet.Enums\KomberNet.Enums.csproj" />
 	  <ProjectReference Include="..\KomberNet.Models\KomberNet.Models.csproj" />
 	  <ProjectReference Include="..\KomberNet.Models.Billing\KomberNet.Models.Billing.csproj" />
 	  <ProjectReference Include="..\KomberNet.Models.Financial\KomberNet.Models.Financial.csproj" />

@@ -29,7 +29,7 @@ namespace KomberNet.UI.API.Middlewares
             {
                 await this.next(context);
             }
-            catch (SecurityException exception)
+            catch (KomberNetSecurityException exception)
             {
                 this.logger.LogError(exception.ToString());
                 await this.HandleExceptionAsync(context, exception.ExceptionCode, exception.AdditionalInfo, HttpStatusCode.Unauthorized);

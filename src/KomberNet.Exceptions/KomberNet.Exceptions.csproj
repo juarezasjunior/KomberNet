@@ -19,9 +19,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="ExceptionCode.kcg.xml" />
+	  <None Remove="GeneratorSettings.kcgs.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<AdditionalFiles Include="..\Stylecop.json">
 			<Link>Stylecop.json</Link>
 		</AdditionalFiles>
+		<AdditionalFiles Include="GeneratorSettings.kcgs.xml" />
+		<AdditionalFiles Include="ExceptionCode.kcg.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -32,6 +39,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\KomberNet.Models.CodeGenerator\KomberNet.Models.CodeGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\KomberNet.Utils\KomberNet.Utils.csproj" />
 	</ItemGroup>
 

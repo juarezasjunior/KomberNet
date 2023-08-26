@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeGenerator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:noNamespaceSchemaLocation="../../KomberNet.Models.CodeGenerator/Structure/CodeGeneratorSchema.xsd">
+	<Enum Namespace="KomberNet.Models.Auth" Name="Permissions">
+		<EnumValue Name="Administrator"/>
+	</Enum>
+</CodeGenerator>

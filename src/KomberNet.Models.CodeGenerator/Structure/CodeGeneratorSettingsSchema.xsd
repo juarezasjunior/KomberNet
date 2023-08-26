@@ -14,38 +14,24 @@
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="BackendEnumsSettings">
-		<xs:attribute name="EnumsNamespace" type="xs:string" />
 	</xs:complexType>
 	<xs:complexType name="FrontendEnumsSettings">
-		<xs:attribute name="EnumsNamespace" type="xs:string" />
 	</xs:complexType>
 	<xs:complexType name="BackendEntititesSettings">
-		<xs:attribute name="EntitiesNamespace" type="xs:string" />
-		<xs:attribute name="ValidatorsNamespace" type="xs:string" />
 	</xs:complexType>
 	<xs:complexType name="FrontendEntititesSettings">
-		<xs:attribute name="EntitiesNamespace" type="xs:string" />
-		<xs:attribute name="ValidatorsNamespace" type="xs:string" />
 		<xs:attribute default="true" name="GenerateNotifyPropertyChanges" type="xs:boolean" />
 		<xs:attribute default="true" name="UseObservableCollection" type="xs:boolean" />
 	</xs:complexType>
 	<xs:complexType name="BackendCustomRequestsSettings">
-		<xs:attribute name="CustomRequestsNamespace" type="xs:string" />
-		<xs:attribute name="ValidatorsNamespace" type="xs:string" />
 	</xs:complexType>
 	<xs:complexType name="FrontendCustomRequestsSettings">
-		<xs:attribute name="CustomRequestsNamespace" type="xs:string" />
-		<xs:attribute name="ValidatorsNamespace" type="xs:string" />
 		<xs:attribute default="true" name="GenerateNotifyPropertyChanges" type="xs:boolean" />
 		<xs:attribute default="true" name="UseObservableCollection" type="xs:boolean" />
 	</xs:complexType>
 	<xs:complexType name="BackendCustomResponsesSettings">
-		<xs:attribute name="CustomResponsesNamespace" type="xs:string" />
-		<xs:attribute name="ValidatorsNamespace" type="xs:string" />
 	</xs:complexType>
 	<xs:complexType name="FrontendCustomResponsesSettings">
-		<xs:attribute name="CustomResponsesNamespace" type="xs:string" />
-		<xs:attribute name="ValidatorsNamespace" type="xs:string" />
 		<xs:attribute default="true" name="GenerateNotifyPropertyChanges" type="xs:boolean" />
 		<xs:attribute default="true" name="UseObservableCollection" type="xs:boolean" />
 	</xs:complexType>

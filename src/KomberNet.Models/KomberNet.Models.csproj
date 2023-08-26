@@ -19,15 +19,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="General\Country.kcg.xml" />
-	  <None Remove="General\CountrySummary.kcg.xml" />
-	  <None Remove="GeneratorSettings.kcgs.xml" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<AdditionalFiles Include="..\Stylecop.json">
 			<Link>Stylecop.json</Link>
 		</AdditionalFiles>
+		<AdditionalFiles Include="Auth\Auth.kcg.xml" />
+		<AdditionalFiles Include="Auth\Permissions.kcg.xml" />
 		<AdditionalFiles Include="General\Country.kcg.xml" />
 		<AdditionalFiles Include="General\CountrySummary.kcg.xml" />
 		<AdditionalFiles Include="GeneratorSettings.kcgs.xml" />

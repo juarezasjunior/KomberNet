@@ -38,12 +38,12 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
 
         private static void WriteRequest(CodeGeneratorSettings codeGeneratorSettings, SourceProductionContext sourceProductionContext, CustomRequest customRequest, bool isBackend)
         {
-            var className = $"{customRequest.Name}Request";
+            var className = customRequest.Name;
             var currentLocation = isBackend ? Structure.Location.Backend : Structure.Location.Frontend;
             var keyField = customRequest.RequestFields?.KeyField;
             var inheritance = "IEndpointRequest";
-            var classNamespace = isBackend ? codeGeneratorSettings.BackendCustomRequestsSettings?.CustomRequestsNamespace : codeGeneratorSettings.FrontendCustomRequestsSettings?.CustomRequestsNamespace;
-            var validatorNamespace = isBackend ? codeGeneratorSettings.BackendCustomRequestsSettings?.ValidatorsNamespace : codeGeneratorSettings.FrontendCustomRequestsSettings?.ValidatorsNamespace;
+            var classNamespace = customRequest.Namespace;
+            var validatorNamespace = customRequest.Namespace;
             var shouldGenerateNotifyPropertyChanges = isBackend ? false : codeGeneratorSettings.FrontendCustomRequestsSettings?.GenerateNotifyPropertyChanges ?? false;
             var useObservableCollection = isBackend ? false : codeGeneratorSettings.FrontendCustomRequestsSettings?.UseObservableCollection ?? false;
 

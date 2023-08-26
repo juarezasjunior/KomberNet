@@ -41,10 +41,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\KomberNet.UI.WEB.APIClient\KomberNet.UI.WEB.APIClient.csproj" />
+		<ProjectReference Include="..\KomberNet.UI.WEB.APIClient.Inventory\KomberNet.UI.WEB.APIClient.Inventory.csproj" />
 		<ProjectReference Include="..\KomberNet.UI.WEB.Framework\KomberNet.UI.WEB.Framework.csproj" />
 		<ProjectReference Include="..\KomberNet.UI.WEB.Models.Inventory\KomberNet.UI.WEB.Models.Inventory.csproj" />
-		<ProjectReference Include="..\KomberNet.UI.WEB.Models\KomberNet.UI.WEB.Models.csproj" />
 		<ProjectReference Include="..\KomberNet.UI.WEB.Shared\KomberNet.UI.WEB.Shared.csproj" />
 		<ProjectReference Include="..\KomberNet.Utils\KomberNet.Utils.csproj" />
 	</ItemGroup>

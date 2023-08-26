@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
@@ -25,7 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Radzen.Blazor" Version="4.15.6" />
+		<PackageReference Include="Refit" Version="7.0.0" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
@@ -33,18 +33,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<SupportedPlatform Include="browser" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.10" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\KomberNet.UI.WEB.APIClient.Purchasing\KomberNet.UI.WEB.APIClient.Purchasing.csproj" />
-		<ProjectReference Include="..\KomberNet.UI.WEB.Framework\KomberNet.UI.WEB.Framework.csproj" />
-		<ProjectReference Include="..\KomberNet.UI.WEB.Models.Purchasing\KomberNet.UI.WEB.Models.Purchasing.csproj" />
-		<ProjectReference Include="..\KomberNet.UI.WEB.Shared\KomberNet.UI.WEB.Shared.csproj" />
+		<ProjectReference Include="..\KomberNet.UI.WEB.Models.Financial\KomberNet.UI.WEB.Models.Financial.csproj" />
+		<ProjectReference Include="..\KomberNet.UI.WEB.Models\KomberNet.UI.WEB.Models.csproj" />
+		<ProjectReference Include="..\KomberNet.UI.WEB.APIClient\KomberNet.UI.WEB.APIClient.csproj" />
 		<ProjectReference Include="..\KomberNet.Utils\KomberNet.Utils.csproj" />
 	</ItemGroup>
 

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CodeGenerator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:noNamespaceSchemaLocation="../../KomberNet.Models.CodeGenerator/Structure/CodeGeneratorSchema.xsd">
-	<Entity Name="Country" PluralName="Countries">
+	<Entity Namespace="KomberNet.Models.General" Name="Country" PluralName="Countries">
 		<EntityFields>
 			<KeyField Name="CountryId"/>
 			<StringField Name="Name" IsRequired="true"/>

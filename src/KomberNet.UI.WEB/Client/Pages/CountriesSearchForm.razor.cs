@@ -5,10 +5,9 @@
 namespace KomberNet.UI.WEB.Client.Pages
 {
     using System.Collections.ObjectModel;
+    using KomberNet.Models.General;
     using KomberNet.UI.WEB.Framework.Components;
     using KomberNet.UI.WEB.Framework.Pages;
-    using KomberNet.UI.WEB.Models;
-    using KomberNet.UI.WEB.Models.Validators;
     using Radzen;
 
     public partial class CountriesSearchForm : SearchFormPage<CountrySummariesQueryRequest, CountrySummariesQueryResponse, CountrySummary, CountrySummariesQueryRequestValidator>

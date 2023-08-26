@@ -4,10 +4,4 @@
 	
 	<BackendEnumsSettings/>
 	
-	<BackendEntititesSettings/>
-
-	<BackendCustomRequestsSettings/>
-
-	<BackendCustomResponsesSettings/>
-	
 </CodeGeneratorSettings>

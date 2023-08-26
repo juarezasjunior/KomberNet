@@ -36,7 +36,7 @@ namespace KomberNet.Services.Auth
 
             if (applicationUser == null)
             {
-                throw new SecurityException();
+                throw new KomberNetSecurityException();
             }
 
             var result = await this.userManager.ChangePasswordAsync(

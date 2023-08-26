@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeGenerator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:noNamespaceSchemaLocation="../../KomberNet.Models.CodeGenerator/Structure/CodeGeneratorSchema.xsd">
+	<Entity Namespace="KomberNet.Models.Auth" 
+			Name="ApplicationUser" 
+			PluralName="ApplicationUsers"
+			IncludeAuditLog="false"
+			IncludeDataState="false"
+			IncludeRowVersionControl="false">
+		<EntityFields>
+			<KeyField Name="Id"/>
+			<StringField Name="FullName" IsRequired="true"/>
+			<StringField Name="UserName" IsRequired="true"/>
+			<StringField Name="Email" IsRequired="true"/>
+		</EntityFields>
+	</Entity>
+
+	<CustomRequest Namespace="KomberNet.Models.Auth" Name="ApplicationUserInsertRequest">
+		<RequestFields>
+			<StringField Name="FullName" IsRequired="true"/>
+			<StringField Name="Email" IsRequired="true"/>
+			<StringField Name="Password" IsRequired="true"/>
+		</RequestFields>
+	</CustomRequest>
+
+	<CustomRequest Namespace="KomberNet.Models.Auth" Name="ChangePasswordRequest">
+		<RequestFields>
+			<StringField Name="CurrentPassword" IsRequired="true"/>
+			<StringField Name="NewPassword" IsRequired="true"/>
+		</RequestFields>
+	</CustomRequest>
+
+	<CustomRequest Namespace="KomberNet.Models.Auth" Name="LoginRequest">
+		<RequestFields>
+			<StringField Name="Email" IsRequired="true"/>
+			<StringField Name="Password" IsRequired="true"/>
+		</RequestFields>
+	</CustomRequest>
+
+	<CustomRequest Namespace="KomberNet.Models.Auth" Name="LogoutRequest"/>
+
+	<CustomRequest Namespace="KomberNet.Models.Auth" Name="RefreshTokenRequest">
+		<RequestFields>
+			<StringField Name="Token" IsRequired="true"/>
+			<StringField Name="RefreshToken" IsRequired="true"/>
+		</RequestFields>
+	</CustomRequest>
+	
+	<CustomResponse Namespace="KomberNet.Models.Auth" Name="ApplicationUserInsertResponse"/>
+	
+	<CustomResponse Namespace="KomberNet.Models.Auth" Name="ChangePasswordResponse"/>
+
+	<CustomResponse Namespace="KomberNet.Models.Auth" Name="LoginResponse">
+		<ResponseFields>
+			<StringField Name="Token" IsRequired="true"/>
+			<StringField Name="RefreshToken" IsRequired="true"/>
+		</ResponseFields>
+	</CustomResponse>
+	
+	<CustomResponse Namespace="KomberNet.Models.Auth" Name="LogoutResponse"/>
+	
+	<CustomResponse Namespace="KomberNet.Models.Auth" Name="RefreshTokenResponse">
+		<ResponseFields>
+			<StringField Name="Token" IsRequired="true"/>
+			<StringField Name="RefreshToken" IsRequired="true"/>
+		</ResponseFields>
+	</CustomResponse>
+</CodeGenerator>

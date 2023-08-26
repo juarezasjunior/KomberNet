@@ -24,14 +24,14 @@ namespace KomberNet.Services.Auth
 
             if (string.IsNullOrEmpty(email))
             {
-                throw new SecurityException();
+                throw new KomberNetSecurityException();
             }
 
             var token = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.UserHasLogoutKey, email));
 
             if (!string.IsNullOrEmpty(token))
             {
-                throw new SecurityException();
+                throw new KomberNetSecurityException();
             }
         }
     }

@@ -46,14 +46,14 @@ namespace KomberNet.Services.Auth
 
             if (applicationUser == null)
             {
-                throw new SecurityException();
+                throw new KomberNetSecurityException();
             }
 
             var isPasswordValid = await this.userManager.CheckPasswordAsync(applicationUser, request.Password);
 
             if (!isPasswordValid)
             {
-                throw new SecurityException();
+                throw new KomberNetSecurityException();
             }
 
             return applicationUser;

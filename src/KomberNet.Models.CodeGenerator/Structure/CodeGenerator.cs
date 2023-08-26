@@ -44,6 +44,9 @@ namespace KomberNet.Models.CodeGenerator.Structure
     public class Entity
     {
         [XmlAttribute]
+        public string Namespace { get; set; }
+
+        [XmlAttribute]
         public string Name { get; set; }
 
         [XmlAttribute]
@@ -82,6 +85,9 @@ namespace KomberNet.Models.CodeGenerator.Structure
     public class Summary
     {
         [XmlAttribute]
+        public string Namespace { get; set; }
+
+        [XmlAttribute]
         public string Name { get; set; }
 
         [XmlAttribute]
@@ -113,6 +119,9 @@ namespace KomberNet.Models.CodeGenerator.Structure
     public class CustomRequest
     {
         [XmlAttribute]
+        public string Namespace { get; set; }
+
+        [XmlAttribute]
         public string Name { get; set; }
 
         [XmlAttribute]
@@ -126,6 +135,9 @@ namespace KomberNet.Models.CodeGenerator.Structure
     [XmlRoot]
     public class CustomResponse
     {
+        [XmlAttribute]
+        public string Namespace { get; set; }
+
         [XmlAttribute]
         public string Name { get; set; }
 
@@ -487,6 +499,9 @@ namespace KomberNet.Models.CodeGenerator.Structure
     [XmlRoot]
     public class EnumEntity
     {
+        [XmlAttribute]
+        public string Namespace { get; set; }
+
         [XmlAttribute]
         public string Name { get; set; }
 

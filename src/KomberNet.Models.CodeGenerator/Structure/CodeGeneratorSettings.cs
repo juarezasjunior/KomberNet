@@ -42,36 +42,21 @@ namespace KomberNet.Models.CodeGenerator.Structure
 	[XmlRoot]
 	public class BackendEnumsSettings
 	{
-		[XmlAttribute]
-		public string EnumsNamespace { get; set; }
 	}
 
 	[XmlRoot]
 	public class FrontendEnumsSettings
 	{
-		[XmlAttribute]
-		public string EnumsNamespace { get; set; }
 	}
 
 	[XmlRoot]
 	public class BackendEntititesSettings
 	{
-		[XmlAttribute]
-		public string EntitiesNamespace { get; set; }
-
-		[XmlAttribute]
-		public string ValidatorsNamespace { get; set; }
 	}
 
 	[XmlRoot]
 	public class FrontendEntititesSettings
 	{
-		[XmlAttribute]
-		public string EntitiesNamespace { get; set; }
-
-		[XmlAttribute]
-		public string ValidatorsNamespace { get; set; }
-
 		[XmlAttribute]
 		[DefaultValue(true)]
 		public bool GenerateNotifyPropertyChanges { get; set; } = true;
@@ -84,22 +69,11 @@ namespace KomberNet.Models.CodeGenerator.Structure
 	[XmlRoot]
 	public class BackendCustomRequestsSettings
 	{
-		[XmlAttribute]
-		public string CustomRequestsNamespace { get; set; }
-
-		[XmlAttribute]
-		public string ValidatorsNamespace { get; set; }
 	}
 
 	[XmlRoot]
 	public class FrontendCustomRequestsSettings
 	{
-		[XmlAttribute]
-		public string CustomRequestsNamespace { get; set; }
-
-		[XmlAttribute]
-		public string ValidatorsNamespace { get; set; }
-
 		[XmlAttribute]
 		[DefaultValue(true)]
 		public bool GenerateNotifyPropertyChanges { get; set; } = true;
@@ -112,22 +86,11 @@ namespace KomberNet.Models.CodeGenerator.Structure
 	[XmlRoot]
 	public class BackendCustomResponsesSettings
 	{
-		[XmlAttribute]
-		public string CustomResponsesNamespace { get; set; }
-
-		[XmlAttribute]
-		public string ValidatorsNamespace { get; set; }
 	}
 
 	[XmlRoot]
 	public class FrontendCustomResponsesSettings
 	{
-		[XmlAttribute]
-		public string CustomResponsesNamespace { get; set; }
-
-		[XmlAttribute]
-		public string ValidatorsNamespace { get; set; }
-
 		[XmlAttribute]
 		[DefaultValue(true)]
 		public bool GenerateNotifyPropertyChanges { get; set; } = true;

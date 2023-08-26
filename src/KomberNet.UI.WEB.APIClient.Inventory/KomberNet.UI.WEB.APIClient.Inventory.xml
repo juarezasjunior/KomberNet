@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>KomberNet.Enums</name>
+        <name>KomberNet.UI.WEB.APIClient.Inventory</name>
     </assembly>
     <members>
     </members>

@@ -9,7 +9,7 @@ namespace KomberNet.Infrastructure.DatabaseRepositories.EntityTypeConfiguration.
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using KomberNet.Enums;
+    using KomberNet.Models.Auth;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
