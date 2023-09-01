@@ -12,14 +12,8 @@ namespace KomberNet.UI.WEB.APIClient.Auth
     using KomberNet.Models.Auth;
     using Refit;
 
-    public partial interface IAuthClient : IAPIClient
+    public partial interface IAuthClient : IAuthenticatedAPIClient
     {
-        [Post("/api/Auth/InsertApplicationUser")]
-        public Task<ApplicationUserInsertResponse> InsertApplicationUserAsync([Body] ApplicationUserInsertRequest request);
-
-        [Post("/api/Auth/Login")]
-        public Task<LoginResponse> LoginAsync([Body] LoginRequest request);
-
         [Post("/api/Auth/RefreshToken")]
         public Task<RefreshTokenResponse> RefreshTokenAsync([Body] RefreshTokenRequest request);
 

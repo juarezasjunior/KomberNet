@@ -52,16 +52,18 @@
     private async Task LoginAsync()
     {
         await this.authService.InsertApplicationUserAsync(new ApplicationUserInsertRequest()
-            {
-                FullName = this.FullName ?? this.Email,
-                Email = this.Email,
-                Password = this.Password,
-            });
+        {
+            FullName = this.Email,
+            Email = this.Email,
+            Password = this.Password,
+        });
 
         var result = await this.authService.LoginAsync(new LoginRequest()
             {
                 Email = this.Email,
                 Password = this.Password,
             });
+
+        await this.authService.LogoutAsync();
     }
 }

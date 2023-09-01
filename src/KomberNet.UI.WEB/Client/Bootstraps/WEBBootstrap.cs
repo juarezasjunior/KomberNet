@@ -101,11 +101,21 @@ namespace KomberNet.UI.WEB.Client.Bootstraps
 
             builder.Services.AddTransient<AuthHeaderHandler>();
 
-            var clientInterfaces = typeof(IAuthClient).Assembly.GetTypes().Where(x =>
-                x.IsAssignableTo(typeof(IAPIClient))
+            var anonymousClientInterfaces = typeof(IAuthClient).Assembly.GetTypes().Where(x =>
+                x.IsAssignableTo(typeof(IAnonymousAPIClient))
                     && x.IsInterface);
 
-            foreach (var clientInterface in clientInterfaces)
+            foreach (var clientInterface in anonymousClientInterfaces)
+            {
+                builder.Services.AddRefitClient(clientInterface)
+                    .ConfigureHttpClient(c => c.BaseAddress = new Uri(apiOptions.Url));
+            }
+
+            var authenticatedClientInterfaces = typeof(IAuthClient).Assembly.GetTypes().Where(x =>
+                x.IsAssignableTo(typeof(IAuthenticatedAPIClient))
+                    && x.IsInterface);
+
+            foreach (var clientInterface in authenticatedClientInterfaces)
             {
                 builder.Services.AddRefitClient(clientInterface)
                     .ConfigureHttpClient(c => c.BaseAddress = new Uri(apiOptions.Url))

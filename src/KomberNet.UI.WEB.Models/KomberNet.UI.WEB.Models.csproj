@@ -36,7 +36,7 @@
 
 	<ItemGroup>
 	  <AdditionalFiles Include="..\KomberNet.Models\Auth\Auth.kcg.xml" Link="Auth\Auth.kcg.xml" />
-	  <AdditionalFiles Include="..\KomberNet.Models\Auth\Permissions.kcg.xml" Link="Auth\Permissions.kcg.xml" />
+	  <AdditionalFiles Include="..\KomberNet.Models\Auth\APIRoles.kcg.xml" Link="Auth\APIRoles.kcg.xml" />
 	</ItemGroup>
 
 	<ItemGroup>

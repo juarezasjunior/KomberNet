@@ -15,15 +15,18 @@ namespace KomberNet.UI.WEB.Client.Auth
     {
         private readonly AuthenticationStateProvider authenticationStateProvider;
         private readonly IAuthClient authClient;
+        private readonly IAuthAnonymousClient authAnonymousClient;
         private readonly ILocalStorageService localStorage;
 
         public AuthService(
             AuthenticationStateProvider authenticationStateProvider,
             IAuthClient authClient,
+            IAuthAnonymousClient authAnonymousClient,
             ILocalStorageService localStorage)
         {
             this.authenticationStateProvider = authenticationStateProvider;
             this.authClient = authClient;
+            this.authAnonymousClient = authAnonymousClient;
             this.localStorage = localStorage;
         }
 
@@ -31,7 +34,7 @@ namespace KomberNet.UI.WEB.Client.Auth
         {
             try
             {
-                var loginResponse = await this.authClient.LoginAsync(loginRequest);
+                var loginResponse = await this.authAnonymousClient.LoginAsync(loginRequest);
 
                 await this.localStorage.SetItemAsync(LocalStorageKeys.AuthTokenLocalStorageKey, loginResponse.Token);
                 await this.localStorage.SetItemAsync(LocalStorageKeys.RefreshAuthTokenLocalStorageKey, loginResponse.RefreshToken);
@@ -58,7 +61,7 @@ namespace KomberNet.UI.WEB.Client.Auth
 
         public async Task InsertApplicationUserAsync(ApplicationUserInsertRequest applicationUserInsertRequest)
         {
-            var response = await this.authClient.InsertApplicationUserAsync(applicationUserInsertRequest);
+            var response = await this.authAnonymousClient.InsertApplicationUserAsync(applicationUserInsertRequest);
         }
     }
 }

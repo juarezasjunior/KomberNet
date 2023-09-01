@@ -42,6 +42,8 @@ namespace KomberNet.Services.Auth
                 throw new KomberNetException(exceptionCode: ExceptionCode.InvalidPassword, additionalInfo: errors);
             }
 
+            await this.userManager.AddToRoleAsync(applicationUser, nameof(APIRoles.User));
+
             return new ApplicationUserInsertResponse();
         }
     }

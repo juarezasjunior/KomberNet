@@ -2,8 +2,8 @@
 <CodeGenerator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:noNamespaceSchemaLocation="../KomberNet.Models.CodeGenerator/Structure/CodeGeneratorSchema.xsd">
 	<Enum Namespace="KomberNet.Exceptions" Name="ExceptionCode" AutoGenSequenceNumber="true">
-		<EnumValue Name="Others" DefaultValue="0"/>
-		<EnumValue Name="SecurityValidation" DefaultValue="1"/>
-		<EnumValue Name="InvalidPassword" DefaultValue="3"/>
+		<EnumValue Name="Others"/>
+		<EnumValue Name="SecurityValidation"/>
+		<EnumValue Name="InvalidPassword"/>
 	</Enum>
 </CodeGenerator>
