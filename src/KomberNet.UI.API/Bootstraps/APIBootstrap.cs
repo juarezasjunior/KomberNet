@@ -35,7 +35,7 @@ namespace KomberNet.UI.API.Bootstraps
             builder.Services.AddAuthenticationJwt(builder.Configuration);
             builder.Services.AddDistributedMemoryCache();
 
-            builder.Services.AddIdentityCore<TbApplicationUser>()
+            builder.Services.AddIdentityCore<TbUser>()
                 .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

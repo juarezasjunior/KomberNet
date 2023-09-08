@@ -14,27 +14,27 @@ namespace KomberNet.Services.Auth
     using KomberNet.Models.Auth;
     using Microsoft.AspNetCore.Identity;
 
-    public class ApplicationUserHandlerService : IApplicationUserHandlerService
+    public class UserHandlerService : IUserHandlerService
     {
-        private readonly UserManager<TbApplicationUser> userManager;
+        private readonly UserManager<TbUser> userManager;
 
-        public ApplicationUserHandlerService(UserManager<TbApplicationUser> userManager)
+        public UserHandlerService(UserManager<TbUser> userManager)
         {
             this.userManager = userManager;
         }
 
-        public async Task<ApplicationUserInsertResponse> InsertApplicationUserAsync(ApplicationUserInsertRequest request, CancellationToken cancellationToken)
+        public async Task<UserInsertResponse> InsertUserAsync(UserInsertRequest request, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var applicationUser = new TbApplicationUser()
+            var user = new TbUser()
             {
                 FullName = request.FullName,
                 UserName = request.Email,
                 Email = request.Email,
             };
 
-            var result = await this.userManager.CreateAsync(applicationUser, request.Password);
+            var result = await this.userManager.CreateAsync(user, request.Password);
 
             if (!result.Succeeded)
             {
@@ -42,9 +42,9 @@ namespace KomberNet.Services.Auth
                 throw new KomberNetException(exceptionCode: ExceptionCode.InvalidPassword, additionalInfo: errors);
             }
 
-            await this.userManager.AddToRoleAsync(applicationUser, nameof(APIRoles.User));
+            await this.userManager.AddToRoleAsync(user, nameof(APIRoles.User));
 
-            return new ApplicationUserInsertResponse();
+            return new UserInsertResponse();
         }
     }
 }

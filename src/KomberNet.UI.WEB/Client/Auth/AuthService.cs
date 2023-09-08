@@ -4,6 +4,9 @@
 
 namespace KomberNet.UI.WEB.Client.Auth
 {
+    using System.IdentityModel.Tokens.Jwt;
+    using System.Linq.Dynamic.Core.Tokenizer;
+    using System.Net.Http.Headers;
     using Blazored.LocalStorage;
     using KomberNet.Models.Auth;
     using KomberNet.UI.WEB.APIClient.Auth;
@@ -59,9 +62,37 @@ namespace KomberNet.UI.WEB.Client.Auth
             ((AppAuthenticationStateProvider)this.authenticationStateProvider).NotifyUserLogout();
         }
 
-        public async Task InsertApplicationUserAsync(ApplicationUserInsertRequest applicationUserInsertRequest)
+        public async Task InsertUserAsync(UserInsertRequest userInsertRequest)
         {
-            var response = await this.authAnonymousClient.InsertApplicationUserAsync(applicationUserInsertRequest);
+            var response = await this.authAnonymousClient.InsertUserAsync(userInsertRequest);
+        }
+
+        public async Task<AuthenticationHeaderValue> EnsureAuthenticationAsync(string urlPath)
+        {
+            string token = await this.localStorage.GetItemAsync<string>(LocalStorageKeys.AuthTokenLocalStorageKey);
+
+            if (!urlPath.Contains("/api/Auth/RefreshToken"))
+            {
+                var handler = new JwtSecurityTokenHandler();
+                var jwtSecurityToken = handler.ReadToken(token) as JwtSecurityToken;
+
+                if (jwtSecurityToken.ValidTo <= DateTime.Now.AddMinutes(1))
+                {
+                    var refreshToken = await this.localStorage.GetItemAsync<string>(LocalStorageKeys.RefreshAuthTokenLocalStorageKey);
+
+                    var refreshedTokenResponse = await this.authClient.RefreshTokenAsync(new RefreshTokenRequest()
+                    {
+                        Token = token,
+                        RefreshToken = refreshToken,
+                    });
+
+                    await this.localStorage.SetItemAsync(LocalStorageKeys.AuthTokenLocalStorageKey, refreshedTokenResponse.Token);
+                    await this.localStorage.SetItemAsync(LocalStorageKeys.RefreshAuthTokenLocalStorageKey, refreshedTokenResponse.RefreshToken);
+                    token = refreshedTokenResponse.Token;
+                }
+            }
+
+            return new AuthenticationHeaderValue("Bearer", token);
         }
     }
 }

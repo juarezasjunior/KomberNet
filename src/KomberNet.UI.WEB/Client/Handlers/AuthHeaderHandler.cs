@@ -11,32 +11,22 @@ namespace KomberNet.UI.WEB.Client.Handlers
     using System.Text.Json.Serialization;
     using Blazored.LocalStorage;
     using KomberNet.Exceptions;
+    using KomberNet.UI.WEB.APIClient.Auth;
+    using KomberNet.UI.WEB.Client.Auth;
     using KomberNet.UI.WEB.Client.Helpers;
 
     public class AuthHeaderHandler : DelegatingHandler
     {
-        private readonly ILocalStorageService localStorage;
+        private readonly IAuthService authService;
 
-        public AuthHeaderHandler(ILocalStorageService localStorage)
+        public AuthHeaderHandler(IAuthService authService)
         {
-            this.localStorage = localStorage;
+            this.authService = authService;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var token = await this.localStorage.GetItemAsync<string>(LocalStorageKeys.AuthTokenLocalStorageKey);
-
-            if (token != null)
-            {
-                // TODO: See it later
-                // potentially refresh token here if it has expired etc.
-
-                var handler = new JwtSecurityTokenHandler();
-                var jsonToken = handler.ReadToken(token);
-                var tokenS = jsonToken as JwtSecurityToken;
-
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            }
+            request.Headers.Authorization = await this.authService.EnsureAuthenticationAsync(request.RequestUri.AbsolutePath);
 
             var response = await base.SendAsync(request, cancellationToken);
 

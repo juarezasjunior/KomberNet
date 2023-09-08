@@ -16,13 +16,13 @@
         <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthAnonymousClient.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthAnonymousClient.InsertApplicationUserAsync(KomberNet.Models.Auth.ApplicationUserInsertRequest)">
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthAnonymousClient.InsertUserAsync(KomberNet.Models.Auth.UserInsertRequest)">
             <inheritdoc />
         </member>
         <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthAnonymousClient.LoginAsync(KomberNet.Models.Auth.LoginRequest)">
             <inheritdoc />
         </member>
-        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthAnonymousClient.KomberNet#UI#WEB#APIClient#Auth#IAuthAnonymousClient#InsertApplicationUserAsync(KomberNet.Models.Auth.ApplicationUserInsertRequest)">
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthAnonymousClient.KomberNet#UI#WEB#APIClient#Auth#IAuthAnonymousClient#InsertUserAsync(KomberNet.Models.Auth.UserInsertRequest)">
             <inheritdoc />
         </member>
         <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthAnonymousClient.KomberNet#UI#WEB#APIClient#Auth#IAuthAnonymousClient#LoginAsync(KomberNet.Models.Auth.LoginRequest)">

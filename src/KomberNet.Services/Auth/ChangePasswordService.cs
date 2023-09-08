@@ -17,11 +17,11 @@ namespace KomberNet.Services.Auth
     public class ChangePasswordService : IChangePasswordService
     {
         private readonly ICurrentUserService currentUserService;
-        private readonly UserManager<TbApplicationUser> userManager;
+        private readonly UserManager<TbUser> userManager;
 
         public ChangePasswordService(
             ICurrentUserService currentUserService,
-            UserManager<TbApplicationUser> userManager)
+            UserManager<TbUser> userManager)
         {
             this.currentUserService = currentUserService;
             this.userManager = userManager;
@@ -32,15 +32,15 @@ namespace KomberNet.Services.Auth
             cancellationToken.ThrowIfCancellationRequested();
 
             var currentUserId = this.currentUserService.CurrentUserId;
-            var applicationUser = await this.userManager.FindByIdAsync(currentUserId.ToString());
+            var user = await this.userManager.FindByIdAsync(currentUserId.ToString());
 
-            if (applicationUser == null)
+            if (user == null)
             {
                 throw new KomberNetSecurityException();
             }
 
             var result = await this.userManager.ChangePasswordAsync(
-                applicationUser,
+                user,
                 request.CurrentPassword,
                 request.NewPassword);
 

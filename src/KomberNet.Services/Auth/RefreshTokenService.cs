@@ -22,14 +22,14 @@ namespace KomberNet.Services.Auth
     public class RefreshTokenService : IRefreshTokenService
     {
         private readonly ICurrentUserService currentUserService;
-        private readonly UserManager<TbApplicationUser> userManager;
+        private readonly UserManager<TbUser> userManager;
         private readonly IDistributedCache distributedCache;
         private readonly IOptions<JwtOptions> jwtOptions;
         private readonly ITokenService tokenService;
 
         public RefreshTokenService(
             ICurrentUserService currentUserService,
-            UserManager<TbApplicationUser> userManager,
+            UserManager<TbUser> userManager,
             IDistributedCache distributedCache,
             IOptions<JwtOptions> jwtOptions,
             ITokenService tokenService)
@@ -49,16 +49,16 @@ namespace KomberNet.Services.Auth
             var principal = this.GetPrincipalFromToken(request.Token);
 
             var email = principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email).Value;
-            var applicationUser = await this.userManager.FindByEmailAsync(email);
+            var user = await this.userManager.FindByEmailAsync(email);
 
-            if (applicationUser == null
-                || applicationUser.Id != currentUserId)
+            if (user == null
+                || user.Id != currentUserId)
             {
                 throw new KomberNetSecurityException();
             }
 
-            var refreshToken = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.RefreshTokenKey, applicationUser.Email));
-            var refreshTokenExpiration = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, applicationUser.Email));
+            var refreshToken = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.RefreshTokenKey, user.Email));
+            var refreshTokenExpiration = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, user.Email));
 
             if (string.IsNullOrEmpty(refreshToken)
                 || string.IsNullOrEmpty(refreshTokenExpiration)
@@ -77,7 +77,7 @@ namespace KomberNet.Services.Auth
                 throw new KomberNetSecurityException();
             }
 
-            var result = await this.tokenService.GenerateTokenAsync(applicationUser, cancellationToken);
+            var result = await this.tokenService.GenerateTokenAsync(user, cancellationToken);
 
             return new RefreshTokenResponse()
             {

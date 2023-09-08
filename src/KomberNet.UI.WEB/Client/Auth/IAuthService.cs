@@ -4,6 +4,7 @@
 
 namespace KomberNet.UI.WEB.Client.Auth
 {
+    using System.Net.Http.Headers;
     using KomberNet.Models.Auth;
 
     public interface IAuthService
@@ -12,6 +13,8 @@ namespace KomberNet.UI.WEB.Client.Auth
 
         public Task LogoutAsync();
 
-        public Task InsertApplicationUserAsync(ApplicationUserInsertRequest applicationUserInsertRequest);
+        public Task InsertUserAsync(UserInsertRequest userInsertRequest);
+
+        public Task<AuthenticationHeaderValue> EnsureAuthenticationAsync(string urlPath);
     }
 }

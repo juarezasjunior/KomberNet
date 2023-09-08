@@ -18,12 +18,12 @@ namespace KomberNet.Services.Auth
 
     public class TokenService : ITokenService
     {
-        private readonly UserManager<TbApplicationUser> userManager;
+        private readonly UserManager<TbUser> userManager;
         private readonly IDistributedCache distributedCache;
         private readonly IOptions<JwtOptions> jwtOptions;
 
         public TokenService(
-            UserManager<TbApplicationUser> userManager,
+            UserManager<TbUser> userManager,
             IDistributedCache distributedCache,
             IOptions<JwtOptions> jwtOptions)
         {
@@ -32,7 +32,7 @@ namespace KomberNet.Services.Auth
             this.jwtOptions = jwtOptions;
         }
 
-        public async Task<(string Token, string RefreshToken)> GenerateTokenAsync(TbApplicationUser applicationUser, CancellationToken cancellationToken)
+        public async Task<(string Token, string RefreshToken)> GenerateTokenAsync(TbUser user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
@@ -48,13 +48,13 @@ namespace KomberNet.Services.Auth
 
             var claims = new List<Claim>()
             {
-                new Claim(KomberNetClaims.UserId, applicationUser.Id.ToString()),
-                new Claim(KomberNetClaims.FullName, applicationUser.FullName),
-                new Claim(ClaimTypes.Name, applicationUser.UserName),
-                new Claim(ClaimTypes.Email, applicationUser.Email),
+                new Claim(KomberNetClaims.UserId, user.Id.ToString()),
+                new Claim(KomberNetClaims.FullName, user.FullName),
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.Email, user.Email),
             };
 
-            var roles = await this.userManager.GetRolesAsync(applicationUser);
+            var roles = await this.userManager.GetRolesAsync(user);
 
             foreach (var role in roles)
             {
@@ -76,12 +76,12 @@ namespace KomberNet.Services.Auth
                 AbsoluteExpiration = refreshTokenExpiration,
             };
 
-            await this.distributedCache.SetStringAsync(string.Format(JwtCacheKeys.RefreshTokenKey, applicationUser.Email), refreshToken, refreshTokenDistributedCacheEntryOptions);
+            await this.distributedCache.SetStringAsync(string.Format(JwtCacheKeys.RefreshTokenKey, user.Email), refreshToken, refreshTokenDistributedCacheEntryOptions);
             await this.distributedCache.SetStringAsync(
-                string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, applicationUser.Email),
+                string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, user.Email),
                 DateTime.Now.AddMinutes(this.jwtOptions.Value.JwtRefreshTokenExpiryInMinutes).ToString(),
                 refreshTokenDistributedCacheEntryOptions);
-            await this.distributedCache.RemoveAsync(string.Format(JwtCacheKeys.UserHasLogoutKey, applicationUser.Email));
+            await this.distributedCache.RemoveAsync(string.Format(JwtCacheKeys.UserHasLogoutKey, user.Email));
 
             return (Token: token, RefreshToken: refreshToken);
         }

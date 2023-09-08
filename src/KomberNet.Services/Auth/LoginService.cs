@@ -12,11 +12,11 @@ namespace KomberNet.Services.Auth
 
     public class LoginService : ILoginService
     {
-        private readonly UserManager<TbApplicationUser> userManager;
+        private readonly UserManager<TbUser> userManager;
         private readonly ITokenService tokenService;
 
         public LoginService(
-            UserManager<TbApplicationUser> userManager,
+            UserManager<TbUser> userManager,
             ITokenService tokenService)
         {
             this.userManager = userManager;
@@ -27,9 +27,9 @@ namespace KomberNet.Services.Auth
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var applicationUser = await this.ValidateAsync(request, cancellationToken);
+            var user = await this.ValidateAsync(request, cancellationToken);
 
-            var result = await this.tokenService.GenerateTokenAsync(applicationUser, cancellationToken);
+            var result = await this.tokenService.GenerateTokenAsync(user, cancellationToken);
 
             return new LoginResponse()
             {
@@ -38,25 +38,25 @@ namespace KomberNet.Services.Auth
             };
         }
 
-        private async Task<TbApplicationUser> ValidateAsync(LoginRequest request, CancellationToken cancellationToken)
+        private async Task<TbUser> ValidateAsync(LoginRequest request, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var applicationUser = await this.userManager.FindByEmailAsync(request.Email);
+            var user = await this.userManager.FindByEmailAsync(request.Email);
 
-            if (applicationUser == null)
+            if (user == null)
             {
                 throw new KomberNetSecurityException();
             }
 
-            var isPasswordValid = await this.userManager.CheckPasswordAsync(applicationUser, request.Password);
+            var isPasswordValid = await this.userManager.CheckPasswordAsync(user, request.Password);
 
             if (!isPasswordValid)
             {
                 throw new KomberNetSecurityException();
             }
 
-            return applicationUser;
+            return user;
         }
     }
 }

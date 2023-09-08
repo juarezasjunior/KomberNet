@@ -2,17 +2,20 @@
 // This file is licensed to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICE files in the project root for full license information.
 
-namespace KomberNet.Services.Auth
+namespace KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using KomberNet.Models.Auth;
+    using KomberNet.Models.Contracts;
+    using Microsoft.AspNetCore.Identity;
 
-    public interface IApplicationUserHandlerService : IService
+    public partial class TbUser : IdentityUser<Guid>
     {
-        public Task<ApplicationUserInsertResponse> InsertApplicationUserAsync(ApplicationUserInsertRequest request, CancellationToken cancellationToken);
+        [MaxLength(500)]
+        public string FullName { get; set; }
     }
 }

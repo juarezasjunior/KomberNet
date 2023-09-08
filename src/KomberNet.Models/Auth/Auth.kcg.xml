@@ -2,8 +2,8 @@
 <CodeGenerator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:noNamespaceSchemaLocation="../../KomberNet.Models.CodeGenerator/Structure/CodeGeneratorSchema.xsd">
 	<Entity Namespace="KomberNet.Models.Auth" 
-			Name="ApplicationUser" 
-			PluralName="ApplicationUsers"
+			Name="User" 
+			PluralName="Users"
 			IncludeAuditLog="false"
 			IncludeDataState="false"
 			IncludeRowVersionControl="false">
@@ -15,7 +15,7 @@
 		</EntityFields>
 	</Entity>
 
-	<CustomRequest Namespace="KomberNet.Models.Auth" Name="ApplicationUserInsertRequest">
+	<CustomRequest Namespace="KomberNet.Models.Auth" Name="UserInsertRequest">
 		<RequestFields>
 			<StringField Name="FullName" IsRequired="true"/>
 			<StringField Name="Email" IsRequired="true"/>
@@ -46,7 +46,7 @@
 		</RequestFields>
 	</CustomRequest>
 	
-	<CustomResponse Namespace="KomberNet.Models.Auth" Name="ApplicationUserInsertResponse"/>
+	<CustomResponse Namespace="KomberNet.Models.Auth" Name="UserInsertResponse"/>
 	
 	<CustomResponse Namespace="KomberNet.Models.Auth" Name="ChangePasswordResponse"/>
 

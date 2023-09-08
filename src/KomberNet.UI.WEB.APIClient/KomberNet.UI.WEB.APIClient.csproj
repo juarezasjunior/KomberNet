@@ -42,6 +42,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\KomberNet.Exceptions\KomberNet.Exceptions.csproj" />
 	  <ProjectReference Include="..\KomberNet.UI.WEB.Models.Billing\KomberNet.UI.WEB.Models.Billing.csproj" />
 	  <ProjectReference Include="..\KomberNet.UI.WEB.Models.Financial\KomberNet.UI.WEB.Models.Financial.csproj" />
 	  <ProjectReference Include="..\KomberNet.UI.WEB.Models.Inventory\KomberNet.UI.WEB.Models.Inventory.csproj" />

@@ -51,7 +51,7 @@
 
     private async Task LoginAsync()
     {
-        await this.authService.InsertApplicationUserAsync(new ApplicationUserInsertRequest()
+        await this.authService.InsertUserAsync(new UserInsertRequest()
         {
             FullName = this.Email,
             Email = this.Email,
