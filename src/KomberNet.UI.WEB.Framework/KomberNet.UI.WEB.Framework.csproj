@@ -49,6 +49,7 @@
 		<ProjectReference Include="..\KomberNet.Exceptions\KomberNet.Exceptions.csproj" />
 		<ProjectReference Include="..\KomberNet.Models.Contracts\KomberNet.Models.Contracts.csproj" />
 		<ProjectReference Include="..\KomberNet.Resources\KomberNet.Resources.csproj" />
+		<ProjectReference Include="..\KomberNet.UI.WEB.APIClient\KomberNet.UI.WEB.APIClient.csproj" />
 		<ProjectReference Include="..\KomberNet.Utils\KomberNet.Utils.csproj" />
 	</ItemGroup>
 
