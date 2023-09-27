@@ -12,6 +12,7 @@ namespace KomberNet.UI.WEB.Client.Bootstraps
     using KomberNet.UI.WEB.Client.Handlers;
     using KomberNet.UI.WEB.Client.Providers;
     using KomberNet.UI.WEB.Client.Shared;
+    using KomberNet.UI.WEB.Framework.Services;
     using Microsoft.AspNetCore.Components.Authorization;
     using Microsoft.AspNetCore.Components.Web;
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -29,6 +30,7 @@ namespace KomberNet.UI.WEB.Client.Bootstraps
             AddRootComponents(builder);
 
             builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<IAPIClientService, APIClientService>();
             builder.Services.AddScoped<AuthenticationStateProvider, AppAuthenticationStateProvider>();
 
             builder.Services.AddBlazoredLocalStorage();

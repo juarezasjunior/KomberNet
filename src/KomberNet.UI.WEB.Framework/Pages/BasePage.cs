@@ -12,6 +12,7 @@ namespace KomberNet.UI.WEB.Framework.Pages
     using System.Threading.Tasks;
     using KomberNet.Exceptions;
     using KomberNet.Resources;
+    using KomberNet.UI.WEB.Framework.Services;
     using Microsoft.AspNetCore.Components;
     using Microsoft.Extensions.Localization;
     using Radzen;
@@ -27,6 +28,9 @@ namespace KomberNet.UI.WEB.Framework.Pages
         [Inject]
         protected DialogService DialogService { get; set; }
 
+        [Inject]
+        private IAPIClientService APIClientService { get; set; }
+
         public void Dispose()
         {
             this.OnDisposing();
@@ -34,6 +38,11 @@ namespace KomberNet.UI.WEB.Framework.Pages
 
         protected virtual void OnDisposing()
         {
+        }
+
+        protected async Task<TResult> ExecuteHandlingErrorAsync<TResult>(Func<Task<TResult>> operation, Action<KomberNetException> exceptionHandler)
+        {
+            return await this.APIClientService.ExecuteHandlingErrorAsync(operation, exceptionHandler);
         }
     }
 }

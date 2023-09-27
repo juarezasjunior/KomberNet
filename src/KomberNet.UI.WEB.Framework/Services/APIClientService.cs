@@ -11,10 +11,11 @@ namespace KomberNet.UI.WEB.Framework.Services
     using System.Text.Json;
     using System.Threading.Tasks;
     using KomberNet.Exceptions;
+    using KomberNet.Resources;
     using Radzen;
     using Refit;
 
-    public class APIClientService
+    public class APIClientService : IAPIClientService
     {
         private readonly NotificationService notificationService;
 
@@ -23,7 +24,7 @@ namespace KomberNet.UI.WEB.Framework.Services
             this.notificationService = notificationService;
         }
 
-        protected async Task<TResult> ExecuteHandlingErrorAsync<TResult>(Func<Task<TResult>> operation, Action<KomberNetException> exceptionHandler)
+        public async Task<TResult> ExecuteHandlingErrorAsync<TResult>(Func<Task<TResult>> operation, Action<KomberNetException> exceptionHandler)
         {
             try
             {
@@ -35,22 +36,33 @@ namespace KomberNet.UI.WEB.Framework.Services
             {
                 if (!string.IsNullOrEmpty(exception.Content))
                 {
+                    KomberNetException komberNetException;
+
                     if (exception.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                     {
-                        var komberNetSecurityException = JsonSerializer.Deserialize<KomberNetSecurityException>(exception.Content);
-
-                        exceptionHandler?.Invoke(komberNetSecurityException);
+                        komberNetException = JsonSerializer.Deserialize<KomberNetSecurityException>(exception.Content);
                     }
+                    else
+                    {
+                        komberNetException = JsonSerializer.Deserialize<KomberNetException>(exception.Content);
+                    }
+
+                    exceptionHandler?.Invoke(komberNetException);
+
+                    ShowExceptionMessage(komberNetException.ExceptionCode, komberNetException.AdditionalInfo);
                 }
             }
 
             return default;
 
-            void ShowExceptionMessage(KomberNetException exception)
+            void ShowExceptionMessage(ExceptionCode exceptionCode, string additionalInfo)
             {
+                var resourceName = exceptionCode.ToString();
+                var resourceValue = Resource.ResourceManager.GetString(resourceName);
+
                 this.notificationService.Notify(new NotificationMessage()
                 {
-                    Detail = exception.ExceptionCode.ToString(),
+                    Detail = resourceValue,
                 });
             }
         }
