@@ -52,7 +52,7 @@ namespace KomberNet.UI.API.Controllers.Auth
         }
 
         [HttpPost]
-        [Authorize]
+        [AllowAnonymous]
         public async Task<IActionResult> RefreshTokenAsync([FromBody] RefreshTokenRequest request, CancellationToken cancellationToken = default)
         {
             return this.Ok(await this.refreshTokenService.RefreshTokenAsync(request, cancellationToken));
@@ -63,6 +63,13 @@ namespace KomberNet.UI.API.Controllers.Auth
         public async Task<IActionResult> LogoutAsync([FromBody] LogoutRequest request, CancellationToken cancellationToken = default)
         {
             return this.Ok(await this.logoutService.LogoutAsync(request, cancellationToken));
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> LogoutAllSessionsAsync([FromBody] LogoutAllSessionsRequest request, CancellationToken cancellationToken = default)
+        {
+            return this.Ok(await this.logoutService.LogoutAllSessionsAsync(request, cancellationToken));
         }
 
         [HttpPost]

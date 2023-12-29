@@ -7,9 +7,10 @@ namespace KomberNet.UI.WEB.Client.Auth
     using System.Net.Http.Headers;
     using KomberNet.Models.Auth;
     using KomberNet.UI.WEB.Framework.Services;
+    using Microsoft.AspNetCore.Components.Authorization;
 
-    public interface IAuthService : IScopedService
+    public interface IAuthenticationStateService : IScopedService
     {
-        public Task<AuthenticationHeaderValue> EnsureAuthenticationAsync(string urlPath);
+        public Task<AuthenticationState> GetAuthenticationStateAsync(string token = null);
     }
 }

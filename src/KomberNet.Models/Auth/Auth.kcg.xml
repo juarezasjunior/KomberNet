@@ -38,6 +38,8 @@
 	</CustomRequest>
 
 	<CustomRequest Namespace="KomberNet.Models.Auth" Name="LogoutRequest"/>
+	
+	<CustomRequest Namespace="KomberNet.Models.Auth" Name="LogoutAllSessionsRequest"/>
 
 	<CustomRequest Namespace="KomberNet.Models.Auth" Name="RefreshTokenRequest">
 		<RequestFields>
@@ -58,6 +60,8 @@
 	</CustomResponse>
 	
 	<CustomResponse Namespace="KomberNet.Models.Auth" Name="LogoutResponse"/>
+	
+	<CustomResponse Namespace="KomberNet.Models.Auth" Name="LogoutAllSessionsResponse"/>
 	
 	<CustomResponse Namespace="KomberNet.Models.Auth" Name="RefreshTokenResponse">
 		<ResponseFields>

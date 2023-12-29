@@ -4,12 +4,15 @@
 
 namespace KomberNet.UI.WEB.Client.Auth
 {
-    using System.Net.Http.Headers;
     using KomberNet.Models.Auth;
     using KomberNet.UI.WEB.Framework.Services;
 
-    public interface IAuthService : IScopedService
+    public interface IUserService : IScopedService
     {
-        public Task<AuthenticationHeaderValue> EnsureAuthenticationAsync(string urlPath);
+        public Task<bool> LoginAsync(LoginRequest loginRequest);
+
+        public Task LogoutAsync();
+
+        public Task InsertUserAsync(UserInsertRequest userInsertRequest);
     }
 }

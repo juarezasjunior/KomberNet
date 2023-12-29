@@ -18,7 +18,7 @@ namespace KomberNet.Services.Auth
             this.distributedCache = distributedCache;
         }
 
-        public async Task ValidateAsync(string email, CancellationToken cancellationToken)
+        public async Task ValidateAsync(string email, string sessionId, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
@@ -27,9 +27,16 @@ namespace KomberNet.Services.Auth
                 throw new KomberNetSecurityException();
             }
 
-            var token = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.UserHasLogoutKey, email));
+            var userHasLogout = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.UserHasLogoutKey, email, sessionId));
 
-            if (!string.IsNullOrEmpty(token))
+            if (!string.IsNullOrEmpty(userHasLogout))
+            {
+                throw new KomberNetSecurityException();
+            }
+
+            var userHasLogoutAllSessions = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, email));
+
+            if (!string.IsNullOrEmpty(userHasLogoutAllSessions))
             {
                 throw new KomberNetSecurityException();
             }

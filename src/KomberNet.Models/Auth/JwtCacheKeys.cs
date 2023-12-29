@@ -12,10 +12,12 @@ namespace KomberNet.Models.Auth
 
     public class JwtCacheKeys
     {
-        public const string UserHasLogoutKey = "UserHasLogout_{0}";
+        public const string UserHasLogoutAllSessionsKey = "UserHasLogoutAllSessions_{0}";
 
-        public const string RefreshTokenKey = "JWTRefreshToken_{0}";
+        public const string UserHasLogoutKey = "UserHasLogout_{0}_Session{1}";
 
-        public const string RefreshTokenExpirationTimeKey = "JWTRefreshTokenExp_{0}";
+        public const string RefreshTokenKey = "JWTRefreshToken_{0}_Session{1}";
+
+        public const string RefreshTokenExpirationTimeKey = "JWTRefreshTokenExp_{0}_Session{1}";
     }
 }

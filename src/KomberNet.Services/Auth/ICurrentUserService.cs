@@ -14,6 +14,8 @@ namespace KomberNet.Services.Auth
 
         public string CurrentUserEmail { get; }
 
+        public string CurrentSessionId { get; }
+
         public string GetCurrentUserNameToAudit();
 
         public void SetCurrentUser(ClaimsPrincipal principal);

@@ -13,6 +13,6 @@ namespace KomberNet.Services.Auth
 
     public interface ICurrentUserValidatorService : IService
     {
-        public Task ValidateAsync(string email, CancellationToken cancellationToken);
+        public Task ValidateAsync(string email, string sessionId, CancellationToken cancellationToken);
     }
 }

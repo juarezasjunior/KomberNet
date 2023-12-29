@@ -5,6 +5,7 @@
 namespace KomberNet.UI.WEB.Client.Bootstraps
 {
     using System.Globalization;
+    using System.Reflection;
     using Blazored.LocalStorage;
     using KomberNet.UI.WEB.APIClient;
     using KomberNet.UI.WEB.APIClient.Auth;
@@ -29,14 +30,15 @@ namespace KomberNet.UI.WEB.Client.Bootstraps
 
             AddRootComponents(builder);
 
-            builder.Services.AddScoped<IAuthService, AuthService>();
-            builder.Services.AddScoped<IAPIClientService, APIClientService>();
+            //builder.Services.AddScoped<IAuthenticationStateService, AuthenticationStateService>();
+            builder.Services.AddServices();
+
             builder.Services.AddScoped<AuthenticationStateProvider, AppAuthenticationStateProvider>();
 
             builder.Services.AddBlazoredLocalStorage();
 
-            builder.Services.AddScoped<DialogService>();
-            builder.Services.AddScoped<NotificationService>();
+            builder.Services.AddSingleton<DialogService>();
+            builder.Services.AddSingleton<NotificationService>();
 
             builder.Services.AddAuthorizationCore();
 
@@ -96,24 +98,40 @@ namespace KomberNet.UI.WEB.Client.Bootstraps
             builder.Services.AddLocalization();
         }
 
+        private static IServiceCollection AddServices(this IServiceCollection services)
+        {
+            // Since AddBlazoredLocalStorage is using Scoped instead of Singleton, we cannot add the services
+            // with a singleton lifetime. For this reason, they are scoped as well.
+            return services.Scan(x =>
+                x.FromAssemblies(GetServiceAssemblies())
+                .AddClasses(y =>
+                    y.AssignableTo<IScopedService>())
+                .AsImplementedInterfaces()
+                .WithScopedLifetime());
+        }
+
         private static void AddRefit(WebAssemblyHostBuilder builder)
         {
             var apiOptions = new APIOptions();
             builder.Configuration.GetSection("API").Bind(apiOptions);
 
-            builder.Services.AddTransient<AuthHeaderHandler>();
+            builder.Services.AddTransient<MessageHandler>();
+            builder.Services.AddTransient<AuthMessageHandler>();
 
-            var anonymousClientInterfaces = typeof(IAuthClient).Assembly.GetTypes().Where(x =>
+            var test = GetAPIClientAssemblies().SelectMany(x => x.GetTypes()).FirstOrDefault();
+
+            var anonymousClientInterfaces = GetAPIClientAssemblies().SelectMany(x => x.GetTypes()).Where(x =>
                 x.IsAssignableTo(typeof(IAnonymousAPIClient))
                     && x.IsInterface);
 
             foreach (var clientInterface in anonymousClientInterfaces)
             {
                 builder.Services.AddRefitClient(clientInterface)
-                    .ConfigureHttpClient(c => c.BaseAddress = new Uri(apiOptions.Url));
+                    .ConfigureHttpClient(c => c.BaseAddress = new Uri(apiOptions.Url))
+                    .AddHttpMessageHandler<MessageHandler>();
             }
 
-            var authenticatedClientInterfaces = typeof(IAuthClient).Assembly.GetTypes().Where(x =>
+            var authenticatedClientInterfaces = GetAPIClientAssemblies().SelectMany(x => x.GetTypes()).Where(x =>
                 x.IsAssignableTo(typeof(IAuthenticatedAPIClient))
                     && x.IsInterface);
 
@@ -121,8 +139,36 @@ namespace KomberNet.UI.WEB.Client.Bootstraps
             {
                 builder.Services.AddRefitClient(clientInterface)
                     .ConfigureHttpClient(c => c.BaseAddress = new Uri(apiOptions.Url))
-                    .AddHttpMessageHandler<AuthHeaderHandler>();
+                    .AddHttpMessageHandler<AuthMessageHandler>();
             }
+        }
+
+        private static IEnumerable<Assembly> GetServiceAssemblies()
+        {
+            return new[]
+            {
+                Assembly.Load("KomberNet.UI.WEB.Client"),
+                Assembly.Load("KomberNet.UI.WEB.Billing"),
+                Assembly.Load("KomberNet.UI.WEB.Financial"),
+                Assembly.Load("KomberNet.UI.WEB.Framework"),
+                Assembly.Load("KomberNet.UI.WEB.Inventory"),
+                Assembly.Load("KomberNet.UI.WEB.Manufacturing"),
+                Assembly.Load("KomberNet.UI.WEB.Purchasing"),
+                Assembly.Load("KomberNet.UI.WEB.Shared"),
+            };
+        }
+
+        private static IEnumerable<Assembly> GetAPIClientAssemblies()
+        {
+            return new[]
+            {
+                Assembly.Load("KomberNet.UI.WEB.APIClient"),
+                Assembly.Load("KomberNet.UI.WEB.APIClient.Billing"),
+                Assembly.Load("KomberNet.UI.WEB.APIClient.Financial"),
+                Assembly.Load("KomberNet.UI.WEB.APIClient.Inventory"),
+                Assembly.Load("KomberNet.UI.WEB.APIClient.Manufacturing"),
+                Assembly.Load("KomberNet.UI.WEB.APIClient.Purchasing"),
+            };
         }
 
         private class APIOptions

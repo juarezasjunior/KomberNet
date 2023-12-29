@@ -16,6 +16,8 @@ namespace KomberNet.Services.Auth
 
         public string CurrentUserEmail { get; private set; } = string.Empty;
 
+        public string CurrentSessionId { get; private set; } = string.Empty;
+
         public string GetCurrentUserNameToAudit()
         {
             return this.CurrentUserFullName;
@@ -32,10 +34,12 @@ namespace KomberNet.Services.Auth
             Guid.TryParse(principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.UserId)?.Value, out var userId);
             this.CurrentUserId = userId;
             this.CurrentUserFullName = principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.FullName)?.Value;
+            this.CurrentSessionId = principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.SessionId)?.Value;
 
             if (string.IsNullOrEmpty(this.CurrentUserEmail)
                 || this.CurrentUserId == default
-                || string.IsNullOrEmpty(this.CurrentUserFullName))
+                || string.IsNullOrEmpty(this.CurrentUserFullName)
+                || string.IsNullOrEmpty(this.CurrentSessionId))
             {
                 throw new KomberNetSecurityException();
             }

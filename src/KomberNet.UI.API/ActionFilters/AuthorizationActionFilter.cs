@@ -28,7 +28,7 @@ namespace KomberNet.UI.API.ActionFilters
             if (!context.ActionDescriptor.EndpointMetadata.Any(x => x.GetType() == typeof(AllowAnonymousAttribute)))
             {
                 this.currentUserService.SetCurrentUser(context.HttpContext.User);
-                await this.currentUserValidatorService.ValidateAsync(this.currentUserService.CurrentUserEmail, CancellationToken.None);
+                await this.currentUserValidatorService.ValidateAsync(this.currentUserService.CurrentUserEmail, this.currentUserService.CurrentSessionId, CancellationToken.None);
             }
         }
     }

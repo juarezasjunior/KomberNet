@@ -2,7 +2,7 @@
 // This file is licensed to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICE files in the project root for full license information.
 
-namespace KomberNet.Services.Auth
+namespace KomberNet.UI.WEB.Framework.Services
 {
     using System;
     using System.Collections.Generic;
@@ -10,8 +10,7 @@ namespace KomberNet.Services.Auth
     using System.Text;
     using System.Threading.Tasks;
 
-    public interface ILogoutEmailService : IService
+    public interface IScopedService
     {
-        public Task LogoutEmailAsync(string email, CancellationToken cancellationToken);
     }
 }

@@ -21,20 +21,17 @@ namespace KomberNet.Services.Auth
 
     public class RefreshTokenService : IRefreshTokenService
     {
-        private readonly ICurrentUserService currentUserService;
         private readonly UserManager<TbUser> userManager;
         private readonly IDistributedCache distributedCache;
         private readonly IOptions<JwtOptions> jwtOptions;
         private readonly ITokenService tokenService;
 
         public RefreshTokenService(
-            ICurrentUserService currentUserService,
             UserManager<TbUser> userManager,
             IDistributedCache distributedCache,
             IOptions<JwtOptions> jwtOptions,
             ITokenService tokenService)
         {
-            this.currentUserService = currentUserService;
             this.userManager = userManager;
             this.distributedCache = distributedCache;
             this.jwtOptions = jwtOptions;
@@ -45,20 +42,27 @@ namespace KomberNet.Services.Auth
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var currentUserId = this.currentUserService.CurrentUserId;
             var principal = this.GetPrincipalFromToken(request.Token);
 
             var email = principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email).Value;
-            var user = await this.userManager.FindByEmailAsync(email);
 
-            if (user == null
-                || user.Id != currentUserId)
+            var userHasLogoutAllSessions = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, email));
+
+            if (!string.IsNullOrEmpty(userHasLogoutAllSessions))
             {
                 throw new KomberNetSecurityException();
             }
 
-            var refreshToken = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.RefreshTokenKey, user.Email));
-            var refreshTokenExpiration = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, user.Email));
+            var sessionId = principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.SessionId).Value;
+            var user = await this.userManager.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                throw new KomberNetSecurityException();
+            }
+
+            var refreshToken = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.RefreshTokenKey, user.Email, sessionId));
+            var refreshTokenExpiration = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, user.Email, sessionId));
 
             if (string.IsNullOrEmpty(refreshToken)
                 || string.IsNullOrEmpty(refreshTokenExpiration)

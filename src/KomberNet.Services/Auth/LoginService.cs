@@ -9,17 +9,21 @@ namespace KomberNet.Services.Auth
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Models.Auth;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.Caching.Distributed;
 
     public class LoginService : ILoginService
     {
         private readonly UserManager<TbUser> userManager;
+        private readonly IDistributedCache distributedCache;
         private readonly ITokenService tokenService;
 
         public LoginService(
             UserManager<TbUser> userManager,
+            IDistributedCache distributedCache,
             ITokenService tokenService)
         {
             this.userManager = userManager;
+            this.distributedCache = distributedCache;
             this.tokenService = tokenService;
         }
 
@@ -28,6 +32,8 @@ namespace KomberNet.Services.Auth
             cancellationToken.ThrowIfCancellationRequested();
 
             var user = await this.ValidateAsync(request, cancellationToken);
+
+            await this.distributedCache.RemoveAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, user.Email));
 
             var result = await this.tokenService.GenerateTokenAsync(user, cancellationToken);
 

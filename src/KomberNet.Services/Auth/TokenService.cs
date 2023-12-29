@@ -45,11 +45,13 @@ namespace KomberNet.Services.Auth
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var tokenExpiration = DateTime.Now.AddMinutes(tokenExpirationInMinutes);
             var refreshTokenExpiration = DateTime.Now.AddMinutes(refreshTokenExpirationInMinutes);
+            var sessionId = Guid.NewGuid().ToString();
 
             var claims = new List<Claim>()
             {
                 new Claim(KomberNetClaims.UserId, user.Id.ToString()),
                 new Claim(KomberNetClaims.FullName, user.FullName),
+                new Claim(KomberNetClaims.SessionId, sessionId),
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim(ClaimTypes.Email, user.Email),
             };
@@ -76,13 +78,13 @@ namespace KomberNet.Services.Auth
                 AbsoluteExpiration = refreshTokenExpiration,
             };
 
-            await this.distributedCache.SetStringAsync(string.Format(JwtCacheKeys.RefreshTokenKey, user.Email), refreshToken, refreshTokenDistributedCacheEntryOptions);
+            await this.distributedCache.SetStringAsync(string.Format(JwtCacheKeys.RefreshTokenKey, user.Email, sessionId), refreshToken, refreshTokenDistributedCacheEntryOptions);
             await this.distributedCache.SetStringAsync(
-                string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, user.Email),
+                string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, user.Email, sessionId),
                 DateTime.Now.AddMinutes(this.jwtOptions.Value.JwtRefreshTokenExpiryInMinutes).ToString(),
                 refreshTokenDistributedCacheEntryOptions);
-            await this.distributedCache.RemoveAsync(string.Format(JwtCacheKeys.UserHasLogoutKey, user.Email));
-
+            await this.distributedCache.RemoveAsync(string.Format(JwtCacheKeys.UserHasLogoutKey, user.Email, sessionId));
+            
             return (Token: token, RefreshToken: refreshToken);
         }
 

@@ -14,11 +14,11 @@ namespace KomberNet.UI.WEB.APIClient.Auth
 
     public partial interface IAuthClient : IAuthenticatedAPIClient
     {
-        [Post("/api/Auth/RefreshToken")]
-        public Task<RefreshTokenResponse> RefreshTokenAsync([Body] RefreshTokenRequest request);
-
         [Post("/api/Auth/Logout")]
         public Task<LogoutResponse> LogoutAsync([Body] LogoutRequest request);
+
+        [Post("/api/Auth/LogoutAllSessions")]
+        public Task<LogoutAllSessionsResponse> LogoutAllSessionsAsync([Body] LogoutAllSessionsRequest request);
 
         [Post("/api/Auth/ChangePassword")]
         public Task<ChangePasswordResponse> ChangePasswordAsync([Body] ChangePasswordRequest request);

@@ -19,5 +19,8 @@ namespace KomberNet.UI.WEB.APIClient.Auth
 
         [Post("/api/Auth/Login")]
         public Task<LoginResponse> LoginAsync([Body] LoginRequest request);
+
+        [Post("/api/Auth/RefreshToken")]
+        public Task<RefreshTokenResponse> RefreshTokenAsync([Body] RefreshTokenRequest request);
     }
 }

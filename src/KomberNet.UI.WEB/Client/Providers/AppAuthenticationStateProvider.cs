@@ -4,43 +4,23 @@
 
 namespace KomberNet.UI.WEB.Client.Providers
 {
-    using System.Security.Claims;
-    using Blazored.LocalStorage;
-    using KomberNet.UI.WEB.Client.Helpers;
+    using KomberNet.UI.WEB.Client.Auth;
     using Microsoft.AspNetCore.Components.Authorization;
 
     public class AppAuthenticationStateProvider : AuthenticationStateProvider
     {
-        private const string AuthenticationType = "jwtAuthType";
+        private readonly IAuthenticationStateService authenticationStateService;
 
-        private readonly ILocalStorageService localStorage;
-        private readonly AuthenticationState anonymous;
-
-        public AppAuthenticationStateProvider(ILocalStorageService localStorage)
+        public AppAuthenticationStateProvider(
+            IAuthenticationStateService authService)
         {
-            this.localStorage = localStorage;
-            this.anonymous = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
+            this.authenticationStateService = authService;
         }
 
-        public override async Task<AuthenticationState> GetAuthenticationStateAsync()
-        {
-            var token = await this.localStorage.GetItemAsync<string>(LocalStorageKeys.AuthTokenLocalStorageKey);
+        public override async Task<AuthenticationState> GetAuthenticationStateAsync() => await this.authenticationStateService.GetAuthenticationStateAsync();
 
-            return this.FillAuthenticationState(token);
-        }
+        public void NotifyUserAuthentication(string token) => this.NotifyAuthenticationStateChanged(this.authenticationStateService.GetAuthenticationStateAsync(token));
 
-        public void NotifyUserAuthentication(string token) => this.NotifyAuthenticationStateChanged(Task.FromResult(this.FillAuthenticationState(token)));
-
-        public void NotifyUserLogout() => this.NotifyAuthenticationStateChanged(Task.FromResult(this.anonymous));
-
-        private AuthenticationState FillAuthenticationState(string token)
-        {
-            if (string.IsNullOrWhiteSpace(token))
-            {
-                return this.anonymous;
-            }
-
-            return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(JwtParser.ParseClaimsFromJwt(token), AuthenticationType)));
-        }
+        public void NotifyUserLogout() => this.NotifyAuthenticationStateChanged(this.authenticationStateService.GetAuthenticationStateAsync());
     }
 }

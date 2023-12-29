@@ -4,7 +4,7 @@
 
 @inherits BasePage
 
-@inject IAuthService authService;
+@inject IUserService userService;
 
 <PageTitle>@this.Localizer["Login_PageTitle"]</PageTitle>
 
@@ -51,19 +51,17 @@
 
     private async Task LoginAsync()
     {
-        await this.authService.InsertUserAsync(new UserInsertRequest()
+        await this.userService.InsertUserAsync(new UserInsertRequest()
         {
             FullName = this.Email,
             Email = this.Email,
             Password = this.Password,
         });
 
-        var result = await this.authService.LoginAsync(new LoginRequest()
+        var result = await this.userService.LoginAsync(new LoginRequest()
             {
                 Email = this.Email,
                 Password = this.Password,
             });
-
-        await this.authService.LogoutAsync();
     }
 }

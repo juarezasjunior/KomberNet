@@ -22,10 +22,16 @@
         <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthAnonymousClient.LoginAsync(KomberNet.Models.Auth.LoginRequest)">
             <inheritdoc />
         </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthAnonymousClient.RefreshTokenAsync(KomberNet.Models.Auth.RefreshTokenRequest)">
+            <inheritdoc />
+        </member>
         <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthAnonymousClient.KomberNet#UI#WEB#APIClient#Auth#IAuthAnonymousClient#InsertUserAsync(KomberNet.Models.Auth.UserInsertRequest)">
             <inheritdoc />
         </member>
         <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthAnonymousClient.KomberNet#UI#WEB#APIClient#Auth#IAuthAnonymousClient#LoginAsync(KomberNet.Models.Auth.LoginRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthAnonymousClient.KomberNet#UI#WEB#APIClient#Auth#IAuthAnonymousClient#RefreshTokenAsync(KomberNet.Models.Auth.RefreshTokenRequest)">
             <inheritdoc />
         </member>
         <member name="T:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthClient">
@@ -37,19 +43,19 @@
         <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthClient.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthClient.RefreshTokenAsync(KomberNet.Models.Auth.RefreshTokenRequest)">
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthClient.LogoutAsync(KomberNet.Models.Auth.LogoutRequest)">
             <inheritdoc />
         </member>
-        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthClient.LogoutAsync(KomberNet.Models.Auth.LogoutRequest)">
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthClient.LogoutAllSessionsAsync(KomberNet.Models.Auth.LogoutAllSessionsRequest)">
             <inheritdoc />
         </member>
         <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthClient.ChangePasswordAsync(KomberNet.Models.Auth.ChangePasswordRequest)">
             <inheritdoc />
         </member>
-        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthClient.KomberNet#UI#WEB#APIClient#Auth#IAuthClient#RefreshTokenAsync(KomberNet.Models.Auth.RefreshTokenRequest)">
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthClient.KomberNet#UI#WEB#APIClient#Auth#IAuthClient#LogoutAsync(KomberNet.Models.Auth.LogoutRequest)">
             <inheritdoc />
         </member>
-        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthClient.KomberNet#UI#WEB#APIClient#Auth#IAuthClient#LogoutAsync(KomberNet.Models.Auth.LogoutRequest)">
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthClient.KomberNet#UI#WEB#APIClient#Auth#IAuthClient#LogoutAllSessionsAsync(KomberNet.Models.Auth.LogoutAllSessionsRequest)">
             <inheritdoc />
         </member>
         <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthClient.KomberNet#UI#WEB#APIClient#Auth#IAuthClient#ChangePasswordAsync(KomberNet.Models.Auth.ChangePasswordRequest)">
