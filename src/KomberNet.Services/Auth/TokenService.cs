@@ -11,7 +11,6 @@ namespace KomberNet.Services.Auth
     using System.Threading.Tasks;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Models.Auth;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.Caching.Distributed;
     using Microsoft.Extensions.Options;
     using Microsoft.IdentityModel.Tokens;
@@ -84,7 +83,7 @@ namespace KomberNet.Services.Auth
                 DateTime.Now.AddMinutes(this.jwtOptions.Value.JwtRefreshTokenExpiryInMinutes).ToString(),
                 refreshTokenDistributedCacheEntryOptions);
             await this.distributedCache.RemoveAsync(string.Format(JwtCacheKeys.UserHasLogoutKey, user.Email, sessionId));
-            
+
             return (Token: token, RefreshToken: refreshToken);
         }
 

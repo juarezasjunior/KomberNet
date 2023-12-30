@@ -5,7 +5,6 @@
 namespace KomberNet.Services.Auth
 {
     using System;
-    using System.Collections.Generic;
     using System.IdentityModel.Tokens.Jwt;
     using System.Linq;
     using System.Security.Claims;
@@ -14,7 +13,6 @@ namespace KomberNet.Services.Auth
     using KomberNet.Exceptions;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Models.Auth;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.Caching.Distributed;
     using Microsoft.Extensions.Options;
     using Microsoft.IdentityModel.Tokens;

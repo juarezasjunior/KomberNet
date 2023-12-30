@@ -8,7 +8,6 @@ namespace KomberNet.Services.Auth
     using KomberNet.Exceptions;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Models.Auth;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.Caching.Distributed;
 
     public class LoginService : ILoginService

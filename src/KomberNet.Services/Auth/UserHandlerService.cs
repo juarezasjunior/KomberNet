@@ -4,15 +4,11 @@
 
 namespace KomberNet.Services.Auth
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using KomberNet.Exceptions;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Models.Auth;
-    using Microsoft.AspNetCore.Identity;
 
     public class UserHandlerService : IUserHandlerService
     {
