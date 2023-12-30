@@ -11,6 +11,7 @@ namespace KomberNet.UI.API.Bootstraps
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Infrastructure.DatabaseRepositories.Mapper;
     using KomberNet.Models.Auth;
+    using KomberNet.Services.Auth;
     using KomberNet.UI.API.ActionFilters;
     using KomberNet.UI.API.Extensions;
     using KomberNet.UI.API.Middlewares;
@@ -35,6 +36,7 @@ namespace KomberNet.UI.API.Bootstraps
             builder.Services.AddAuthenticationJwt(builder.Configuration);
             builder.Services.AddDistributedMemoryCache();
 
+            builder.Services.AddTransient<IUserManager<TbUser>, ApplicationUserManager<TbUser>>();
             builder.Services.AddIdentityCore<TbUser>()
                 .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();

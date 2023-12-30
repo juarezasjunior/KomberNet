@@ -17,11 +17,11 @@ namespace KomberNet.Services.Auth
     public class ChangePasswordService : IChangePasswordService
     {
         private readonly ICurrentUserService currentUserService;
-        private readonly UserManager<TbUser> userManager;
+        private readonly IUserManager<TbUser> userManager;
 
         public ChangePasswordService(
             ICurrentUserService currentUserService,
-            UserManager<TbUser> userManager)
+            IUserManager<TbUser> userManager)
         {
             this.currentUserService = currentUserService;
             this.userManager = userManager;

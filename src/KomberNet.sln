@@ -113,15 +113,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KomberNet.Exceptions", "Kom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KomberNet.Models.CodeGenerator", "KomberNet.Models.CodeGenerator\KomberNet.Models.CodeGenerator.csproj", "{46A704BF-B24C-477D-8705-202D304DF681}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomberNet.UI.WEB.APIClient.Billing", "KomberNet.UI.WEB.APIClient.Billing\KomberNet.UI.WEB.APIClient.Billing.csproj", "{520B828D-F42F-422F-A453-DFF050AD500E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KomberNet.UI.WEB.APIClient.Billing", "KomberNet.UI.WEB.APIClient.Billing\KomberNet.UI.WEB.APIClient.Billing.csproj", "{520B828D-F42F-422F-A453-DFF050AD500E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomberNet.UI.WEB.APIClient.Financial", "KomberNet.UI.WEB.APIClient.Financial\KomberNet.UI.WEB.APIClient.Financial.csproj", "{0C0BC289-2219-44A3-8886-895376C808ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KomberNet.UI.WEB.APIClient.Financial", "KomberNet.UI.WEB.APIClient.Financial\KomberNet.UI.WEB.APIClient.Financial.csproj", "{0C0BC289-2219-44A3-8886-895376C808ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomberNet.UI.WEB.APIClient.Inventory", "KomberNet.UI.WEB.APIClient.Inventory\KomberNet.UI.WEB.APIClient.Inventory.csproj", "{5D36E50E-A6E0-488E-983A-A92A0FE7A816}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KomberNet.UI.WEB.APIClient.Inventory", "KomberNet.UI.WEB.APIClient.Inventory\KomberNet.UI.WEB.APIClient.Inventory.csproj", "{5D36E50E-A6E0-488E-983A-A92A0FE7A816}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomberNet.UI.WEB.APIClient.Manufacturing", "KomberNet.UI.WEB.APIClient.Manufacturing\KomberNet.UI.WEB.APIClient.Manufacturing.csproj", "{B8805298-F03D-4A20-969C-C40142BF2361}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KomberNet.UI.WEB.APIClient.Manufacturing", "KomberNet.UI.WEB.APIClient.Manufacturing\KomberNet.UI.WEB.APIClient.Manufacturing.csproj", "{B8805298-F03D-4A20-969C-C40142BF2361}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomberNet.UI.WEB.APIClient.Purchasing", "KomberNet.UI.WEB.APIClient.Purchasing\KomberNet.UI.WEB.APIClient.Purchasing.csproj", "{360CB79F-EDFF-4DAA-B5A5-64F4F09D6D95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KomberNet.UI.WEB.APIClient.Purchasing", "KomberNet.UI.WEB.APIClient.Purchasing\KomberNet.UI.WEB.APIClient.Purchasing.csproj", "{360CB79F-EDFF-4DAA-B5A5-64F4F09D6D95}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KomberNet.Backend.Tests", "KomberNet.Backend.Tests\KomberNet.Backend.Tests.csproj", "{C17A9B76-B1AA-49D9-AB4A-45EB9407F894}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -305,6 +307,10 @@ Global
 		{360CB79F-EDFF-4DAA-B5A5-64F4F09D6D95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{360CB79F-EDFF-4DAA-B5A5-64F4F09D6D95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{360CB79F-EDFF-4DAA-B5A5-64F4F09D6D95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C17A9B76-B1AA-49D9-AB4A-45EB9407F894}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C17A9B76-B1AA-49D9-AB4A-45EB9407F894}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C17A9B76-B1AA-49D9-AB4A-45EB9407F894}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C17A9B76-B1AA-49D9-AB4A-45EB9407F894}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -362,6 +368,7 @@ Global
 		{5D36E50E-A6E0-488E-983A-A92A0FE7A816} = {61A397F2-A3A4-4970-9EFD-A5824B143757}
 		{B8805298-F03D-4A20-969C-C40142BF2361} = {61A397F2-A3A4-4970-9EFD-A5824B143757}
 		{360CB79F-EDFF-4DAA-B5A5-64F4F09D6D95} = {61A397F2-A3A4-4970-9EFD-A5824B143757}
+		{C17A9B76-B1AA-49D9-AB4A-45EB9407F894} = {51BE07B5-C82E-46DA-95A8-389F4ACD4BA8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68D21158-6439-4CDE-BD3B-B4197FFCBE19}

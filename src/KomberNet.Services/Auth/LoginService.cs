@@ -13,12 +13,12 @@ namespace KomberNet.Services.Auth
 
     public class LoginService : ILoginService
     {
-        private readonly UserManager<TbUser> userManager;
+        private readonly IUserManager<TbUser> userManager;
         private readonly IDistributedCache distributedCache;
         private readonly ITokenService tokenService;
 
         public LoginService(
-            UserManager<TbUser> userManager,
+            IUserManager<TbUser> userManager,
             IDistributedCache distributedCache,
             ITokenService tokenService)
         {

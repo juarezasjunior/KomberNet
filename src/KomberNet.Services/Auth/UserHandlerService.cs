@@ -16,9 +16,9 @@ namespace KomberNet.Services.Auth
 
     public class UserHandlerService : IUserHandlerService
     {
-        private readonly UserManager<TbUser> userManager;
+        private readonly IUserManager<TbUser> userManager;
 
-        public UserHandlerService(UserManager<TbUser> userManager)
+        public UserHandlerService(IUserManager<TbUser> userManager)
         {
             this.userManager = userManager;
         }
