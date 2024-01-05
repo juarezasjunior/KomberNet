@@ -13,8 +13,6 @@ namespace KomberNet.Services.Auth
 
         public Task<LogoutResponse> LogoutAllSessionsAsync(LogoutAllSessionsRequest request, CancellationToken cancellationToken);
 
-        public Task LogoutSessionAsync(string email, string sessionId, CancellationToken cancellationToken);
-
         public Task LogoutAllSessionsAsync(string email, CancellationToken cancellationToken);
     }
 }

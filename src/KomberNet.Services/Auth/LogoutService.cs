@@ -25,7 +25,12 @@ namespace KomberNet.Services.Auth
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            await this.LogoutSessionAsync(this.currentUserService.CurrentUserEmail, this.currentUserService.CurrentSessionId, cancellationToken);
+            var email = this.currentUserService.CurrentUserEmail;
+            var sessionId = this.currentUserService.CurrentSessionId;
+
+            await this.distributedCache.SetStringAsync(string.Format(JwtCacheKeys.UserHasLogoutKey, email, sessionId), "true");
+            await this.distributedCache.RemoveAsync(string.Format(JwtCacheKeys.RefreshTokenKey, email, sessionId));
+            await this.distributedCache.RemoveAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, email, sessionId));
 
             return new LogoutResponse();
         }
@@ -37,15 +42,6 @@ namespace KomberNet.Services.Auth
             await this.LogoutAllSessionsAsync(this.currentUserService.CurrentUserEmail, cancellationToken);
 
             return new LogoutResponse();
-        }
-
-        public async Task LogoutSessionAsync(string email, string sessionId, CancellationToken cancellationToken)
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-
-            await this.distributedCache.SetStringAsync(string.Format(JwtCacheKeys.UserHasLogoutKey, email, sessionId), "true");
-            await this.distributedCache.RemoveAsync(string.Format(JwtCacheKeys.RefreshTokenKey, email, sessionId));
-            await this.distributedCache.RemoveAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, email, sessionId));
         }
 
         public async Task LogoutAllSessionsAsync(string email, CancellationToken cancellationToken)
