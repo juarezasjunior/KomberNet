@@ -10,7 +10,7 @@ namespace KomberNet.Services.Auth
     using KomberNet.Models.Auth;
     using Microsoft.Extensions.Caching.Distributed;
 
-    public class LoginService : ILoginService
+    public class LoginService : BaseService, ILoginService
     {
         private readonly IUserManager<TbUser> userManager;
         private readonly IDistributedCache distributedCache;

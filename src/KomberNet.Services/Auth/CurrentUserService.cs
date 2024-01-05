@@ -8,7 +8,7 @@ namespace KomberNet.Services.Auth
     using KomberNet.Exceptions;
     using KomberNet.Models.Auth;
 
-    public class CurrentUserService : ICurrentUserService
+    public class CurrentUserService : BaseService, ICurrentUserService
     {
         public Guid CurrentUserId { get; private set; }
 

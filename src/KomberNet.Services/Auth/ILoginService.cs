@@ -7,7 +7,7 @@ namespace KomberNet.Services.Auth
     using System.Threading.Tasks;
     using KomberNet.Models.Auth;
 
-    public interface ILoginService : IService
+    public interface ILoginService : ITransientService
     {
         public Task<LoginResponse> LoginAsync(LoginRequest request, CancellationToken cancellationToken);
     }

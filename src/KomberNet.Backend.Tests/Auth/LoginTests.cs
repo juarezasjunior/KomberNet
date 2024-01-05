@@ -6,7 +6,6 @@ namespace KomberNet.Backend.Tests.Auth
 {
     using System.Threading.Tasks;
     using AutoFixture;
-    using AutoFixture.AutoMoq;
     using KomberNet.Exceptions;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Models.Auth;

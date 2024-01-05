@@ -6,7 +6,7 @@ namespace KomberNet.Services.Auth
 {
     using System.Security.Claims;
 
-    public interface ICurrentUserService
+    public interface ICurrentUserService : IScopedService
     {
         public Guid CurrentUserId { get; }
 

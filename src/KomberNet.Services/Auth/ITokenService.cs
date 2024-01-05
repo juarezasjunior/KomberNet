@@ -7,7 +7,7 @@ namespace KomberNet.Services.Auth
     using System.Threading.Tasks;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
 
-    public interface ITokenService : IService
+    public interface ITokenService : ITransientService
     {
         public Task<(string Token, string RefreshToken)> GenerateTokenAsync(TbUser user, CancellationToken cancellationToken);
     }

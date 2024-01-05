@@ -30,7 +30,6 @@ namespace KomberNet.UI.WEB.Client.Bootstraps
 
             AddRootComponents(builder);
 
-            //builder.Services.AddScoped<IAuthenticationStateService, AuthenticationStateService>();
             builder.Services.AddServices();
 
             builder.Services.AddScoped<AuthenticationStateProvider, AppAuthenticationStateProvider>();

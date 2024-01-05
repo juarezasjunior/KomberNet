@@ -10,7 +10,6 @@ namespace KomberNet.UI.API.Extensions
     using KomberNet.Infrastructure.DatabaseRepositories;
     using KomberNet.Models.Auth;
     using KomberNet.Services;
-    using KomberNet.Services.Auth;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
@@ -19,22 +18,34 @@ namespace KomberNet.UI.API.Extensions
     {
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddScoped<ICurrentUserService, CurrentUserService>();
-
             services.Scan(x =>
-                x.FromAssemblies(typeof(ICurrentUserService).Assembly)
+                x.FromAssemblies(GetServiceAssemblies())
                 .AddClasses(y =>
-                    y.AssignableTo<IService>())
+                    y.AssignableTo<ITransientService>())
                 .AsImplementedInterfaces()
                 .WithTransientLifetime());
+
+            services.Scan(x =>
+                x.FromAssemblies(GetServiceAssemblies())
+                .AddClasses(y =>
+                    y.AssignableTo<IScopedService>())
+                .AsImplementedInterfaces()
+                .WithScopedLifetime());
+
+            services.Scan(x =>
+                x.FromAssemblies(GetServiceAssemblies())
+                .AddClasses(y =>
+                    y.AssignableTo<ISingletonService>())
+                .AsImplementedInterfaces()
+                .WithSingletonLifetime());
 
             return services;
         }
 
-        public static IServiceCollection AddDatabaseRepositories(this IServiceCollection services, params Assembly[] assemblies)
+        public static IServiceCollection AddDatabaseRepositories(this IServiceCollection services)
         {
             return services.Scan(x =>
-                x.FromAssemblies(assemblies)
+                x.FromAssemblies(typeof(ApplicationDbContext).Assembly)
                 .AddClasses(y =>
                     y.AssignableTo(typeof(IDatabaseRepository<>)))
                 .AsImplementedInterfaces()
@@ -66,6 +77,19 @@ namespace KomberNet.UI.API.Extensions
                 });
 
             return services;
+        }
+
+        private static IEnumerable<Assembly> GetServiceAssemblies()
+        {
+            return new[]
+            {
+                Assembly.Load("KomberNet.Services"),
+                Assembly.Load("KomberNet.Services.Billing"),
+                Assembly.Load("KomberNet.Services.Financial"),
+                Assembly.Load("KomberNet.Services.Inventory"),
+                Assembly.Load("KomberNet.Services.Manufacturing"),
+                Assembly.Load("KomberNet.Services.Purchasing"),
+            };
         }
     }
 }

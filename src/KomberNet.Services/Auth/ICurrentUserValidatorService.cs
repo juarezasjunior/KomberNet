@@ -6,7 +6,7 @@ namespace KomberNet.Services.Auth
 {
     using System.Threading.Tasks;
 
-    public interface ICurrentUserValidatorService : IService
+    public interface ICurrentUserValidatorService : ITransientService
     {
         public Task ValidateAsync(string email, string sessionId, CancellationToken cancellationToken);
     }

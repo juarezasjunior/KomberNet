@@ -10,7 +10,7 @@ namespace KomberNet.Services.Auth
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Models.Auth;
 
-    public class ChangePasswordService : IChangePasswordService
+    public class ChangePasswordService : BaseService, IChangePasswordService
     {
         private readonly ICurrentUserService currentUserService;
         private readonly IUserManager<TbUser> userManager;

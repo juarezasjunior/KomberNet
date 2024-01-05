@@ -4,11 +4,12 @@
 
 namespace KomberNet.Services.Auth
 {
+    using System.Security.Claims;
     using System.Threading.Tasks;
     using KomberNet.Models.Auth;
 
-    public interface IChangePasswordService : ITransientService
+    public interface IClaimsPrincipalService : ITransientService
     {
-        public Task<ChangePasswordResponse> ChangePasswordAsync(ChangePasswordRequest request, CancellationToken cancellationToken);
+        public ClaimsPrincipal GetPrincipalFromToken(string token);
     }
 }

@@ -10,7 +10,7 @@ namespace KomberNet.Services.Auth
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Models.Auth;
 
-    public class UserHandlerService : IUserHandlerService
+    public class UserHandlerService : BaseService, IUserHandlerService
     {
         private readonly IUserManager<TbUser> userManager;
 

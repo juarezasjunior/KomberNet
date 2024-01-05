@@ -15,7 +15,7 @@ namespace KomberNet.Services.Auth
     using Microsoft.Extensions.Options;
     using Microsoft.IdentityModel.Tokens;
 
-    public class TokenService : ITokenService
+    public class TokenService : BaseService, ITokenService
     {
         private readonly IUserManager<TbUser> userManager;
         private readonly IDistributedCache distributedCache;

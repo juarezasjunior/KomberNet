@@ -7,7 +7,7 @@ namespace KomberNet.Services.Auth
     using System.Threading.Tasks;
     using KomberNet.Models.Auth;
 
-    public interface IUserHandlerService : IService
+    public interface IUserHandlerService : ITransientService
     {
         public Task<UserInsertResponse> InsertUserAsync(UserInsertRequest request, CancellationToken cancellationToken);
     }

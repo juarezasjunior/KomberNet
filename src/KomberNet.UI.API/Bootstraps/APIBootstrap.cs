@@ -32,7 +32,7 @@ namespace KomberNet.UI.API.Bootstraps
             builder.Services.AddEndpointsApiExplorer();
 
             builder.Services.AddServices();
-            builder.Services.AddDatabaseRepositories(typeof(ApplicationDbContext).Assembly);
+            builder.Services.AddDatabaseRepositories();
             builder.Services.AddAuthenticationJwt(builder.Configuration);
             builder.Services.AddDistributedMemoryCache();
 

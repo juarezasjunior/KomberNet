@@ -9,7 +9,7 @@ namespace KomberNet.Services.Auth
     using KomberNet.Models.Auth;
     using Microsoft.Extensions.Caching.Distributed;
 
-    public class CurrentUserValidatorService : ICurrentUserValidatorService
+    public class CurrentUserValidatorService : BaseService, ICurrentUserValidatorService
     {
         private readonly IDistributedCache distributedCache;
 
