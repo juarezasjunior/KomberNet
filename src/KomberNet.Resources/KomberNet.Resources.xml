@@ -130,6 +130,41 @@
               Consulta uma cadeia de caracteres localizada semelhante a Password.
             </summary>
         </member>
+        <member name="P:KomberNet.Resources.Resource.NewUser_CreateUser">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Create.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.NewUser_Email">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Email.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.NewUser_FullName">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Name.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.NewUser_LoginExistingUser">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Login with an existing user.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.NewUser_PageTitle">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a New user.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.NewUser_Password">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Password.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.NewUser_RepeatPassword">
+            <summary>
+              Consulta uma cadeia de caracteres localizada semelhante a Repeat the password.
+            </summary>
+        </member>
         <member name="P:KomberNet.Resources.Resource.Search_Button">
             <summary>
               Consulta uma cadeia de caracteres localizada semelhante a Search.

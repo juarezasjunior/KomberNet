@@ -259,6 +259,69 @@ namespace KomberNet.Resources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Create.
+        /// </summary>
+        public static string NewUser_CreateUser {
+            get {
+                return ResourceManager.GetString("NewUser_CreateUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Email.
+        /// </summary>
+        public static string NewUser_Email {
+            get {
+                return ResourceManager.GetString("NewUser_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Name.
+        /// </summary>
+        public static string NewUser_FullName {
+            get {
+                return ResourceManager.GetString("NewUser_FullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Login with an existing user.
+        /// </summary>
+        public static string NewUser_LoginExistingUser {
+            get {
+                return ResourceManager.GetString("NewUser_LoginExistingUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a New user.
+        /// </summary>
+        public static string NewUser_PageTitle {
+            get {
+                return ResourceManager.GetString("NewUser_PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Password.
+        /// </summary>
+        public static string NewUser_Password {
+            get {
+                return ResourceManager.GetString("NewUser_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Repeat the password.
+        /// </summary>
+        public static string NewUser_RepeatPassword {
+            get {
+                return ResourceManager.GetString("NewUser_RepeatPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Search.
         /// </summary>
         public static string Search_Button {

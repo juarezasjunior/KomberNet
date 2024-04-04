@@ -29,6 +29,9 @@ namespace KomberNet.UI.WEB.Framework.Pages
         protected DialogService DialogService { get; set; }
 
         [Inject]
+        protected NavigationManager NavigationManager { get; set; }
+
+        [Inject]
         private IAPIClientService APIClientService { get; set; }
 
         public void Dispose()

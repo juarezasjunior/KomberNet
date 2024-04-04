@@ -183,6 +183,27 @@
   <data name="Login_Password" xml:space="preserve">
     <value>Senha</value>
   </data>
+  <data name="NewUser_CreateUser" xml:space="preserve">
+    <value>Criar</value>
+  </data>
+  <data name="NewUser_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="NewUser_FullName" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="NewUser_LoginExistingUser" xml:space="preserve">
+    <value>Logar com um usuário existente</value>
+  </data>
+  <data name="NewUser_PageTitle" xml:space="preserve">
+    <value>Novo usuário</value>
+  </data>
+  <data name="NewUser_Password" xml:space="preserve">
+    <value>Senha</value>
+  </data>
+  <data name="NewUser_RepeatPassword" xml:space="preserve">
+    <value>Repetir a senha</value>
+  </data>
   <data name="Search_Button" xml:space="preserve">
     <value>Pesquisar</value>
   </data>
