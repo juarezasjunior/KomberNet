@@ -6,6 +6,7 @@ namespace KomberNet.UI.WEB.Client.Auth
 {
     using System.Net.Http.Headers;
     using Blazored.LocalStorage;
+    using KomberNet.Exceptions;
     using KomberNet.Models.Auth;
     using KomberNet.UI.WEB.APIClient.Auth;
     using KomberNet.UI.WEB.Client.Helpers;
@@ -33,7 +34,18 @@ namespace KomberNet.UI.WEB.Client.Auth
 
         public async Task InsertUserAsync(UserInsertRequest userInsertRequest)
         {
-            var response = await this.authAnonymousClient.InsertUserAsync(userInsertRequest);
+            try
+            {
+                await this.authAnonymousClient.InsertUserAsync(userInsertRequest);
+
+            }
+            catch (KomberNetException ex)
+            {
+                if (ex.ExceptionCode == ExceptionCode.InvalidPassword)
+                {
+                    // TODO: Handle invalid password
+                }
+            }
         }
 
         public async Task<bool> LoginAsync(LoginRequest loginRequest)

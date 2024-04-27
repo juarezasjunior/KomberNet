@@ -19,12 +19,18 @@ namespace KomberNet.UI.WEB.Client.Handlers
                 return response;
             }
 
-            if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
-                var securityException = JsonSerializer.Deserialize<KomberNetSecurityException>(responseContent);
 
-                switch (securityException.ExceptionCode)
+                switch (response.StatusCode)
+                {
+                    case System.Net.HttpStatusCode.Unauthorized:
+                        var securityException = JsonSerializer.Deserialize<KomberNetSecurityException>(responseContent);
+
+                        // TODO: Handle with exceptions of JWT expiration
+                        /* 
+                         switch (securityException.ExceptionCode)
                 {
                     case ExceptionCode.Others:
                         break;
@@ -32,6 +38,14 @@ namespace KomberNet.UI.WEB.Client.Handlers
                         break;
                     case ExceptionCode.InvalidPassword:
                         break;
+                }
+                         */
+
+                        throw securityException;
+
+                    default:
+                        var exception = JsonSerializer.Deserialize<KomberNetException>(responseContent);
+                        throw exception;
                 }
             }
 
