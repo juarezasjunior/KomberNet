@@ -33,7 +33,15 @@ namespace KomberNet.UI.WEB.Client.Auth
 
         public async Task InsertUserAsync(UserInsertRequest userInsertRequest)
         {
-            var response = await this.authAnonymousClient.InsertUserAsync(userInsertRequest);
+            try
+            {
+                await this.authAnonymousClient.InsertUserAsync(userInsertRequest);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         public async Task<bool> LoginAsync(LoginRequest loginRequest)
