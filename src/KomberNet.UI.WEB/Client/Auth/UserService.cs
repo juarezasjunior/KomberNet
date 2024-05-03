@@ -34,18 +34,9 @@ namespace KomberNet.UI.WEB.Client.Auth
 
         public async Task InsertUserAsync(UserInsertRequest userInsertRequest)
         {
-            try
-            {
-                await this.authAnonymousClient.InsertUserAsync(userInsertRequest);
+            await this.authAnonymousClient.InsertUserAsync(userInsertRequest);
 
-            }
-            catch (KomberNetException ex)
-            {
-                if (ex.ExceptionCode == ExceptionCode.InvalidPassword)
-                {
-                    // TODO: Handle invalid password
-                }
-            }
+            // TODO: Redirect to login page
         }
 
         public async Task<bool> LoginAsync(LoginRequest loginRequest)

@@ -29,10 +29,10 @@ namespace KomberNet.UI.WEB.Framework.Pages
         protected DialogService DialogService { get; set; }
 
         [Inject]
-        protected NavigationManager NavigationManager { get; set; }
+        private NavigationManager NavigationManager { get; set; }
 
         [Inject]
-        private IAPIClientService APIClientService { get; set; }
+        private IExceptionMessageService ExceptionMessageService { get; set; }
 
         public void Dispose()
         {
@@ -43,9 +43,19 @@ namespace KomberNet.UI.WEB.Framework.Pages
         {
         }
 
-        protected async Task<TResult> ExecuteHandlingErrorAsync<TResult>(Func<Task<TResult>> operation, Action<KomberNetException> exceptionHandler)
+        protected void NavigateToPage<TPage>(TPage page)
         {
-            return await this.APIClientService.ExecuteHandlingErrorAsync(operation, exceptionHandler);
+            this.NavigationManager.NavigateTo(nameof(page));
+        }
+
+        protected async Task<TResult> GetResultOrHandleExceptionAsync<TResult>(Func<Task<TResult>> operation, Action<KomberNetException> exceptionHandler = null, bool showMessage = true)
+        {
+            return await this.ExceptionMessageService.GetResultOrHandleExceptionAsync(operation, exceptionHandler, showMessage);
+        }
+
+        protected async Task HandleExceptionAsync(Func<Task> operation, Action<KomberNetException> exceptionHandler = null, bool showMessage = true)
+        {
+            await this.ExceptionMessageService.HandleExceptionAsync(operation, exceptionHandler, showMessage);
         }
     }
 }

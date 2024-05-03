@@ -12,44 +12,8 @@ namespace KomberNet.UI.WEB.Client.Handlers
     {
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var response = await base.SendAsync(request, cancellationToken);
-
-            if (response.IsSuccessStatusCode)
-            {
-                return response;
-            }
-
-            if (response.StatusCode != System.Net.HttpStatusCode.OK)
-            {
-                var responseContent = await response.Content.ReadAsStringAsync();
-
-                switch (response.StatusCode)
-                {
-                    case System.Net.HttpStatusCode.Unauthorized:
-                        var securityException = JsonSerializer.Deserialize<KomberNetSecurityException>(responseContent);
-
-                        // TODO: Handle with exceptions of JWT expiration
-                        /* 
-                         switch (securityException.ExceptionCode)
-                {
-                    case ExceptionCode.Others:
-                        break;
-                    case ExceptionCode.SecurityValidation:
-                        break;
-                    case ExceptionCode.InvalidPassword:
-                        break;
-                }
-                         */
-
-                        throw securityException;
-
-                    default:
-                        var exception = JsonSerializer.Deserialize<KomberNetException>(responseContent);
-                        throw exception;
-                }
-            }
-
-            return response;
+            // TODO: Handle with exceptions of JWT expiration
+            return await base.SendAsync(request, cancellationToken);
         }
     }
 }
