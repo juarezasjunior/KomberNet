@@ -1,4 +1,4 @@
-﻿@page "/counter"
+﻿@page "/counter/{Param1}"
 
 <PageTitle>Counter</PageTitle>
 
@@ -11,8 +11,54 @@
 @code {
     private int currentCount = 0;
 
+    [Parameter]
+    public string Param1 { get; set; }
+
+
+    private string personName;
+
+    [SupplyParameterFromQuery]
+    public string PersonName
+    {
+        get { return personName; }
+        set
+        {
+            if (personName != value)
+            {
+                personName = value;
+                // Add any additional logic here
+            }
+        }
+    }
+
+    [SupplyParameterFromQuery]
+    public string PersonAddress { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
     private void IncrementCount()
     {
+        this.PersonName = "John Doe";
+
+        var url = this.NavigationManager.GetUriWithQueryParameters(new Dictionary<string, object?>
+    {
+    { "PersonName", this.PersonName },
+    { "PersonAddress", this.PersonAddress }
+    });
+
+        this.NavigationManager.NavigateTo(url, replace: true);
+
         currentCount++;
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
+
+    protected override Task OnParametersSetAsync()
+    {
+        return base.OnParametersSetAsync();
     }
 }

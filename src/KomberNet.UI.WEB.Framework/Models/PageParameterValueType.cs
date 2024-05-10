@@ -10,10 +10,16 @@ namespace KomberNet.UI.WEB.Framework.Models
     using System.Text;
     using System.Threading.Tasks;
 
-    public class StateParameter
+    public enum PageParameterValueType
     {
-        public Guid Identifier { get; set; }
-
-        public object Value { get; set; }
+        Bool = 1,
+        DateTime = 2,
+        Decimal = 3,
+        Double = 4,
+        Float = 5,
+        Guid = 6,
+        Int = 7,
+        Long = 8,
+        String = 9,
     }
 }
