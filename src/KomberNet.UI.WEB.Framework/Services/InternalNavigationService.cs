@@ -7,51 +7,59 @@ namespace KomberNet.UI.WEB.Framework.Services
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Cryptography;
     using System.Text;
     using System.Threading.Tasks;
-    using KomberNet.UI.WEB.Framework.Models;
+    using KomberNet.UI.WEB.Framework.Pages;
     using Microsoft.AspNetCore.Components;
+    using Radzen;
 
     public class InternalNavigationService : IInternalNavigationService
     {
         private readonly NavigationManager navigationManager;
+        private readonly DialogService dialogService;
 
-        public InternalNavigationService(NavigationManager navigationManager)
+        public InternalNavigationService(
+            NavigationManager navigationManager,
+            DialogService dialogService)
         {
             this.navigationManager = navigationManager;
+            this.dialogService = dialogService;
         }
 
-        public Task NavigateToPageAsync(string pageName, params PageParameter[] pageParameters)
+        public async Task<dynamic> OpenDialogAsync<TPage>(string title, Dictionary<string, object> parameters = null, DialogOptions options = null)
+            where TPage : BasePage
         {
-            this.navigationManager.NavigateTo($"{pageName}{this.GetParameters(pageParameters)}");
+            return await this.dialogService.OpenAsync<TPage>(title, parameters, options);
+        }
+
+        public Task NavigateToPageAsync<TPage>(Dictionary<string, object> routeParameters = null, Dictionary<string, object> queryParameters = null)
+            where TPage : BasePage
+        {
+            this.navigationManager.NavigateTo($"{typeof(TPage).Name}{this.GetParameters(routeParameters, queryParameters)}");
 
             return Task.CompletedTask;
         }
 
-        private string GetParameters(PageParameter[] pageParameters)
+        private string GetParameters(Dictionary<string, object> routeParameters = null, Dictionary<string, object> queryParameters = null)
         {
             var result = string.Empty;
 
-            if (pageParameters == null || !pageParameters.Any())
+            if (routeParameters != null && routeParameters.Any())
             {
-                return result;
+                result = $"/{string.Join("/", routeParameters.Select(x => this.GetRouteParameterValue(x.Value.ToString())))}";
             }
 
-            var routeParameters = pageParameters.Where(x => x.PageParameterType == PageParameterType.Route).Select(x => x.GetValue());
-
-            if (routeParameters.Any())
+            if (queryParameters != null && queryParameters.Any())
             {
-                result = $"/{string.Join("/", routeParameters)}";
-            }
-
-            var queryParameters = pageParameters.Where(x => x.PageParameterType == PageParameterType.Query).Select(x => x.GetValue());
-
-            if (queryParameters.Any())
-            {
-                result += $"?{string.Join("&", queryParameters)}";
+                result += $"?{string.Join("&", queryParameters.Select(x => this.GetQueryParameterValue(x.Key, x.Value.ToString())))}";
             }
 
             return result;
         }
+
+        private string GetRouteParameterValue(string value) => Uri.EscapeDataString(value);
+
+        private string GetQueryParameterValue(string name, string value) => $"{name}={Uri.EscapeDataString(value)}";
     }
 }

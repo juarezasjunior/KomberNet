@@ -12,7 +12,6 @@ namespace KomberNet.UI.WEB.Framework.Pages
     using System.Threading.Tasks;
     using KomberNet.Exceptions;
     using KomberNet.Resources;
-    using KomberNet.UI.WEB.Framework.Models;
     using KomberNet.UI.WEB.Framework.Services;
     using Microsoft.AspNetCore.Components;
     using Microsoft.Extensions.Localization;
@@ -44,9 +43,16 @@ namespace KomberNet.UI.WEB.Framework.Pages
         {
         }
 
-        protected async Task NavigateToPageAsync(string pageName, params PageParameter[] pageParameters)
+        protected async Task<dynamic> OpenDialogAsync<TPage>(string title, Dictionary<string, object> parameters = null, DialogOptions options = null)
+            where TPage : BasePage
         {
-            await this.InternalNavigationService.NavigateToPageAsync(pageName, pageParameters);
+            return await this.InternalNavigationService.OpenDialogAsync<TPage>(title, parameters, options);
+        }
+
+        protected async Task NavigateToPageAsync<TPage>(Dictionary<string, object> routeParameters = null, Dictionary<string, object> queryParameters = null)
+            where TPage : BasePage
+        {
+            await this.InternalNavigationService.NavigateToPageAsync<TPage>(routeParameters, queryParameters);
         }
 
         protected async Task<TResult> GetResultOrHandleExceptionAsync<TResult>(Func<Task<TResult>> operation, Action<KomberNetException> exceptionHandler = null, bool showMessage = true)

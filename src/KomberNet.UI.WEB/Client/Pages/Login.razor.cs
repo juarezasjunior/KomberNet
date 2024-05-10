@@ -5,7 +5,6 @@
 namespace KomberNet.UI.WEB.Client.Pages
 {
     using KomberNet.Models.Auth;
-    using KomberNet.UI.WEB.Framework.Models;
 
     public partial class Login
     {
@@ -31,7 +30,17 @@ namespace KomberNet.UI.WEB.Client.Pages
 
         private async Task OpenNewUserAsync()
         {
-            await this.NavigateToPageAsync(nameof(NewUser), new PageParameter(nameof(NewUser.Id), 15), new PageParameter(nameof(NewUser.FullName), "My test name", PageParameterType.Query));
+            await this.NavigateToPageAsync<NewUser>(
+                new Dictionary<string, object>()
+                {
+                    {
+                        nameof(NewUser.Id), 15
+                    },
+                },
+                new Dictionary<string, object>()
+                {
+                    { nameof(NewUser.FullName), "My test name" },
+                });
         }
     }
 }

@@ -10,10 +10,15 @@ namespace KomberNet.UI.WEB.Framework.Services
     using System.Text;
     using System.Threading.Tasks;
     using KomberNet.Exceptions;
-    using KomberNet.UI.WEB.Framework.Models;
+    using KomberNet.UI.WEB.Framework.Pages;
+    using Radzen;
 
     public interface IInternalNavigationService : IScopedService
     {
-        public Task NavigateToPageAsync(string pageName, params PageParameter[] pageParameters);
+        public Task<dynamic> OpenDialogAsync<TPage>(string title, Dictionary<string, object> parameters = null, DialogOptions options = null)
+            where TPage : BasePage;
+
+        public Task NavigateToPageAsync<TPage>(Dictionary<string, object> routeParameters = null, Dictionary<string, object> queryParameters = null)
+            where TPage : BasePage;
     }
 }

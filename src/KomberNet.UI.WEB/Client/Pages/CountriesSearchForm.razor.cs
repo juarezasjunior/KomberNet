@@ -48,6 +48,8 @@ namespace KomberNet.UI.WEB.Client.Pages
                 //Width = "700px",
                 //Height = "512px",
             });
+
+            var test = "test";
         }
 
         public class Customer
