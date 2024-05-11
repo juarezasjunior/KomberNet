@@ -9,6 +9,7 @@ namespace KomberNet.Services.Auth
     using KomberNet.Exceptions;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Models.Auth;
+    using Microsoft.AspNetCore.Identity;
 
     public class UserHandlerService : BaseService, IUserHandlerService
     {
@@ -41,6 +42,12 @@ namespace KomberNet.Services.Auth
             await this.userManager.AddToRoleAsync(user, nameof(APIRoles.User));
 
             return new UserInsertResponse();
+        }
+
+        public void CheckError()
+        {
+            IdentityErrorDescriber test = new IdentityErrorDescriber();
+            test.PasswordRequiresNonAlphanumeric()
         }
     }
 }

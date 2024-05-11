@@ -14,6 +14,7 @@ namespace KomberNet.UI.API.Bootstraps
     using KomberNet.Services.Auth;
     using KomberNet.UI.API.ActionFilters;
     using KomberNet.UI.API.Extensions;
+    using KomberNet.UI.API.Identity;
     using KomberNet.UI.API.Middlewares;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
@@ -39,7 +40,8 @@ namespace KomberNet.UI.API.Bootstraps
             builder.Services.AddTransient<IUserManager<TbUser>, ApplicationUserManager<TbUser>>();
             builder.Services.AddIdentityCore<TbUser>()
                 .AddRoles<IdentityRole<Guid>>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddErrorDescriber<CustomIdentityErrorDescriber>();
 
             var connectionStringsOptions = new ConnectionStringsOptions();
             builder.Configuration.GetSection("ConnectionStrings").Bind(connectionStringsOptions);

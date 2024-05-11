@@ -120,6 +120,12 @@
   <data name="AdditionalInfo" xml:space="preserve">
     <value>Additional details: {0}</value>
   </data>
+  <data name="Auth_User_InvalidPassword" xml:space="preserve">
+    <value>Invalid password.</value>
+  </data>
+  <data name="Auth_User_PasswordsNotIdentical" xml:space="preserve">
+    <value>The password and confirm password fields do not match.</value>
+  </data>
   <data name="Button_Add" xml:space="preserve">
     <value>Add</value>
   </data>

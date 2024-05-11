@@ -25,6 +25,16 @@
               Looks up a localized string similar to Additional details: {0}.
             </summary>
         </member>
+        <member name="P:KomberNet.Resources.Resource.Auth_User_InvalidPassword">
+            <summary>
+              Looks up a localized string similar to Invalid password..
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Auth_User_PasswordsNotIdentical">
+            <summary>
+              Looks up a localized string similar to The password and confirm password fields do not match..
+            </summary>
+        </member>
         <member name="P:KomberNet.Resources.Resource.Button_Add">
             <summary>
               Looks up a localized string similar to Add.

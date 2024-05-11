@@ -70,6 +70,24 @@ namespace KomberNet.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid password..
+        /// </summary>
+        public static string Auth_User_InvalidPassword {
+            get {
+                return ResourceManager.GetString("Auth_User_InvalidPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password and confirm password fields do not match..
+        /// </summary>
+        public static string Auth_User_PasswordsNotIdentical {
+            get {
+                return ResourceManager.GetString("Auth_User_PasswordsNotIdentical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Button_Add {

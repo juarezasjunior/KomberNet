@@ -79,14 +79,16 @@ namespace KomberNet.UI.WEB.Framework.Services
 
                 var message = $"{resourceValue}";
 
-                if (string.IsNullOrEmpty(additionalInfo))
+                if (!string.IsNullOrEmpty(additionalInfo))
                 {
                     message += $" {string.Format(Resource.AdditionalInfo, additionalInfo)}";
                 }
 
                 this.notificationService.Notify(new NotificationMessage()
                 {
+                    Severity = NotificationSeverity.Error,
                     Detail = message,
+                    Duration = 10000,
                 });
             }
         }
