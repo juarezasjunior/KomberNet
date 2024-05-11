@@ -11,6 +11,7 @@ namespace KomberNet.Backend.Tests.Auth
     using KomberNet.Models.Auth;
     using KomberNet.Services.Auth;
     using KomberNet.Tests;
+    using KomberNet.Tests.Extensions;
     using Microsoft.AspNetCore.Identity;
     using Moq;
     using NUnit.Framework;
@@ -41,7 +42,7 @@ namespace KomberNet.Backend.Tests.Auth
             var changePasswordService = fixture.Create<ChangePasswordService>();
 
             await changePasswordService.ChangePasswordAsync(changePasswordRequest, CancellationToken.None)
-                .ShouldThrowAsync(typeof(KomberNetSecurityException));
+                .ShouldThrowKomberNetExceptionAsync(ExceptionCode.SecurityValidation);
 
             userManagerMock.VerifyAll();
         }
@@ -75,7 +76,7 @@ namespace KomberNet.Backend.Tests.Auth
             var changePasswordService = fixture.Create<ChangePasswordService>();
 
             await changePasswordService.ChangePasswordAsync(changePasswordRequest, CancellationToken.None)
-                .ShouldThrowAsync(typeof(KomberNetException));
+                .ShouldThrowKomberNetExceptionAsync(ExceptionCode.Auth_User_InvalidPassword);
 
             userManagerMock.VerifyAll();
         }

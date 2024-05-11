@@ -38,16 +38,7 @@ namespace KomberNet.UI.WEB.Client.Pages
 
             parameters.Add("Id", 1);
 
-            await this.DialogService.OpenAsync<CountryEntityForm>("Test Country", parameters, new DialogOptions()
-            {
-                ShowTitle = false,
-                ShowClose = false,
-                Draggable = true,
-                Resizable = true,
-                CloseDialogOnEsc = false,
-                //Width = "700px",
-                //Height = "512px",
-            });
+            await this.OpenDialogAsync<CountryEntityForm>(parameters: parameters);
 
             var test = "test";
         }

@@ -27,20 +27,5 @@ namespace KomberNet.UI.WEB.Client.Pages
                 Password = this.Password,
             });
         }
-
-        private async Task OpenNewUserAsync()
-        {
-            await this.NavigateToPageAsync<NewUser>(
-                new Dictionary<string, object>()
-                {
-                    {
-                        nameof(NewUser.Id), 15
-                    },
-                },
-                new Dictionary<string, object>()
-                {
-                    { nameof(NewUser.FullName), "My test name" },
-                });
-        }
     }
 }

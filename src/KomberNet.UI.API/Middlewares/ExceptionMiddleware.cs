@@ -29,14 +29,16 @@ namespace KomberNet.UI.API.Middlewares
             {
                 await this.next(context);
             }
-            catch (KomberNetSecurityException exception)
-            {
-                this.logger.LogError(exception.ToString());
-                await this.HandleExceptionAsync(context, exception.ExceptionCode, exception.AdditionalInfo, HttpStatusCode.Unauthorized);
-            }
             catch (KomberNetException exception)
             {
                 this.logger.LogError(exception.ToString());
+
+                if (exception.ExceptionCode == ExceptionCode.SecurityValidation)
+                {
+                    await this.HandleExceptionAsync(context, exception.ExceptionCode, httpStatusCode: HttpStatusCode.Unauthorized);
+                    return;
+                }
+
                 await this.HandleExceptionAsync(context, exception.ExceptionCode, exception.AdditionalInfo);
             }
             catch (Exception exception)

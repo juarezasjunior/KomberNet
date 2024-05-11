@@ -12,13 +12,21 @@ namespace KomberNet.UI.WEB.Framework.Services
     using KomberNet.Exceptions;
     using KomberNet.UI.WEB.Framework.Pages;
     using Radzen;
+    using Radzen.Blazor.Rendering;
 
     public interface IInternalNavigationService : IScopedService
     {
-        public Task<dynamic> OpenDialogAsync<TPage>(string title, Dictionary<string, object> parameters = null, DialogOptions options = null)
-            where TPage : BasePage;
-
         public Task NavigateToPageAsync<TPage>(Dictionary<string, object> routeParameters = null, Dictionary<string, object> queryParameters = null)
             where TPage : BasePage;
+
+        public Task OpenDialogAsync<TPage>(string title = null, Dictionary<string, object> parameters = null, bool showClose = false, bool isDraggable = true, bool isResizable = true)
+            where TPage : BasePage;
+
+        public Task<TResult> OpenDialogAsync<TPage, TResult>(string title = null, Dictionary<string, object> parameters = null, bool showClose = false, bool isDraggable = true, bool isResizable = true)
+            where TPage : BasePage;
+
+        public Task CloseDialogAsync();
+
+        public Task CloseDialogAsync<TResult>(TResult result);
     }
 }

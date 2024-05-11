@@ -4,16 +4,13 @@
 
 namespace KomberNet.UI.WEB.Client.Pages
 {
+    using KomberNet.Exceptions;
     using KomberNet.Models.Auth;
     using Microsoft.AspNetCore.Components;
 
     public partial class NewUser
     {
-        [Parameter]
-        public int Id { get; set; }
-
-        [SupplyParameterFromQuery]
-        public string FullName { get; set; }
+        private string FullName { get; set; }
 
         private string Email { get; set; }
 
@@ -23,24 +20,28 @@ namespace KomberNet.UI.WEB.Client.Pages
 
         private async Task InsertUserAsync()
         {
-            if (this.Password != this.RepeatPassword)
-            {
-                throw new NotImplementedException();
-            }
-
             var userInserted = true;
 
             await this.HandleExceptionAsync(
-                () => this.userService.InsertUserAsync(new UserInsertRequest()
+                async () =>
                 {
-                    FullName = this.FullName,
-                    Email = this.Email,
-                    Password = this.Password,
-                }),
+                    if (this.Password != this.RepeatPassword)
+                    {
+                        throw new KomberNetException(ExceptionCode.Auth_User_PasswordsNotIdentical);
+                    }
+
+                    await this.userService.InsertUserAsync(new UserInsertRequest()
+                    {
+                        FullName = this.FullName,
+                        Email = this.Email,
+                        Password = this.Password,
+                    });
+                },
                 x => userInserted = false);
 
             if (userInserted)
             {
+                await this.NavigateToPageAsync<Login>();
             }
         }
     }

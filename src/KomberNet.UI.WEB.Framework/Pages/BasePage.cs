@@ -26,9 +26,6 @@ namespace KomberNet.UI.WEB.Framework.Pages
         protected NotificationService NotificationService { get; set; }
 
         [Inject]
-        protected DialogService DialogService { get; set; }
-
-        [Inject]
         private IInternalNavigationService InternalNavigationService { get; set; }
 
         [Inject]
@@ -43,16 +40,32 @@ namespace KomberNet.UI.WEB.Framework.Pages
         {
         }
 
-        protected async Task<dynamic> OpenDialogAsync<TPage>(string title, Dictionary<string, object> parameters = null, DialogOptions options = null)
-            where TPage : BasePage
-        {
-            return await this.InternalNavigationService.OpenDialogAsync<TPage>(title, parameters, options);
-        }
-
         protected async Task NavigateToPageAsync<TPage>(Dictionary<string, object> routeParameters = null, Dictionary<string, object> queryParameters = null)
             where TPage : BasePage
         {
             await this.InternalNavigationService.NavigateToPageAsync<TPage>(routeParameters, queryParameters);
+        }
+
+        protected async Task OpenDialogAsync<TPage>(string title = null, Dictionary<string, object> parameters = null, bool showClose = false, bool isDraggable = true, bool isResizable = true)
+            where TPage : BasePage
+        {
+            await this.InternalNavigationService.OpenDialogAsync<TPage>(title, parameters, showClose, isDraggable, isResizable);
+        }
+
+        protected async Task<TResult> OpenDialogAsync<TPage, TResult>(string title = null, Dictionary<string, object> parameters = null, bool showClose = false, bool isDraggable = true, bool isResizable = true)
+            where TPage : BasePage
+        {
+            return await this.InternalNavigationService.OpenDialogAsync<TPage, TResult>(title, parameters, showClose, isDraggable, isResizable);
+        }
+
+        protected async Task CloseDialogAsync()
+        {
+            await this.InternalNavigationService.CloseDialogAsync();
+        }
+
+        protected async Task CloseDialogAsync<TResult>(TResult result)
+        {
+            await this.InternalNavigationService.CloseDialogAsync(result);
         }
 
         protected async Task<TResult> GetResultOrHandleExceptionAsync<TResult>(Func<Task<TResult>> operation, Action<KomberNetException> exceptionHandler = null, bool showMessage = true)

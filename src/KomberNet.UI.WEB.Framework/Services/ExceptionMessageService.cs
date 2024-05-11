@@ -31,7 +31,7 @@ namespace KomberNet.UI.WEB.Framework.Services
             }
             catch (ApiException exception)
             {
-                this.HandleException(exceptionHandler, showMessage, exception);
+                this.HandleApiException(exceptionHandler, showMessage, exception);
             }
 
             return default;
@@ -45,31 +45,31 @@ namespace KomberNet.UI.WEB.Framework.Services
             }
             catch (ApiException exception)
             {
-                this.HandleException(exceptionHandler, showMessage, exception);
+                this.HandleApiException(exceptionHandler, showMessage, exception);
+            }
+            catch (KomberNetException exception)
+            {
+                this.HandleKomberNetException(exceptionHandler, showMessage, exception);
             }
         }
 
-        private void HandleException(Action<KomberNetException> exceptionHandler, bool showMessage, ApiException exception)
+        private void HandleApiException(Action<KomberNetException> exceptionHandler, bool showMessage, ApiException exception)
         {
             if (!string.IsNullOrEmpty(exception.Content))
             {
-                KomberNetException komberNetException;
+                var komberNetException = JsonSerializer.Deserialize<KomberNetException>(exception.Content);
 
-                if (exception.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-                {
-                    komberNetException = JsonSerializer.Deserialize<KomberNetSecurityException>(exception.Content);
-                }
-                else
-                {
-                    komberNetException = JsonSerializer.Deserialize<KomberNetException>(exception.Content);
-                }
+                this.HandleKomberNetException(exceptionHandler, showMessage, komberNetException);
+            }
+        }
 
-                exceptionHandler?.Invoke(komberNetException);
+        private void HandleKomberNetException(Action<KomberNetException> exceptionHandler, bool showMessage, KomberNetException exception)
+        {
+            exceptionHandler?.Invoke(exception);
 
-                if (showMessage)
-                {
-                    ShowExceptionMessage(komberNetException.ExceptionCode, komberNetException.AdditionalInfo);
-                }
+            if (showMessage)
+            {
+                ShowExceptionMessage(exception.ExceptionCode, exception.AdditionalInfo);
             }
 
             void ShowExceptionMessage(ExceptionCode exceptionCode, string additionalInfo)

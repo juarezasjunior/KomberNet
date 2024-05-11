@@ -24,21 +24,21 @@ namespace KomberNet.Services.Auth
 
             if (string.IsNullOrEmpty(email))
             {
-                throw new KomberNetSecurityException();
+                throw new KomberNetException(ExceptionCode.SecurityValidation);
             }
 
             var userHasLogout = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.UserHasLogoutKey, email, sessionId));
 
             if (!string.IsNullOrEmpty(userHasLogout))
             {
-                throw new KomberNetSecurityException();
+                throw new KomberNetException(ExceptionCode.SecurityValidation);
             }
 
             var userHasLogoutAllSessions = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, email));
 
             if (!string.IsNullOrEmpty(userHasLogoutAllSessions))
             {
-                throw new KomberNetSecurityException();
+                throw new KomberNetException(ExceptionCode.SecurityValidation);
             }
         }
     }

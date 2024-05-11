@@ -17,7 +17,7 @@ namespace KomberNet.UI.WEB.Client.Pages
 
         protected override void CreateActionButtons()
         {
-            this.ActionButtons.Add(ActionButton.CloseActionButton(this.Localizer, () => this.DialogService.Close()));
+            this.ActionButtons.Add(ActionButton.CloseActionButton(this.Localizer, async () => await this.CloseDialogAsync()));
             this.ActionButtons.Add(ActionButton.SaveActionButton(this.Localizer));
         }
 
