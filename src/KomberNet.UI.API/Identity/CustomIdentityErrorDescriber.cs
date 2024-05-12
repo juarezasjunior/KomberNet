@@ -21,6 +21,7 @@ namespace KomberNet.UI.API.Identity
             }
 
             identityError.Description = resourceDescription ?? identityError.Description;
+
             return identityError;
         }
 
@@ -36,6 +37,7 @@ namespace KomberNet.UI.API.Identity
             }
 
             identityError.Description = resourceDescription ?? identityError.Description;
+
             return identityError;
         }
 
@@ -51,6 +53,7 @@ namespace KomberNet.UI.API.Identity
             }
 
             identityError.Description = resourceDescription ?? identityError.Description;
+
             return identityError;
         }
 
@@ -58,6 +61,7 @@ namespace KomberNet.UI.API.Identity
         {
             var identityError = base.DefaultError();
             identityError.Description = Resource.ResourceManager.GetString($"IdentityError_{identityError.Code}") ?? identityError.Description;
+
             return identityError;
         }
 
@@ -65,6 +69,7 @@ namespace KomberNet.UI.API.Identity
         {
             var identityError = base.ConcurrencyFailure();
             identityError.Description = Resource.ResourceManager.GetString($"IdentityError_{identityError.Code}") ?? identityError.Description;
+
             return identityError;
         }
 
@@ -80,6 +85,7 @@ namespace KomberNet.UI.API.Identity
             }
 
             identityError.Description = resourceDescription ?? identityError.Description;
+
             return identityError;
         }
 
@@ -87,6 +93,7 @@ namespace KomberNet.UI.API.Identity
         {
             var identityError = base.PasswordRequiresNonAlphanumeric();
             identityError.Description = Resource.ResourceManager.GetString($"IdentityError_{identityError.Code}") ?? identityError.Description;
+
             return identityError;
         }
 
@@ -94,6 +101,7 @@ namespace KomberNet.UI.API.Identity
         {
             var identityError = base.PasswordRequiresDigit();
             identityError.Description = Resource.ResourceManager.GetString($"IdentityError_{identityError.Code}") ?? identityError.Description;
+
             return identityError;
         }
 
@@ -101,6 +109,7 @@ namespace KomberNet.UI.API.Identity
         {
             var identityError = base.PasswordRequiresLower();
             identityError.Description = Resource.ResourceManager.GetString($"IdentityError_{identityError.Code}") ?? identityError.Description;
+
             return identityError;
         }
 
@@ -108,6 +117,7 @@ namespace KomberNet.UI.API.Identity
         {
             var identityError = base.PasswordRequiresUpper();
             identityError.Description = Resource.ResourceManager.GetString($"IdentityError_{identityError.Code}") ?? identityError.Description;
+
             return identityError;
         }
 
@@ -123,6 +133,7 @@ namespace KomberNet.UI.API.Identity
             }
 
             identityError.Description = resourceDescription ?? identityError.Description;
+
             return identityError;
         }
 
@@ -138,6 +149,7 @@ namespace KomberNet.UI.API.Identity
             }
 
             identityError.Description = resourceDescription ?? identityError.Description;
+
             return identityError;
         }
 
@@ -153,6 +165,7 @@ namespace KomberNet.UI.API.Identity
             }
 
             identityError.Description = resourceDescription ?? identityError.Description;
+
             return identityError;
         }
 
@@ -168,6 +181,7 @@ namespace KomberNet.UI.API.Identity
             }
 
             identityError.Description = resourceDescription ?? identityError.Description;
+
             return identityError;
         }
 
@@ -175,6 +189,7 @@ namespace KomberNet.UI.API.Identity
         {
             var identityError = base.UserAlreadyHasPassword();
             identityError.Description = Resource.ResourceManager.GetString($"IdentityError_{identityError.Code}") ?? identityError.Description;
+
             return identityError;
         }
 
@@ -182,6 +197,7 @@ namespace KomberNet.UI.API.Identity
         {
             var identityError = base.UserLockoutNotEnabled();
             identityError.Description = Resource.ResourceManager.GetString($"IdentityError_{identityError.Code}") ?? identityError.Description;
+
             return identityError;
         }
 
@@ -197,6 +213,7 @@ namespace KomberNet.UI.API.Identity
             }
 
             identityError.Description = resourceDescription ?? identityError.Description;
+
             return identityError;
         }
 
@@ -212,6 +229,7 @@ namespace KomberNet.UI.API.Identity
             }
 
             identityError.Description = resourceDescription ?? identityError.Description;
+
             return identityError;
         }
 
@@ -219,6 +237,7 @@ namespace KomberNet.UI.API.Identity
         {
             var identityError = base.PasswordMismatch();
             identityError.Description = Resource.ResourceManager.GetString($"IdentityError_{identityError.Code}") ?? identityError.Description;
+
             return identityError;
         }
 
@@ -226,6 +245,7 @@ namespace KomberNet.UI.API.Identity
         {
             var identityError = base.InvalidToken();
             identityError.Description = Resource.ResourceManager.GetString($"IdentityError_{identityError.Code}") ?? identityError.Description;
+
             return identityError;
         }
 
@@ -233,6 +253,7 @@ namespace KomberNet.UI.API.Identity
         {
             var identityError = base.RecoveryCodeRedemptionFailed();
             identityError.Description = Resource.ResourceManager.GetString($"IdentityError_{identityError.Code}") ?? identityError.Description;
+
             return identityError;
         }
 
@@ -240,6 +261,7 @@ namespace KomberNet.UI.API.Identity
         {
             var identityError = base.LoginAlreadyAssociated();
             identityError.Description = Resource.ResourceManager.GetString($"IdentityError_{identityError.Code}") ?? identityError.Description;
+
             return identityError;
         }
     }
