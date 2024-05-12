@@ -4,6 +4,7 @@
 
 namespace KomberNet.UI.WEB.Client.Handlers
 {
+    using System.Globalization;
     using System.Text.Json;
     using KomberNet.Exceptions;
     using KomberNet.UI.WEB.Client.Auth;
@@ -12,6 +13,8 @@ namespace KomberNet.UI.WEB.Client.Handlers
     {
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
+            request.Headers.AcceptLanguage.Add(new System.Net.Http.Headers.StringWithQualityHeaderValue(CultureInfo.CurrentCulture.Name));
+
             // TODO: Handle with exceptions of JWT expiration
             return await base.SendAsync(request, cancellationToken);
         }

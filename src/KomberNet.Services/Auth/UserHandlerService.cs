@@ -43,11 +43,5 @@ namespace KomberNet.Services.Auth
 
             return new UserInsertResponse();
         }
-
-        public void CheckError()
-        {
-            IdentityErrorDescriber test = new IdentityErrorDescriber();
-            test.PasswordRequiresNonAlphanumeric()
-        }
     }
 }
