@@ -24,6 +24,7 @@ namespace KomberNet.UI.API.Bootstraps
     using Microsoft.AspNetCore.Localization;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Options;
     using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
 
@@ -68,6 +69,32 @@ namespace KomberNet.UI.API.Bootstraps
             // TODO: Configure user authentication to access Swagger
             builder.Services.AddSwaggerGen(x =>
             {
+                x.AddSecurityDefinition("Accept-Language", new OpenApiSecurityScheme
+                {
+                    Description = "Accept-Language header",
+                    Name = "Accept-Language",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "apiKey",
+                });
+
+                x.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Accept-Language",
+                            },
+                        },
+                        new string[]
+                        {
+                        }
+                    },
+                });
+
                 x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Name = "Authorization",
@@ -101,7 +128,7 @@ namespace KomberNet.UI.API.Bootstraps
         {
             mvcBuilder.AddDataAnnotationsLocalization();
 
-            builder.Services.AddLocalization(options => options.ResourcesPath = "KomberNet.Resources");
+            builder.Services.AddLocalization();
 
             builder.Services.Configure<RequestLocalizationOptions>(options =>
             {
