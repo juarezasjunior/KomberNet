@@ -34,7 +34,20 @@ namespace KomberNet.UI.WEB.Framework.Components
         [Parameter]
         public RenderFragment Columns { get; set; }
 
-        private string SearchInputText { get; set; }
+        [SupplyParameterFromQuery(Name = "Search")]
+        private string SearchInputText
+        {
+            get => (this.SearchFormPage?.Request as IHasSearchableDefaultCriteria)?.Search;
+            set
+            {
+                if (this.SearchFormPage?.Request is IHasSearchableDefaultCriteria defaultCriteria
+                    && defaultCriteria.Search != value)
+                {
+                    defaultCriteria.Search = value;
+                    this.SearchFormPage.UpdateQueryString(value, "Search");
+                }
+            }
+        }
 
         private bool IsShowingMoreFilter { get; set; }
 
@@ -58,7 +71,6 @@ namespace KomberNet.UI.WEB.Framework.Components
         {
             if (this.SearchFormPage.Request is IHasSearchableDefaultCriteria defaultCriteria)
             {
-                defaultCriteria.Search = this.SearchInputText;
                 defaultCriteria.Take = this.Take;
             }
 

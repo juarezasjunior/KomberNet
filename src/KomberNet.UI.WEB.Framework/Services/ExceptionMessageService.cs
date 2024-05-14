@@ -15,10 +15,14 @@ namespace KomberNet.UI.WEB.Framework.Services
     public class ExceptionMessageService : IExceptionMessageService
     {
         private readonly NotificationService notificationService;
+        private readonly IMessageService messageService;
 
-        public ExceptionMessageService(NotificationService notificationService)
+        public ExceptionMessageService(
+            NotificationService notificationService,
+            IMessageService messageService)
         {
             this.notificationService = notificationService;
+            this.messageService = messageService;
         }
 
         public async Task<TResult> GetResultOrHandleExceptionAsync<TResult>(Func<Task<TResult>> operation, Action<KomberNetException> exceptionHandler = null, bool showMessage = true)
@@ -31,7 +35,7 @@ namespace KomberNet.UI.WEB.Framework.Services
             }
             catch (ApiException exception)
             {
-                this.HandleApiException(exceptionHandler, showMessage, exception);
+                this.HandleApiExceptionAsync(exceptionHandler, showMessage, exception);
             }
 
             return default;
@@ -45,34 +49,34 @@ namespace KomberNet.UI.WEB.Framework.Services
             }
             catch (ApiException exception)
             {
-                this.HandleApiException(exceptionHandler, showMessage, exception);
+                await this.HandleApiExceptionAsync(exceptionHandler, showMessage, exception);
             }
             catch (KomberNetException exception)
             {
-                this.HandleKomberNetException(exceptionHandler, showMessage, exception);
+                await this.HandleKomberNetExceptionAsync(exceptionHandler, showMessage, exception);
             }
         }
 
-        private void HandleApiException(Action<KomberNetException> exceptionHandler, bool showMessage, ApiException exception)
+        private async Task HandleApiExceptionAsync(Action<KomberNetException> exceptionHandler, bool showMessage, ApiException exception)
         {
             if (!string.IsNullOrEmpty(exception.Content))
             {
                 var komberNetException = JsonSerializer.Deserialize<KomberNetException>(exception.Content);
 
-                this.HandleKomberNetException(exceptionHandler, showMessage, komberNetException);
+                await this.HandleKomberNetExceptionAsync(exceptionHandler, showMessage, komberNetException);
             }
         }
 
-        private void HandleKomberNetException(Action<KomberNetException> exceptionHandler, bool showMessage, KomberNetException exception)
+        private async Task HandleKomberNetExceptionAsync(Action<KomberNetException> exceptionHandler, bool showMessage, KomberNetException exception)
         {
             exceptionHandler?.Invoke(exception);
 
             if (showMessage)
             {
-                ShowExceptionMessage(exception.ExceptionCode, exception.AdditionalInfo);
+                await ShowExceptionMessageAsync(exception.ExceptionCode, exception.AdditionalInfo);
             }
 
-            void ShowExceptionMessage(ExceptionCode exceptionCode, string additionalInfo)
+            async Task ShowExceptionMessageAsync(ExceptionCode exceptionCode, string additionalInfo)
             {
                 var resourceName = exceptionCode.ToString();
                 var resourceValue = Resource.ResourceManager.GetString(resourceName);
@@ -84,12 +88,7 @@ namespace KomberNet.UI.WEB.Framework.Services
                     message += $" {string.Format(Resource.AdditionalInfo, additionalInfo)}";
                 }
 
-                this.notificationService.Notify(new NotificationMessage()
-                {
-                    Severity = NotificationSeverity.Error,
-                    Detail = message,
-                    Duration = 10000,
-                });
+                await this.messageService.ShowErrorMessageAsync(message);
             }
         }
     }

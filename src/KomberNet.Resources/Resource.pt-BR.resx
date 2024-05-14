@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,245 +59,266 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" />
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string" />
-							<xsd:attribute name="name" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<data name="AdditionalInfo" xml:space="preserve">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AdditionalInfo" xml:space="preserve">
     <value>Informações adicionais: {0}</value>
   </data>
-	<data name="Auth_User_InvalidPassword" xml:space="preserve">
+  <data name="Auth_User_InvalidPassword" xml:space="preserve">
     <value>Senha inválida.</value>
   </data>
-	<data name="Auth_User_PasswordsNotIdentical" xml:space="preserve">
+  <data name="Auth_User_PasswordsNotIdentical" xml:space="preserve">
     <value>As senhas não são conferem. Digite as duas senhas iguais.</value>
   </data>
-	<data name="Button_Add" xml:space="preserve">
+  <data name="Button_Add" xml:space="preserve">
     <value>Adicionar</value>
   </data>
-	<data name="Button_Close" xml:space="preserve">
+  <data name="Button_Close" xml:space="preserve">
     <value>Fechar</value>
   </data>
-	<data name="Button_Delete" xml:space="preserve">
+  <data name="Button_Delete" xml:space="preserve">
     <value>Excluir</value>
   </data>
-	<data name="Button_Edit" xml:space="preserve">
+  <data name="Button_Edit" xml:space="preserve">
     <value>Editar</value>
   </data>
-	<data name="Button_MoreOptions" xml:space="preserve">
+  <data name="Button_MoreOptions" xml:space="preserve">
     <value>Mais ações</value>
   </data>
-	<data name="Button_New" xml:space="preserve">
+  <data name="Button_New" xml:space="preserve">
     <value>Novo</value>
   </data>
-	<data name="Button_Open" xml:space="preserve">
+  <data name="Button_Open" xml:space="preserve">
     <value>Abrir</value>
   </data>
-	<data name="Button_Run" xml:space="preserve">
+  <data name="Button_Run" xml:space="preserve">
     <value>Executar</value>
   </data>
-	<data name="Button_Save" xml:space="preserve">
+  <data name="Button_Save" xml:space="preserve">
     <value>Salvar</value>
   </data>
-	<data name="Countries_PageTitle" xml:space="preserve">
+  <data name="Countries_PageTitle" xml:space="preserve">
     <value>Países</value>
   </data>
-	<data name="Country_Name" xml:space="preserve">
+  <data name="Country_Name" xml:space="preserve">
     <value>Nome</value>
   </data>
-	<data name="Country_PageTitle" xml:space="preserve">
+  <data name="Country_PageTitle" xml:space="preserve">
     <value>País</value>
   </data>
-	<data name="EntityForm_Tab_General" xml:space="preserve">
+  <data name="EntityForm_Tab_General" xml:space="preserve">
     <value>Geral</value>
   </data>
-	<data name="Field_InvalidEmail" xml:space="preserve">
+  <data name="Field_InvalidEmail" xml:space="preserve">
     <value>Email inválido</value>
   </data>
-	<data name="Field_Required" xml:space="preserve">
+  <data name="Field_Required" xml:space="preserve">
     <value>Obrigatório</value>
   </data>
-	<data name="IdentityError_DefaultError" xml:space="preserve">
+  <data name="IdentityError_DefaultError" xml:space="preserve">
     <value>Ocorreu um erro desconhecido.</value>
-</data>
-	<data name="IdentityError_ConcurrencyFailure" xml:space="preserve">
+  </data>
+  <data name="IdentityError_ConcurrencyFailure" xml:space="preserve">
     <value>Falha de concorrência otimista, o objeto foi modificado.</value>
-</data>
-	<data name="IdentityError_PasswordMismatch" xml:space="preserve">
+  </data>
+  <data name="IdentityError_PasswordMismatch" xml:space="preserve">
     <value>Senha incorreta.</value>
-</data>
-	<data name="IdentityError_InvalidToken" xml:space="preserve">
+  </data>
+  <data name="IdentityError_InvalidToken" xml:space="preserve">
     <value>Token inválido.</value>
-</data>
-	<data name="IdentityError_LoginAlreadyAssociated" xml:space="preserve">
+  </data>
+  <data name="IdentityError_LoginAlreadyAssociated" xml:space="preserve">
     <value>Um usuário com este login já existe.</value>
-</data>
-	<data name="IdentityError_InvalidUserName" xml:space="preserve">
+  </data>
+  <data name="IdentityError_InvalidUserName" xml:space="preserve">
     <value>O nome de usuário '{0}' é inválido, pode conter apenas letras ou dígitos.</value>
-</data>
-	<data name="IdentityError_InvalidEmail" xml:space="preserve">
+  </data>
+  <data name="IdentityError_InvalidEmail" xml:space="preserve">
     <value>O email '{0}' é inválido.</value>
-</data>
-	<data name="IdentityError_DuplicateUserName" xml:space="preserve">
+  </data>
+  <data name="IdentityError_DuplicateUserName" xml:space="preserve">
     <value>O nome de usuário '{0}' já está sendo usado.</value>
-</data>
-	<data name="IdentityError_DuplicateEmail" xml:space="preserve">
+  </data>
+  <data name="IdentityError_DuplicateEmail" xml:space="preserve">
     <value>O email '{0}' já está sendo usado.</value>
-</data>
-	<data name="IdentityError_InvalidRoleName" xml:space="preserve">
+  </data>
+  <data name="IdentityError_InvalidRoleName" xml:space="preserve">
     <value>O nome do papel '{0}' é inválido.</value>
-</data>
-	<data name="IdentityError_DuplicateRoleName" xml:space="preserve">
+  </data>
+  <data name="IdentityError_DuplicateRoleName" xml:space="preserve">
     <value>O nome do papel '{0}' já está sendo usado.</value>
-</data>
-	<data name="IdentityError_UserAlreadyHasPassword" xml:space="preserve">
+  </data>
+  <data name="IdentityError_UserAlreadyHasPassword" xml:space="preserve">
     <value>O usuário já tem uma senha definida.</value>
-</data>
-	<data name="IdentityError_UserLockoutNotEnabled" xml:space="preserve">
+  </data>
+  <data name="IdentityError_UserLockoutNotEnabled" xml:space="preserve">
     <value>Lockout não está habilitado para este usuário.</value>
-</data>
-	<data name="IdentityError_UserAlreadyInRole" xml:space="preserve">
+  </data>
+  <data name="IdentityError_UserAlreadyInRole" xml:space="preserve">
     <value>O usuário já está no papel '{0}'.</value>
-</data>
-	<data name="IdentityError_UserNotInRole" xml:space="preserve">
+  </data>
+  <data name="IdentityError_UserNotInRole" xml:space="preserve">
     <value>O usuário não está no papel '{0}'.</value>
-</data>
-	<data name="IdentityError_PasswordTooShort" xml:space="preserve">
+  </data>
+  <data name="IdentityError_PasswordTooShort" xml:space="preserve">
     <value>A senha deve ter pelo menos {0} caracteres.</value>
-</data>
-	<data name="IdentityError_PasswordRequiresNonAlphanumeric" xml:space="preserve">
+  </data>
+  <data name="IdentityError_PasswordRequiresNonAlphanumeric" xml:space="preserve">
     <value>A senha deve ter pelo menos um caractere não alfanumérico.</value>
-</data>
-	<data name="IdentityError_PasswordRequiresDigit" xml:space="preserve">
+  </data>
+  <data name="IdentityError_PasswordRequiresDigit" xml:space="preserve">
     <value>A senha deve ter pelo menos um dígito ('0'-'9').</value>
-</data>
-	<data name="IdentityError_PasswordRequiresLower" xml:space="preserve">
+  </data>
+  <data name="IdentityError_PasswordRequiresLower" xml:space="preserve">
     <value>A senha deve ter pelo menos uma letra minúscula ('a'-'z').</value>
-</data>
-	<data name="IdentityError_PasswordRequiresUpper" xml:space="preserve">
+  </data>
+  <data name="IdentityError_PasswordRequiresUpper" xml:space="preserve">
     <value>A senha deve ter pelo menos uma letra maiúscula ('A'-'Z').</value>
-</data>
-	<data name="IdentityError_RecoveryCodeRedemptionFailed" xml:space="preserve">
+  </data>
+  <data name="IdentityError_RecoveryCodeRedemptionFailed" xml:space="preserve">
     <value>Falha ao resgatar o código de recuperação.</value>
-</data>
-	<data name="IdentityError_PasswordRequiresUniqueChars" xml:space="preserve">
+  </data>
+  <data name="IdentityError_PasswordRequiresUniqueChars" xml:space="preserve">
     <value>A senha deve conter pelo menos {0} caracteres únicos.</value>
-</data>
-	<data name="Index_Title" xml:space="preserve">
+  </data>
+  <data name="Index_Title" xml:space="preserve">
     <value>Bem-vindo ao {0}</value>
   </data>
-	<data name="Login_Button" xml:space="preserve">
+  <data name="Login_Button" xml:space="preserve">
     <value>Entrar</value>
   </data>
-	<data name="Login_Email" xml:space="preserve">
+  <data name="Login_Email" xml:space="preserve">
     <value>Email</value>
   </data>
-	<data name="Login_ForgotPassword_Button" xml:space="preserve">
+  <data name="Login_ForgotPassword_Button" xml:space="preserve">
     <value>Esqueci a senha</value>
   </data>
-	<data name="Login_New" xml:space="preserve">
+  <data name="Login_New" xml:space="preserve">
     <value>Novo cadastro</value>
   </data>
-	<data name="Login_PageTitle" xml:space="preserve">
+  <data name="Login_PageTitle" xml:space="preserve">
     <value>Login</value>
   </data>
-	<data name="Login_Password" xml:space="preserve">
+  <data name="Login_Password" xml:space="preserve">
     <value>Senha</value>
   </data>
-	<data name="NewUser_CreateUser" xml:space="preserve">
+  <data name="NewUser_CreateUser" xml:space="preserve">
     <value>Criar</value>
   </data>
-	<data name="NewUser_Email" xml:space="preserve">
+  <data name="NewUser_Email" xml:space="preserve">
     <value>Email</value>
   </data>
-	<data name="NewUser_FullName" xml:space="preserve">
+  <data name="NewUser_FullName" xml:space="preserve">
     <value>Nome</value>
   </data>
-	<data name="NewUser_LoginExistingUser" xml:space="preserve">
+  <data name="NewUser_LoginExistingUser" xml:space="preserve">
     <value>Logar com um usuário existente</value>
   </data>
-	<data name="NewUser_PageTitle" xml:space="preserve">
+  <data name="NewUser_PageTitle" xml:space="preserve">
     <value>Novo usuário</value>
   </data>
-	<data name="NewUser_Password" xml:space="preserve">
+  <data name="NewUser_Password" xml:space="preserve">
     <value>Senha</value>
   </data>
-	<data name="NewUser_RepeatPassword" xml:space="preserve">
+  <data name="NewUser_RepeatPassword" xml:space="preserve">
     <value>Repetir a senha</value>
   </data>
-	<data name="Search_Button" xml:space="preserve">
+  <data name="Search_Button" xml:space="preserve">
     <value>Pesquisar</value>
   </data>
-	<data name="Search_InputText" xml:space="preserve">
+  <data name="Search_InputText" xml:space="preserve">
     <value>Campo de pesquisa</value>
   </data>
-	<data name="Search_ShowingFirstHundredResults" xml:space="preserve">
+  <data name="Search_ShowingFirstHundredResults" xml:space="preserve">
     <value>Mostrando apenas os primeiros {0} registros. Clique aqui para mostrar todos os resultados. Isso pode levar um tempo.</value>
   </data>
-	<data name="Search_ShowLessFilterCriteria" xml:space="preserve">
+  <data name="Search_ShowLessFilterCriteria" xml:space="preserve">
     <value>Exibir menos filtros</value>
   </data>
-	<data name="Search_ShowMoreFilterCriteria" xml:space="preserve">
+  <data name="Search_ShowMoreFilterCriteria" xml:space="preserve">
     <value>Exibir mais filtros</value>
   </data>
-	<data name="Search_TakeLabel" xml:space="preserve">
+  <data name="Search_TakeLabel" xml:space="preserve">
     <value>Quantidade máxima de resultados</value>
   </data>
-	<data name="Search_TakePlaceholder" xml:space="preserve">
+  <data name="Search_TakePlaceholder" xml:space="preserve">
     <value>Digite a quantidade máxima de resultados ou deixe vazio para exibir todos</value>
+  </data>
+  <data name="Dialog_Confirm_Button_No" xml:space="preserve">
+    <value>Não</value>
+  </data>
+  <data name="Dialog_Confirm_Button_Yes" xml:space="preserve">
+    <value>Sim</value>
+  </data>
+  <data name="Dialog_Confirm_Title" xml:space="preserve">
+    <value>Confirmação</value>
+  </data>
+  <data name="Dialog_Error_Button_Ok" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="Dialog_Error_Title" xml:space="preserve">
+    <value>Erro</value>
+  </data>
+  <data name="Dialog_Info_Button_Ok" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="Dialog_Info_Title" xml:space="preserve">
+    <value>Informação</value>
   </data>
 </root>

@@ -27,5 +27,7 @@ namespace KomberNet.UI.WEB.Client.Pages
                 Password = this.Password,
             });
         }
+
+        private async Task OpenNewUserAsync() => await this.NavigateToPageAsync<NewUser>();
     }
 }

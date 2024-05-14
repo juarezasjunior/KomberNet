@@ -196,6 +196,69 @@ namespace KomberNet.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string Dialog_Confirm_Button_No {
+            get {
+                return ResourceManager.GetString("Dialog_Confirm_Button_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Dialog_Confirm_Button_Yes {
+            get {
+                return ResourceManager.GetString("Dialog_Confirm_Button_Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirmation.
+        /// </summary>
+        public static string Dialog_Confirm_Title {
+            get {
+                return ResourceManager.GetString("Dialog_Confirm_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string Dialog_Error_Button_Ok {
+            get {
+                return ResourceManager.GetString("Dialog_Error_Button_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string Dialog_Error_Title {
+            get {
+                return ResourceManager.GetString("Dialog_Error_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string Dialog_Info_Button_Ok {
+            get {
+                return ResourceManager.GetString("Dialog_Info_Button_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Info.
+        /// </summary>
+        public static string Dialog_Info_Title {
+            get {
+                return ResourceManager.GetString("Dialog_Info_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to General.
         /// </summary>
         public static string EntityForm_Tab_General {
