@@ -40,7 +40,7 @@
                             <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="@this.Localizer["NewUser_CreateUser"]" />
 
                             <RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Center">
-                                <RadzenButton Text="@this.Localizer["NewUser_LoginExistingUser"]" />
+                                <RadzenButton Text="@this.Localizer["NewUser_LoginExistingUser"]" Click="() => this.NavigateToPageAsync<Login>()" />
                             </RadzenStack>
 
                         </RadzenStack>

@@ -35,8 +35,8 @@ namespace KomberNet.Services.Auth
 
             if (!result.Succeeded)
             {
-                var errors = string.Join(", ", result.Errors.Select(x => x.Description));
-                throw new KomberNetException(exceptionCode: ExceptionCode.Auth_User_InvalidPassword, additionalInfo: errors);
+                var errors = string.Join(" ", result.Errors.Select(x => x.Description));
+                throw new KomberNetException(exceptionCode: ExceptionCode.Auth_User_CannotInsert, additionalInfo: errors);
             }
 
             await this.userManager.AddToRoleAsync(user, nameof(APIRoles.User));

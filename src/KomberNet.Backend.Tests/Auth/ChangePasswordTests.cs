@@ -76,7 +76,7 @@ namespace KomberNet.Backend.Tests.Auth
             var changePasswordService = fixture.Create<ChangePasswordService>();
 
             await changePasswordService.ChangePasswordAsync(changePasswordRequest, CancellationToken.None)
-                .ShouldThrowKomberNetExceptionAsync(ExceptionCode.Auth_User_InvalidPassword);
+                .ShouldThrowKomberNetExceptionAsync(ExceptionCode.Auth_User_CannotChangePassword);
 
             userManagerMock.VerifyAll();
         }

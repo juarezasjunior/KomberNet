@@ -120,8 +120,8 @@
   <data name="AdditionalInfo" xml:space="preserve">
     <value>Informações adicionais: {0}</value>
   </data>
-  <data name="Auth_User_InvalidPassword" xml:space="preserve">
-    <value>Senha inválida.</value>
+  <data name="Auth_User_CannotInsert" xml:space="preserve">
+    <value>Não foi possível inserir o usuário.</value>
   </data>
   <data name="Auth_User_PasswordsNotIdentical" xml:space="preserve">
     <value>As senhas não são conferem. Digite as duas senhas iguais.</value>
@@ -320,5 +320,20 @@
   </data>
   <data name="Dialog_Info_Title" xml:space="preserve">
     <value>Informação</value>
+  </data>
+  <data name="Auth_User_CannotChangePassword" xml:space="preserve">
+    <value>Não foi possível alterar a senha.</value>
+  </data>
+  <data name="Auth_User_UserInsertedMessage" xml:space="preserve">
+    <value>Usuário criado com sucesso.</value>
+  </data>
+  <data name="LoginDisplay_Greetings" xml:space="preserve">
+    <value>Olá, {0}.</value>
+  </data>
+  <data name="LoginDisplay_Login" xml:space="preserve">
+    <value>Entrar</value>
+  </data>
+  <data name="LoginDisplay_Logout" xml:space="preserve">
+    <value>Sair</value>
   </data>
 </root>

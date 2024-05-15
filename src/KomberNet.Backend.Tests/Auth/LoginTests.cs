@@ -48,7 +48,7 @@ namespace KomberNet.Backend.Tests.Auth
         [Description(@"Given an user
                        When he tries to login with an invalid password
                        Then he is prevented to login")]
-        public async Task ShouldPreventAuth_User_InvalidPassword()
+        public async Task ShouldPreventInvalidPassword()
         {
             var fixture = this.GetNewFixture();
 

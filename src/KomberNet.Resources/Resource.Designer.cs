@@ -70,11 +70,20 @@ namespace KomberNet.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid password..
+        ///   Looks up a localized string similar to The password could not be changed..
         /// </summary>
-        public static string Auth_User_InvalidPassword {
+        public static string Auth_User_CannotChangePassword {
             get {
-                return ResourceManager.GetString("Auth_User_InvalidPassword", resourceCulture);
+                return ResourceManager.GetString("Auth_User_CannotChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user could not be inserted..
+        /// </summary>
+        public static string Auth_User_CannotInsert {
+            get {
+                return ResourceManager.GetString("Auth_User_CannotInsert", resourceCulture);
             }
         }
         
@@ -84,6 +93,15 @@ namespace KomberNet.Resources {
         public static string Auth_User_PasswordsNotIdentical {
             get {
                 return ResourceManager.GetString("Auth_User_PasswordsNotIdentical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User created successfully..
+        /// </summary>
+        public static string Auth_User_UserInsertedMessage {
+            get {
+                return ResourceManager.GetString("Auth_User_UserInsertedMessage", resourceCulture);
             }
         }
         
@@ -345,6 +363,33 @@ namespace KomberNet.Resources {
         public static string Login_Password {
             get {
                 return ResourceManager.GetString("Login_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello, {0}..
+        /// </summary>
+        public static string LoginDisplay_Greetings {
+            get {
+                return ResourceManager.GetString("LoginDisplay_Greetings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string LoginDisplay_Login {
+            get {
+                return ResourceManager.GetString("LoginDisplay_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        public static string LoginDisplay_Logout {
+            get {
+                return ResourceManager.GetString("LoginDisplay_Logout", resourceCulture);
             }
         }
         

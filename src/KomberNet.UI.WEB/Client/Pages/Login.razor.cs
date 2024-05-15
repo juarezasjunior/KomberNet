@@ -4,7 +4,9 @@
 
 namespace KomberNet.UI.WEB.Client.Pages
 {
+    using KomberNet.Exceptions;
     using KomberNet.Models.Auth;
+    using KomberNet.Resources;
 
     public partial class Login
     {
@@ -14,18 +16,23 @@ namespace KomberNet.UI.WEB.Client.Pages
 
         private async Task LoginAsync()
         {
-            await this.userService.InsertUserAsync(new UserInsertRequest()
-            {
-                FullName = this.Email,
-                Email = this.Email,
-                Password = this.Password,
-            });
+            var isLogged = true;
 
-            var result = await this.userService.LoginAsync(new LoginRequest()
+            await this.HandleExceptionAsync(
+                async () =>
+                {
+                    await this.userService.LoginAsync(new LoginRequest()
+                    {
+                        Email = this.Email,
+                        Password = this.Password,
+                    });
+                },
+                x => isLogged = false);
+
+            if (isLogged)
             {
-                Email = this.Email,
-                Password = this.Password,
-            });
+                await this.NavigateToPageAsync<Index>();
+            }
         }
 
         private async Task OpenNewUserAsync() => await this.NavigateToPageAsync<NewUser>();

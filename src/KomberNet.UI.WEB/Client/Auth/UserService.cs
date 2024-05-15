@@ -35,27 +35,16 @@ namespace KomberNet.UI.WEB.Client.Auth
         public async Task InsertUserAsync(UserInsertRequest userInsertRequest)
         {
             await this.authAnonymousClient.InsertUserAsync(userInsertRequest);
-
-            // TODO: Redirect to login page
         }
 
-        public async Task<bool> LoginAsync(LoginRequest loginRequest)
+        public async Task LoginAsync(LoginRequest loginRequest)
         {
-            try
-            {
-                var loginResponse = await this.authAnonymousClient.LoginAsync(loginRequest);
+            var loginResponse = await this.authAnonymousClient.LoginAsync(loginRequest);
 
-                await this.localStorage.SetItemAsync(LocalStorageKeys.AuthTokenLocalStorageKey, loginResponse.Token);
-                await this.localStorage.SetItemAsync(LocalStorageKeys.RefreshAuthTokenLocalStorageKey, loginResponse.RefreshToken);
+            await this.localStorage.SetItemAsync(LocalStorageKeys.AuthTokenLocalStorageKey, loginResponse.Token);
+            await this.localStorage.SetItemAsync(LocalStorageKeys.RefreshAuthTokenLocalStorageKey, loginResponse.RefreshToken);
 
-                ((AppAuthenticationStateProvider)this.authenticationStateProvider).NotifyUserAuthentication(loginResponse.Token);
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            ((AppAuthenticationStateProvider)this.authenticationStateProvider).NotifyUserAuthentication(loginResponse.Token);
         }
 
         public async Task LogoutAsync()

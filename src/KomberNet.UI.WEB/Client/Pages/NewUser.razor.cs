@@ -6,6 +6,7 @@ namespace KomberNet.UI.WEB.Client.Pages
 {
     using KomberNet.Exceptions;
     using KomberNet.Models.Auth;
+    using KomberNet.Resources;
     using Microsoft.AspNetCore.Components;
 
     public partial class NewUser
@@ -41,6 +42,7 @@ namespace KomberNet.UI.WEB.Client.Pages
 
             if (userInserted)
             {
+                await this.NotifySuccessAsync(Resource.Auth_User_UserInsertedMessage);
                 await this.NavigateToPageAsync<Login>();
             }
         }

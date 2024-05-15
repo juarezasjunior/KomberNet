@@ -25,14 +25,24 @@
               Looks up a localized string similar to Additional details: {0}.
             </summary>
         </member>
-        <member name="P:KomberNet.Resources.Resource.Auth_User_InvalidPassword">
+        <member name="P:KomberNet.Resources.Resource.Auth_User_CannotChangePassword">
             <summary>
-              Looks up a localized string similar to Invalid password..
+              Looks up a localized string similar to The password could not be changed..
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Auth_User_CannotInsert">
+            <summary>
+              Looks up a localized string similar to The user could not be inserted..
             </summary>
         </member>
         <member name="P:KomberNet.Resources.Resource.Auth_User_PasswordsNotIdentical">
             <summary>
               Looks up a localized string similar to The password and confirm password fields do not match..
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Auth_User_UserInsertedMessage">
+            <summary>
+              Looks up a localized string similar to User created successfully..
             </summary>
         </member>
         <member name="P:KomberNet.Resources.Resource.Button_Add">
@@ -95,6 +105,41 @@
               Looks up a localized string similar to Country.
             </summary>
         </member>
+        <member name="P:KomberNet.Resources.Resource.Dialog_Confirm_Button_No">
+            <summary>
+              Looks up a localized string similar to No.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Dialog_Confirm_Button_Yes">
+            <summary>
+              Looks up a localized string similar to Yes.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Dialog_Confirm_Title">
+            <summary>
+              Looks up a localized string similar to Confirmation.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Dialog_Error_Button_Ok">
+            <summary>
+              Looks up a localized string similar to Ok.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Dialog_Error_Title">
+            <summary>
+              Looks up a localized string similar to Error.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Dialog_Info_Button_Ok">
+            <summary>
+              Looks up a localized string similar to Ok.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.Dialog_Info_Title">
+            <summary>
+              Looks up a localized string similar to Info.
+            </summary>
+        </member>
         <member name="P:KomberNet.Resources.Resource.EntityForm_Tab_General">
             <summary>
               Looks up a localized string similar to General.
@@ -143,6 +188,21 @@
         <member name="P:KomberNet.Resources.Resource.Login_Password">
             <summary>
               Looks up a localized string similar to Password.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.LoginDisplay_Greetings">
+            <summary>
+              Looks up a localized string similar to Hello, {0}..
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.LoginDisplay_Login">
+            <summary>
+              Looks up a localized string similar to Login.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.LoginDisplay_Logout">
+            <summary>
+              Looks up a localized string similar to Logout.
             </summary>
         </member>
         <member name="P:KomberNet.Resources.Resource.NewUser_CreateUser">
