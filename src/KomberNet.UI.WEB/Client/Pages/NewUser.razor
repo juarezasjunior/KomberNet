@@ -1,4 +1,4 @@
-﻿@page "/newuser"
+﻿@page "/NewUser"
 @using KomberNet.UI.WEB.Client.Auth;
 @using KomberNet.Models.Auth;
 
@@ -8,70 +8,45 @@
 
 <PageTitle>@this.Localizer["NewUser_PageTitle"]</PageTitle>
 
-    <RadzenRow JustifyContent="Radzen.JustifyContent.Center">
-        <RadzenColumn SizeLG="4" SizeMD="5">
-            <RadzenCard>
-                <RadzenTemplateForm TItem="NewUser" Data="@this" Submit="async () => await this.CreateUserAsync()">
-                    <RadzenRow>
-                        <RadzenColumn>
-                            <RadzenStack>
+<RadzenRow JustifyContent="Radzen.JustifyContent.Center">
+    <RadzenColumn SizeLG="4" SizeMD="5">
+        <RadzenCard>
+            <RadzenTemplateForm TItem="NewUser" Data="@this" Submit="async () => await this.InsertUserAsync()">
+                <RadzenRow>
+                    <RadzenColumn>
+                        <RadzenStack>
 
-                                <RadzenFormField Text="@this.Localizer["NewUser_FullName"]">
-                                    <RadzenTextBox Name="@nameof(this.FullName)" @bind-Value="FullName" />
-                                    <RadzenRequiredValidator Component="@nameof(this.FullName)" Text="@this.Localizer["Field_Required"]" />
-                                </RadzenFormField>
+                            <RadzenFormField Text="@this.Localizer["NewUser_FullName"]">
+                                <RadzenTextBox Name="@nameof(this.FullName)" @bind-Value="FullName" />
+                                <RadzenRequiredValidator Component="@nameof(this.FullName)" Text="@this.Localizer["Field_Required"]" />
+                            </RadzenFormField>
 
-                                <RadzenFormField Text="@this.Localizer["NewUser_Email"]">
-                                    <RadzenTextBox Name="@nameof(this.Email)" @bind-Value="Email" />
-                                    <RadzenRequiredValidator Component="@nameof(this.Email)" Text="@this.Localizer["Field_Required"]" />
-                                    <RadzenEmailValidator Component="@nameof(this.Email)" Text="@this.Localizer["Field_InvalidEmail"]" />
-                                </RadzenFormField>
+                            <RadzenFormField Text="@this.Localizer["NewUser_Email"]">
+                                <RadzenTextBox Name="@nameof(this.Email)" @bind-Value="Email" />
+                                <RadzenRequiredValidator Component="@nameof(this.Email)" Text="@this.Localizer["Field_Required"]" />
+                                <RadzenEmailValidator Component="@nameof(this.Email)" Text="@this.Localizer["Field_InvalidEmail"]" />
+                            </RadzenFormField>
 
-                                <RadzenFormField Text="@this.Localizer["NewUser_Password"]">
-                                    <RadzenPassword Name="@nameof(this.Password)" @bind-Value="Password" />
-                                    <RadzenRequiredValidator Component="@nameof(this.Password)" Text="@this.Localizer["Field_Required"]" />
-                                </RadzenFormField>
+                            <RadzenFormField Text="@this.Localizer["NewUser_Password"]">
+                                <RadzenPassword Name="@nameof(this.Password)" @bind-Value="Password" />
+                                <RadzenRequiredValidator Component="@nameof(this.Password)" Text="@this.Localizer["Field_Required"]" />
+                            </RadzenFormField>
 
-                                <RadzenFormField Text="@this.Localizer["NewUser_RepeatPassword"]">
-                                    <RadzenPassword Name="@nameof(this.RepeatPassword)" @bind-Value="RepeatPassword" />
-                                    <RadzenRequiredValidator Component="@nameof(this.RepeatPassword)" Text="@this.Localizer["Field_Required"]" />
-                                </RadzenFormField>
+                            <RadzenFormField Text="@this.Localizer["NewUser_RepeatPassword"]">
+                                <RadzenPassword Name="@nameof(this.RepeatPassword)" @bind-Value="RepeatPassword" />
+                                <RadzenRequiredValidator Component="@nameof(this.RepeatPassword)" Text="@this.Localizer["Field_Required"]" />
+                            </RadzenFormField>
 
-                                <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="@this.Localizer["NewUser_CreateUser"]" />
+                            <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="@this.Localizer["NewUser_CreateUser"]" />
 
-                                <RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Center">
-                                    <RadzenButton Text="@this.Localizer["NewUser_LoginExistingUser"]" />
-                                </RadzenStack>
-
+                            <RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Center">
+                                <RadzenButton Text="@this.Localizer["NewUser_LoginExistingUser"]" Click="() => this.NavigateToPageAsync<Login>()" />
                             </RadzenStack>
-                        </RadzenColumn>
-                    </RadzenRow>
-                </RadzenTemplateForm>
-            </RadzenCard>
-        </RadzenColumn>
-    </RadzenRow>
 
-    @code {
-    private string FullName { get; set; }
-
-    private string Email { get; set; }
-
-    private string Password { get; set; }
-
-    private string RepeatPassword { get; set; }
-
-    private async Task CreateUserAsync()
-    {
-        if (this.Password != this.RepeatPassword)
-        {
-            throw new NotImplementedException();
-        }
-
-        await this.userService.InsertUserAsync(new UserInsertRequest()
-            {
-                FullName = this.FullName,
-                Email = this.Email,
-                Password = this.Password,
-            });
-    }
-}
+                        </RadzenStack>
+                    </RadzenColumn>
+                </RadzenRow>
+            </RadzenTemplateForm>
+        </RadzenCard>
+    </RadzenColumn>
+</RadzenRow>

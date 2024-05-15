@@ -9,7 +9,7 @@ namespace KomberNet.UI.WEB.Client.Auth
 
     public interface IUserService : IScopedService
     {
-        public Task<bool> LoginAsync(LoginRequest loginRequest);
+        public Task LoginAsync(LoginRequest loginRequest);
 
         public Task LogoutAsync();
 

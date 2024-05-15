@@ -11,6 +11,7 @@ namespace KomberNet.Backend.Tests.Auth
     using KomberNet.Models.Auth;
     using KomberNet.Services.Auth;
     using KomberNet.Tests;
+    using KomberNet.Tests.Extensions;
     using Microsoft.Extensions.Caching.Distributed;
     using Moq;
     using NUnit.Framework;
@@ -38,7 +39,7 @@ namespace KomberNet.Backend.Tests.Auth
             var loginService = fixture.Create<LoginService>();
 
             await loginService.LoginAsync(loginRequest, CancellationToken.None)
-                .ShouldThrowAsync(typeof(KomberNetSecurityException));
+                .ShouldThrowKomberNetExceptionAsync(ExceptionCode.SecurityValidation);
 
             userManagerMock.VerifyAll();
         }
@@ -65,7 +66,7 @@ namespace KomberNet.Backend.Tests.Auth
             var loginService = fixture.Create<LoginService>();
 
             await loginService.LoginAsync(loginRequest, CancellationToken.None)
-                .ShouldThrowAsync(typeof(KomberNetSecurityException));
+                .ShouldThrowKomberNetExceptionAsync(ExceptionCode.SecurityValidation);
 
             userManagerMock.VerifyAll();
         }

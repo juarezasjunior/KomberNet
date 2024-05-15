@@ -27,7 +27,7 @@ namespace KomberNet.Services.Auth
         {
             if (principal == null)
             {
-                throw new KomberNetSecurityException();
+                throw new KomberNetException(ExceptionCode.SecurityValidation);
             }
 
             this.CurrentUserEmail = principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
@@ -41,7 +41,7 @@ namespace KomberNet.Services.Auth
                 || string.IsNullOrEmpty(this.CurrentUserFullName)
                 || string.IsNullOrEmpty(this.CurrentSessionId))
             {
-                throw new KomberNetSecurityException();
+                throw new KomberNetException(ExceptionCode.SecurityValidation);
             }
         }
     }

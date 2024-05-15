@@ -11,8 +11,10 @@ namespace KomberNet.UI.WEB.Framework.Services
     using System.Threading.Tasks;
     using KomberNet.Exceptions;
 
-    public interface IAPIClientService : IScopedService
+    public interface IExceptionMessageService : IScopedService
     {
-        public Task<TResult> ExecuteHandlingErrorAsync<TResult>(Func<Task<TResult>> operation, Action<KomberNetException> exceptionHandler);
+        public Task<TResult> GetResultOrHandleExceptionAsync<TResult>(Func<Task<TResult>> operation, Action<KomberNetException> exceptionHandler = null, bool showMessage = true);
+
+        public Task HandleExceptionAsync(Func<Task> operation, Action<KomberNetException> exceptionHandler = null, bool showMessage = true);
     }
 }

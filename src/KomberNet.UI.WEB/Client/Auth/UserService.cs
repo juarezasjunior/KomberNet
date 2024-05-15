@@ -6,6 +6,7 @@ namespace KomberNet.UI.WEB.Client.Auth
 {
     using System.Net.Http.Headers;
     using Blazored.LocalStorage;
+    using KomberNet.Exceptions;
     using KomberNet.Models.Auth;
     using KomberNet.UI.WEB.APIClient.Auth;
     using KomberNet.UI.WEB.Client.Helpers;
@@ -33,26 +34,17 @@ namespace KomberNet.UI.WEB.Client.Auth
 
         public async Task InsertUserAsync(UserInsertRequest userInsertRequest)
         {
-            var response = await this.authAnonymousClient.InsertUserAsync(userInsertRequest);
+            await this.authAnonymousClient.InsertUserAsync(userInsertRequest);
         }
 
-        public async Task<bool> LoginAsync(LoginRequest loginRequest)
+        public async Task LoginAsync(LoginRequest loginRequest)
         {
-            try
-            {
-                var loginResponse = await this.authAnonymousClient.LoginAsync(loginRequest);
+            var loginResponse = await this.authAnonymousClient.LoginAsync(loginRequest);
 
-                await this.localStorage.SetItemAsync(LocalStorageKeys.AuthTokenLocalStorageKey, loginResponse.Token);
-                await this.localStorage.SetItemAsync(LocalStorageKeys.RefreshAuthTokenLocalStorageKey, loginResponse.RefreshToken);
+            await this.localStorage.SetItemAsync(LocalStorageKeys.AuthTokenLocalStorageKey, loginResponse.Token);
+            await this.localStorage.SetItemAsync(LocalStorageKeys.RefreshAuthTokenLocalStorageKey, loginResponse.RefreshToken);
 
-                ((AppAuthenticationStateProvider)this.authenticationStateProvider).NotifyUserAuthentication(loginResponse.Token);
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            ((AppAuthenticationStateProvider)this.authenticationStateProvider).NotifyUserAuthentication(loginResponse.Token);
         }
 
         public async Task LogoutAsync()

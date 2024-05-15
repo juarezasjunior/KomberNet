@@ -9,6 +9,7 @@ namespace KomberNet.Services.Auth
     using KomberNet.Exceptions;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Models.Auth;
+    using Microsoft.AspNetCore.Identity;
 
     public class UserHandlerService : BaseService, IUserHandlerService
     {
@@ -34,8 +35,8 @@ namespace KomberNet.Services.Auth
 
             if (!result.Succeeded)
             {
-                var errors = string.Join(", ", result.Errors.Select(x => x.Description));
-                throw new KomberNetException(exceptionCode: ExceptionCode.InvalidPassword, additionalInfo: errors);
+                var errors = string.Join(" ", result.Errors.Select(x => x.Description));
+                throw new KomberNetException(exceptionCode: ExceptionCode.Auth_User_CannotInsert, additionalInfo: errors);
             }
 
             await this.userManager.AddToRoleAsync(user, nameof(APIRoles.User));

@@ -1,4 +1,4 @@
-﻿@page "/login"
+﻿@page "/Login"
 @using KomberNet.UI.WEB.Client.Auth;
 @using KomberNet.Models.Auth;
 
@@ -30,7 +30,7 @@
                                 <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="@this.Localizer["Login_Button"]" />
 
                                 <RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Center">
-                                    <RadzenButton Text="@this.Localizer["Login_New"]" Click="() => this.OpenNewUser()" />
+                                <RadzenButton Text="@this.Localizer["Login_New"]" Click="() => this.OpenNewUserAsync()" />
                                     <RadzenButton Text="@this.Localizer["Login_ForgotPassword_Button"]" />
                                 </RadzenStack>
 
@@ -41,32 +41,3 @@
             </RadzenCard>
         </RadzenColumn>
     </RadzenRow>
-
-    @code {
-    private string FullName { get; set; }
-
-    private string Email { get; set; }
-
-    private string Password { get; set; }
-
-    private async Task LoginAsync()
-    {
-        await this.userService.InsertUserAsync(new UserInsertRequest()
-            {
-                FullName = this.Email,
-                Email = this.Email,
-                Password = this.Password,
-            });
-
-        var result = await this.userService.LoginAsync(new LoginRequest()
-            {
-                Email = this.Email,
-                Password = this.Password,
-            });
-    }
-
-    private void OpenNewUser()
-    {
-        this.NavigationManager.NavigateTo(nameof(NewUser));
-    }
-}

@@ -4,6 +4,9 @@
 	<Enum Namespace="KomberNet.Exceptions" Name="ExceptionCode" AutoGenSequenceNumber="true">
 		<EnumValue Name="Others"/>
 		<EnumValue Name="SecurityValidation"/>
-		<EnumValue Name="InvalidPassword"/>
+		
+		<EnumValue Name="Auth_User_PasswordsNotIdentical"/>
+		<EnumValue Name="Auth_User_CannotInsert"/>
+		<EnumValue Name="Auth_User_CannotChangePassword"/>
 	</Enum>
 </CodeGenerator>

@@ -1,11 +1,9 @@
 ﻿@inject IJSRuntime JS
 @inject NavigationManager Nav
 
-<p>
-    <RadzenDropDown TValue="string"
-                    Data=@SupportedThemes
-                    @bind-Value=Theme />
-</p>
+<RadzenDropDown TValue="string"
+                Data=@SupportedThemes
+                @bind-Value=Theme />
 
 @code {
     public static string[] SupportedThemes => new[]

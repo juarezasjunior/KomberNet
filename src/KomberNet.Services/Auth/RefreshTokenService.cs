@@ -44,7 +44,7 @@ namespace KomberNet.Services.Auth
 
             if (!string.IsNullOrEmpty(userHasLogoutAllSessions))
             {
-                throw new KomberNetSecurityException();
+                throw new KomberNetException(ExceptionCode.SecurityValidation);
             }
 
             var sessionId = principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.SessionId).Value;
@@ -52,7 +52,7 @@ namespace KomberNet.Services.Auth
 
             if (user == null)
             {
-                throw new KomberNetSecurityException();
+                throw new KomberNetException(ExceptionCode.SecurityValidation);
             }
 
             var refreshToken = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.RefreshTokenKey, user.Email, sessionId));
@@ -62,17 +62,17 @@ namespace KomberNet.Services.Auth
                 || string.IsNullOrEmpty(refreshTokenExpiration)
                 || request.RefreshToken != refreshToken)
             {
-                throw new KomberNetSecurityException();
+                throw new KomberNetException(ExceptionCode.SecurityValidation);
             }
 
             if (!DateTime.TryParse(refreshTokenExpiration, out var refreshTokenExpirationDateTime))
             {
-                throw new KomberNetSecurityException();
+                throw new KomberNetException(ExceptionCode.SecurityValidation);
             }
 
             if (refreshTokenExpirationDateTime < DateTime.Now)
             {
-                throw new KomberNetSecurityException();
+                throw new KomberNetException(ExceptionCode.SecurityValidation);
             }
 
             var result = await this.tokenService.GenerateTokenAsync(user, cancellationToken);

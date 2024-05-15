@@ -3,13 +3,11 @@
 @inject IJSRuntime JS
 @inject NavigationManager Nav
 
-<p>
-    <RadzenLabel Text="Select your locale:" />
-    <RadzenDropDown TValue="CultureInfo"
-                    Data=@SupportedCultures
-                    TextProperty="DisplayName"
-                    @bind-Value=Culture />
-</p>
+<RadzenLabel Text="Select your locale:" />
+<RadzenDropDown TValue="CultureInfo"
+                Data=@SupportedCultures
+                TextProperty="DisplayName"
+                @bind-Value=Culture />
 
 @code {
     private CultureInfo[] SupportedCultures => new[]

@@ -32,7 +32,7 @@ namespace KomberNet.Services.Auth
 
             if (user == null)
             {
-                throw new KomberNetSecurityException();
+                throw new KomberNetException(ExceptionCode.SecurityValidation);
             }
 
             var result = await this.userManager.ChangePasswordAsync(
@@ -42,8 +42,8 @@ namespace KomberNet.Services.Auth
 
             if (!result.Succeeded)
             {
-                var errors = string.Join(", ", result.Errors.Select(x => x.Description));
-                throw new KomberNetException(exceptionCode: ExceptionCode.InvalidPassword, additionalInfo: errors);
+                var errors = string.Join(" ", result.Errors.Select(x => x.Description));
+                throw new KomberNetException(exceptionCode: ExceptionCode.Auth_User_CannotChangePassword, additionalInfo: errors);
             }
 
             return new ChangePasswordResponse();

@@ -1,18 +1,37 @@
-﻿<AuthorizeView>
+﻿@using KomberNet.UI.WEB.Client.Auth
+@using KomberNet.UI.WEB.Client.Pages
+@using KomberNet.UI.WEB.Framework.Services
+
+@inject IUserService userService;
+@inject IExceptionMessageService exceptionMessageService;
+@inject IInternalNavigationService internalNavigationService;
+@inject IStringLocalizer<Resource> localizer;
+
+<AuthorizeView>
     <Authorized>
-        Hello, @context.User.Identity?.Name!
-        <button class="nav-link btn btn-link" @onclick="BeginSignOut">Log out</button>
+        @string.Format(this.localizer["LoginDisplay_Greetings"], context.User?.Identity?.Name)
+        <button class="nav-link btn btn-link" @onclick="SignOutAsync">@this.localizer["LoginDisplay_Logout"]</button>
     </Authorized>
     <NotAuthorized>
-        <a href="login">Log in</a>
+        <a href="login">@this.localizer["LoginDisplay_Login"]</a>
     </NotAuthorized>
 </AuthorizeView>
 
 @code {
-    private async Task BeginSignOut(MouseEventArgs args)
+    private async Task SignOutAsync()
     {
-        await Task.CompletedTask;
-        //await SignOutManager.SetSignOutState();
-        //Navigation.NavigateTo("authentication/logout");
+        var isLogout = true;
+
+        await this.exceptionMessageService.HandleExceptionAsync(
+            async () =>
+            {
+                await this.userService.LogoutAsync();
+            },
+            x => isLogout = false);
+
+        if (isLogout)
+        {
+            await this.internalNavigationService.NavigateToPageAsync<Login>();
+        }
     }
 }
