@@ -28,10 +28,10 @@ namespace KomberNet.UI.WEB.Framework.Services
             this.dialogService = dialogService;
         }
 
-        public Task NavigateToPageAsync<TPage>(Dictionary<string, object> routeParameters = null, Dictionary<string, object> queryParameters = null)
+        public Task NavigateToPageAsync<TPage>(Dictionary<string, object> routeParameters = null, Dictionary<string, object> queryParameters = null, bool forceLoad = false)
             where TPage : BasePage
         {
-            this.navigationManager.NavigateTo($"{typeof(TPage).Name}{this.GetParameters(routeParameters, queryParameters)}");
+            this.navigationManager.NavigateTo($"{typeof(TPage).Name}{this.GetParameters(routeParameters, queryParameters)}", forceLoad: forceLoad);
 
             return Task.CompletedTask;
         }

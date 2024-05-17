@@ -105,6 +105,11 @@
               Looks up a localized string similar to Country.
             </summary>
         </member>
+        <member name="P:KomberNet.Resources.Resource.CultureSelector_Label">
+            <summary>
+              Looks up a localized string similar to Language.
+            </summary>
+        </member>
         <member name="P:KomberNet.Resources.Resource.Dialog_Confirm_Button_No">
             <summary>
               Looks up a localized string similar to No.
@@ -273,6 +278,16 @@
         <member name="P:KomberNet.Resources.Resource.Search_TakePlaceholder">
             <summary>
               Looks up a localized string similar to Type a maximum quantity of results or leave it empty to show all results.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.ThemeSelector_Label">
+            <summary>
+              Looks up a localized string similar to Theme.
+            </summary>
+        </member>
+        <member name="P:KomberNet.Resources.Resource.UnhandledExceptionMessage">
+            <summary>
+              Looks up a localized string similar to Unhandled exception..
             </summary>
         </member>
     </members>

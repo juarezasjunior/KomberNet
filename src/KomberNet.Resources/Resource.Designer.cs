@@ -214,6 +214,15 @@ namespace KomberNet.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string CultureSelector_Label {
+            get {
+                return ResourceManager.GetString("CultureSelector_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string Dialog_Confirm_Button_No {
@@ -516,6 +525,24 @@ namespace KomberNet.Resources {
         public static string Search_TakePlaceholder {
             get {
                 return ResourceManager.GetString("Search_TakePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        public static string ThemeSelector_Label {
+            get {
+                return ResourceManager.GetString("ThemeSelector_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unhandled exception..
+        /// </summary>
+        public static string UnhandledExceptionMessage {
+            get {
+                return ResourceManager.GetString("UnhandledExceptionMessage", resourceCulture);
             }
         }
     }

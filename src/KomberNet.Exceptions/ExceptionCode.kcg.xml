@@ -5,8 +5,8 @@
 		<EnumValue Name="Others"/>
 		<EnumValue Name="SecurityValidation"/>
 		
-		<EnumValue Name="Auth_User_PasswordsNotIdentical"/>
-		<EnumValue Name="Auth_User_CannotInsert"/>
 		<EnumValue Name="Auth_User_CannotChangePassword"/>
+		<EnumValue Name="Auth_User_CannotInsert"/>
+		<EnumValue Name="Auth_User_PasswordsNotIdentical"/>
 	</Enum>
 </CodeGenerator>

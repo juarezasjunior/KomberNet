@@ -336,4 +336,13 @@
   <data name="LoginDisplay_Logout" xml:space="preserve">
     <value>Sair</value>
   </data>
+  <data name="CultureSelector_Label" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="ThemeSelector_Label" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="UnhandledExceptionMessage" xml:space="preserve">
+    <value>Ocorreu uma exceção não tratada.</value>
+  </data>
 </root>

@@ -1,16 +1,19 @@
-﻿@using KomberNet.UI.WEB.Client.Auth
+﻿@using KomberNet.Models.Auth
+@using KomberNet.UI.WEB.Client.Auth
 @using KomberNet.UI.WEB.Client.Pages
 @using KomberNet.UI.WEB.Framework.Services
 
 @inject IUserService userService;
 @inject IExceptionMessageService exceptionMessageService;
-@inject IInternalNavigationService internalNavigationService;
 @inject IStringLocalizer<Resource> localizer;
 
 <AuthorizeView>
     <Authorized>
-        @string.Format(this.localizer["LoginDisplay_Greetings"], context.User?.Identity?.Name)
+
+        <RadzenLabel Text="@string.Format(this.localizer["LoginDisplay_Greetings"], context.User?.Claims.FirstOrDefault(x => x.Type.Contains(nameof(KomberNetClaims.FullName)))?.Value)" />
+
         <button class="nav-link btn btn-link" @onclick="SignOutAsync">@this.localizer["LoginDisplay_Logout"]</button>
+
     </Authorized>
     <NotAuthorized>
         <a href="login">@this.localizer["LoginDisplay_Login"]</a>
@@ -20,18 +23,10 @@
 @code {
     private async Task SignOutAsync()
     {
-        var isLogout = true;
-
         await this.exceptionMessageService.HandleExceptionAsync(
             async () =>
             {
                 await this.userService.LogoutAsync();
-            },
-            x => isLogout = false);
-
-        if (isLogout)
-        {
-            await this.internalNavigationService.NavigateToPageAsync<Login>();
-        }
+            });
     }
 }

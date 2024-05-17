@@ -9,11 +9,11 @@
 
         <div class="row align-items-center p-3 border-bottom">
             <div class="col">
-                <div class="d-flex justify-content-end align-items-center">
-                    <div class="me-3">
+                <div class="d-flex flex-column flex-sm-row justify-content-end align-items-center">
+                    <div class="me-sm-3 mb-2 mb-sm-0">
                         <ThemeSelector />
                     </div>
-                    <div class="me-3">
+                    <div class="me-sm-3 mb-2 mb-sm-0">
                         <CultureSelector />
                     </div>
                     <LoginDisplay />
@@ -21,10 +21,10 @@
             </div>
         </div>
 
+        <hr />
+
         <RadzenDialog />
         <RadzenNotification />
-
-        <hr />
 
         <article class="content px-4">
             @Body
