@@ -6,28 +6,51 @@ namespace KomberNet.UI.WEB.Client.Auth
 {
     using System.Net.Http.Headers;
     using Blazored.LocalStorage;
+    using KomberNet.Exceptions;
     using KomberNet.Models.Auth;
     using KomberNet.UI.WEB.APIClient.Auth;
     using KomberNet.UI.WEB.Client.Helpers;
+    using KomberNet.UI.WEB.Client.Pages;
+    using KomberNet.UI.WEB.Framework.Services;
 
     public class AuthService : IAuthService
     {
         private readonly IAuthAnonymousClient authAnonymousClient;
         private readonly ILocalStorageService localStorage;
+        private readonly IInternalNavigationService internalNavigationService;
+        private readonly IInternalLogoutService internalLogoutService;
 
         public AuthService(
             IAuthAnonymousClient authAnonymousClient,
-            ILocalStorageService localStorage)
+            ILocalStorageService localStorage,
+            IInternalNavigationService internalNavigationService,
+            IInternalLogoutService internalLogoutService)
         {
             this.authAnonymousClient = authAnonymousClient;
             this.localStorage = localStorage;
+            this.internalNavigationService = internalNavigationService;
+            this.internalLogoutService = internalLogoutService;
         }
 
         public async Task<AuthenticationHeaderValue> EnsureAuthenticationAsync(string urlPath)
         {
-            var token = await this.GetValidTokenAsync(urlPath);
+            try
+            {
+                var token = await this.GetValidTokenAsync(urlPath);
 
-            return new AuthenticationHeaderValue("Bearer", token);
+                return new AuthenticationHeaderValue("Bearer", token);
+            }
+            catch
+            {
+                // Since we could have an exception when trying to get or refresh the token, we need to logout the user
+                // The regular way of logging out is to call the logout endpoint to invalidate the refresh token
+                // But, in this case, we cannot do that, because we have an exception and the user could not have a valid token anymore
+                // For this reason, we just call the internal logout service
+                await this.internalLogoutService.LogoutInternallyAsync();
+            }
+
+            // We still throw an exception to avoid the user to continue with the request
+            throw new Exception();
         }
 
         private async Task<string> GetValidTokenAsync(string urlPath)

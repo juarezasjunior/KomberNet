@@ -7,7 +7,6 @@ namespace KomberNet.UI.WEB.Client.Pages
     using KomberNet.Exceptions;
     using KomberNet.Models.Auth;
     using KomberNet.Resources;
-    using Microsoft.AspNetCore.Components;
 
     public partial class NewUser
     {
@@ -38,7 +37,12 @@ namespace KomberNet.UI.WEB.Client.Pages
                         Password = this.Password,
                     });
                 },
-                x => userInserted = false);
+                exception =>
+                {
+                    userInserted = false;
+
+                    return Task.FromResult(false);
+                });
 
             if (userInserted)
             {

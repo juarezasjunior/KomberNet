@@ -4,5 +4,24 @@
         <name>KomberNet.UI.WEB.Framework</name>
     </assembly>
     <members>
+        <member name="M:KomberNet.UI.WEB.Framework.Services.IExceptionMessageService.GetResultOrHandleExceptionAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Func{System.Exception,System.Threading.Tasks.Task{System.Boolean}},System.Boolean)">
+            <summary>
+            It's going to try some operation that returns a result and if it fails, it's going to handle the exception.
+            </summary>
+            <typeparam name="TResult">The type of the result awaited.</typeparam>
+            <param name="operation">Operation that should be tried.</param>
+            <param name="exceptionHandler">In case of handle some exception. You should return if the operation was handled or not. When it's handled, the exception message will not be displayed.</param>
+            <param name="showMessage">Should show the message or not.</param>
+            <returns>The awaited result or null if it fails.</returns>
+        </member>
+        <member name="M:KomberNet.UI.WEB.Framework.Services.IExceptionMessageService.HandleExceptionAsync(System.Func{System.Threading.Tasks.Task},System.Func{System.Exception,System.Threading.Tasks.Task{System.Boolean}},System.Boolean)">
+            <summary>
+            It's going to try some operation and if it fails, it's going to handle the exception.
+            </summary>
+            <param name="operation">Operation that should be tried.</param>
+            <param name="exceptionHandler">In case of handle some exception. You should return if the operation was handled or not. When it's handled, the exception message will not be displayed.</param>
+            <param name="showMessage">Should show the message or not.</param>
+            <returns>Task.</returns>
+        </member>
     </members>
 </doc>

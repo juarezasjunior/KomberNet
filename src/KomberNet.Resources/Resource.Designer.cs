@@ -88,6 +88,15 @@ namespace KomberNet.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The user and the password is invalid or the user doesn&apos;t exist..
+        /// </summary>
+        public static string Auth_User_InvalidLogin {
+            get {
+                return ResourceManager.GetString("Auth_User_InvalidLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The password and confirm password fields do not match..
         /// </summary>
         public static string Auth_User_PasswordsNotIdentical {
@@ -210,6 +219,15 @@ namespace KomberNet.Resources {
         public static string Country_PageTitle {
             get {
                 return ResourceManager.GetString("Country_PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string CultureSelector_Label {
+            get {
+                return ResourceManager.GetString("CultureSelector_Label", resourceCulture);
             }
         }
         
@@ -516,6 +534,24 @@ namespace KomberNet.Resources {
         public static string Search_TakePlaceholder {
             get {
                 return ResourceManager.GetString("Search_TakePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        public static string ThemeSelector_Label {
+            get {
+                return ResourceManager.GetString("ThemeSelector_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unhandled exception..
+        /// </summary>
+        public static string UnhandledExceptionMessage {
+            get {
+                return ResourceManager.GetString("UnhandledExceptionMessage", resourceCulture);
             }
         }
     }

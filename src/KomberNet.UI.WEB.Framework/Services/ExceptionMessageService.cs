@@ -14,18 +14,14 @@ namespace KomberNet.UI.WEB.Framework.Services
 
     public class ExceptionMessageService : IExceptionMessageService
     {
-        private readonly NotificationService notificationService;
         private readonly IMessageService messageService;
 
-        public ExceptionMessageService(
-            NotificationService notificationService,
-            IMessageService messageService)
+        public ExceptionMessageService(IMessageService messageService)
         {
-            this.notificationService = notificationService;
             this.messageService = messageService;
         }
 
-        public async Task<TResult> GetResultOrHandleExceptionAsync<TResult>(Func<Task<TResult>> operation, Action<KomberNetException> exceptionHandler = null, bool showMessage = true)
+        public async Task<TResult> GetResultOrHandleExceptionAsync<TResult>(Func<Task<TResult>> operation, Func<Exception, Task<bool>> exceptionHandler = null, bool showMessage = true)
         {
             try
             {
@@ -33,56 +29,55 @@ namespace KomberNet.UI.WEB.Framework.Services
 
                 return result;
             }
-            catch (ApiException exception)
+            catch (Exception exception)
             {
-                this.HandleApiExceptionAsync(exceptionHandler, showMessage, exception);
+                await this.HandleExceptionAsync(exceptionHandler, showMessage, exception);
             }
 
             return default;
         }
 
-        public async Task HandleExceptionAsync(Func<Task> operation, Action<KomberNetException> exceptionHandler = null, bool showMessage = true)
+        public async Task HandleExceptionAsync(Func<Task> operation, Func<Exception, Task<bool>> exceptionHandler = null, bool showMessage = true)
         {
             try
             {
                 await operation?.Invoke();
             }
-            catch (ApiException exception)
+            catch (Exception exception)
             {
-                await this.HandleApiExceptionAsync(exceptionHandler, showMessage, exception);
-            }
-            catch (KomberNetException exception)
-            {
-                await this.HandleKomberNetExceptionAsync(exceptionHandler, showMessage, exception);
+                await this.HandleExceptionAsync(exceptionHandler, showMessage, exception);
             }
         }
 
-        private async Task HandleApiExceptionAsync(Action<KomberNetException> exceptionHandler, bool showMessage, ApiException exception)
+        private async Task HandleExceptionAsync(Func<Exception, Task<bool>> exceptionHandler, bool showMessage, Exception exception)
         {
-            if (!string.IsNullOrEmpty(exception.Content))
+            var komberNetException = exception as KomberNetException;
+
+            if (exception is ApiException apiException && !string.IsNullOrEmpty(apiException.Content))
             {
-                var komberNetException = JsonSerializer.Deserialize<KomberNetException>(exception.Content);
-
-                await this.HandleKomberNetExceptionAsync(exceptionHandler, showMessage, komberNetException);
-            }
-        }
-
-        private async Task HandleKomberNetExceptionAsync(Action<KomberNetException> exceptionHandler, bool showMessage, KomberNetException exception)
-        {
-            exceptionHandler?.Invoke(exception);
-
-            if (showMessage)
-            {
-                await ShowExceptionMessageAsync(exception.ExceptionCode, exception.AdditionalInfo);
+                komberNetException = JsonSerializer.Deserialize<KomberNetException>(apiException.Content);
             }
 
-            async Task ShowExceptionMessageAsync(ExceptionCode exceptionCode, string additionalInfo)
+            var wasHandled = exceptionHandler is not null
+                ? await exceptionHandler.Invoke(komberNetException ?? exception)
+                : false;
+
+            if (!wasHandled && showMessage)
             {
-                var resourceName = exceptionCode.ToString();
-                var resourceValue = Resource.ResourceManager.GetString(resourceName);
+                if (komberNetException is not null)
+                {
+                    var exceptionMessage = Resource.ResourceManager.GetString(komberNetException.ExceptionCode.ToString());
 
-                var message = $"{resourceValue}";
+                    await ShowExceptionMessageAsync(exceptionMessage, komberNetException.AdditionalInfo);
 
+                    return;
+                }
+
+                await ShowExceptionMessageAsync(Resource.ResourceManager.GetString("UnhandledExceptionMessage"), exception.Message);
+            }
+
+            async Task ShowExceptionMessageAsync(string message, string additionalInfo)
+            {
                 if (!string.IsNullOrEmpty(additionalInfo))
                 {
                     message += $" {string.Format(Resource.AdditionalInfo, additionalInfo)}";

@@ -39,7 +39,7 @@ namespace KomberNet.Backend.Tests.Auth
             var loginService = fixture.Create<LoginService>();
 
             await loginService.LoginAsync(loginRequest, CancellationToken.None)
-                .ShouldThrowKomberNetExceptionAsync(ExceptionCode.SecurityValidation);
+                .ShouldThrowKomberNetExceptionAsync(ExceptionCode.Auth_User_InvalidLogin);
 
             userManagerMock.VerifyAll();
         }
@@ -66,7 +66,7 @@ namespace KomberNet.Backend.Tests.Auth
             var loginService = fixture.Create<LoginService>();
 
             await loginService.LoginAsync(loginRequest, CancellationToken.None)
-                .ShouldThrowKomberNetExceptionAsync(ExceptionCode.SecurityValidation);
+                .ShouldThrowKomberNetExceptionAsync(ExceptionCode.Auth_User_InvalidLogin);
 
             userManagerMock.VerifyAll();
         }

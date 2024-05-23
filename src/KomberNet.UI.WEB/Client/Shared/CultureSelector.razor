@@ -1,9 +1,10 @@
 ﻿@using System.Globalization
 
-@inject IJSRuntime JS
-@inject NavigationManager Nav
+@inject IJSRuntime jsRuntime
+@inject NavigationManager navigationManager
+@inject IStringLocalizer<Resource> localizer
 
-<RadzenLabel Text="Select your locale:" />
+<RadzenLabel Text="@this.localizer["CultureSelector_Label"]" />
 <RadzenDropDown TValue="CultureInfo"
                 Data=@SupportedCultures
                 TextProperty="DisplayName"
@@ -23,10 +24,10 @@
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var js = (IJSInProcessRuntime)JS;
+                var js = (IJSInProcessRuntime)jsRuntime;
                 js.InvokeVoid("blazorCulture.set", value.Name);
 
-                Nav.NavigateTo(Nav.Uri, forceLoad: true);
+                navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
             }
         }
     }

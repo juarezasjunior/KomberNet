@@ -4,13 +4,15 @@
 
 namespace KomberNet.UI.WEB.Client.Handlers
 {
+    using System.Net;
     using KomberNet.UI.WEB.Client.Auth;
 
     public class AuthMessageHandler : MessageHandler
     {
         private readonly IAuthService authService;
 
-        public AuthMessageHandler(IAuthService authService)
+        public AuthMessageHandler(
+            IAuthService authService)
         {
             this.authService = authService;
         }

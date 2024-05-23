@@ -126,6 +126,9 @@
   <data name="Auth_User_CannotInsert" xml:space="preserve">
     <value>The user could not be inserted.</value>
   </data>
+  <data name="Auth_User_InvalidLogin" xml:space="preserve">
+    <value>The user and the password is invalid or the user doesn't exist.</value>
+  </data>
   <data name="Auth_User_PasswordsNotIdentical" xml:space="preserve">
     <value>The password and confirm password fields do not match.</value>
   </data>
@@ -167,6 +170,9 @@
   </data>
   <data name="Country_PageTitle" xml:space="preserve">
     <value>Country</value>
+  </data>
+  <data name="CultureSelector_Label" xml:space="preserve">
+    <value>Language</value>
   </data>
   <data name="Dialog_Confirm_Button_No" xml:space="preserve">
     <value>No</value>
@@ -269,5 +275,11 @@
   </data>
   <data name="Search_TakePlaceholder" xml:space="preserve">
     <value>Type a maximum quantity of results or leave it empty to show all results</value>
+  </data>
+  <data name="ThemeSelector_Label" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="UnhandledExceptionMessage" xml:space="preserve">
+    <value>Unhandled exception.</value>
   </data>
 </root>

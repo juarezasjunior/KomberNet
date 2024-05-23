@@ -1,6 +1,7 @@
-﻿@inject IJSRuntime JS
-@inject NavigationManager Nav
+﻿@inject IJSRuntime jsRuntime
+@inject IStringLocalizer<Resource> localizer
 
+<RadzenLabel Text="@this.localizer["ThemeSelector_Label"]" />
 <RadzenDropDown TValue="string"
                 Data=@SupportedThemes
                 @bind-Value=Theme />
@@ -16,12 +17,12 @@
     {
         get
         {
-            var js = (IJSInProcessRuntime)JS;
+            var js = (IJSInProcessRuntime)jsRuntime;
             return js.Invoke<string>("theme.get") ?? SupportedThemes.FirstOrDefault();
         }
         set
         {
-            var js = (IJSInProcessRuntime)JS;
+            var js = (IJSInProcessRuntime)jsRuntime;
             js.InvokeVoid("theme.set", value);
             js.InvokeVoid("setTheme", value);
         }

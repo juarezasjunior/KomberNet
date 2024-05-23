@@ -27,7 +27,12 @@ namespace KomberNet.UI.WEB.Client.Pages
                         Password = this.Password,
                     });
                 },
-                x => isLogged = false);
+                exception =>
+                {
+                    isLogged = false;
+
+                    return Task.FromResult(false);
+                });
 
             if (isLogged)
             {
