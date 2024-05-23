@@ -88,6 +88,15 @@ namespace KomberNet.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The user and the password is invalid or the user doesn&apos;t exist..
+        /// </summary>
+        public static string Auth_User_InvalidLogin {
+            get {
+                return ResourceManager.GetString("Auth_User_InvalidLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The password and confirm password fields do not match..
         /// </summary>
         public static string Auth_User_PasswordsNotIdentical {

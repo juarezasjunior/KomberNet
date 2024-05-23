@@ -126,6 +126,9 @@
   <data name="Auth_User_CannotInsert" xml:space="preserve">
     <value>The user could not be inserted.</value>
   </data>
+  <data name="Auth_User_InvalidLogin" xml:space="preserve">
+    <value>The user and the password is invalid or the user doesn't exist.</value>
+  </data>
   <data name="Auth_User_PasswordsNotIdentical" xml:space="preserve">
     <value>The password and confirm password fields do not match.</value>
   </data>

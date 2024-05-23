@@ -345,4 +345,7 @@
   <data name="UnhandledExceptionMessage" xml:space="preserve">
     <value>Ocorreu uma exceção não tratada.</value>
   </data>
+  <data name="Auth_User_InvalidLogin" xml:space="preserve">
+    <value>Usuário/senha inválidos ou inexistente.</value>
+  </data>
 </root>

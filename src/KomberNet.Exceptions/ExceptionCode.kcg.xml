@@ -7,6 +7,7 @@
 		
 		<EnumValue Name="Auth_User_CannotChangePassword"/>
 		<EnumValue Name="Auth_User_CannotInsert"/>
+		<EnumValue Name="Auth_User_InvalidLogin"/>
 		<EnumValue Name="Auth_User_PasswordsNotIdentical"/>
 	</Enum>
 </CodeGenerator>
