@@ -351,3 +351,6 @@ MigrationBackup/
 
 # VS Code launch
 src/.vscode/launch.json
+
+# AppSettings
+src/KomberNet.UI.API/appsettings.Development.json
