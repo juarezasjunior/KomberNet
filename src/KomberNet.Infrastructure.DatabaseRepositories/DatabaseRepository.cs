@@ -81,14 +81,14 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
             }
         }
 
-        public async Task<IList<TDestination>> GetAllAsync<TDatabaseEntity, TDestination>(CancellationToken cancellationToken = default)
+        public async Task<IReadOnlyCollection<TDestination>> GetAllAsync<TDatabaseEntity, TDestination>(CancellationToken cancellationToken = default)
             where TDatabaseEntity : class, IDatabaseEntity
             where TDestination : class
         {
             return await this.mapper.ProjectTo<TDestination>(this.dbContext.Set<TDatabaseEntity>().AsQueryable()).ToListAsync(cancellationToken);
         }
 
-        public async Task<IList<TDestination>> GetByConditionAsync<TDatabaseEntity, TDestination>(Func<IQueryable<TDatabaseEntity>, IQueryable<TDatabaseEntity>> queryable, CancellationToken cancellationToken = default)
+        public async Task<IReadOnlyCollection<TDestination>> GetByConditionAsync<TDatabaseEntity, TDestination>(Func<IQueryable<TDatabaseEntity>, IQueryable<TDatabaseEntity>> queryable, CancellationToken cancellationToken = default)
             where TDatabaseEntity : class, IDatabaseEntity
             where TDestination : class
         {

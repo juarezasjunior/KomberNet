@@ -13,7 +13,6 @@ namespace KomberNet.UI.API.Bootstraps
     using KomberNet.Contracts;
     using KomberNet.Infrastructure.DatabaseRepositories;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
-    using KomberNet.Infrastructure.DatabaseRepositories.Mapper;
     using KomberNet.Models.Auth;
     using KomberNet.Services;
     using KomberNet.Services.Auth;
@@ -196,7 +195,7 @@ namespace KomberNet.UI.API.Bootstraps
 
         private static void ConfigureAutoMapper(WebApplicationBuilder builder)
         {
-            builder.Services.AddAutoMapper(typeof(ApplicationAutoMapperProfile));
+            builder.Services.AddAutoMapper(typeof(ApplicationDatabaseRepository));
         }
 
         private static void ConfigureCache(WebApplicationBuilder builder)

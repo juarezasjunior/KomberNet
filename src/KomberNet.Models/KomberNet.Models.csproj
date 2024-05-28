@@ -26,6 +26,8 @@
 		<AdditionalFiles Include="Auth\APIRoles.kcg.xml" />
 		<AdditionalFiles Include="General\Country.kcg.xml" />
 		<AdditionalFiles Include="General\CountrySummary.kcg.xml" />
+		<AdditionalFiles Include="Organization\MyOrganizationGroupSummary.kcg.xml" />
+		<AdditionalFiles Include="Organization\OrganizationGroup.kcg.xml" />
 		<AdditionalFiles Include="GeneratorSettings.kcgs.xml" />
 	</ItemGroup>
 
