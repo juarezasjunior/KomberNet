@@ -5,9 +5,10 @@
 namespace KomberNet.Services.Auth
 {
     using System.Threading.Tasks;
+    using KomberNet.Contracts;
 
     public interface ICurrentUserValidatorService : ITransientService
     {
-        public Task ValidateAsync(string email, string sessionId, CancellationToken cancellationToken);
+        public Task ValidateAsync(CancellationToken cancellationToken);
     }
 }

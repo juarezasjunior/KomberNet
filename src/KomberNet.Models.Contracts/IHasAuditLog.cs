@@ -10,9 +10,13 @@ namespace KomberNet.Models.Contracts
 
     public interface IHasAuditLog
     {
+        public Guid CreatedByUserId { get; set; }
+
         public string CreatedByUserName { get; set; }
 
         public DateTimeOffset CreatedAt { get; set; }
+
+        public Guid UpdatedByUserId { get; set; }
 
         public string UpdatedByUserName { get; set; }
 

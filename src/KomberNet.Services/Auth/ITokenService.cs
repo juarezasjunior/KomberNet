@@ -5,6 +5,7 @@
 namespace KomberNet.Services.Auth
 {
     using System.Threading.Tasks;
+    using KomberNet.Contracts;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
 
     public interface ITokenService : ITransientService

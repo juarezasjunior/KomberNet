@@ -11,6 +11,7 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
     using System.Text;
     using System.Threading.Tasks;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
+    using KomberNet.Infrastructure.DatabaseRepositories.Entities.Organization;
     using KomberNet.Infrastructure.DatabaseRepositories.EntityTypeConfiguration.Auth;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -22,6 +23,8 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
             : base(options)
         {
         }
+
+        public DbSet<TbOrganizationGroup> OrganizationGroups { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

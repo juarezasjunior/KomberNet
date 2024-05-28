@@ -6,6 +6,7 @@ namespace KomberNet.Services.Auth
 {
     using System.Linq;
     using System.Threading.Tasks;
+    using KomberNet.Contracts;
     using KomberNet.Exceptions;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Models.Auth;
@@ -27,7 +28,7 @@ namespace KomberNet.Services.Auth
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var currentUserId = this.currentUserService.CurrentUserId;
+            var currentUserId = this.currentUserService.UserId;
             var user = await this.userManager.FindByIdAsync(currentUserId.ToString());
 
             if (user == null)

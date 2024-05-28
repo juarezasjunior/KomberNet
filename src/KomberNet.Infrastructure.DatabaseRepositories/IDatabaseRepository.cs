@@ -35,7 +35,7 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
         /// <typeparam name="TDestination">Entity DTO, Summary DTO or other destination object.</typeparam>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>All entities found.</returns>
-        public Task<IList<TDestination>> GetAllAsync<TDatabaseEntity, TDestination>(CancellationToken cancellationToken = default)
+        public Task<IReadOnlyCollection<TDestination>> GetAllAsync<TDatabaseEntity, TDestination>(CancellationToken cancellationToken = default)
             where TDatabaseEntity : class, IDatabaseEntity
             where TDestination : class;
 
@@ -47,7 +47,7 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
         /// <param name="queryable">Query expression.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>All entities found.</returns>
-        public Task<IList<TDestination>> GetByConditionAsync<TDatabaseEntity, TDestination>(Func<IQueryable<TDatabaseEntity>, IQueryable<TDatabaseEntity>> queryable, CancellationToken cancellationToken = default)
+        public Task<IReadOnlyCollection<TDestination>> GetByConditionAsync<TDatabaseEntity, TDestination>(Func<IQueryable<TDatabaseEntity>, IQueryable<TDatabaseEntity>> queryable, CancellationToken cancellationToken = default)
             where TDatabaseEntity : class, IDatabaseEntity
             where TDestination : class;
     }

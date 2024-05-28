@@ -6,6 +6,7 @@ namespace KomberNet.Backend.Tests.Auth
 {
     using System.Threading.Tasks;
     using AutoFixture;
+    using KomberNet.Contracts;
     using KomberNet.Exceptions;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Models.Auth;
@@ -32,7 +33,7 @@ namespace KomberNet.Backend.Tests.Auth
             var changePasswordRequest = fixture.Create<ChangePasswordRequest>();
 
             var currentUserServiceMock = fixture.Freeze<Mock<ICurrentUserService>>();
-            currentUserServiceMock.Setup(x => x.CurrentUserId).Returns(tbUser.Id);
+            currentUserServiceMock.Setup(x => x.UserId).Returns(tbUser.Id);
 
             var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
             userManagerMock.Setup(x => x.FindByIdAsync(It.IsAny<string>()))
@@ -60,7 +61,7 @@ namespace KomberNet.Backend.Tests.Auth
             var changePasswordRequest = fixture.Create<ChangePasswordRequest>();
 
             var currentUserServiceMock = fixture.Freeze<Mock<ICurrentUserService>>();
-            currentUserServiceMock.Setup(x => x.CurrentUserId).Returns(tbUser.Id);
+            currentUserServiceMock.Setup(x => x.UserId).Returns(tbUser.Id);
 
             var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
             userManagerMock.Setup(x => x.FindByIdAsync(It.IsAny<string>()))
@@ -93,7 +94,7 @@ namespace KomberNet.Backend.Tests.Auth
             var changePasswordRequest = fixture.Create<ChangePasswordRequest>();
 
             var currentUserServiceMock = fixture.Freeze<Mock<ICurrentUserService>>();
-            currentUserServiceMock.Setup(x => x.CurrentUserId).Returns(tbUser.Id);
+            currentUserServiceMock.Setup(x => x.UserId).Returns(tbUser.Id);
 
             var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
             userManagerMock.Setup(x => x.FindByIdAsync(It.IsAny<string>()))

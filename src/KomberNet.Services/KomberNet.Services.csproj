@@ -25,6 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
 		<PackageReference Include="Quartz" Version="3.8.1" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -42,6 +43,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\KomberNet.Contracts\KomberNet.Contracts.csproj" />
 		<ProjectReference Include="..\KomberNet.Exceptions\KomberNet.Exceptions.csproj" />
 		<ProjectReference Include="..\KomberNet.Infrastructure.DatabaseRepositories\KomberNet.Infrastructure.DatabaseRepositories.csproj" />
 		<ProjectReference Include="..\KomberNet.Infrastructure.Emails\KomberNet.Infrastructure.Emails.csproj" />

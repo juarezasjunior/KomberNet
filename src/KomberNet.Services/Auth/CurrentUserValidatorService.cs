@@ -4,7 +4,9 @@
 
 namespace KomberNet.Services.Auth
 {
+    using System.Security.Claims;
     using System.Threading.Tasks;
+    using KomberNet.Contracts;
     using KomberNet.Exceptions;
     using KomberNet.Models.Auth;
     using Microsoft.Extensions.Caching.Distributed;
@@ -12,30 +14,40 @@ namespace KomberNet.Services.Auth
     public class CurrentUserValidatorService : BaseService, ICurrentUserValidatorService
     {
         private readonly IDistributedCache distributedCache;
+        private readonly ICurrentUserService currentUserService;
 
-        public CurrentUserValidatorService(IDistributedCache distributedCache)
+        public CurrentUserValidatorService(
+            IDistributedCache distributedCache,
+            ICurrentUserService currentUserService)
         {
             this.distributedCache = distributedCache;
+            this.currentUserService = currentUserService;
         }
 
-        public async Task ValidateAsync(string email, string sessionId, CancellationToken cancellationToken)
+        public async Task ValidateAsync(CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            if (string.IsNullOrEmpty(email))
+            var userEmail = this.currentUserService.UserEmail;
+            var userId = this.currentUserService.UserId;
+            var fullName = this.currentUserService.FullName;
+            var sessionId = this.currentUserService.SessionId;
+
+            if (string.IsNullOrEmpty(userEmail)
+                || userId == default
+                || string.IsNullOrEmpty(fullName)
+                || string.IsNullOrEmpty(sessionId))
             {
                 throw new KomberNetException(ExceptionCode.SecurityValidation);
             }
 
-            var userHasLogout = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.UserHasLogoutKey, email, sessionId));
-
+            var userHasLogout = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.UserHasLogoutKey, userEmail, sessionId));
             if (!string.IsNullOrEmpty(userHasLogout))
             {
                 throw new KomberNetException(ExceptionCode.SecurityValidation);
             }
 
-            var userHasLogoutAllSessions = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, email));
-
+            var userHasLogoutAllSessions = await this.distributedCache.GetStringAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, userEmail));
             if (!string.IsNullOrEmpty(userHasLogoutAllSessions))
             {
                 throw new KomberNetException(ExceptionCode.SecurityValidation);

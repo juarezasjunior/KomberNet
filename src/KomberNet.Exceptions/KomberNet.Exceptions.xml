@@ -4,7 +4,7 @@
         <name>KomberNet.Exceptions</name>
     </assembly>
     <members>
-        <member name="M:KomberNet.Exceptions.KomberNetException.#ctor(KomberNet.Exceptions.ExceptionCode,System.String)">
+        <member name="M:KomberNet.Exceptions.KomberNetException.#ctor(KomberNet.Exceptions.ExceptionCode,System.String,System.Exception)">
             <summary>
             Initializes a new instance of the <see cref="T:KomberNet.Exceptions.KomberNetException"/> class.
             </summary>
