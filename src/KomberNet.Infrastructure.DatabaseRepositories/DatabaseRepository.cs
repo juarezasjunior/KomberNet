@@ -9,6 +9,8 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
+    using KomberNet.Contracts;
+    using KomberNet.Exceptions;
     using KomberNet.Models.Contracts;
     using Microsoft.EntityFrameworkCore;
 
@@ -17,11 +19,16 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
     {
         private readonly TDbContext dbContext;
         private readonly IMapper mapper;
+        private readonly ICurrentUserService currentUserService;
 
-        public DatabaseRepository(TDbContext dbContext, IMapper mapper)
+        public DatabaseRepository(
+            TDbContext dbContext,
+            IMapper mapper,
+            ICurrentUserService currentUserService)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
+            this.currentUserService = currentUserService;
         }
 
         public TDatabaseEntity ApplyChanges<TDatabaseEntity, TEntity>(TEntity entity)
@@ -51,6 +58,11 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
                         default:
                             break;
                     }
+
+                    if (x.Entry.State != EntityState.Unchanged)
+                    {
+                        this.SetAuditLogFields(x.Entry.Entity);
+                    }
                 }
             });
 
@@ -59,7 +71,14 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
 
         public async Task SaveAsync(CancellationToken cancellationToken = default)
         {
-            await this.dbContext.SaveChangesAsync(cancellationToken);
+            try
+            {
+                await this.dbContext.SaveChangesAsync(cancellationToken);
+            }
+            catch (DbUpdateConcurrencyException concurrencyException)
+            {
+                throw new KomberNetException(ExceptionCode.ConcurrencyException, innerException: concurrencyException);
+            }
         }
 
         public async Task<IList<TDestination>> GetAllAsync<TDatabaseEntity, TDestination>(CancellationToken cancellationToken = default)
@@ -74,6 +93,28 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
             where TDestination : class
         {
             return await this.mapper.ProjectTo<TDestination>(queryable(this.dbContext.Set<TDatabaseEntity>().AsQueryable())).ToListAsync(cancellationToken);
+        }
+
+        private void SetAuditLogFields(object entity)
+        {
+            if (entity is IHasDataState dataStateEntity
+                && entity is IHasAuditLog auditLogEntity)
+            {
+                var userId = this.currentUserService.UserId;
+                var userName = this.currentUserService.FullName;
+                var now = DateTime.Now;
+
+                if (dataStateEntity.DataState == DataState.Inserted)
+                {
+                    auditLogEntity.CreatedAt = now;
+                    auditLogEntity.CreatedByUserId = userId;
+                    auditLogEntity.CreatedByUserName = userName;
+                }
+
+                auditLogEntity.UpdatedAt = now;
+                auditLogEntity.UpdatedByUserId = userId;
+                auditLogEntity.UpdatedByUserName = userName;
+            }
         }
     }
 }

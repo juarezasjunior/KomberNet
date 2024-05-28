@@ -5,6 +5,7 @@
 namespace KomberNet.Services.Auth
 {
     using System.Threading.Tasks;
+    using KomberNet.Contracts;
 
     public interface ICurrentUserValidatorService : ITransientService
     {

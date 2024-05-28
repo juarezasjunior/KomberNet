@@ -10,6 +10,7 @@ namespace KomberNet.UI.API.Bootstraps
     using System.Text;
     using FluentValidation;
     using FluentValidation.AspNetCore;
+    using KomberNet.Contracts;
     using KomberNet.Infrastructure.DatabaseRepositories;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Infrastructure.DatabaseRepositories.Mapper;

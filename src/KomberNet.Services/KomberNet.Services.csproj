@@ -42,6 +42,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\KomberNet.Contracts\KomberNet.Contracts.csproj" />
 		<ProjectReference Include="..\KomberNet.Exceptions\KomberNet.Exceptions.csproj" />
 		<ProjectReference Include="..\KomberNet.Infrastructure.DatabaseRepositories\KomberNet.Infrastructure.DatabaseRepositories.csproj" />
 		<ProjectReference Include="..\KomberNet.Infrastructure.Emails\KomberNet.Infrastructure.Emails.csproj" />

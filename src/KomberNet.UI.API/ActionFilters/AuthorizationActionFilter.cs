@@ -6,6 +6,7 @@ namespace KomberNet.UI.API.ActionFilters
 {
     using System.Linq;
     using System.Threading.Tasks;
+    using KomberNet.Contracts;
     using KomberNet.Services.Auth;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc.Filters;
@@ -28,7 +29,7 @@ namespace KomberNet.UI.API.ActionFilters
             if (!context.ActionDescriptor.EndpointMetadata.Any(x => x.GetType() == typeof(AllowAnonymousAttribute)))
             {
                 this.currentUserService.SetCurrentUser(context.HttpContext.User);
-                await this.currentUserValidatorService.ValidateAsync(this.currentUserService.CurrentUserEmail, this.currentUserService.CurrentSessionId, CancellationToken.None);
+                await this.currentUserValidatorService.ValidateAsync(this.currentUserService.UserEmail, this.currentUserService.SessionId, CancellationToken.None);
             }
         }
     }

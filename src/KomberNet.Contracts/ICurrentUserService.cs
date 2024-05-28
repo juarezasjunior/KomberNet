@@ -2,21 +2,19 @@
 // This file is licensed to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICE files in the project root for full license information.
 
-namespace KomberNet.Services.Auth
+namespace KomberNet.Contracts
 {
     using System.Security.Claims;
 
     public interface ICurrentUserService : IScopedService
     {
-        public Guid CurrentUserId { get; }
+        public Guid UserId { get; }
 
-        public string CurrentUserFullName { get; }
+        public string FullName { get; }
 
-        public string CurrentUserEmail { get; }
+        public string UserEmail { get; }
 
-        public string CurrentSessionId { get; }
-
-        public string GetCurrentUserNameToAudit();
+        public string SessionId { get; }
 
         public void SetCurrentUser(ClaimsPrincipal principal);
     }

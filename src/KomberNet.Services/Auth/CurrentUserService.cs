@@ -5,23 +5,27 @@
 namespace KomberNet.Services.Auth
 {
     using System.Security.Claims;
+    using KomberNet.Contracts;
     using KomberNet.Exceptions;
     using KomberNet.Models.Auth;
+    using Microsoft.AspNetCore.Http;
 
     public class CurrentUserService : BaseService, ICurrentUserService
     {
-        public Guid CurrentUserId { get; private set; }
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public string CurrentUserFullName { get; private set; } = string.Empty;
-
-        public string CurrentUserEmail { get; private set; } = string.Empty;
-
-        public string CurrentSessionId { get; private set; } = string.Empty;
-
-        public string GetCurrentUserNameToAudit()
-        {
-            return this.CurrentUserFullName;
+        public CurrentUserService(IHttpContextAccessor httpContextAccessor)
+{
+            this.httpContextAccessor = httpContextAccessor;
         }
+
+        public Guid UserId { get; private set; }
+
+        public string FullName { get; private set; } = string.Empty;
+
+        public string UserEmail { get; private set; } = string.Empty;
+
+        public string SessionId { get; private set; } = string.Empty;
 
         public void SetCurrentUser(ClaimsPrincipal principal)
         {
@@ -30,16 +34,16 @@ namespace KomberNet.Services.Auth
                 throw new KomberNetException(ExceptionCode.SecurityValidation);
             }
 
-            this.CurrentUserEmail = principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
+            this.UserEmail = principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
             Guid.TryParse(principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.UserId)?.Value, out var userId);
-            this.CurrentUserId = userId;
-            this.CurrentUserFullName = principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.FullName)?.Value;
-            this.CurrentSessionId = principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.SessionId)?.Value;
+            this.UserId = userId;
+            this.FullName = principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.FullName)?.Value;
+            this.SessionId = principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.SessionId)?.Value;
 
-            if (string.IsNullOrEmpty(this.CurrentUserEmail)
-                || this.CurrentUserId == default
-                || string.IsNullOrEmpty(this.CurrentUserFullName)
-                || string.IsNullOrEmpty(this.CurrentSessionId))
+            if (string.IsNullOrEmpty(this.UserEmail)
+                || this.UserId == default
+                || string.IsNullOrEmpty(this.FullName)
+                || string.IsNullOrEmpty(this.SessionId))
             {
                 throw new KomberNetException(ExceptionCode.SecurityValidation);
             }

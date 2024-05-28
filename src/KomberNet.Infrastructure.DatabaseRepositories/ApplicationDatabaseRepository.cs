@@ -10,11 +10,15 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
     using System.Text;
     using System.Threading.Tasks;
     using AutoMapper;
+    using KomberNet.Contracts;
 
     public class ApplicationDatabaseRepository : DatabaseRepository<ApplicationDbContext>, IApplicationDatabaseRepository
     {
-        public ApplicationDatabaseRepository(ApplicationDbContext applicationDbContext, IMapper mapper)
-            : base(applicationDbContext, mapper)
+        public ApplicationDatabaseRepository(
+            ApplicationDbContext applicationDbContext,
+            IMapper mapper,
+            ICurrentUserService currentUserService)
+            : base(applicationDbContext, mapper, currentUserService)
         {
         }
     }

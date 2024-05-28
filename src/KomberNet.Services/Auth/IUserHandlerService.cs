@@ -5,6 +5,7 @@
 namespace KomberNet.Services.Auth
 {
     using System.Threading.Tasks;
+    using KomberNet.Contracts;
     using KomberNet.Models.Auth;
 
     public interface IUserHandlerService : ITransientService

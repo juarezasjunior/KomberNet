@@ -7,6 +7,7 @@ namespace KomberNet.Backend.Tests.Auth
     using System.Text;
     using System.Threading.Tasks;
     using AutoFixture;
+    using KomberNet.Contracts;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using KomberNet.Models.Auth;
     using KomberNet.Services.Auth;
@@ -33,8 +34,8 @@ namespace KomberNet.Backend.Tests.Auth
             var logoutRequest = fixture.Create<LogoutRequest>();
 
             var currentUserServiceMock = fixture.Freeze<Mock<ICurrentUserService>>();
-            currentUserServiceMock.Setup(x => x.CurrentUserEmail).Returns(tbUser.Email);
-            currentUserServiceMock.Setup(x => x.CurrentSessionId).Returns(sessionId);
+            currentUserServiceMock.Setup(x => x.UserEmail).Returns(tbUser.Email);
+            currentUserServiceMock.Setup(x => x.SessionId).Returns(sessionId);
 
             var distributedCacheMock = fixture.Freeze<Mock<IDistributedCache>>();
             distributedCacheMock.Setup(x =>
@@ -72,7 +73,7 @@ namespace KomberNet.Backend.Tests.Auth
             var logoutAllSessionsRequest = fixture.Create<LogoutAllSessionsRequest>();
 
             var currentUserServiceMock = fixture.Freeze<Mock<ICurrentUserService>>();
-            currentUserServiceMock.Setup(x => x.CurrentUserEmail).Returns(tbUser.Email);
+            currentUserServiceMock.Setup(x => x.UserEmail).Returns(tbUser.Email);
 
             var distributedCacheMock = fixture.Freeze<Mock<IDistributedCache>>();
 

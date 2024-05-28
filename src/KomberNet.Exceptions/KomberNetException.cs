@@ -13,7 +13,9 @@ namespace KomberNet.Exceptions
         /// </summary>
         /// <param name="exceptionCode">Error code used by KomberNet to register some specific internal exceptions.</param>
         /// <param name="additionalInfo">Add any other information that you want to.</param>
-        public KomberNetException(ExceptionCode exceptionCode = ExceptionCode.Others, string additionalInfo = null)
+        public KomberNetException(
+            ExceptionCode exceptionCode = ExceptionCode.Others, string additionalInfo = null, Exception innerException = null)
+            : base(innerException?.Message, innerException)
         {
             this.ExceptionCode = exceptionCode;
             this.AdditionalInfo = additionalInfo;
