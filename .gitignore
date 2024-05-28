@@ -354,3 +354,4 @@ src/.vscode/launch.json
 
 # AppSettings
 src/KomberNet.UI.API/appsettings.Development.json
+src/.DS_Store
