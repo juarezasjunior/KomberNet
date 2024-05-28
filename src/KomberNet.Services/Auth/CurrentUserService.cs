@@ -15,38 +15,63 @@ namespace KomberNet.Services.Auth
         private readonly IHttpContextAccessor httpContextAccessor;
 
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
-{
+        {
             this.httpContextAccessor = httpContextAccessor;
         }
 
-        public Guid UserId { get; private set; }
-
-        public string FullName { get; private set; } = string.Empty;
-
-        public string UserEmail { get; private set; } = string.Empty;
-
-        public string SessionId { get; private set; } = string.Empty;
-
-        public void SetCurrentUser(ClaimsPrincipal principal)
+        public Guid UserId
         {
-            if (principal == null)
+            get
             {
-                throw new KomberNetException(ExceptionCode.SecurityValidation);
-            }
+                if (this.ClaimsPrincipal != null)
+                {
+                    Guid.TryParse(this.ClaimsPrincipal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.UserId)?.Value, out var userId);
+                    return userId;
+                }
 
-            this.UserEmail = principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
-            Guid.TryParse(principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.UserId)?.Value, out var userId);
-            this.UserId = userId;
-            this.FullName = principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.FullName)?.Value;
-            this.SessionId = principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.SessionId)?.Value;
-
-            if (string.IsNullOrEmpty(this.UserEmail)
-                || this.UserId == default
-                || string.IsNullOrEmpty(this.FullName)
-                || string.IsNullOrEmpty(this.SessionId))
-            {
-                throw new KomberNetException(ExceptionCode.SecurityValidation);
+                return default;
             }
         }
+
+        public string FullName
+        {
+            get
+            {
+                if (this.ClaimsPrincipal != null)
+                {
+                    return this.ClaimsPrincipal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.FullName)?.Value;
+                }
+
+                return string.Empty;
+            }
+        }
+
+        public string UserEmail
+        {
+            get
+            {
+                if (this.ClaimsPrincipal != null)
+                {
+                    return this.ClaimsPrincipal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
+                }
+
+                return string.Empty;
+            }
+        }
+
+        public string SessionId
+        {
+            get
+            {
+                if (this.ClaimsPrincipal != null)
+                {
+                    return this.ClaimsPrincipal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.SessionId)?.Value;
+                }
+
+                return string.Empty;
+            }
+        }
+
+        private ClaimsPrincipal ClaimsPrincipal => this.httpContextAccessor.HttpContext?.User;
     }
 }

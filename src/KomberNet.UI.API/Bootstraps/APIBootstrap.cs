@@ -55,7 +55,6 @@ namespace KomberNet.UI.API.Bootstraps
             ConfigureValidations(builder);
             ConfigureMVC(builder);
 
-
             var app = ConfigureMiddlewares(builder);
 
             await StartDatabase(app);
@@ -207,6 +206,7 @@ namespace KomberNet.UI.API.Bootstraps
 
         private static void ConfigureJWT(WebApplicationBuilder builder)
         {
+            builder.Services.AddHttpContextAccessor();
             builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(JwtOptions.Jwt));
 
             var jwtOptions = new JwtOptions();

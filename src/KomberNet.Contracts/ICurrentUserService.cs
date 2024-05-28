@@ -4,8 +4,6 @@
 
 namespace KomberNet.Contracts
 {
-    using System.Security.Claims;
-
     public interface ICurrentUserService : IScopedService
     {
         public Guid UserId { get; }
@@ -15,7 +13,5 @@ namespace KomberNet.Contracts
         public string UserEmail { get; }
 
         public string SessionId { get; }
-
-        public void SetCurrentUser(ClaimsPrincipal principal);
     }
 }

@@ -9,6 +9,6 @@ namespace KomberNet.Services.Auth
 
     public interface ICurrentUserValidatorService : ITransientService
     {
-        public Task ValidateAsync(string email, string sessionId, CancellationToken cancellationToken);
+        public Task ValidateAsync(CancellationToken cancellationToken);
     }
 }
