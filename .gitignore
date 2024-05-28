@@ -354,4 +354,7 @@ src/.vscode/launch.json
 
 # AppSettings
 src/KomberNet.UI.API/appsettings.Development.json
-src/.DS_Store
+
+# Mac files that are not part of the project
+.DS_Store
+
