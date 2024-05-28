@@ -4,6 +4,7 @@
 	<Enum Namespace="KomberNet.Exceptions" Name="ExceptionCode" AutoGenSequenceNumber="true">
 		<EnumValue Name="Others"/>
 		<EnumValue Name="SecurityValidation"/>
+		<EnumValue Name="ConcurrencyException"/>
 		
 		<EnumValue Name="Auth_User_CannotChangePassword"/>
 		<EnumValue Name="Auth_User_CannotInsert"/>

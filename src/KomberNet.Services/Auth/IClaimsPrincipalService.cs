@@ -6,6 +6,7 @@ namespace KomberNet.Services.Auth
 {
     using System.Security.Claims;
     using System.Threading.Tasks;
+    using KomberNet.Contracts;
     using KomberNet.Models.Auth;
 
     public interface IClaimsPrincipalService : ITransientService

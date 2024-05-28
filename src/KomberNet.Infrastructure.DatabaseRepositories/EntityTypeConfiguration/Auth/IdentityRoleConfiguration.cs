@@ -22,7 +22,6 @@ namespace KomberNet.Infrastructure.DatabaseRepositories.EntityTypeConfiguration.
             {
                 builder.HasData(identityRole);
             }
-
         }
 
         private static IEnumerable<IdentityRole<Guid>> GetPermissions()

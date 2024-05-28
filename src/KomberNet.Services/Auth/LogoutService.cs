@@ -5,6 +5,7 @@
 namespace KomberNet.Services.Auth
 {
     using System.Threading.Tasks;
+    using KomberNet.Contracts;
     using KomberNet.Models.Auth;
     using Microsoft.Extensions.Caching.Distributed;
 
@@ -25,8 +26,8 @@ namespace KomberNet.Services.Auth
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var email = this.currentUserService.CurrentUserEmail;
-            var sessionId = this.currentUserService.CurrentSessionId;
+            var email = this.currentUserService.UserEmail;
+            var sessionId = this.currentUserService.SessionId;
 
             await this.distributedCache.SetStringAsync(string.Format(JwtCacheKeys.UserHasLogoutKey, email, sessionId), "true");
             await this.distributedCache.RemoveAsync(string.Format(JwtCacheKeys.RefreshTokenKey, email, sessionId));
@@ -39,7 +40,7 @@ namespace KomberNet.Services.Auth
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            await this.LogoutAllSessionsAsync(this.currentUserService.CurrentUserEmail, cancellationToken);
+            await this.LogoutAllSessionsAsync(this.currentUserService.UserEmail, cancellationToken);
 
             return new LogoutResponse();
         }

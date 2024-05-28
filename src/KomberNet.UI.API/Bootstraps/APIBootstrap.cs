@@ -10,9 +10,9 @@ namespace KomberNet.UI.API.Bootstraps
     using System.Text;
     using FluentValidation;
     using FluentValidation.AspNetCore;
+    using KomberNet.Contracts;
     using KomberNet.Infrastructure.DatabaseRepositories;
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
-    using KomberNet.Infrastructure.DatabaseRepositories.Mapper;
     using KomberNet.Models.Auth;
     using KomberNet.Services;
     using KomberNet.Services.Auth;
@@ -53,7 +53,6 @@ namespace KomberNet.UI.API.Bootstraps
 
             ConfigureValidations(builder);
             ConfigureMVC(builder);
-
 
             var app = ConfigureMiddlewares(builder);
 
@@ -196,7 +195,7 @@ namespace KomberNet.UI.API.Bootstraps
 
         private static void ConfigureAutoMapper(WebApplicationBuilder builder)
         {
-            builder.Services.AddAutoMapper(typeof(ApplicationAutoMapperProfile));
+            builder.Services.AddAutoMapper(typeof(ApplicationDatabaseRepository));
         }
 
         private static void ConfigureCache(WebApplicationBuilder builder)
@@ -206,6 +205,7 @@ namespace KomberNet.UI.API.Bootstraps
 
         private static void ConfigureJWT(WebApplicationBuilder builder)
         {
+            builder.Services.AddHttpContextAccessor();
             builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(JwtOptions.Jwt));
 
             var jwtOptions = new JwtOptions();

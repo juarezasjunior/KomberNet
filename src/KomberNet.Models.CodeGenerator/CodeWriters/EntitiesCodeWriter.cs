@@ -339,9 +339,11 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
 
             if (includeAuditLog)
             {
+                entityFileWriter.WriteProperty("Guid", "CreatedByUserId", hasNotifyPropertyChanged: shouldGenerateNotifyPropertyChanges, isVirtual: false);
                 entityFileWriter.WriteProperty("string", "CreatedByUserName", hasNotifyPropertyChanged: shouldGenerateNotifyPropertyChanges, isVirtual: false);
                 entityFileWriter.WriteProperty("DateTimeOffset", "CreatedAt", hasNotifyPropertyChanged: shouldGenerateNotifyPropertyChanges, isVirtual: false);
 
+                entityFileWriter.WriteProperty("Guid", "UpdatedByUserId", hasNotifyPropertyChanged: shouldGenerateNotifyPropertyChanges, isVirtual: false);
                 entityFileWriter.WriteProperty("string", "UpdatedByUserName", hasNotifyPropertyChanged: shouldGenerateNotifyPropertyChanges, isVirtual: false);
                 entityFileWriter.WriteProperty("DateTimeOffset?", "UpdatedAt", hasNotifyPropertyChanged: shouldGenerateNotifyPropertyChanges, isVirtual: false);
             }

@@ -2,20 +2,15 @@
 // This file is licensed to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICE files in the project root for full license information.
 
-namespace KomberNet.Infrastructure.DatabaseRepositories.Mapper
+namespace KomberNet.Contracts
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using AutoMapper;
 
-    public class ApplicationAutoMapperProfile : Profile
+    public interface IService
     {
-        public ApplicationAutoMapperProfile()
-        {
-            //this.CreateMap<TbEntity, Entity>().ForMember(x => x.FieldName, x => x.Ignore());
-        }
     }
 }
