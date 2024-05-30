@@ -6,14 +6,15 @@ namespace KomberNet.Services.Auth
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Options;
 
-    public class ApplicationUserManager<TUser> : UserManager<TUser>, IUserManager<TUser>
-        where TUser : class
+    public class ApplicationUserManager : UserManager<SysUser>, IUserManager
     {
-        public ApplicationUserManager(IUserStore<TUser> store, IOptions<IdentityOptions> optionsAccessor, IPasswordHasher<TUser> passwordHasher, IEnumerable<IUserValidator<TUser>> userValidators, IEnumerable<IPasswordValidator<TUser>> passwordValidators, ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors, IServiceProvider services, ILogger<UserManager<TUser>> logger)
+        public ApplicationUserManager(IUserStore<SysUser> store, IOptions<IdentityOptions> optionsAccessor, IPasswordHasher<SysUser> passwordHasher, IEnumerable<IUserValidator<SysUser>> userValidators, IEnumerable<IPasswordValidator<SysUser>> passwordValidators, ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors, IServiceProvider services, ILogger<UserManager<SysUser>> logger)
             : base(store, optionsAccessor, passwordHasher, userValidators, passwordValidators, keyNormalizer, errors, services, logger)
         {
         }

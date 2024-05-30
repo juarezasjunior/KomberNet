@@ -12,12 +12,12 @@ namespace KomberNet.Services.Auth
 
     public class LoginService : BaseService, ILoginService
     {
-        private readonly IUserManager<TbUser> userManager;
+        private readonly IUserManager userManager;
         private readonly IDistributedCache distributedCache;
         private readonly ITokenService tokenService;
 
         public LoginService(
-            IUserManager<TbUser> userManager,
+            IUserManager userManager,
             IDistributedCache distributedCache,
             ITokenService tokenService)
         {
@@ -43,7 +43,7 @@ namespace KomberNet.Services.Auth
             };
         }
 
-        private async Task<TbUser> ValidateAsync(LoginRequest request, CancellationToken cancellationToken)
+        private async Task<SysUser> ValidateAsync(LoginRequest request, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 

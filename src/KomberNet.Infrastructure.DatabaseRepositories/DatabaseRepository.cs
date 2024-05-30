@@ -14,19 +14,18 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
     using KomberNet.Models.Contracts;
     using Microsoft.EntityFrameworkCore;
 
-    public abstract class DatabaseRepository<TDbContext> : IDatabaseRepository<TDbContext>
-        where TDbContext : DbContext
+    public class DatabaseRepository : IDatabaseRepository
     {
-        private readonly TDbContext dbContext;
+        private readonly ApplicationDbContext applicationDbContext;
         private readonly IMapper mapper;
         private readonly ICurrentUserService currentUserService;
 
         public DatabaseRepository(
-            TDbContext dbContext,
+            ApplicationDbContext applicationDbContext,
             IMapper mapper,
             ICurrentUserService currentUserService)
         {
-            this.dbContext = dbContext;
+            this.applicationDbContext = applicationDbContext;
             this.mapper = mapper;
             this.currentUserService = currentUserService;
         }
@@ -36,7 +35,7 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
             where TEntity : class, IEntity
         {
             var databaseEntity = this.mapper.Map<TDatabaseEntity>(entity);
-            this.dbContext.ChangeTracker.TrackGraph(databaseEntity, x =>
+            this.applicationDbContext.ChangeTracker.TrackGraph(databaseEntity, x =>
             {
                 if (x.Entry.State == EntityState.Detached
                     && x.Entry.Entity is IHasDataState trackedEntity)
@@ -73,7 +72,7 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
         {
             try
             {
-                await this.dbContext.SaveChangesAsync(cancellationToken);
+                await this.applicationDbContext.SaveChangesAsync(cancellationToken);
             }
             catch (DbUpdateConcurrencyException concurrencyException)
             {
@@ -81,18 +80,18 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
             }
         }
 
-        public async Task<IReadOnlyCollection<TDestination>> GetAllAsync<TDatabaseEntity, TDestination>(CancellationToken cancellationToken = default)
+        public async Task<IList<TDestination>> GetAllAsync<TDatabaseEntity, TDestination>(CancellationToken cancellationToken = default)
             where TDatabaseEntity : class, IDatabaseEntity
             where TDestination : class
         {
-            return await this.mapper.ProjectTo<TDestination>(this.dbContext.Set<TDatabaseEntity>().AsQueryable()).ToListAsync(cancellationToken);
+            return await this.mapper.ProjectTo<TDestination>(this.applicationDbContext.Set<TDatabaseEntity>().AsQueryable()).ToListAsync(cancellationToken);
         }
 
-        public async Task<IReadOnlyCollection<TDestination>> GetByConditionAsync<TDatabaseEntity, TDestination>(Func<IQueryable<TDatabaseEntity>, IQueryable<TDatabaseEntity>> queryable, CancellationToken cancellationToken = default)
+        public async Task<IList<TDestination>> GetByConditionAsync<TDatabaseEntity, TDestination>(Func<IQueryable<TDatabaseEntity>, IQueryable<TDatabaseEntity>> queryable, CancellationToken cancellationToken = default)
             where TDatabaseEntity : class, IDatabaseEntity
             where TDestination : class
         {
-            return await this.mapper.ProjectTo<TDestination>(queryable(this.dbContext.Set<TDatabaseEntity>().AsQueryable())).ToListAsync(cancellationToken);
+            return await this.mapper.ProjectTo<TDestination>(queryable(this.applicationDbContext.Set<TDatabaseEntity>().AsQueryable())).ToListAsync(cancellationToken);
         }
 
         private void SetAuditLogFields(object entity)

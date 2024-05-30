@@ -7,73 +7,74 @@ namespace KomberNet.Services.Auth
     using System.Collections.Generic;
     using System.Security.Claims;
     using System.Threading.Tasks;
+    using KomberNet.Contracts;
+    using KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth;
     using Microsoft.AspNetCore.Identity;
 
-    public interface IUserManager<TUser>
-        where TUser : class
+    public interface IUserManager : ITransientService
     {
-        public Task<IdentityResult> CreateAsync(TUser user, string password);
+        public Task<IdentityResult> CreateAsync(SysUser user, string password);
 
-        public Task<IdentityResult> UpdateAsync(TUser user);
+        public Task<IdentityResult> UpdateAsync(SysUser user);
 
-        public Task<IdentityResult> DeleteAsync(TUser user);
+        public Task<IdentityResult> DeleteAsync(SysUser user);
 
-        public Task<TUser> FindByIdAsync(string userId);
+        public Task<SysUser> FindByIdAsync(string userId);
 
-        public Task<TUser> FindByNameAsync(string userName);
+        public Task<SysUser> FindByNameAsync(string userName);
 
-        public Task<TUser> FindByEmailAsync(string email);
+        public Task<SysUser> FindByEmailAsync(string email);
 
-        public Task<bool> CheckPasswordAsync(TUser user, string password);
+        public Task<bool> CheckPasswordAsync(SysUser user, string password);
 
-        public Task<IList<Claim>> GetClaimsAsync(TUser user);
+        public Task<IList<Claim>> GetClaimsAsync(SysUser user);
 
-        public Task<IdentityResult> AddClaimAsync(TUser user, Claim claim);
+        public Task<IdentityResult> AddClaimAsync(SysUser user, Claim claim);
 
-        public Task<IdentityResult> RemoveClaimAsync(TUser user, Claim claim);
+        public Task<IdentityResult> RemoveClaimAsync(SysUser user, Claim claim);
 
-        public Task<IdentityResult> AddToRoleAsync(TUser user, string roleName);
+        public Task<IdentityResult> AddToRoleAsync(SysUser user, string roleName);
 
-        public Task<IdentityResult> RemoveFromRoleAsync(TUser user, string roleName);
+        public Task<IdentityResult> RemoveFromRoleAsync(SysUser user, string roleName);
 
-        public Task<IList<string>> GetRolesAsync(TUser user);
+        public Task<IList<string>> GetRolesAsync(SysUser user);
 
-        public Task<bool> IsInRoleAsync(TUser user, string roleName);
+        public Task<bool> IsInRoleAsync(SysUser user, string roleName);
 
-        public Task<IList<TUser>> GetUsersInRoleAsync(string roleName);
+        public Task<IList<SysUser>> GetUsersInRoleAsync(string roleName);
 
-        public Task<IdentityResult> AddLoginAsync(TUser user, UserLoginInfo login);
+        public Task<IdentityResult> AddLoginAsync(SysUser user, UserLoginInfo login);
 
-        public Task<IdentityResult> RemoveLoginAsync(TUser user, string loginProvider, string providerKey);
+        public Task<IdentityResult> RemoveLoginAsync(SysUser user, string loginProvider, string providerKey);
 
-        public Task<IList<UserLoginInfo>> GetLoginsAsync(TUser user);
+        public Task<IList<UserLoginInfo>> GetLoginsAsync(SysUser user);
 
-        public Task<bool> HasPasswordAsync(TUser user);
+        public Task<bool> HasPasswordAsync(SysUser user);
 
-        public Task<IdentityResult> AddPasswordAsync(TUser user, string password);
+        public Task<IdentityResult> AddPasswordAsync(SysUser user, string password);
 
-        public Task<IdentityResult> ChangePasswordAsync(TUser user, string currentPassword, string newPassword);
+        public Task<IdentityResult> ChangePasswordAsync(SysUser user, string currentPassword, string newPassword);
 
-        public Task<IdentityResult> RemovePasswordAsync(TUser user);
+        public Task<IdentityResult> RemovePasswordAsync(SysUser user);
 
-        public Task<IdentityResult> ConfirmEmailAsync(TUser user, string token);
+        public Task<IdentityResult> ConfirmEmailAsync(SysUser user, string token);
 
-        public Task<bool> IsEmailConfirmedAsync(TUser user);
+        public Task<bool> IsEmailConfirmedAsync(SysUser user);
 
-        public Task<string> GenerateEmailConfirmationTokenAsync(TUser user);
+        public Task<string> GenerateEmailConfirmationTokenAsync(SysUser user);
 
-        public Task<string> GeneratePasswordResetTokenAsync(TUser user);
+        public Task<string> GeneratePasswordResetTokenAsync(SysUser user);
 
-        public Task<IdentityResult> ResetPasswordAsync(TUser user, string token, string newPassword);
+        public Task<IdentityResult> ResetPasswordAsync(SysUser user, string token, string newPassword);
 
-        public Task<bool> IsPhoneNumberConfirmedAsync(TUser user);
+        public Task<bool> IsPhoneNumberConfirmedAsync(SysUser user);
 
-        public Task<IdentityResult> SetPhoneNumberAsync(TUser user, string phoneNumber);
+        public Task<IdentityResult> SetPhoneNumberAsync(SysUser user, string phoneNumber);
 
-        public Task<string> GetPhoneNumberAsync(TUser user);
+        public Task<string> GetPhoneNumberAsync(SysUser user);
 
-        public Task<IdentityResult> ChangePhoneNumberAsync(TUser user, string phoneNumber, string token);
+        public Task<IdentityResult> ChangePhoneNumberAsync(SysUser user, string phoneNumber, string token);
 
-        public Task<IdentityResult> SetTwoFactorEnabledAsync(TUser user, bool enabled);
+        public Task<IdentityResult> SetTwoFactorEnabledAsync(SysUser user, bool enabled);
     }
 }

@@ -17,14 +17,14 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
-    public class ApplicationDbContext : IdentityDbContext<TbUser, IdentityRole<Guid>, Guid>
+    public class ApplicationDbContext : IdentityDbContext<SysUser, IdentityRole<Guid>, Guid>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
 
-        public DbSet<TbOrganizationGroup> OrganizationGroups { get; set; }
+        public DbSet<SysOrganizationGroup> OrganizationGroups { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -15,7 +15,7 @@
 		</EntityFields>
 	</Entity>
 
-	<CustomRequest Namespace="KomberNet.Models.Auth" Name="UserInsertRequest">
+	<CustomRequest Namespace="KomberNet.Models.Auth" Name="CreateUserRequest">
 		<RequestFields>
 			<StringField Name="FullName" IsRequired="true"/>
 			<StringField Name="Email" IsRequired="true"/>
@@ -48,7 +48,7 @@
 		</RequestFields>
 	</CustomRequest>
 	
-	<CustomResponse Namespace="KomberNet.Models.Auth" Name="UserInsertResponse"/>
+	<CustomResponse Namespace="KomberNet.Models.Auth" Name="CreateUserResponse"/>
 	
 	<CustomResponse Namespace="KomberNet.Models.Auth" Name="ChangePasswordResponse"/>
 

@@ -15,7 +15,7 @@ namespace KomberNet.UI.WEB.APIClient.Auth
     public partial interface IAuthAnonymousClient : IAnonymousAPIClient
     {
         [Post("/api/Auth/InsertUser")]
-        public Task<UserInsertResponse> InsertUserAsync([Body] UserInsertRequest request);
+        public Task<CreateUserResponse> CreateUserAsync([Body] CreateUserRequest request);
 
         [Post("/api/Auth/Login")]
         public Task<LoginResponse> LoginAsync([Body] LoginRequest request);

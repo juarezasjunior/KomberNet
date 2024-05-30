@@ -13,7 +13,7 @@ namespace KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth
     using KomberNet.Models.Contracts;
     using Microsoft.AspNetCore.Identity;
 
-    public class TbUser : IdentityUser<Guid>
+    public class SysUser : IdentityUser<Guid>
     {
         [MaxLength(500)]
         public string FullName { get; set; }

@@ -10,7 +10,7 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
     using System.Text;
     using System.Threading.Tasks;
 
-    public interface IApplicationDatabaseRepository : IDatabaseRepository<ApplicationDbContext>
+    public interface IApplicationDatabaseRepository : IDatabaseRepository
     {
     }
 }

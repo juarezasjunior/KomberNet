@@ -11,20 +11,20 @@ namespace KomberNet.Services.Auth
     using KomberNet.Models.Auth;
     using Microsoft.AspNetCore.Identity;
 
-    public class UserHandlerService : BaseService, IUserHandlerService
+    public class UserService : BaseService, IUserService
     {
-        private readonly IUserManager<TbUser> userManager;
+        private readonly IUserManager userManager;
 
-        public UserHandlerService(IUserManager<TbUser> userManager)
+        public UserService(IUserManager userManager)
         {
             this.userManager = userManager;
         }
 
-        public async Task<UserInsertResponse> InsertUserAsync(UserInsertRequest request, CancellationToken cancellationToken)
+        public async Task<CreateUserResponse> CreateUserAsync(CreateUserRequest request, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var user = new TbUser()
+            var user = new SysUser()
             {
                 FullName = request.FullName,
                 UserName = request.Email,
@@ -41,7 +41,7 @@ namespace KomberNet.Services.Auth
 
             await this.userManager.AddToRoleAsync(user, nameof(APIRoles.User));
 
-            return new UserInsertResponse();
+            return new CreateUserResponse();
         }
     }
 }

@@ -170,15 +170,7 @@ namespace KomberNet.UI.API.Bootstraps
 
         private static void ConfigureDatabase(WebApplicationBuilder builder)
         {
-            builder.Services.Scan(x =>
-                x.FromAssemblies(typeof(ApplicationDbContext).Assembly)
-                .AddClasses(y =>
-                    y.AssignableTo(typeof(IDatabaseRepository<>)))
-                .AsImplementedInterfaces()
-                .WithTransientLifetime());
-
-            builder.Services.AddTransient<IUserManager<TbUser>, ApplicationUserManager<TbUser>>();
-            builder.Services.AddIdentityCore<TbUser>()
+            builder.Services.AddIdentityCore<SysUser>()
                 .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddErrorDescriber<CustomIdentityErrorDescriber>();
@@ -195,7 +187,7 @@ namespace KomberNet.UI.API.Bootstraps
 
         private static void ConfigureAutoMapper(WebApplicationBuilder builder)
         {
-            builder.Services.AddAutoMapper(typeof(ApplicationDatabaseRepository));
+            builder.Services.AddAutoMapper(typeof(ApplicationDbContext));
         }
 
         private static void ConfigureCache(WebApplicationBuilder builder)
@@ -311,6 +303,7 @@ namespace KomberNet.UI.API.Bootstraps
 
         private static IEnumerable<Assembly> GetServiceAssemblies() =>
             [
+                Assembly.Load("KomberNet.Infrastructure.DatabaseRepositories"),
                 Assembly.Load("KomberNet.Services"),
                 Assembly.Load("KomberNet.Services.Billing"),
                 Assembly.Load("KomberNet.Services.Financial"),

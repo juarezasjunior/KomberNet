@@ -4,11 +4,11 @@
 
 namespace KomberNet.Infrastructure.DatabaseRepositories
 {
+    using KomberNet.Contracts;
     using KomberNet.Models.Contracts;
     using Microsoft.EntityFrameworkCore;
 
-    public interface IDatabaseRepository<TDbContext>
-        where TDbContext : DbContext
+    public interface IDatabaseRepository : ITransientService
     {
         /// <summary>
         /// Apply the changes in the memory by the data state field.
@@ -35,7 +35,7 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
         /// <typeparam name="TDestination">Entity DTO, Summary DTO or other destination object.</typeparam>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>All entities found.</returns>
-        public Task<IReadOnlyCollection<TDestination>> GetAllAsync<TDatabaseEntity, TDestination>(CancellationToken cancellationToken = default)
+        public Task<IList<TDestination>> GetAllAsync<TDatabaseEntity, TDestination>(CancellationToken cancellationToken = default)
             where TDatabaseEntity : class, IDatabaseEntity
             where TDestination : class;
 
@@ -47,7 +47,7 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
         /// <param name="queryable">Query expression.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>All entities found.</returns>
-        public Task<IReadOnlyCollection<TDestination>> GetByConditionAsync<TDatabaseEntity, TDestination>(Func<IQueryable<TDatabaseEntity>, IQueryable<TDatabaseEntity>> queryable, CancellationToken cancellationToken = default)
+        public Task<IList<TDestination>> GetByConditionAsync<TDatabaseEntity, TDestination>(Func<IQueryable<TDatabaseEntity>, IQueryable<TDatabaseEntity>> queryable, CancellationToken cancellationToken = default)
             where TDatabaseEntity : class, IDatabaseEntity
             where TDestination : class;
     }

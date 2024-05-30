@@ -30,16 +30,16 @@ namespace KomberNet.Backend.Tests.Auth
         {
             var fixture = this.GetNewFixture();
 
-            var tbUser = fixture.Create<TbUser>();
+            var sysUser = fixture.Create<SysUser>();
             var refreshTokenRequest = fixture.Create<RefreshTokenRequest>();
 
             var claimsPrincipalServiceMock = fixture.Freeze<Mock<IClaimsPrincipalService>>();
             claimsPrincipalServiceMock.Setup(x => x.GetPrincipalFromToken(It.IsAny<string>()))
-                .Returns(() => GetClaimsPrincipal(tbUser))
+                .Returns(() => GetClaimsPrincipal(sysUser))
                 .Verifiable();
 
             var distributedCacheMock = fixture.Freeze<Mock<IDistributedCache>>();
-            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, tbUser.Email), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, sysUser.Email), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => Encoding.UTF8.GetBytes("true"))
                 .Verifiable();
 
@@ -60,20 +60,20 @@ namespace KomberNet.Backend.Tests.Auth
         {
             var fixture = this.GetNewFixture();
 
-            var tbUser = fixture.Create<TbUser>();
+            var sysUser = fixture.Create<SysUser>();
             var refreshTokenRequest = fixture.Create<RefreshTokenRequest>();
 
             var claimsPrincipalServiceMock = fixture.Freeze<Mock<IClaimsPrincipalService>>();
             claimsPrincipalServiceMock.Setup(x => x.GetPrincipalFromToken(It.IsAny<string>()))
-                .Returns(() => GetClaimsPrincipal(tbUser))
+                .Returns(() => GetClaimsPrincipal(sysUser))
                 .Verifiable();
 
             var distributedCacheMock = fixture.Freeze<Mock<IDistributedCache>>();
-            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, tbUser.Email), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, sysUser.Email), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => null)
                 .Verifiable();
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
                 .ReturnsAsync(() => null)
                 .Verifiable();
@@ -96,9 +96,9 @@ namespace KomberNet.Backend.Tests.Auth
         {
             var fixture = this.GetNewFixture();
 
-            var tbUser = fixture.Create<TbUser>();
+            var sysUser = fixture.Create<SysUser>();
             var refreshTokenRequest = fixture.Create<RefreshTokenRequest>();
-            var principal = GetClaimsPrincipal(tbUser);
+            var principal = GetClaimsPrincipal(sysUser);
             var sessionId = principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.SessionId).Value;
 
             var claimsPrincipalServiceMock = fixture.Freeze<Mock<IClaimsPrincipalService>>();
@@ -107,17 +107,17 @@ namespace KomberNet.Backend.Tests.Auth
                 .Verifiable();
 
             var distributedCacheMock = fixture.Freeze<Mock<IDistributedCache>>();
-            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, tbUser.Email), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, sysUser.Email), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => null)
                 .Verifiable();
 
-            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenKey, tbUser.Email, sessionId), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenKey, sysUser.Email, sessionId), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => null)
                 .Verifiable();
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
-                .ReturnsAsync(() => tbUser)
+                .ReturnsAsync(() => sysUser)
                 .Verifiable();
 
             var refreshTokenService = fixture.Create<RefreshTokenService>();
@@ -138,9 +138,9 @@ namespace KomberNet.Backend.Tests.Auth
         {
             var fixture = this.GetNewFixture();
 
-            var tbUser = fixture.Create<TbUser>();
+            var sysUser = fixture.Create<SysUser>();
             var refreshTokenRequest = fixture.Create<RefreshTokenRequest>();
-            var principal = GetClaimsPrincipal(tbUser);
+            var principal = GetClaimsPrincipal(sysUser);
             var sessionId = principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.SessionId).Value;
 
             var claimsPrincipalServiceMock = fixture.Freeze<Mock<IClaimsPrincipalService>>();
@@ -149,21 +149,21 @@ namespace KomberNet.Backend.Tests.Auth
                 .Verifiable();
 
             var distributedCacheMock = fixture.Freeze<Mock<IDistributedCache>>();
-            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, tbUser.Email), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, sysUser.Email), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => null)
                 .Verifiable();
 
-            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenKey, tbUser.Email, sessionId), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenKey, sysUser.Email, sessionId), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => Encoding.UTF8.GetBytes(refreshTokenRequest.RefreshToken))
                 .Verifiable();
 
-            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, tbUser.Email, sessionId), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, sysUser.Email, sessionId), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => null)
                 .Verifiable();
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
-                .ReturnsAsync(() => tbUser)
+                .ReturnsAsync(() => sysUser)
                 .Verifiable();
 
             var refreshTokenService = fixture.Create<RefreshTokenService>();
@@ -176,7 +176,7 @@ namespace KomberNet.Backend.Tests.Auth
             userManagerMock.VerifyAll();
 
             // Should prevent when the stored date is invalid
-            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, tbUser.Email, sessionId), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, sysUser.Email, sessionId), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => Encoding.UTF8.GetBytes("invalid stored date"))
                 .Verifiable();
 
@@ -188,7 +188,7 @@ namespace KomberNet.Backend.Tests.Auth
             userManagerMock.VerifyAll();
 
             // Should prevent when the stored date is less than the actual date/time
-            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, tbUser.Email, sessionId), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, sysUser.Email, sessionId), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => Encoding.UTF8.GetBytes(DateTime.Now.AddHours(-1).ToString()))
                 .Verifiable();
 
@@ -208,9 +208,9 @@ namespace KomberNet.Backend.Tests.Auth
         {
             var fixture = this.GetNewFixture();
 
-            var tbUser = fixture.Create<TbUser>();
+            var sysUser = fixture.Create<SysUser>();
             var refreshTokenRequest = fixture.Create<RefreshTokenRequest>();
-            var principal = GetClaimsPrincipal(tbUser);
+            var principal = GetClaimsPrincipal(sysUser);
             var sessionId = principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.SessionId).Value;
 
             var claimsPrincipalServiceMock = fixture.Freeze<Mock<IClaimsPrincipalService>>();
@@ -219,17 +219,17 @@ namespace KomberNet.Backend.Tests.Auth
                 .Verifiable();
 
             var distributedCacheMock = fixture.Freeze<Mock<IDistributedCache>>();
-            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, tbUser.Email), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, sysUser.Email), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => null)
                 .Verifiable();
 
-            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenKey, tbUser.Email, sessionId), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenKey, sysUser.Email, sessionId), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => Encoding.UTF8.GetBytes(fixture.Create<string>()))
                 .Verifiable();
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
-                .ReturnsAsync(() => tbUser)
+                .ReturnsAsync(() => sysUser)
                 .Verifiable();
 
             var refreshTokenService = fixture.Create<RefreshTokenService>();
@@ -250,9 +250,9 @@ namespace KomberNet.Backend.Tests.Auth
         {
             var fixture = this.GetNewFixture();
 
-            var tbUser = fixture.Create<TbUser>();
+            var sysUser = fixture.Create<SysUser>();
             var refreshTokenRequest = fixture.Create<RefreshTokenRequest>();
-            var principal = GetClaimsPrincipal(tbUser);
+            var principal = GetClaimsPrincipal(sysUser);
             var sessionId = principal.Claims.FirstOrDefault(x => x.Type == KomberNetClaims.SessionId).Value;
 
             var claimsPrincipalServiceMock = fixture.Freeze<Mock<IClaimsPrincipalService>>();
@@ -261,25 +261,25 @@ namespace KomberNet.Backend.Tests.Auth
                 .Verifiable();
 
             var distributedCacheMock = fixture.Freeze<Mock<IDistributedCache>>();
-            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, tbUser.Email), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, sysUser.Email), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => null)
                 .Verifiable();
 
-            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenKey, tbUser.Email, sessionId), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenKey, sysUser.Email, sessionId), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => Encoding.UTF8.GetBytes(refreshTokenRequest.RefreshToken))
                 .Verifiable();
 
-            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, tbUser.Email, sessionId), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.GetAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, sysUser.Email, sessionId), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => Encoding.UTF8.GetBytes(DateTime.Now.AddHours(1).ToString()))
                 .Verifiable();
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
-                .ReturnsAsync(() => tbUser)
+                .ReturnsAsync(() => sysUser)
                 .Verifiable();
 
             var tokenServiceMock = fixture.Freeze<Mock<ITokenService>>();
-            tokenServiceMock.Setup(x => x.GenerateTokenAsync(tbUser, It.IsAny<CancellationToken>()))
+            tokenServiceMock.Setup(x => x.GenerateTokenAsync(sysUser, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => (refreshTokenRequest.Token, fixture.Create<string>()))
                 .Verifiable();
 
@@ -295,11 +295,11 @@ namespace KomberNet.Backend.Tests.Auth
             userManagerMock.VerifyAll();
         }
 
-        private static ClaimsPrincipal GetClaimsPrincipal(TbUser tbUser)
+        private static ClaimsPrincipal GetClaimsPrincipal(SysUser sysUser)
         {
             var claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.Email, tbUser.Email),
+                new Claim(ClaimTypes.Email, sysUser.Email),
                 new Claim(KomberNetClaims.SessionId, Guid.NewGuid().ToString()),
             };
 

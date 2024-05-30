@@ -7,7 +7,7 @@ namespace KomberNet.Infrastructure.DatabaseRepositories.Entities.Organization
     using System.ComponentModel.DataAnnotations;
     using KomberNet.Models.Contracts;
 
-    public class TbOrganizationGroup : IDatabaseEntity, IHasKey, IHasAuditLog, IHasRowVersionControl
+    public class SysOrganizationGroup : IDatabaseEntity, IHasKey, IHasAuditLog, IHasRowVersionControl
     {
         [Key]
         [Required]

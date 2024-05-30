@@ -29,27 +29,27 @@ namespace KomberNet.Backend.Tests.Auth
         {
             var fixture = this.GetNewFixture();
 
-            var tbUser = fixture.Create<TbUser>();
+            var sysUser = fixture.Create<SysUser>();
             var sessionId = fixture.Create<string>();
             var logoutRequest = fixture.Create<LogoutRequest>();
 
             var currentUserServiceMock = fixture.Freeze<Mock<ICurrentUserService>>();
-            currentUserServiceMock.Setup(x => x.UserEmail).Returns(tbUser.Email);
+            currentUserServiceMock.Setup(x => x.UserEmail).Returns(sysUser.Email);
             currentUserServiceMock.Setup(x => x.SessionId).Returns(sessionId);
 
             var distributedCacheMock = fixture.Freeze<Mock<IDistributedCache>>();
             distributedCacheMock.Setup(x =>
                 x.SetAsync(
-                    string.Format(JwtCacheKeys.UserHasLogoutKey, tbUser.Email, sessionId),
+                    string.Format(JwtCacheKeys.UserHasLogoutKey, sysUser.Email, sessionId),
                     Encoding.UTF8.GetBytes("true"),
                     It.IsAny<DistributedCacheEntryOptions>(),
                     It.IsAny<CancellationToken>()))
                 .Verifiable();
 
-            distributedCacheMock.Setup(x => x.RemoveAsync(string.Format(JwtCacheKeys.RefreshTokenKey, tbUser.Email, sessionId), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.RemoveAsync(string.Format(JwtCacheKeys.RefreshTokenKey, sysUser.Email, sessionId), It.IsAny<CancellationToken>()))
                 .Verifiable();
 
-            distributedCacheMock.Setup(x => x.RemoveAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, tbUser.Email, sessionId), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.RemoveAsync(string.Format(JwtCacheKeys.RefreshTokenExpirationTimeKey, sysUser.Email, sessionId), It.IsAny<CancellationToken>()))
                 .Verifiable();
 
             var logoutService = fixture.Create<LogoutService>();
@@ -69,17 +69,17 @@ namespace KomberNet.Backend.Tests.Auth
         {
             var fixture = this.GetNewFixture();
 
-            var tbUser = fixture.Create<TbUser>();
+            var sysUser = fixture.Create<SysUser>();
             var logoutAllSessionsRequest = fixture.Create<LogoutAllSessionsRequest>();
 
             var currentUserServiceMock = fixture.Freeze<Mock<ICurrentUserService>>();
-            currentUserServiceMock.Setup(x => x.UserEmail).Returns(tbUser.Email);
+            currentUserServiceMock.Setup(x => x.UserEmail).Returns(sysUser.Email);
 
             var distributedCacheMock = fixture.Freeze<Mock<IDistributedCache>>();
 
             distributedCacheMock.Setup(x =>
                 x.SetAsync(
-                    string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, tbUser.Email),
+                    string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, sysUser.Email),
                     Encoding.UTF8.GetBytes("true"),
                     It.IsAny<DistributedCacheEntryOptions>(),
                     It.IsAny<CancellationToken>()))
