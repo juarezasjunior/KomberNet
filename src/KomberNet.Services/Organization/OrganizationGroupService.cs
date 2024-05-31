@@ -5,23 +5,25 @@
 namespace KomberNet.Services.Organization
 {
     using KomberNet.Infrastructure.DatabaseRepositories;
+    using KomberNet.Infrastructure.DatabaseRepositories.Entities.Organization;
     using KomberNet.Models.Organization;
 
     public class OrganizationGroupService : IOrganizationGroupService
     {
-public OrganizationGroupService(IDatabaseRepository databaseRepository)
-{
-    
-}
+        private readonly IDatabaseRepository databaseRepository;
 
-        public Task<OrganizationGroupQueryResponse> GetAsync(OrganizationGroupQueryRequest request)
+        public OrganizationGroupService(IDatabaseRepository databaseRepository)
         {
-            throw new NotImplementedException();
+            this.databaseRepository = databaseRepository;
         }
 
-        public Task<OrganizationGroupsQueryResponse> GetAsync(OrganizationGroupsQueryRequest request)
+        public async Task<OrganizationGroupQueryResponse> GetAsync(OrganizationGroupQueryRequest request)
         {
-            throw new NotImplementedException();
+            return new OrganizationGroupQueryResponse()
+            {
+                Entity = (await this.databaseRepository.GetByConditionAsync<TbOrganizationGroup, OrganizationGroup>(x =>
+                    x.Where(y => y.OrgazationGroupId == request.OrganizationGroupId))).FirstOrDefault(),
+            };
         }
 
         public Task<OrganizationGroupHandlerResponse> HandleAsync(OrganizationGroupHandlerRequest request)

@@ -139,7 +139,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                     classNamespace: entity.Namespace,
                     classPrefix: $"{entity.PluralName}Query",
                     inheritance: "IEntitiesQueryRequest",
-                    fields: entity.GenerateEntityQueryRequest.AdditionalFields,
+                    fields: entity.GenerateEntitiesQueryRequest.RequestFields,
                     isBackend: isBackend);
 
                 var useObservableCollection = isBackend ? false : codeGeneratorSettings.FrontendEntititesSettings?.UseObservableCollection ?? false;

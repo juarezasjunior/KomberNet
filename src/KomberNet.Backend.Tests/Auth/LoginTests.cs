@@ -28,7 +28,7 @@ namespace KomberNet.Backend.Tests.Auth
         {
             var fixture = this.GetNewFixture();
 
-            var sysUser = fixture.Create<SysUser>();
+            var tbUser = fixture.Create<TbUser>();
             var loginRequest = fixture.Create<LoginRequest>();
 
             var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
@@ -52,14 +52,14 @@ namespace KomberNet.Backend.Tests.Auth
         {
             var fixture = this.GetNewFixture();
 
-            var sysUser = fixture.Create<SysUser>();
+            var tbUser = fixture.Create<TbUser>();
             var loginRequest = fixture.Create<LoginRequest>();
 
             var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
-                .ReturnsAsync(() => sysUser)
+                .ReturnsAsync(() => tbUser)
                 .Verifiable();
-            userManagerMock.Setup(x => x.CheckPasswordAsync(It.IsAny<SysUser>(), It.IsAny<string>()))
+            userManagerMock.Setup(x => x.CheckPasswordAsync(It.IsAny<TbUser>(), It.IsAny<string>()))
                 .ReturnsAsync(() => false)
                 .Verifiable();
 
@@ -79,19 +79,19 @@ namespace KomberNet.Backend.Tests.Auth
         {
             var fixture = this.GetNewFixture();
 
-            var sysUser = fixture.Create<SysUser>();
+            var tbUser = fixture.Create<TbUser>();
             var loginRequest = fixture.Create<LoginRequest>();
 
             var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
-                .ReturnsAsync(() => sysUser)
+                .ReturnsAsync(() => tbUser)
                 .Verifiable();
-            userManagerMock.Setup(x => x.CheckPasswordAsync(It.IsAny<SysUser>(), It.IsAny<string>()))
+            userManagerMock.Setup(x => x.CheckPasswordAsync(It.IsAny<TbUser>(), It.IsAny<string>()))
                 .ReturnsAsync(() => true)
                 .Verifiable();
 
             var tokenServiceMock = fixture.Freeze<Mock<ITokenService>>();
-            tokenServiceMock.Setup(x => x.GenerateTokenAsync(It.IsAny<SysUser>(), It.IsAny<CancellationToken>()))
+            tokenServiceMock.Setup(x => x.GenerateTokenAsync(It.IsAny<TbUser>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => (fixture.Create<string>(), fixture.Create<string>()))
                 .Verifiable();
 
@@ -113,24 +113,24 @@ namespace KomberNet.Backend.Tests.Auth
         {
             var fixture = this.GetNewFixture();
 
-            var sysUser = fixture.Create<SysUser>();
+            var tbUser = fixture.Create<TbUser>();
             var loginRequest = fixture.Create<LoginRequest>();
 
             var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
-                .ReturnsAsync(() => sysUser)
+                .ReturnsAsync(() => tbUser)
                 .Verifiable();
-            userManagerMock.Setup(x => x.CheckPasswordAsync(It.IsAny<SysUser>(), It.IsAny<string>()))
+            userManagerMock.Setup(x => x.CheckPasswordAsync(It.IsAny<TbUser>(), It.IsAny<string>()))
                 .ReturnsAsync(() => true)
                 .Verifiable();
 
             var tokenServiceMock = fixture.Freeze<Mock<ITokenService>>();
-            tokenServiceMock.Setup(x => x.GenerateTokenAsync(It.IsAny<SysUser>(), It.IsAny<CancellationToken>()))
+            tokenServiceMock.Setup(x => x.GenerateTokenAsync(It.IsAny<TbUser>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => (fixture.Create<string>(), fixture.Create<string>()))
                 .Verifiable();
 
             var distributedCacheMock = fixture.Freeze<Mock<IDistributedCache>>();
-            distributedCacheMock.Setup(x => x.RemoveAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, sysUser.Email), It.IsAny<CancellationToken>()))
+            distributedCacheMock.Setup(x => x.RemoveAsync(string.Format(JwtCacheKeys.UserHasLogoutAllSessionsKey, tbUser.Email), It.IsAny<CancellationToken>()))
                 .Verifiable();
 
             var loginService = fixture.Create<LoginService>();

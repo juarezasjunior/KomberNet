@@ -12,7 +12,7 @@ namespace KomberNet.Infrastructure.DatabaseRepositories.Organization
     {
         public OrganizationGroupProfile()
         {
-            this.CreateMap<OrganizationGroup, SysOrganizationGroup>().ReverseMap();
+            this.CreateMap<OrganizationGroup, TbOrganizationGroup>().ReverseMap();
         }
     }
 }

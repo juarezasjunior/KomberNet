@@ -11,8 +11,6 @@ namespace KomberNet.Services.Organization
     {
         Task<OrganizationGroupQueryResponse> GetAsync(OrganizationGroupQueryRequest request);
 
-        Task<OrganizationGroupsQueryResponse> GetAsync(OrganizationGroupsQueryRequest request);
-
         Task<OrganizationGroupHandlerResponse> HandleAsync(OrganizationGroupHandlerRequest request);
     }
 }

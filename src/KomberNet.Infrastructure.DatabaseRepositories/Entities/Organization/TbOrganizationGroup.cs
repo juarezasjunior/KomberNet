@@ -5,9 +5,11 @@
 namespace KomberNet.Infrastructure.DatabaseRepositories.Entities.Organization
 {
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using KomberNet.Models.Contracts;
 
-    public class SysOrganizationGroup : IDatabaseEntity, IHasKey, IHasAuditLog, IHasRowVersionControl
+    [Table("OrganizationGroups")]
+    public class TbOrganizationGroup : IDatabaseEntity, IHasKey, IHasAuditLog, IHasRowVersionControl
     {
         [Key]
         [Required]

@@ -170,7 +170,7 @@ namespace KomberNet.UI.API.Bootstraps
 
         private static void ConfigureDatabase(WebApplicationBuilder builder)
         {
-            builder.Services.AddIdentityCore<SysUser>()
+            builder.Services.AddIdentityCore<TbUser>()
                 .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddErrorDescriber<CustomIdentityErrorDescriber>();

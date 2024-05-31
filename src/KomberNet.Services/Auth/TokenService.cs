@@ -31,7 +31,7 @@ namespace KomberNet.Services.Auth
             this.jwtOptions = jwtOptions;
         }
 
-        public async Task<(string Token, string RefreshToken)> GenerateTokenAsync(SysUser user, CancellationToken cancellationToken)
+        public async Task<(string Token, string RefreshToken)> GenerateTokenAsync(TbUser user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 

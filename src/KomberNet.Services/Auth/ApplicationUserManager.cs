@@ -12,9 +12,9 @@ namespace KomberNet.Services.Auth
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Options;
 
-    public class ApplicationUserManager : UserManager<SysUser>, IUserManager
+    public class ApplicationUserManager : UserManager<TbUser>, IUserManager
     {
-        public ApplicationUserManager(IUserStore<SysUser> store, IOptions<IdentityOptions> optionsAccessor, IPasswordHasher<SysUser> passwordHasher, IEnumerable<IUserValidator<SysUser>> userValidators, IEnumerable<IPasswordValidator<SysUser>> passwordValidators, ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors, IServiceProvider services, ILogger<UserManager<SysUser>> logger)
+        public ApplicationUserManager(IUserStore<TbUser> store, IOptions<IdentityOptions> optionsAccessor, IPasswordHasher<TbUser> passwordHasher, IEnumerable<IUserValidator<TbUser>> userValidators, IEnumerable<IPasswordValidator<TbUser>> passwordValidators, ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors, IServiceProvider services, ILogger<UserManager<TbUser>> logger)
             : base(store, optionsAccessor, passwordHasher, userValidators, passwordValidators, keyNormalizer, errors, services, logger)
         {
         }

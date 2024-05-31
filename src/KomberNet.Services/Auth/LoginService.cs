@@ -43,7 +43,7 @@ namespace KomberNet.Services.Auth
             };
         }
 
-        private async Task<SysUser> ValidateAsync(LoginRequest request, CancellationToken cancellationToken)
+        private async Task<TbUser> ValidateAsync(LoginRequest request, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 

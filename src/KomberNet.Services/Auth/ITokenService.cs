@@ -10,6 +10,6 @@ namespace KomberNet.Services.Auth
 
     public interface ITokenService : ITransientService
     {
-        public Task<(string Token, string RefreshToken)> GenerateTokenAsync(SysUser user, CancellationToken cancellationToken);
+        public Task<(string Token, string RefreshToken)> GenerateTokenAsync(TbUser user, CancellationToken cancellationToken);
     }
 }

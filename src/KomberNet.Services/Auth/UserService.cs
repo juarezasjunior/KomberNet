@@ -24,7 +24,7 @@ namespace KomberNet.Services.Auth
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var user = new SysUser()
+            var user = new TbUser()
             {
                 FullName = request.FullName,
                 UserName = request.Email,

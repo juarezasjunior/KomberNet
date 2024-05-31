@@ -7,13 +7,15 @@ namespace KomberNet.Infrastructure.DatabaseRepositories.Entities.Auth
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using KomberNet.Models.Contracts;
     using Microsoft.AspNetCore.Identity;
 
-    public class SysUser : IdentityUser<Guid>
+    [Table("Users")]
+    public class TbUser : IdentityUser<Guid>
     {
         [MaxLength(500)]
         public string FullName { get; set; }

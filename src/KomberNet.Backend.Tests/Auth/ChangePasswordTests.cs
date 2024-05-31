@@ -29,11 +29,11 @@ namespace KomberNet.Backend.Tests.Auth
         {
             var fixture = this.GetNewFixture();
 
-            var sysUser = fixture.Create<SysUser>();
+            var tbUser = fixture.Create<TbUser>();
             var changePasswordRequest = fixture.Create<ChangePasswordRequest>();
 
             var currentUserServiceMock = fixture.Freeze<Mock<ICurrentUserService>>();
-            currentUserServiceMock.Setup(x => x.UserId).Returns(sysUser.Id);
+            currentUserServiceMock.Setup(x => x.UserId).Returns(tbUser.Id);
 
             var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByIdAsync(It.IsAny<string>()))
@@ -57,20 +57,20 @@ namespace KomberNet.Backend.Tests.Auth
         {
             var fixture = this.GetNewFixture();
 
-            var sysUser = fixture.Create<SysUser>();
+            var tbUser = fixture.Create<TbUser>();
             var changePasswordRequest = fixture.Create<ChangePasswordRequest>();
 
             var currentUserServiceMock = fixture.Freeze<Mock<ICurrentUserService>>();
-            currentUserServiceMock.Setup(x => x.UserId).Returns(sysUser.Id);
+            currentUserServiceMock.Setup(x => x.UserId).Returns(tbUser.Id);
 
             var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByIdAsync(It.IsAny<string>()))
-                .ReturnsAsync(() => sysUser)
+                .ReturnsAsync(() => tbUser)
                 .Verifiable();
 
             var identityResult = IdentityResult.Failed(new IdentityError() { Code = fixture.Create<string>(), Description = fixture.Create<string>() });
 
-            userManagerMock.Setup(x => x.ChangePasswordAsync(sysUser, changePasswordRequest.CurrentPassword, changePasswordRequest.NewPassword))
+            userManagerMock.Setup(x => x.ChangePasswordAsync(tbUser, changePasswordRequest.CurrentPassword, changePasswordRequest.NewPassword))
                 .ReturnsAsync(() => identityResult)
                 .Verifiable();
 
@@ -90,18 +90,18 @@ namespace KomberNet.Backend.Tests.Auth
         {
             var fixture = this.GetNewFixture();
 
-            var sysUser = fixture.Create<SysUser>();
+            var tbUser = fixture.Create<TbUser>();
             var changePasswordRequest = fixture.Create<ChangePasswordRequest>();
 
             var currentUserServiceMock = fixture.Freeze<Mock<ICurrentUserService>>();
-            currentUserServiceMock.Setup(x => x.UserId).Returns(sysUser.Id);
+            currentUserServiceMock.Setup(x => x.UserId).Returns(tbUser.Id);
 
             var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByIdAsync(It.IsAny<string>()))
-                .ReturnsAsync(() => sysUser)
+                .ReturnsAsync(() => tbUser)
                 .Verifiable();
 
-            userManagerMock.Setup(x => x.ChangePasswordAsync(sysUser, changePasswordRequest.CurrentPassword, changePasswordRequest.NewPassword))
+            userManagerMock.Setup(x => x.ChangePasswordAsync(tbUser, changePasswordRequest.CurrentPassword, changePasswordRequest.NewPassword))
                 .ReturnsAsync(() => IdentityResult.Success)
                 .Verifiable();
 
