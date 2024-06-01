@@ -8,7 +8,7 @@ namespace KomberNet.Models.Contracts
     using System.Collections.Generic;
     using System.Text;
 
-    public interface IEntitiesQueryRequest : IEndpointRequest
+    public interface IEntitiesGetRequest : IEndpointRequest
     {
     }
 }

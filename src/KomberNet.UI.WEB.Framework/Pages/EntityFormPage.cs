@@ -12,7 +12,7 @@ namespace KomberNet.UI.WEB.Framework.Pages
     public abstract partial class EntityFormPage<TEntityHandlerRequest, TEntityHandlerResponse, TEntity, TValidator> : FormPage
         where TEntityHandlerRequest : class, IEntityHandlerRequest<TEntity>, new()
         where TEntity : class, IEntity, new()
-        where TEntityHandlerResponse : class, IEntityHandlerResponse<TEntity>, new()
+        where TEntityHandlerResponse : class, IEntityHandlerResponse, new()
         where TValidator : AbstractValidator<TEntityHandlerRequest>, new()
     {
         public TEntityHandlerRequest Request { get; } = new TEntityHandlerRequest() { Entity = new TEntity() };

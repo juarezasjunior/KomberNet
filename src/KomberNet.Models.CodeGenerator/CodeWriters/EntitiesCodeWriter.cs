@@ -67,10 +67,9 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
 
             if (entity.GenerateEntityHandlerRequest != null)
             {
-                WriteRequestResponse(
+                WriteRequest(
                     codeGeneratorSettings,
                     sourceProductionContext,
-                    isRequest: true,
                     classNamespace: entity.Namespace,
                     classPrefix: $"{entity.Name}Handler",
                     inheritance: $"IEntityHandlerRequest<{entity.Name}>",
@@ -80,85 +79,90 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                     entityPropertyName: "Entity",
                     entityPropertyHasValidator: true);
 
-                WriteRequestResponse(
-                    codeGeneratorSettings,
-                    sourceProductionContext,
-                    isRequest: false,
-                    classNamespace: entity.Namespace,
-                    classPrefix: $"{entity.Name}Handler",
-                    inheritance: $"IEntityHandlerResponse<{entity.Name}>",
-                    fields: null,
-                    isBackend: isBackend,
-                    entityPropertyType: entity.Name,
-                    entityPropertyName: "Entity");
-            }
-
-            if (entity.GenerateEntityQueryRequest != null)
-            {
-                var entityQueryRequestInheritance = "IEntityQueryRequest";
-                var entityQueryRequestFields = entity.GenerateEntityQueryRequest.AdditionalFields;
+                var responseInheritance = $"IEntityHandlerResponse";
+                Fields responseFields = null;
 
                 if (entity.EntityFields?.KeyField != null)
                 {
-                    entityQueryRequestFields = entityQueryRequestFields ?? new Fields();
+                    responseFields = new Fields
+                    {
+                        KeyField = entity.EntityFields?.KeyField,
+                    };
 
-                    entityQueryRequestFields.KeyField = entity.EntityFields?.KeyField;
-
-                    entityQueryRequestInheritance += ", IHasKey";
+                    responseInheritance += ", IHasKey";
                 }
 
-                WriteRequestResponse(
+                WriteResponse(
                     codeGeneratorSettings,
                     sourceProductionContext,
-                    isRequest: true,
                     classNamespace: entity.Namespace,
-                    classPrefix: $"{entity.Name}Query",
-                    inheritance: entityQueryRequestInheritance,
-                    fields: entityQueryRequestFields,
+                    classPrefix: $"{entity.Name}Handler",
+                    inheritance: responseInheritance,
+                    fields: responseFields,
+                    isBackend: isBackend);
+            }
+
+            if (entity.GenerateEntityGetRequest != null)
+            {
+                var entityGetRequestInheritance = "IEntityGetRequest";
+                var entityGetRequestFields = entity.GenerateEntityGetRequest.AdditionalFields;
+
+                if (entity.EntityFields?.KeyField != null)
+                {
+                    entityGetRequestFields = entityGetRequestFields ?? new Fields();
+
+                    entityGetRequestFields.KeyField = entity.EntityFields?.KeyField;
+
+                    entityGetRequestInheritance += ", IHasKey";
+                }
+
+                WriteRequest(
+                    codeGeneratorSettings,
+                    sourceProductionContext,
+                    classNamespace: entity.Namespace,
+                    classPrefix: $"{entity.Name}Get",
+                    inheritance: entityGetRequestInheritance,
+                    fields: entityGetRequestFields,
                     isBackend: isBackend);
 
-                WriteRequestResponse(
+                WriteResponse(
                     codeGeneratorSettings,
                     sourceProductionContext,
-                    isRequest: false,
                     classNamespace: entity.Namespace,
-                    classPrefix: $"{entity.Name}Query",
-                    inheritance: $"IEntityQueryResponse<{entity.Name}>",
+                    classPrefix: $"{entity.Name}Get",
+                    inheritance: $"IEntityGetResponse<{entity.Name}>",
                     fields: null,
                     isBackend: isBackend,
                     entityPropertyType: entity.Name,
                     entityPropertyName: "Entity");
             }
 
-            if (entity.GenerateEntitiesQueryRequest != null)
+            if (entity.GenerateEntitiesGetRequest != null)
             {
-                WriteRequestResponse(
+                WriteRequest(
                     codeGeneratorSettings,
                     sourceProductionContext,
-                    isRequest: true,
                     classNamespace: entity.Namespace,
-                    classPrefix: $"{entity.PluralName}Query",
-                    inheritance: "IEntitiesQueryRequest",
-                    fields: entity.GenerateEntitiesQueryRequest.RequestFields,
+                    classPrefix: $"{entity.PluralName}Get",
+                    inheritance: "IEntitiesGetRequest",
+                    fields: entity.GenerateEntitiesGetRequest.RequestFields,
                     isBackend: isBackend);
 
                 var useObservableCollection = isBackend ? false : codeGeneratorSettings.FrontendEntititesSettings?.UseObservableCollection ?? false;
                 var collectionType = useObservableCollection ? "ObservableCollection" : "IList";
                 var collectionTypeInstantiateCommand = useObservableCollection ? "new ObservableCollection" : "new List";
 
-                WriteRequestResponse(
+                WriteResponse(
                     codeGeneratorSettings,
                     sourceProductionContext,
-                    isRequest: false,
                     classNamespace: entity.Namespace,
-                    classPrefix: $"{entity.PluralName}Query",
-                    inheritance: $"IEntitiesQueryResponse<{entity.Name}, {collectionType}<{entity.Name}>>",
+                    classPrefix: $"{entity.PluralName}Get",
+                    inheritance: $"IEntitiesGetResponse<{entity.Name}, {collectionType}<{entity.Name}>>",
                     fields: null,
                     isBackend: isBackend,
                     entityPropertyType: $"{collectionType}<{entity.Name}>",
                     entityPropertyName: "Entities",
                     entityPropertyValue: $"{collectionTypeInstantiateCommand}<{entity.Name}>()",
-                    entityPropertyHasValidator: false,
                     entityPropertyIsObservableCollection: useObservableCollection);
             }
         }
@@ -177,50 +181,48 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                 includeAuditLog: summary.IncludeAuditLog,
                 isBackend: isBackend);
 
-            if (summary.GenerateSummaryQueryRequest != null)
+            if (summary.GenerateSummaryGetRequest != null)
             {
-                var summaryQueryRequestInheritance = "ISummaryQueryRequest";
-                var summaryQueryRequestFields = summary.GenerateSummaryQueryRequest.AdditionalFields;
+                var summaryGetRequestInheritance = "ISummaryGetRequest";
+                var summaryGetRequestFields = summary.GenerateSummaryGetRequest.AdditionalFields;
 
                 if (summary.SummaryFields?.KeyField != null)
                 {
-                    summaryQueryRequestFields = summaryQueryRequestFields ?? new Fields();
+                    summaryGetRequestFields = summaryGetRequestFields ?? new Fields();
 
-                    summaryQueryRequestFields.KeyField = summary.SummaryFields?.KeyField;
+                    summaryGetRequestFields.KeyField = summary.SummaryFields?.KeyField;
 
-                    summaryQueryRequestInheritance += ", IHasKey";
+                    summaryGetRequestInheritance += ", IHasKey";
                 }
 
-                WriteRequestResponse(
+                WriteRequest(
                     codeGeneratorSettings,
                     sourceProductionContext,
-                    isRequest: true,
                     classNamespace: summary.Namespace,
-                    classPrefix: $"{summary.Name}Query",
-                    inheritance: summaryQueryRequestInheritance,
-                    fields: summaryQueryRequestFields,
+                    classPrefix: $"{summary.Name}Get",
+                    inheritance: summaryGetRequestInheritance,
+                    fields: summaryGetRequestFields,
                     isBackend: isBackend);
 
-                WriteRequestResponse(
+                WriteResponse(
                     codeGeneratorSettings,
                     sourceProductionContext,
-                    isRequest: false,
                     classNamespace: summary.Namespace,
-                    classPrefix: $"{summary.Name}Query",
-                    inheritance: $"ISummaryQueryResponse<{summary.Name}>",
+                    classPrefix: $"{summary.Name}Get",
+                    inheritance: $"ISummaryGetResponse<{summary.Name}>",
                     fields: null,
                     isBackend: isBackend,
                     entityPropertyType: summary.Name,
                     entityPropertyName: "Summary");
             }
 
-            if (summary.GenerateSummariesQueryRequest != null)
+            if (summary.GenerateSummariesGetRequest != null)
             {
-                var requestInheritance = "ISummariesQueryRequest";
+                var requestInheritance = "ISummariesGetRequest";
 
-                var requestFields = summary.GenerateSummariesQueryRequest.RequestFields;
+                var requestFields = summary.GenerateSummariesGetRequest.RequestFields;
 
-                if (summary.GenerateSummariesQueryRequest.GenerateSearchableDefaultCriteria)
+                if (summary.GenerateSummariesGetRequest.GenerateSearchableDefaultCriteria)
                 {
                     requestInheritance += ", IHasSearchableDefaultCriteria";
 
@@ -233,12 +235,11 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                     requestFields.IntField.Add(new IntField() { Name = "Take" });
                 }
 
-                WriteRequestResponse(
+                WriteRequest(
                     codeGeneratorSettings,
                     sourceProductionContext,
-                    isRequest: true,
                     classNamespace: summary.Namespace,
-                    classPrefix: $"{summary.PluralName}Query",
+                    classPrefix: $"{summary.PluralName}Get",
                     inheritance: requestInheritance,
                     fields: requestFields,
                     isBackend: isBackend);
@@ -247,19 +248,17 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                 var collectionType = useObservableCollection ? "ObservableCollection" : "IList";
                 var collectionTypeInstantiateCommand = useObservableCollection ? "new ObservableCollection" : "new List";
 
-                WriteRequestResponse(
+                WriteResponse(
                     codeGeneratorSettings,
                     sourceProductionContext,
-                    isRequest: false,
                     classNamespace: summary.Namespace,
-                    classPrefix: $"{summary.PluralName}Query",
-                    inheritance: $"ISummariesQueryResponse<{summary.Name}, {collectionType}<{summary.Name}>>",
+                    classPrefix: $"{summary.PluralName}Get",
+                    inheritance: $"ISummariesGetResponse<{summary.Name}, {collectionType}<{summary.Name}>>",
                     fields: null,
                     isBackend: isBackend,
                     entityPropertyType: $"{collectionType}<{summary.Name}>",
                     entityPropertyName: "Summaries",
                     entityPropertyValue: $"{collectionTypeInstantiateCommand}<{summary.Name}>()",
-                    entityPropertyHasValidator: false,
                     entityPropertyIsObservableCollection: useObservableCollection);
             }
         }
@@ -330,7 +329,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
 
             entityValidatorFileWriter.WriteMethod("SetCustomRules", isPartial: true);
 
-            fields?.HandleFields(EntityFieldCodeWriter.WriteField(entityFileWriter, entityValidatorFileWriter, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation));
+            fields?.HandleFields(EntityFieldCodeWriter.WriteField(entityFileWriter, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation, validatorFileWriter: entityValidatorFileWriter));
 
             if (includeRowVersionControl)
             {
@@ -359,10 +358,9 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
             sourceProductionContext.WriteNewCSFile(validatorClassName, entityValidatorFileWriter);
         }
 
-        private static void WriteRequestResponse(
+        private static void WriteRequest(
             CodeGeneratorSettings codeGeneratorSettings,
             SourceProductionContext sourceProductionContext,
-            bool isRequest,
             string classNamespace,
             string classPrefix,
             string inheritance,
@@ -379,7 +377,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
             var shouldGenerateNotifyPropertyChanges = isBackend ? false : codeGeneratorSettings.FrontendEntititesSettings?.GenerateNotifyPropertyChanges ?? false;
             var useObservableCollection = isBackend ? false : codeGeneratorSettings.FrontendEntititesSettings?.UseObservableCollection ?? false;
 
-            var className = classPrefix + (isRequest ? "Request" : "Response");
+            var className = classPrefix + "Request";
 
             var fileWriter = new CSFileWriter(
                     CSFileWriterType.Class,
@@ -428,12 +426,63 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                 }
             }
 
-            fields?.HandleFields(EntityFieldCodeWriter.WriteField(fileWriter, validatorFileWriter, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation));
+            fields?.HandleFields(EntityFieldCodeWriter.WriteField(fileWriter, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation, validatorFileWriter: validatorFileWriter));
 
             validatorFileWriter.WriteConstructorAdditionalBodyLine($"this.SetCustomRules();");
 
             sourceProductionContext.WriteNewCSFile(className, fileWriter);
             sourceProductionContext.WriteNewCSFile(validatorClassName, validatorFileWriter);
+        }
+
+        private static void WriteResponse(
+            CodeGeneratorSettings codeGeneratorSettings,
+            SourceProductionContext sourceProductionContext,
+            string classNamespace,
+            string classPrefix,
+            string inheritance,
+            Fields fields,
+            bool isBackend,
+            string entityPropertyType = null,
+            string entityPropertyName = null,
+            string entityPropertyValue = null,
+            bool entityPropertyIsObservableCollection = false)
+        {
+            var currentLocation = isBackend ? Structure.Location.Backend : Structure.Location.Frontend;
+            var validatorNamespace = classNamespace;
+            var shouldGenerateNotifyPropertyChanges = isBackend ? false : codeGeneratorSettings.FrontendEntititesSettings?.GenerateNotifyPropertyChanges ?? false;
+            var useObservableCollection = isBackend ? false : codeGeneratorSettings.FrontendEntititesSettings?.UseObservableCollection ?? false;
+
+            var className = classPrefix + "Response";
+
+            var fileWriter = new CSFileWriter(
+                    CSFileWriterType.Class,
+                    classNamespace,
+                    className,
+                    isPartial: true,
+                    inheritance: inheritance);
+
+            fileWriter.WriteUsing("System");
+            fileWriter.WriteUsing("KomberNet.Models");
+            fileWriter.WriteUsing("KomberNet.Models.Contracts");
+
+            if (entityPropertyIsObservableCollection)
+            {
+                fileWriter.WriteUsing("System.Collections.ObjectModel");
+            }
+
+            if (!string.IsNullOrEmpty(entityPropertyName))
+            {
+                fileWriter.WriteProperty(
+                    type: entityPropertyType,
+                    name: entityPropertyName,
+                    value: entityPropertyValue,
+                    hasNotifyPropertyChanged: entityPropertyIsObservableCollection ? false : shouldGenerateNotifyPropertyChanges,
+                    isObservableCollection: entityPropertyIsObservableCollection);
+            }
+
+            fields?.HandleFields(EntityFieldCodeWriter.WriteField(fileWriter, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation));
+
+            sourceProductionContext.WriteNewCSFile(className, fileWriter);
         }
     }
 }

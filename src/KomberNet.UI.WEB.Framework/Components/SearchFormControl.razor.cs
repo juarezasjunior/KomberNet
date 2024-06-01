@@ -13,14 +13,14 @@ namespace KomberNet.UI.WEB.Framework.Components
     using KomberNet.UI.WEB.Framework.Pages;
     using Microsoft.AspNetCore.Components;
 
-    public partial class SearchFormControl<TSummariesQueryRequest, TSummariesQueryResponse, TSummary, TValidator> : FormControl
-        where TSummariesQueryRequest : class, ISummariesQueryRequest, new()
-        where TSummariesQueryResponse : class, ISummariesQueryResponse<TSummary, ObservableCollection<TSummary>>
+    public partial class SearchFormControl<TSummariesGetRequest, TSummariesGetResponse, TSummary, TValidator> : FormControl
+        where TSummariesGetRequest : class, ISummariesGetRequest, new()
+        where TSummariesGetResponse : class, ISummariesGetResponse<TSummary, ObservableCollection<TSummary>>
         where TSummary : class, ISummary
-        where TValidator : AbstractValidator<TSummariesQueryRequest>, new()
+        where TValidator : AbstractValidator<TSummariesGetRequest>, new()
     {
         [Parameter]
-        public SearchFormPage<TSummariesQueryRequest, TSummariesQueryResponse, TSummary, TValidator> SearchFormPage { get; set; }
+        public SearchFormPage<TSummariesGetRequest, TSummariesGetResponse, TSummary, TValidator> SearchFormPage { get; set; }
 
         [Parameter]
         public int? Take { get; set; } = 100;

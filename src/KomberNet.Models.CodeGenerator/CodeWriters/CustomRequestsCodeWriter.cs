@@ -78,7 +78,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
 
             validatorFileWriter.WriteMethod("SetCustomRules", isPartial: true);
 
-            customRequest.RequestFields?.HandleFields(EntityFieldCodeWriter.WriteField(fileWriter, validatorFileWriter, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation));
+            customRequest.RequestFields?.HandleFields(EntityFieldCodeWriter.WriteField(fileWriter, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation, validatorFileWriter: validatorFileWriter));
 
             validatorFileWriter.WriteConstructorAdditionalBodyLine($"this.SetCustomRules();");
 

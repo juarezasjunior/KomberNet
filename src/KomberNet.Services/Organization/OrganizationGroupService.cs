@@ -8,7 +8,7 @@ namespace KomberNet.Services.Organization
     using KomberNet.Infrastructure.DatabaseRepositories.Entities.Organization;
     using KomberNet.Models.Organization;
 
-    public class OrganizationGroupService : IOrganizationGroupService
+    public class OrganizationGroupService : BaseService, IOrganizationGroupService
     {
         private readonly IDatabaseRepository databaseRepository;
 
@@ -17,18 +17,24 @@ namespace KomberNet.Services.Organization
             this.databaseRepository = databaseRepository;
         }
 
-        public async Task<OrganizationGroupQueryResponse> GetAsync(OrganizationGroupQueryRequest request)
+        public async Task<OrganizationGroupGetResponse> GetAsync(OrganizationGroupGetRequest request)
         {
-            return new OrganizationGroupQueryResponse()
+            return new OrganizationGroupGetResponse()
             {
                 Entity = (await this.databaseRepository.GetByConditionAsync<TbOrganizationGroup, OrganizationGroup>(x =>
                     x.Where(y => y.OrgazationGroupId == request.OrganizationGroupId))).FirstOrDefault(),
             };
         }
 
-        public Task<OrganizationGroupHandlerResponse> HandleAsync(OrganizationGroupHandlerRequest request)
+        public async Task<OrganizationGroupHandlerResponse> HandleAsync(OrganizationGroupHandlerRequest request)
         {
-            throw new NotImplementedException();
+            var tbOrganizationGroup = this.databaseRepository.ApplyChanges<TbOrganizationGroup, OrganizationGroup>(request.Entity);
+            await this.databaseRepository.SaveAsync();
+
+            return new OrganizationGroupHandlerResponse()
+            {
+                OrganizationGroupId = tbOrganizationGroup.OrgazationGroupId,
+            };
         }
     }
 }

@@ -7,7 +7,7 @@
 			<StringField Name="Name" MaxLength="500" IsRequired="true"/>
 		</SummaryFields>
 
-		<GenerateSummaryQueryRequest />
-		<GenerateSummariesQueryRequest />
+		<GenerateSummaryGetRequest />
+		<GenerateSummariesGetRequest />
 	</Summary>
 </CodeGenerator>

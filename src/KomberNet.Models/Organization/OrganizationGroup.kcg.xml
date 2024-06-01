@@ -10,6 +10,6 @@
 		</EntityFields>
 		
 		<GenerateEntityHandlerRequest />
-		<GenerateEntityQueryRequest />
+		<GenerateEntityGetRequest />
 	</Entity>
 </CodeGenerator>

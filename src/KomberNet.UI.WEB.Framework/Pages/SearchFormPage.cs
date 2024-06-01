@@ -11,13 +11,13 @@ namespace KomberNet.UI.WEB.Framework.Pages
     using KomberNet.Models.Contracts;
     using Radzen;
 
-    public abstract partial class SearchFormPage<TSummariesQueryRequest, TSummariesQueryResponse, TSummary, TValidator> : FormPage
-        where TSummariesQueryRequest : class, ISummariesQueryRequest, new()
-        where TSummariesQueryResponse : class, ISummariesQueryResponse<TSummary, ObservableCollection<TSummary>>
+    public abstract partial class SearchFormPage<TSummariesGetRequest, TSummariesGetResponse, TSummary, TValidator> : FormPage
+        where TSummariesGetRequest : class, ISummariesGetRequest, new()
+        where TSummariesGetResponse : class, ISummariesGetResponse<TSummary, ObservableCollection<TSummary>>
         where TSummary : class, ISummary
-        where TValidator : AbstractValidator<TSummariesQueryRequest>, new()
+        where TValidator : AbstractValidator<TSummariesGetRequest>, new()
     {
-        public TSummariesQueryRequest Request { get; } = new TSummariesQueryRequest();
+        public TSummariesGetRequest Request { get; } = new TSummariesGetRequest();
 
         public ObservableCollection<TSummary> Results { get; private set; } = new ObservableCollection<TSummary>();
 
@@ -67,7 +67,7 @@ namespace KomberNet.UI.WEB.Framework.Pages
             await Task.CompletedTask;
         }
 
-        protected abstract Task<TSummariesQueryResponse> OnSearchingAsync();
+        protected abstract Task<TSummariesGetResponse> OnSearchingAsync();
 
         private async Task ValidateRequestAsync()
         {

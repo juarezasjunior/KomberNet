@@ -14,8 +14,8 @@
 		<xs:sequence>
 			<xs:element minOccurs="0" maxOccurs="1" name="EntityFields" type="Fields" />
 			<xs:element minOccurs="0" maxOccurs="1" name="GenerateEntityHandlerRequest" type="GenerateEntityHandlerRequest" />
-			<xs:element minOccurs="0" maxOccurs="1" name="GenerateEntityQueryRequest" type="GenerateEntityQueryRequest" />
-			<xs:element minOccurs="0" maxOccurs="1" name="GenerateEntitiesQueryRequest" type="GenerateEntitiesQueryRequest" />
+			<xs:element minOccurs="0" maxOccurs="1" name="GenerateEntityGetRequest" type="GenerateEntityGetRequest" />
+			<xs:element minOccurs="0" maxOccurs="1" name="GenerateEntitiesGetRequest" type="GenerateEntitiesGetRequest" />
 		</xs:sequence>
 		<xs:attribute name="Namespace" type="xs:string" />
 		<xs:attribute name="Name" type="xs:string" />
@@ -132,12 +132,12 @@
 			<xs:element minOccurs="0" maxOccurs="1" name="AdditionalFields" type="Fields" />
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="GenerateEntityQueryRequest">
+	<xs:complexType name="GenerateEntityGetRequest">
 		<xs:sequence>
 			<xs:element minOccurs="0" maxOccurs="1" name="AdditionalFields" type="Fields" />
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="GenerateEntitiesQueryRequest">
+	<xs:complexType name="GenerateEntitiesGetRequest">
 		<xs:sequence>
 			<xs:element minOccurs="0" maxOccurs="1" name="RequestFields" type="Fields" />
 		</xs:sequence>
@@ -145,8 +145,8 @@
 	<xs:complexType name="Summary">
 		<xs:sequence>
 			<xs:element minOccurs="0" maxOccurs="1" name="SummaryFields" type="Fields" />
-			<xs:element minOccurs="0" maxOccurs="1" name="GenerateSummaryQueryRequest" type="GenerateSummaryQueryRequest" />
-			<xs:element minOccurs="0" maxOccurs="1" name="GenerateSummariesQueryRequest" type="GenerateSummariesQueryRequest" />
+			<xs:element minOccurs="0" maxOccurs="1" name="GenerateSummaryGetRequest" type="GenerateSummaryGetRequest" />
+			<xs:element minOccurs="0" maxOccurs="1" name="GenerateSummariesGetRequest" type="GenerateSummariesGetRequest" />
 		</xs:sequence>
 		<xs:attribute name="Namespace" type="xs:string" />
 		<xs:attribute name="Name" type="xs:string" />
@@ -155,12 +155,12 @@
 		<xs:attribute default="false" name="IncludeAuditLog" type="xs:boolean" />
 		<xs:attribute default="false" name="IncludeRowVersionControl" type="xs:boolean" />
 	</xs:complexType>
-	<xs:complexType name="GenerateSummaryQueryRequest">
+	<xs:complexType name="GenerateSummaryGetRequest">
 		<xs:sequence>
 			<xs:element minOccurs="0" maxOccurs="1" name="AdditionalFields" type="Fields" />
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="GenerateSummariesQueryRequest">
+	<xs:complexType name="GenerateSummariesGetRequest">
 		<xs:sequence>
 			<xs:element minOccurs="0" maxOccurs="1" name="RequestFields" type="Fields" />
 		</xs:sequence>

@@ -20,7 +20,7 @@ namespace KomberNet.UI.WEB.Framework.Components
     public partial class EntityFormControl<TEntityHandlerRequest, TEntityHandlerResponse, TEntity, TValidator> : FormControl
         where TEntityHandlerRequest : class, IEntityHandlerRequest<TEntity>, new()
         where TEntity : class, IEntity, new()
-        where TEntityHandlerResponse : class, IEntityHandlerResponse<TEntity>, new()
+        where TEntityHandlerResponse : class, IEntityHandlerResponse, new()
         where TValidator : AbstractValidator<TEntityHandlerRequest>, new()
     {
         [Parameter]
