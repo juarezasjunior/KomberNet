@@ -246,9 +246,11 @@ namespace KomberNet.UI.API.Bootstraps
 
         private static void ConfigureValidations(WebApplicationBuilder builder)
         {
-            builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
+            builder.Services.AddValidatorsFromAssemblies(GetModelsAssemblies());
 
             builder.Services.AddFluentValidationAutoValidation();
+
+            builder.Services.AddSingleton<IValidatorInterceptor, CustomValidatorInterceptor>();
         }
 
         private static void ConfigureMVC(WebApplicationBuilder builder)
@@ -310,6 +312,16 @@ namespace KomberNet.UI.API.Bootstraps
                 Assembly.Load("KomberNet.Services.Inventory"),
                 Assembly.Load("KomberNet.Services.Manufacturing"),
                 Assembly.Load("KomberNet.Services.Purchasing"),
+            ];
+
+        private static IEnumerable<Assembly> GetModelsAssemblies() =>
+            [
+                Assembly.Load("KomberNet.Models"),
+                Assembly.Load("KomberNet.Models.Billing"),
+                Assembly.Load("KomberNet.Models.Financial"),
+                Assembly.Load("KomberNet.Models.Inventory"),
+                Assembly.Load("KomberNet.Models.Manufacturing"),
+                Assembly.Load("KomberNet.Models.Purchasing"),
             ];
 
         private class ConnectionStringsOptions

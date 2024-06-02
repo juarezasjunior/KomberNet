@@ -17,7 +17,7 @@
 
 	<CustomRequest Namespace="KomberNet.Models.Auth" Name="CreateUserRequest">
 		<RequestFields>
-			<StringField Name="FullName" IsRequired="true"/>
+			<StringField Name="FullName" MaxLength="3" IsRequired="true"/>
 			<StringField Name="Email" IsRequired="true"/>
 			<StringField Name="Password" IsRequired="true"/>
 		</RequestFields>

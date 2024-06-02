@@ -20,6 +20,7 @@ namespace KomberNet.Models.CodeGenerator.Extensions
 
             sourceProductionContext.AddSource(fileName, fileContent);
             Debug.WriteLine($"The {fileName} was auto generated with this content: " + fileContent);
+            ReportGeneratedCode(sourceProductionContext, fileContent);
         }
 
         public static void WriteNewCSFile(this SourceProductionContext sourceProductionContext, string fileNameWithoutExtension, string fileContent)
@@ -28,6 +29,21 @@ namespace KomberNet.Models.CodeGenerator.Extensions
 
             sourceProductionContext.AddSource(fileName, fileContent);
             Debug.WriteLine($"The {fileName} was auto generated with this content: " + fileContent);
+            ReportGeneratedCode(sourceProductionContext, fileContent);
         }
+
+        private static void ReportGeneratedCode(SourceProductionContext context, string sourceCode)
+    {
+        var descriptor = new DiagnosticDescriptor(
+            id: "MYGEN001",
+            title: "Generated Source Code",
+            messageFormat: "Generated Source Code: {0}",
+            category: "SourceGenerator",
+            DiagnosticSeverity.Warning,
+            isEnabledByDefault: true);
+
+        var diagnostic = Diagnostic.Create(descriptor, Location.None, sourceCode.Replace("\n", " "));
+        context.ReportDiagnostic(diagnostic);
+    }
     }
 }

@@ -15,7 +15,6 @@ namespace KomberNet.UI.WEB.Client.Handlers
         {
             request.Headers.AcceptLanguage.Add(new System.Net.Http.Headers.StringWithQualityHeaderValue(CultureInfo.CurrentCulture.Name));
 
-            // TODO: Handle with exceptions of JWT expiration
             return await base.SendAsync(request, cancellationToken);
         }
     }
