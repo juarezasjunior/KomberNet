@@ -325,11 +325,12 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
             entityValidatorFileWriter.WriteUsing("System");
             entityValidatorFileWriter.WriteUsing("FluentValidation");
             entityValidatorFileWriter.WriteUsing("KomberNet.Models.Contracts");
+            entityValidatorFileWriter.WriteUsing("KomberNet.Resources");
             entityValidatorFileWriter.WriteUsing(entityNamespace);
 
             entityValidatorFileWriter.WriteMethod("SetCustomRules", isPartial: true);
 
-            fields?.HandleFields(EntityFieldCodeWriter.WriteField(entityFileWriter, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation, validatorFileWriter: entityValidatorFileWriter));
+            fields?.HandleFields(EntityFieldCodeWriter.WriteField(entityFileWriter, entityName, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation, validatorFileWriter: entityValidatorFileWriter));
 
             if (includeRowVersionControl)
             {
@@ -406,6 +407,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
             validatorFileWriter.WriteUsing("System");
             validatorFileWriter.WriteUsing("FluentValidation");
             validatorFileWriter.WriteUsing("KomberNet.Models.Contracts");
+            validatorFileWriter.WriteUsing("KomberNet.Resources");
             validatorFileWriter.WriteUsing(classNamespace);
 
             validatorFileWriter.WriteMethod("SetCustomRules", isPartial: true);
@@ -421,12 +423,12 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
 
                 if (entityPropertyHasValidator)
                 {
-                    validatorFileWriter.WriteConstructorAdditionalBodyLine($"this.RuleFor(x => x.{entityPropertyName}).NotNull().NotEmpty();");
+                    validatorFileWriter.WriteConstructorAdditionalBodyLine($"this.RuleFor(x => x.{entityPropertyName}).NotNull().NotEmpty().WithMessage(Resource.ResourceManager.GetString(\"{className}_{entityPropertyName}_Validation_Required\"));");
                     validatorFileWriter.WriteConstructorAdditionalBodyLine($"this.RuleFor(x => x.{entityPropertyName}).SetValidator(x => new {entityPropertyType}Validator());");
                 }
             }
 
-            fields?.HandleFields(EntityFieldCodeWriter.WriteField(fileWriter, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation, validatorFileWriter: validatorFileWriter));
+            fields?.HandleFields(EntityFieldCodeWriter.WriteField(fileWriter, className, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation, validatorFileWriter: validatorFileWriter));
 
             validatorFileWriter.WriteConstructorAdditionalBodyLine($"this.SetCustomRules();");
 
@@ -480,7 +482,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
                     isObservableCollection: entityPropertyIsObservableCollection);
             }
 
-            fields?.HandleFields(EntityFieldCodeWriter.WriteField(fileWriter, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation));
+            fields?.HandleFields(EntityFieldCodeWriter.WriteField(fileWriter, className, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation));
 
             sourceProductionContext.WriteNewCSFile(className, fileWriter);
         }

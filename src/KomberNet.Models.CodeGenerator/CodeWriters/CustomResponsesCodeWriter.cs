@@ -63,7 +63,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
             fileWriter.WriteUsing("KomberNet.Models");
             fileWriter.WriteUsing("KomberNet.Models.Contracts");
 
-            customResponse.ResponseFields?.HandleFields(EntityFieldCodeWriter.WriteField(fileWriter, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation));
+            customResponse.ResponseFields?.HandleFields(EntityFieldCodeWriter.WriteField(fileWriter, className, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation));
 
             sourceProductionContext.WriteNewCSFile(className, fileWriter);
         }

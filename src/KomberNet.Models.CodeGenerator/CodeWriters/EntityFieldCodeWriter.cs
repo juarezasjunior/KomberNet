@@ -13,7 +13,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
 
     internal static class EntityFieldCodeWriter
     {
-        public static Action<object> WriteField(CSFileWriter fileWriter, bool hasNotifyPropertyChanged, bool useObservableCollection, Location location, CSFileWriter validatorFileWriter = null)
+        public static Action<object> WriteField(CSFileWriter fileWriter, string className, bool hasNotifyPropertyChanged, bool useObservableCollection, Location location, CSFileWriter validatorFileWriter = null)
         {
             return x =>
             {
@@ -60,12 +60,12 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
 
                     if (isRequired)
                     {
-                        validatorFileWriter?.WriteConstructorAdditionalBodyLine($"this.RuleFor(x => x.{field.Name}).NotNull().NotEmpty();");
+                        validatorFileWriter?.WriteConstructorAdditionalBodyLine($"this.RuleFor(x => x.{field.Name}).NotNull().NotEmpty().WithMessage(Resource.ResourceManager.GetString(\"{className}_{field.Name}_Validation_Required\"));");
                     }
 
                     if (maxLength > 0)
                     {
-                        validatorFileWriter?.WriteConstructorAdditionalBodyLine($"this.RuleFor(x => x.{field.Name}).MaximumLength({maxLength});");
+                        validatorFileWriter?.WriteConstructorAdditionalBodyLine($"this.RuleFor(x => x.{field.Name}).MaximumLength({maxLength}).WithMessage(Resource.ResourceManager.GetString(\"{className}_{field.Name}_Validation_Required\"));");
                     }
 
                     if (field is EntityField entityField)
