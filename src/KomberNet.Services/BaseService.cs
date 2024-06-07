@@ -9,6 +9,7 @@ namespace KomberNet.Services
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using AutoMapper;
 
     public abstract class BaseService
     {

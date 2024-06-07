@@ -63,27 +63,9 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
             fileWriter.WriteUsing("KomberNet.Models");
             fileWriter.WriteUsing("KomberNet.Models.Contracts");
 
-            var validatorClassName = $"{className}Validator";
-            var validatorFileWriter = new CSFileWriter(
-                    CSFileWriterType.Class,
-                    validatorNamespace,
-                    validatorClassName,
-                    isPartial: true,
-                    inheritance: $"AbstractValidator<{className}>");
-
-            validatorFileWriter.WriteUsing("System");
-            validatorFileWriter.WriteUsing("FluentValidation");
-            validatorFileWriter.WriteUsing("KomberNet.Models");
-            validatorFileWriter.WriteUsing(classNamespace);
-
-            validatorFileWriter.WriteMethod("SetCustomRules", isPartial: true);
-
-            customResponse.ResponseFields?.HandleFields(EntityFieldCodeWriter.WriteField(fileWriter, validatorFileWriter, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation));
-
-            validatorFileWriter.WriteConstructorAdditionalBodyLine($"this.SetCustomRules();");
+            customResponse.ResponseFields?.HandleFields(EntityFieldCodeWriter.WriteField(fileWriter, className, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation));
 
             sourceProductionContext.WriteNewCSFile(className, fileWriter);
-            sourceProductionContext.WriteNewCSFile(validatorClassName, validatorFileWriter);
         }
     }
 }

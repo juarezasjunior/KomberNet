@@ -13,6 +13,6 @@ namespace KomberNet.UI.WEB.Client.Auth
 
         public Task LogoutAsync();
 
-        public Task InsertUserAsync(UserInsertRequest userInsertRequest);
+        public Task CreateUserAsync(CreateUserRequest request);
     }
 }

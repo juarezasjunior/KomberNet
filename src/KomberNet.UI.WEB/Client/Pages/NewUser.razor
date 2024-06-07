@@ -11,7 +11,7 @@
 <RadzenRow JustifyContent="Radzen.JustifyContent.Center">
     <RadzenColumn SizeLG="4" SizeMD="5">
         <RadzenCard>
-            <RadzenTemplateForm TItem="NewUser" Data="@this" Submit="async () => await this.InsertUserAsync()">
+            <RadzenTemplateForm TItem="NewUser" Data="@this" Submit="async () => await this.CreateUserAsync()">
                 <RadzenRow>
                     <RadzenColumn>
                         <RadzenStack>

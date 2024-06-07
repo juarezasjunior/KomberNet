@@ -35,7 +35,7 @@ namespace KomberNet.Backend.Tests.Auth
             var currentUserServiceMock = fixture.Freeze<Mock<ICurrentUserService>>();
             currentUserServiceMock.Setup(x => x.UserId).Returns(tbUser.Id);
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByIdAsync(It.IsAny<string>()))
                 .ReturnsAsync(() => null)
                 .Verifiable();
@@ -63,7 +63,7 @@ namespace KomberNet.Backend.Tests.Auth
             var currentUserServiceMock = fixture.Freeze<Mock<ICurrentUserService>>();
             currentUserServiceMock.Setup(x => x.UserId).Returns(tbUser.Id);
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByIdAsync(It.IsAny<string>()))
                 .ReturnsAsync(() => tbUser)
                 .Verifiable();
@@ -96,7 +96,7 @@ namespace KomberNet.Backend.Tests.Auth
             var currentUserServiceMock = fixture.Freeze<Mock<ICurrentUserService>>();
             currentUserServiceMock.Setup(x => x.UserId).Returns(tbUser.Id);
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByIdAsync(It.IsAny<string>()))
                 .ReturnsAsync(() => tbUser)
                 .Verifiable();

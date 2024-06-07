@@ -37,9 +37,9 @@ namespace KomberNet.UI.WEB.Client.Auth
             this.internalLogoutService = internalLogoutService;
         }
 
-        public async Task InsertUserAsync(UserInsertRequest userInsertRequest)
+        public async Task CreateUserAsync(CreateUserRequest request)
         {
-            await this.authAnonymousClient.InsertUserAsync(userInsertRequest);
+            await this.authAnonymousClient.CreateUserAsync(request);
         }
 
         public async Task LoginAsync(LoginRequest loginRequest)

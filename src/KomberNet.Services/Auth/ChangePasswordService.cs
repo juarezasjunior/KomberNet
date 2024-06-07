@@ -14,11 +14,11 @@ namespace KomberNet.Services.Auth
     public class ChangePasswordService : BaseService, IChangePasswordService
     {
         private readonly ICurrentUserService currentUserService;
-        private readonly IUserManager<TbUser> userManager;
+        private readonly IUserManager userManager;
 
         public ChangePasswordService(
             ICurrentUserService currentUserService,
-            IUserManager<TbUser> userManager)
+            IUserManager userManager)
         {
             this.currentUserService = currentUserService;
             this.userManager = userManager;

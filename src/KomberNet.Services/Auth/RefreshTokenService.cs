@@ -15,13 +15,13 @@ namespace KomberNet.Services.Auth
 
     public class RefreshTokenService : BaseService, IRefreshTokenService
     {
-        private readonly IUserManager<TbUser> userManager;
+        private readonly IUserManager userManager;
         private readonly IDistributedCache distributedCache;
         private readonly IClaimsPrincipalService claimsPrincipalService;
         private readonly ITokenService tokenService;
 
         public RefreshTokenService(
-            IUserManager<TbUser> userManager,
+            IUserManager userManager,
             IDistributedCache distributedCache,
             IClaimsPrincipalService claimsPrincipalService,
             ITokenService tokenService)

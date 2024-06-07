@@ -18,7 +18,7 @@ namespace KomberNet.UI.WEB.Client.Pages
 
         private string RepeatPassword { get; set; }
 
-        private async Task InsertUserAsync()
+        private async Task CreateUserAsync()
         {
             var userInserted = true;
 
@@ -30,7 +30,7 @@ namespace KomberNet.UI.WEB.Client.Pages
                         throw new KomberNetException(ExceptionCode.Auth_User_PasswordsNotIdentical);
                     }
 
-                    await this.userService.InsertUserAsync(new UserInsertRequest()
+                    await this.userService.CreateUserAsync(new CreateUserRequest()
                     {
                         FullName = this.FullName,
                         Email = this.Email,

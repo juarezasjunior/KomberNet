@@ -8,7 +8,7 @@
 		</EntityFields>
 		
 		<GenerateEntityHandlerRequest />
-		<GenerateEntityQueryRequest />
-		<GenerateEntitiesQueryRequest />
+		<GenerateEntityGetRequest />
+		<GenerateEntitiesGetRequest />
 	</Entity>
 </CodeGenerator>

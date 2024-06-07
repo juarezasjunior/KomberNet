@@ -1,15 +1,15 @@
 ﻿@page "/countries"
 
-@inherits SearchFormPage<CountrySummariesQueryRequest, CountrySummariesQueryResponse, CountrySummary, CountrySummariesQueryRequestValidator>
+@inherits SearchFormPage<CountrySummariesGetRequest, CountrySummariesGetResponse, CountrySummary, CountrySummariesGetRequestValidator>
 
 <PageTitle>@this.Localizer["Countries_PageTitle"]</PageTitle>
 
 <SearchFormControl PageTitle="@this.Localizer["Countries_PageTitle"]"
                    SearchFormPage="@this"
-                   TSummariesQueryRequest="CountrySummariesQueryRequest"
-                   TSummariesQueryResponse="CountrySummariesQueryResponse"
+                   TSummariesGetRequest="CountrySummariesGetRequest"
+                   TSummariesGetResponse="CountrySummariesGetResponse"
                    TSummary="CountrySummary"
-                   TValidator="CountrySummariesQueryRequestValidator"
+                   TValidator="CountrySummariesGetRequestValidator"
                    Take="4">
     <Columns>
         <RadzenDataGridColumn TItem="CountrySummary" Property="CountryId" Title="Id" />

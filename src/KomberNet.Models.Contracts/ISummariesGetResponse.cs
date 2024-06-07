@@ -8,7 +8,10 @@ namespace KomberNet.Models.Contracts
     using System.Collections.Generic;
     using System.Text;
 
-    public interface ISummariesQueryRequest : IEndpointRequest
+    public interface ISummariesGetResponse<TSummary, TCollectionType> : IEndpointResponse
+        where TSummary : class, ISummary
+        where TCollectionType : ICollection<TSummary>
     {
+        public TCollectionType Summaries { get; set; }
     }
 }

@@ -6,9 +6,13 @@ namespace KomberNet.Models.Contracts
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Text;
 
-    public interface IEntitiesQueryRequest : IEndpointRequest
+    public interface IEntitiesGetResponse<TEntity, TCollectionType> : IEndpointResponse
+        where TEntity : class, IEntity
+        where TCollectionType : ICollection<TEntity>
     {
+        public TCollectionType Entities { get; set; }
     }
 }

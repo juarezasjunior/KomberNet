@@ -4,10 +4,10 @@
 	<Summary Namespace="KomberNet.Models.General" Name="CountrySummary" PluralName="CountrySummaries">
 		<SummaryFields>
 			<KeyField Name="CountryId"/>
-			<StringField Name="Name" MaxLength="500" IsRequired="true"/>
+			<StringField Name="Name"/>
 		</SummaryFields>
 
-		<GenerateSummaryQueryRequest />
-		<GenerateSummariesQueryRequest />
+		<GenerateSummaryGetRequest />
+		<GenerateSummariesGetRequest />
 	</Summary>
 </CodeGenerator>

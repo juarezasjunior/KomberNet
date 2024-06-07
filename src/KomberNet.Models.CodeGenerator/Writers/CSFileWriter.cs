@@ -177,7 +177,9 @@ namespace KomberNet.Models.CodeGenerator.Writers
         {
             var fileStringBuilder = new StringBuilder();
 
-            var shouldHaveHeaderNamespace = !string.IsNullOrEmpty(fileNamespace);
+            fileStringBuilder.AppendLine("#pragma warning disable");
+
+            var shouldHaveHeaderNamespace = !string.IsNullOrEmpty(this.fileNamespace);
 
             if (shouldHaveHeaderNamespace)
             {
@@ -202,6 +204,8 @@ namespace KomberNet.Models.CodeGenerator.Writers
             {
                 this.CloseFileNamespace(fileStringBuilder);
             }
+
+            fileStringBuilder.AppendLine("#pragma warning disable");
 
             return fileStringBuilder.ToString();
         }

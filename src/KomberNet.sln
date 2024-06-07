@@ -21,8 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.3 - User Interfaces", "2.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{704625D9-EC46-4280-B085-9BEC22D5A1E5}"
 	ProjectSection(SolutionItems) = preProject
-		CodeGeneratorSchema.xsd = CodeGeneratorSchema.xsd
-		CodeGeneratorSettingsSchema.xsd = CodeGeneratorSettingsSchema.xsd
 		PermissionList.txt = PermissionList.txt
 		Stylecop.json = Stylecop.json
 	EndProjectSection

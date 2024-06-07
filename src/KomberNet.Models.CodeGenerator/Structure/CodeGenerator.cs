@@ -75,10 +75,10 @@ namespace KomberNet.Models.CodeGenerator.Structure
         public GenerateEntityHandlerRequest GenerateEntityHandlerRequest { get; set; }
 
         [XmlElement]
-        public GenerateEntityQueryRequest GenerateEntityQueryRequest { get; set; }
+        public GenerateEntityGetRequest GenerateEntityGetRequest { get; set; }
 
         [XmlElement]
-        public GenerateEntitiesQueryRequest GenerateEntitiesQueryRequest { get; set; }
+        public GenerateEntitiesGetRequest GenerateEntitiesGetRequest { get; set; }
     }
 
     [XmlRoot]
@@ -109,10 +109,10 @@ namespace KomberNet.Models.CodeGenerator.Structure
         public bool IncludeRowVersionControl { get; set; } = false;
 
         [XmlElement]
-        public GenerateSummaryQueryRequest GenerateSummaryQueryRequest { get; set; }
+        public GenerateSummaryGetRequest GenerateSummaryGetRequest { get; set; }
 
         [XmlElement]
-        public GenerateSummariesQueryRequest GenerateSummariesQueryRequest { get; set; }
+        public GenerateSummariesGetRequest GenerateSummariesGetRequest { get; set; }
     }
 
     [XmlRoot]
@@ -157,28 +157,28 @@ namespace KomberNet.Models.CodeGenerator.Structure
     }
 
     [XmlRoot]
-    public class GenerateEntityQueryRequest
+    public class GenerateEntityGetRequest
     {
         [XmlElement]
         public Fields AdditionalFields { get; set; }
     }
 
     [XmlRoot]
-    public class GenerateEntitiesQueryRequest
+    public class GenerateEntitiesGetRequest
     {
         [XmlElement]
         public Fields RequestFields { get; set; }
     }
 
     [XmlRoot]
-    public class GenerateSummaryQueryRequest
+    public class GenerateSummaryGetRequest
     {
         [XmlElement]
         public Fields AdditionalFields { get; set; }
     }
 
     [XmlRoot]
-    public class GenerateSummariesQueryRequest
+    public class GenerateSummariesGetRequest
     {
         [XmlElement]
         public Fields RequestFields { get; set; }

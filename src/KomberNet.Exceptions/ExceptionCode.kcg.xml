@@ -3,6 +3,7 @@
 		 xsi:noNamespaceSchemaLocation="../KomberNet.Models.CodeGenerator/Structure/CodeGeneratorSchema.xsd">
 	<Enum Namespace="KomberNet.Exceptions" Name="ExceptionCode" AutoGenSequenceNumber="true">
 		<EnumValue Name="Others"/>
+		<EnumValue Name="RequestValidation"/>
 		<EnumValue Name="SecurityValidation"/>
 		<EnumValue Name="ConcurrencyException"/>
 		

@@ -170,14 +170,6 @@ namespace KomberNet.UI.API.Bootstraps
 
         private static void ConfigureDatabase(WebApplicationBuilder builder)
         {
-            builder.Services.Scan(x =>
-                x.FromAssemblies(typeof(ApplicationDbContext).Assembly)
-                .AddClasses(y =>
-                    y.AssignableTo(typeof(IDatabaseRepository<>)))
-                .AsImplementedInterfaces()
-                .WithTransientLifetime());
-
-            builder.Services.AddTransient<IUserManager<TbUser>, ApplicationUserManager<TbUser>>();
             builder.Services.AddIdentityCore<TbUser>()
                 .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -195,7 +187,7 @@ namespace KomberNet.UI.API.Bootstraps
 
         private static void ConfigureAutoMapper(WebApplicationBuilder builder)
         {
-            builder.Services.AddAutoMapper(typeof(ApplicationDatabaseRepository));
+            builder.Services.AddAutoMapper(typeof(ApplicationDbContext));
         }
 
         private static void ConfigureCache(WebApplicationBuilder builder)
@@ -254,9 +246,11 @@ namespace KomberNet.UI.API.Bootstraps
 
         private static void ConfigureValidations(WebApplicationBuilder builder)
         {
-            builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
+            builder.Services.AddValidatorsFromAssemblies(GetModelsAssemblies());
 
             builder.Services.AddFluentValidationAutoValidation();
+
+            builder.Services.AddSingleton<IValidatorInterceptor, CustomValidatorInterceptor>();
         }
 
         private static void ConfigureMVC(WebApplicationBuilder builder)
@@ -311,12 +305,23 @@ namespace KomberNet.UI.API.Bootstraps
 
         private static IEnumerable<Assembly> GetServiceAssemblies() =>
             [
+                Assembly.Load("KomberNet.Infrastructure.DatabaseRepositories"),
                 Assembly.Load("KomberNet.Services"),
                 Assembly.Load("KomberNet.Services.Billing"),
                 Assembly.Load("KomberNet.Services.Financial"),
                 Assembly.Load("KomberNet.Services.Inventory"),
                 Assembly.Load("KomberNet.Services.Manufacturing"),
                 Assembly.Load("KomberNet.Services.Purchasing"),
+            ];
+
+        private static IEnumerable<Assembly> GetModelsAssemblies() =>
+            [
+                Assembly.Load("KomberNet.Models"),
+                Assembly.Load("KomberNet.Models.Billing"),
+                Assembly.Load("KomberNet.Models.Financial"),
+                Assembly.Load("KomberNet.Models.Inventory"),
+                Assembly.Load("KomberNet.Models.Manufacturing"),
+                Assembly.Load("KomberNet.Models.Purchasing"),
             ];
 
         private class ConnectionStringsOptions

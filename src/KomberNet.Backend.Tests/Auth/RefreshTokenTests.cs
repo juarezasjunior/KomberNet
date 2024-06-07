@@ -73,7 +73,7 @@ namespace KomberNet.Backend.Tests.Auth
                 .ReturnsAsync(() => null)
                 .Verifiable();
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
                 .ReturnsAsync(() => null)
                 .Verifiable();
@@ -115,7 +115,7 @@ namespace KomberNet.Backend.Tests.Auth
                 .ReturnsAsync(() => null)
                 .Verifiable();
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
                 .ReturnsAsync(() => tbUser)
                 .Verifiable();
@@ -161,7 +161,7 @@ namespace KomberNet.Backend.Tests.Auth
                 .ReturnsAsync(() => null)
                 .Verifiable();
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
                 .ReturnsAsync(() => tbUser)
                 .Verifiable();
@@ -227,7 +227,7 @@ namespace KomberNet.Backend.Tests.Auth
                 .ReturnsAsync(() => Encoding.UTF8.GetBytes(fixture.Create<string>()))
                 .Verifiable();
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
                 .ReturnsAsync(() => tbUser)
                 .Verifiable();
@@ -273,7 +273,7 @@ namespace KomberNet.Backend.Tests.Auth
                 .ReturnsAsync(() => Encoding.UTF8.GetBytes(DateTime.Now.AddHours(1).ToString()))
                 .Verifiable();
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
                 .ReturnsAsync(() => tbUser)
                 .Verifiable();

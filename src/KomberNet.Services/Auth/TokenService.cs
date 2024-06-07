@@ -17,12 +17,12 @@ namespace KomberNet.Services.Auth
 
     public class TokenService : BaseService, ITokenService
     {
-        private readonly IUserManager<TbUser> userManager;
+        private readonly IUserManager userManager;
         private readonly IDistributedCache distributedCache;
         private readonly IOptions<JwtOptions> jwtOptions;
 
         public TokenService(
-            IUserManager<TbUser> userManager,
+            IUserManager userManager,
             IDistributedCache distributedCache,
             IOptions<JwtOptions> jwtOptions)
         {

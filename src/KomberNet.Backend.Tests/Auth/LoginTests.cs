@@ -31,7 +31,7 @@ namespace KomberNet.Backend.Tests.Auth
             var tbUser = fixture.Create<TbUser>();
             var loginRequest = fixture.Create<LoginRequest>();
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
                 .ReturnsAsync(() => null)
                 .Verifiable();
@@ -55,7 +55,7 @@ namespace KomberNet.Backend.Tests.Auth
             var tbUser = fixture.Create<TbUser>();
             var loginRequest = fixture.Create<LoginRequest>();
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
                 .ReturnsAsync(() => tbUser)
                 .Verifiable();
@@ -82,7 +82,7 @@ namespace KomberNet.Backend.Tests.Auth
             var tbUser = fixture.Create<TbUser>();
             var loginRequest = fixture.Create<LoginRequest>();
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
                 .ReturnsAsync(() => tbUser)
                 .Verifiable();
@@ -116,7 +116,7 @@ namespace KomberNet.Backend.Tests.Auth
             var tbUser = fixture.Create<TbUser>();
             var loginRequest = fixture.Create<LoginRequest>();
 
-            var userManagerMock = fixture.Freeze<Mock<IUserManager<TbUser>>>();
+            var userManagerMock = fixture.Freeze<Mock<IUserManager>>();
             userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
                 .ReturnsAsync(() => tbUser)
                 .Verifiable();

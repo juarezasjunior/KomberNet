@@ -20,28 +20,28 @@ namespace KomberNet.UI.API.Controllers.Auth
         private readonly ILoginService loginService;
         private readonly ILogoutService logoutService;
         private readonly IRefreshTokenService refreshTokenService;
-        private readonly IUserHandlerService userHandlerService;
+        private readonly IUserService userService;
         private readonly IChangePasswordService changePasswordService;
 
         public AuthController(
             ILoginService loginService,
             ILogoutService logoutService,
             IRefreshTokenService refreshTokenService,
-            IUserHandlerService userHandlerService,
+            IUserService userService,
             IChangePasswordService changePasswordService)
         {
             this.loginService = loginService;
             this.logoutService = logoutService;
             this.refreshTokenService = refreshTokenService;
-            this.userHandlerService = userHandlerService;
+            this.userService = userService;
             this.changePasswordService = changePasswordService;
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> InsertUserAsync([FromBody] UserInsertRequest request, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> CreateUserAsync([FromBody] CreateUserRequest request, CancellationToken cancellationToken = default)
         {
-            return this.Ok(await this.userHandlerService.InsertUserAsync(request, cancellationToken));
+            return this.Ok(await this.userService.CreateUserAsync(request, cancellationToken));
         }
 
         [HttpPost]

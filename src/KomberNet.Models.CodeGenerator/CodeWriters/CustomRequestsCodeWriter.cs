@@ -74,11 +74,12 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
             validatorFileWriter.WriteUsing("System");
             validatorFileWriter.WriteUsing("FluentValidation");
             validatorFileWriter.WriteUsing("KomberNet.Models");
+            validatorFileWriter.WriteUsing("KomberNet.Resources");
             validatorFileWriter.WriteUsing(classNamespace);
 
             validatorFileWriter.WriteMethod("SetCustomRules", isPartial: true);
 
-            customRequest.RequestFields?.HandleFields(EntityFieldCodeWriter.WriteField(fileWriter, validatorFileWriter, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation));
+            customRequest.RequestFields?.HandleFields(EntityFieldCodeWriter.WriteField(fileWriter, className, shouldGenerateNotifyPropertyChanges, useObservableCollection, currentLocation, validatorFileWriter: validatorFileWriter));
 
             validatorFileWriter.WriteConstructorAdditionalBodyLine($"this.SetCustomRules();");
 

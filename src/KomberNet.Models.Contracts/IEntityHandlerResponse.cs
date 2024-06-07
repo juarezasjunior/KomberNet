@@ -8,9 +8,7 @@ namespace KomberNet.Models.Contracts
     using System.Collections.Generic;
     using System.Text;
 
-    public interface IEntityHandlerResponse<TEntity> : IEndpointResponse
-        where TEntity : class, IEntity
+    public interface IEntityHandlerResponse : IEndpointResponse
     {
-        public TEntity Entity { get; set; }
     }
 }

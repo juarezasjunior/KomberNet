@@ -33,10 +33,14 @@ namespace KomberNet.UI.API.Middlewares
             {
                 this.logger.LogError(exception.ToString());
 
-                if (exception.ExceptionCode == ExceptionCode.SecurityValidation)
+                switch (exception.ExceptionCode)
                 {
-                    await this.HandleExceptionAsync(context, exception.ExceptionCode, httpStatusCode: HttpStatusCode.Unauthorized);
-                    return;
+                    case ExceptionCode.SecurityValidation:
+                        await this.HandleExceptionAsync(context, exception.ExceptionCode, httpStatusCode: HttpStatusCode.Unauthorized);
+                        return;
+                    case ExceptionCode.RequestValidation:
+                        await this.HandleExceptionAsync(context, exception.ExceptionCode, additionalInfo: exception.AdditionalInfo, httpStatusCode: HttpStatusCode.BadRequest);
+                        return;
                 }
 
                 await this.HandleExceptionAsync(context, exception.ExceptionCode, exception.AdditionalInfo);

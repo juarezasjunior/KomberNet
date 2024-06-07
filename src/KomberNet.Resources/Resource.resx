@@ -282,4 +282,61 @@
   <data name="UnhandledExceptionMessage" xml:space="preserve">
     <value>Unhandled exception.</value>
   </data>
+  <data name="User_FullName_Validation_Required" xml:space="preserve">
+    <value>The Name field is required.</value>
+</data>
+<data name="User_UserName_Validation_Required" xml:space="preserve">
+    <value>The User Name field is required.</value>
+</data>
+<data name="User_Email_Validation_Required" xml:space="preserve">
+    <value>The Email field is required.</value>
+</data>
+<data name="Country_Name_Validation_Required" xml:space="preserve">
+    <value>The Name field is required.</value>
+</data>
+<data name="CountryHandlerRequest_Entity_Validation_Required" xml:space="preserve">
+    <value>The Entity field is required.</value>
+</data>
+<data name="OrganizationGroup_Name_Validation_Required" xml:space="preserve">
+    <value>The Name field is required.</value>
+</data>
+<data name="OrganizationGroup_Name_Validation_MaximumLength" xml:space="preserve">
+    <value>The length of Name must be at most {MaxLength} characters.</value>
+</data>
+<data name="OrganizationGroupHandlerRequest_Entity_Validation_Required" xml:space="preserve">
+    <value>The Entity field is required.</value>
+</data>
+<data name="CreateUserRequest_FullName_Validation_Required" xml:space="preserve">
+    <value>The Name field is required.</value>
+</data>
+<data name="CreateUserRequest_FullName_Validation_MaximumLength" xml:space="preserve">
+    <value>The length of Name must be at most {MaxLength} characters.</value>
+</data>
+<data name="CreateUserRequest_Email_Validation_Required" xml:space="preserve">
+    <value>The Email field is required.</value>
+</data>
+<data name="CreateUserRequest_Password_Validation_Required" xml:space="preserve">
+    <value>The Password field is required.</value>
+</data>
+<data name="ChangePasswordRequest_CurrentPassword_Validation_Required" xml:space="preserve">
+    <value>The Current Password field is required.</value>
+</data>
+<data name="ChangePasswordRequest_NewPassword_Validation_Required" xml:space="preserve">
+    <value>The New Password field is required.</value>
+</data>
+<data name="LoginRequest_Email_Validation_Required" xml:space="preserve">
+    <value>The Email field is required.</value>
+</data>
+<data name="LoginRequest_Password_Validation_Required" xml:space="preserve">
+    <value>The Password field is required.</value>
+</data>
+<data name="RefreshTokenRequest_Token_Validation_Required" xml:space="preserve">
+    <value>The Token field is required.</value>
+</data>
+<data name="RefreshTokenRequest_RefreshToken_Validation_Required" xml:space="preserve">
+    <value>The Refresh Token field is required.</value>
+</data>
+<data name="RequestValidation" xml:space="preserve">
+    <value>Validation error.</value>
+</data>
 </root>

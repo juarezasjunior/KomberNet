@@ -8,8 +8,8 @@ namespace KomberNet.Services.Auth
     using KomberNet.Contracts;
     using KomberNet.Models.Auth;
 
-    public interface IUserHandlerService : ITransientService
+    public interface IUserService : ITransientService
     {
-        public Task<UserInsertResponse> InsertUserAsync(UserInsertRequest request, CancellationToken cancellationToken);
+        public Task<CreateUserResponse> CreateUserAsync(CreateUserRequest request, CancellationToken cancellationToken);
     }
 }

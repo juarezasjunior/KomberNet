@@ -6,13 +6,15 @@ namespace KomberNet.UI.WEB.Framework.Pages
 {
     using System.Threading.Tasks;
     using FluentValidation;
+    using KomberNet.Exceptions;
     using KomberNet.Models.Contracts;
+    using KomberNet.Resources;
     using Radzen;
 
     public abstract partial class EntityFormPage<TEntityHandlerRequest, TEntityHandlerResponse, TEntity, TValidator> : FormPage
         where TEntityHandlerRequest : class, IEntityHandlerRequest<TEntity>, new()
         where TEntity : class, IEntity, new()
-        where TEntityHandlerResponse : class, IEntityHandlerResponse<TEntity>, new()
+        where TEntityHandlerResponse : class, IEntityHandlerResponse, new()
         where TValidator : AbstractValidator<TEntityHandlerRequest>, new()
     {
         public TEntityHandlerRequest Request { get; } = new TEntityHandlerRequest() { Entity = new TEntity() };
@@ -54,17 +56,21 @@ namespace KomberNet.UI.WEB.Framework.Pages
 
         private async Task ValidateRequestAsync()
         {
-            var validator = new TValidator();
-            var validations = (await validator.ValidateAsync(this.Request))?.Errors;
-
-            foreach (var validation in validations)
-            {
-                this.NotificationService.Notify(new NotificationMessage()
+            await this.HandleExceptionAsync(
+                async () =>
                 {
-                    Severity = NotificationSeverity.Error,
-                    Detail = validation.ErrorMessage,
+                    var validator = new TValidator();
+                    var validations = (await validator.ValidateAsync(this.Request))?.Errors;
+
+                    if (validations is null)
+                    {
+                        return;
+                    }
+
+                    var additionalInfo = string.Join(", ", validations.Select(v => v.ErrorMessage));
+
+                    throw new KomberNetException(ExceptionCode.RequestValidation, additionalInfo);
                 });
-            }
 
             this.OnValidatingRequest();
             await this.OnValidatingRequestAsync();

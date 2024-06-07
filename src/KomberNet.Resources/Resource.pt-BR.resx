@@ -348,4 +348,61 @@
   <data name="Auth_User_InvalidLogin" xml:space="preserve">
     <value>Usuário/senha inválidos ou inexistente.</value>
   </data>
+  <data name="User_FullName_Validation_Required" xml:space="preserve">
+    <value>O campo Nome é obrigatório.</value>
+</data>
+<data name="User_UserName_Validation_Required" xml:space="preserve">
+    <value>O campo Nome de Usuário é obrigatório.</value>
+</data>
+<data name="User_Email_Validation_Required" xml:space="preserve">
+    <value>O campo Email é obrigatório.</value>
+</data>
+<data name="Country_Name_Validation_Required" xml:space="preserve">
+    <value>O campo Nome é obrigatório.</value>
+</data>
+<data name="CountryHandlerRequest_Entity_Validation_Required" xml:space="preserve">
+    <value>O campo Entidade é obrigatório.</value>
+</data>
+<data name="OrganizationGroup_Name_Validation_Required" xml:space="preserve">
+    <value>O campo Nome é obrigatório.</value>
+</data>
+<data name="OrganizationGroup_Name_Validation_MaximumLength" xml:space="preserve">
+    <value>O comprimento do campo Nome deve ser no máximo {MaxLength} caracteres.</value>
+</data>
+<data name="OrganizationGroupHandlerRequest_Entity_Validation_Required" xml:space="preserve">
+    <value>O campo Entidade é obrigatório.</value>
+</data>
+<data name="CreateUserRequest_FullName_Validation_Required" xml:space="preserve">
+    <value>O campo Nome é obrigatório.</value>
+</data>
+<data name="CreateUserRequest_FullName_Validation_MaximumLength" xml:space="preserve">
+    <value>O comprimento do campo Nome deve ser no máximo {MaxLength} caracteres.</value>
+</data>
+<data name="CreateUserRequest_Email_Validation_Required" xml:space="preserve">
+    <value>O campo Email é obrigatório.</value>
+</data>
+<data name="CreateUserRequest_Password_Validation_Required" xml:space="preserve">
+    <value>O campo Senha é obrigatório.</value>
+</data>
+<data name="ChangePasswordRequest_CurrentPassword_Validation_Required" xml:space="preserve">
+    <value>O campo Senha Atual é obrigatório.</value>
+</data>
+<data name="ChangePasswordRequest_NewPassword_Validation_Required" xml:space="preserve">
+    <value>O campo Nova Senha é obrigatório.</value>
+</data>
+<data name="LoginRequest_Email_Validation_Required" xml:space="preserve">
+    <value>O campo Email é obrigatório.</value>
+</data>
+<data name="LoginRequest_Password_Validation_Required" xml:space="preserve">
+    <value>O campo Senha é obrigatório.</value>
+</data>
+<data name="RefreshTokenRequest_Token_Validation_Required" xml:space="preserve">
+    <value>O campo Token é obrigatório.</value>
+</data>
+<data name="RefreshTokenRequest_RefreshToken_Validation_Required" xml:space="preserve">
+    <value>O campo Refresh Token é obrigatório.</value>
+</data>
+<data name="RequestValidation" xml:space="preserve">
+    <value>Erro de validação.</value>
+</data>
 </root>

@@ -10,7 +10,7 @@ namespace KomberNet.UI.WEB.Client.Pages
     using KomberNet.UI.WEB.Framework.Pages;
     using Radzen;
 
-    public partial class CountriesSearchForm : SearchFormPage<CountrySummariesQueryRequest, CountrySummariesQueryResponse, CountrySummary, CountrySummariesQueryRequestValidator>
+    public partial class CountriesSearchForm : SearchFormPage<CountrySummariesGetRequest, CountrySummariesGetResponse, CountrySummary, CountrySummariesGetRequestValidator>
     {
         protected override void CreateActionButtons()
         {
@@ -18,7 +18,7 @@ namespace KomberNet.UI.WEB.Client.Pages
             this.ActionButtons.Add(ActionButton.OpenActionButton(this.Localizer, () => this.SelectedResults.Count() >= 2, () => Console.WriteLine("On Open")));
         }
 
-        protected override Task<CountrySummariesQueryResponse> OnSearchingAsync()
+        protected override Task<CountrySummariesGetResponse> OnSearchingAsync()
         {
             var countries = new ObservableCollection<CountrySummary>();
             countries.Add(new CountrySummary() { CountryId = Guid.NewGuid(), Name = "Brazil" });
@@ -26,7 +26,7 @@ namespace KomberNet.UI.WEB.Client.Pages
             countries.Add(new CountrySummary() { CountryId = Guid.NewGuid(), Name = "Mexico" });
             countries.Add(new CountrySummary() { CountryId = Guid.NewGuid(), Name = "Japan" });
 
-            return Task.FromResult(new CountrySummariesQueryResponse()
+            return Task.FromResult(new CountrySummariesGetResponse()
             {
                 Summaries = countries,
             });
