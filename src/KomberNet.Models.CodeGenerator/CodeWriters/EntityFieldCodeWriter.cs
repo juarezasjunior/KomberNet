@@ -65,7 +65,7 @@ namespace KomberNet.Models.CodeGenerator.CodeWriters
 
                     if (maxLength > 0)
                     {
-                        validatorFileWriter?.WriteConstructorAdditionalBodyLine($"this.RuleFor(x => x.{field.Name}).MaximumLength({maxLength}).WithMessage(Resource.ResourceManager.GetString(\"{className}_{field.Name}_Validation_Required\"));");
+                        validatorFileWriter?.WriteConstructorAdditionalBodyLine($"this.RuleFor(x => x.{field.Name}).MaximumLength({maxLength}).WithMessage(Resource.ResourceManager.GetString(\"{className}_{field.Name}_Validation_MaximumLength\"));");
                     }
 
                     if (field is EntityField entityField)

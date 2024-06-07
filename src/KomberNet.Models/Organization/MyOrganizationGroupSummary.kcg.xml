@@ -4,7 +4,7 @@
 	<Summary Namespace="KomberNet.Models.Organization" Name="MyOrganizationGroupSummary" PluralName="MyOrganizationGroupSummaries">
 		<SummaryFields>
 			<KeyField Name="OrganizationGroupId"/>
-			<StringField Name="Name" IsRequired="true"/>
+			<StringField Name="Name"/>
 		</SummaryFields>
 
 		<GenerateSummaryGetRequest />
