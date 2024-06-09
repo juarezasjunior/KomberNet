@@ -25,18 +25,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Radzen.Blazor" Version="4.30.2" />
+		<PackageReference Include="Radzen.Blazor" Version="4.32.6" />
 		<PackageReference Include="Scrutor" Version="4.2.2" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.4" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.4" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.6" PrivateAssets="all" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.4" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.6" />
 	</ItemGroup>
 
 	<ItemGroup>
