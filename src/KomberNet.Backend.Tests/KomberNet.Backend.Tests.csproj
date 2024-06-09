@@ -59,6 +59,7 @@
 		<Folder Include="Financial\" />
 		<Folder Include="Inventory\" />
 		<Folder Include="Manufacturing\" />
+		<Folder Include="Organization/" />
 		<Folder Include="Purchasing\" />
 	</ItemGroup>
 

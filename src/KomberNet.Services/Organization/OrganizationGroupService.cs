@@ -11,14 +11,20 @@ namespace KomberNet.Services.Organization
     public class OrganizationGroupService : BaseService, IOrganizationGroupService
     {
         private readonly IDatabaseRepository databaseRepository;
+        private readonly IOrganizationGroupValidatorService organizationGroupValidatorService;
 
-        public OrganizationGroupService(IDatabaseRepository databaseRepository)
+        public OrganizationGroupService(
+            IDatabaseRepository databaseRepository,
+            IOrganizationGroupValidatorService organizationGroupValidatorService)
         {
             this.databaseRepository = databaseRepository;
+            this.organizationGroupValidatorService = organizationGroupValidatorService;
         }
 
         public async Task<OrganizationGroupGetResponse> GetAsync(OrganizationGroupGetRequest request)
         {
+            await this.organizationGroupValidatorService.ValidateGetAsync(request);
+
             return new OrganizationGroupGetResponse()
             {
                 Entity = (await this.databaseRepository.GetByConditionAsync<TbOrganizationGroup, OrganizationGroup>(x =>
@@ -28,6 +34,8 @@ namespace KomberNet.Services.Organization
 
         public async Task<OrganizationGroupHandlerResponse> HandleAsync(OrganizationGroupHandlerRequest request)
         {
+            await this.organizationGroupValidatorService.ValidateHandlerAsync(request);
+
             var tbOrganizationGroup = this.databaseRepository.ApplyChanges<TbOrganizationGroup, OrganizationGroup>(request.Entity);
             await this.databaseRepository.SaveAsync();
 
