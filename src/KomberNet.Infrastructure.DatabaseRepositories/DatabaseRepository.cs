@@ -45,7 +45,7 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
                         case DataState.Unchanged:
                             x.Entry.State = EntityState.Unchanged;
                             break;
-                        case DataState.Inserted:
+                        case DataState.Created:
                             x.Entry.State = EntityState.Added;
                             break;
                         case DataState.Updated:
@@ -103,7 +103,7 @@ namespace KomberNet.Infrastructure.DatabaseRepositories
                 var userName = this.currentUserService.FullName;
                 var now = DateTime.Now;
 
-                if (dataStateEntity.DataState == DataState.Inserted)
+                if (dataStateEntity.DataState == DataState.Created)
                 {
                     auditLogEntity.CreatedAt = now;
                     auditLogEntity.CreatedByUserId = userId;

@@ -61,5 +61,26 @@
         <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientAuthIAuthClient.KomberNet#UI#WEB#APIClient#Auth#IAuthClient#ChangePasswordAsync(KomberNet.Models.Auth.ChangePasswordRequest)">
             <inheritdoc />
         </member>
+        <member name="T:Refit.Implementation.Generated.KomberNetUIWEBAPIClientOrganizationIOrganizationGroupClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.KomberNetUIWEBAPIClientOrganizationIOrganizationGroupClient.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientOrganizationIOrganizationGroupClient.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientOrganizationIOrganizationGroupClient.GetAsync(KomberNet.Models.Organization.OrganizationGroupGetRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientOrganizationIOrganizationGroupClient.PostAsync(KomberNet.Models.Organization.OrganizationGroupHandlerRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientOrganizationIOrganizationGroupClient.KomberNet#UI#WEB#APIClient#Organization#IOrganizationGroupClient#GetAsync(KomberNet.Models.Organization.OrganizationGroupGetRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.KomberNetUIWEBAPIClientOrganizationIOrganizationGroupClient.KomberNet#UI#WEB#APIClient#Organization#IOrganizationGroupClient#PostAsync(KomberNet.Models.Organization.OrganizationGroupHandlerRequest)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

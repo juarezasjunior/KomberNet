@@ -9,8 +9,8 @@ namespace KomberNet.Services.Organization
 
     public interface IOrganizationGroupService : ITransientService
     {
-        Task<OrganizationGroupGetResponse> GetAsync(OrganizationGroupGetRequest request);
+        Task<OrganizationGroupGetResponse> GetAsync(OrganizationGroupGetRequest request, CancellationToken cancellationToken = default);
 
-        Task<OrganizationGroupHandlerResponse> HandleAsync(OrganizationGroupHandlerRequest request);
+        Task<OrganizationGroupHandlerResponse> HandleAsync(OrganizationGroupHandlerRequest request, CancellationToken cancellationToken = default);
     }
 }

@@ -39,5 +39,7 @@ namespace KomberNet.Infrastructure.DatabaseRepositories.Entities.Organization
         [Timestamp]
         [Required]
         public byte[] RowVersion { get; set; }
+
+        public virtual ICollection<TbOrganizationGroupUser> OrganizationGroupUsers { get; set; }
     }
 }

@@ -40,6 +40,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AdditionalFiles Include="..\KomberNet.Models\Organization\OrganizationGroup.kcg.xml" Link="Organization\OrganizationGroup.kcg.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Include="..\KomberNet.Models\Auth\KomberNetClaims.cs" Link="Auth\KomberNetClaims.cs" />
 	</ItemGroup>
 
@@ -52,12 +56,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="General\" />
+		<Folder Include="Auth\" />
 		<Folder Include="Billing\" />
+		<Folder Include="General\" />
 		<Folder Include="Financial\" />
 		<Folder Include="Inventory\" />
 		<Folder Include="Manufacturing\" />
-		<Folder Include="Auth\" />
+		<Folder Include="Organization\" />
 		<Folder Include="Purchasing\" />
 	</ItemGroup>
 

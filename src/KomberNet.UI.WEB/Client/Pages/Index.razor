@@ -3,6 +3,9 @@
 
 @using System.Globalization
 @using Radzen;
+@using KomberNet.Models.Contracts;
+@using KomberNet.Models.Organization;
+@using KomberNet.UI.WEB.APIClient.Organization;
 
 @inherits BasePage
 
@@ -19,11 +22,28 @@ Welcome to your new app.
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 <RadzenButton Text="Editar Clientes" Click="OpenCustomersAsync" />
+<RadzenButton Text="Do something" Click="DoSomethingAsync" />
 
 @code{
+
+    [Inject]
+    public IOrganizationGroupClient OrganizationGroupClient { get; set; }
+
     public async Task OpenCustomersAsync()
     {
         await this.DialogService.OpenAsync<CustomersSearch>("Imprimir os dados do cliente");
+    }
+
+    public async Task DoSomethingAsync()
+    {
+        await this.OrganizationGroupClient.PostAsync(new OrganizationGroupHandlerRequest()
+        {
+            Entity = new OrganizationGroup()
+            {
+                Name = "Test",
+                DataState = DataState.Created
+            }
+        });
     }
 }
 

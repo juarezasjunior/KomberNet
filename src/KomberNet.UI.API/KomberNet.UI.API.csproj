@@ -61,6 +61,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Controllers/Organization/" />
 	  <Folder Include="Controllers\General\" />
 	  <Folder Include="Controllers\Billing\" />
 	  <Folder Include="Controllers\Inventory\" />

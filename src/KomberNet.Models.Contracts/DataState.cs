@@ -11,7 +11,7 @@ namespace KomberNet.Models.Contracts
     public enum DataState
     {
         Unchanged = 0,
-        Inserted = 1,
+        Created = 1,
         Updated = 2,
         Deleted = 3,
     }
