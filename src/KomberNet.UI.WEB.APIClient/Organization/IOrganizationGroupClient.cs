@@ -10,10 +10,10 @@ namespace KomberNet.UI.WEB.APIClient.Organization
 
     public partial interface IOrganizationGroupClient : IAuthenticatedAPIClient
     {
-        [Get("/api/OrganizationGroup/Get")]
+        [Get("/api/Organization/OrganizationGroup/Get")]
         public Task<OrganizationGroupGetResponse> GetAsync([Query] OrganizationGroupGetRequest request);
 
-        [Post("/api/OrganizationGroup/Post")]
+        [Post("/api/Organization/OrganizationGroup/Post")]
         public Task<OrganizationGroupHandlerResponse> PostAsync([Body] OrganizationGroupHandlerRequest request);
     }
 }

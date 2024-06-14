@@ -6,12 +6,14 @@
 @using KomberNet.Models.Contracts;
 @using KomberNet.Models.Organization;
 @using KomberNet.UI.WEB.APIClient.Organization;
+@using KomberNet.UI.WEB.Framework.Services;
 
 @inherits BasePage
 
 @inject IStringLocalizer<Resource> localizer
 
 @inject DialogService DialogService
+@inject IExceptionMessageService ExceptionMessageService
 
 <PageTitle>Index</PageTitle>
 
@@ -36,15 +38,16 @@ Welcome to your new app.
 
     public async Task DoSomethingAsync()
     {
-        await this.OrganizationGroupClient.PostAsync(new OrganizationGroupHandlerRequest()
+        var result = await this.ExceptionMessageService.GetResultOrHandleExceptionAsync<OrganizationGroupHandlerResponse>(async () =>
         {
-            Entity = new OrganizationGroup()
+            return await this.OrganizationGroupClient.PostAsync(new OrganizationGroupHandlerRequest()
             {
-                Name = "Test",
-                DataState = DataState.Created
-            }
+                Entity = new OrganizationGroup()
+                {
+                    Name = "Test",
+                    DataState = DataState.Created
+                }
+            });
         });
     }
 }
-
-

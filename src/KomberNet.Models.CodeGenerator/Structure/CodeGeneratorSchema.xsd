@@ -45,6 +45,7 @@
 	<xs:complexType name="KeyField">
 		<xs:attribute name="Name" type="xs:string" />
 		<xs:attribute default="Both" name="Location" type="Location" />
+		<xs:attribute default="false" name="IsRequired" type="xs:boolean" />
 	</xs:complexType>
 	<xs:simpleType name="Location">
 		<xs:restriction base="xs:string">

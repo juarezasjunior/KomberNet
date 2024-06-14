@@ -255,7 +255,7 @@ namespace KomberNet.Models.CodeGenerator.Structure
     }
 
     [XmlRoot]
-    public class KeyField : IField
+    public class KeyField : IField, ICanBeRequired
     {
         [XmlAttribute]
         public string Name { get; set; }
@@ -263,6 +263,10 @@ namespace KomberNet.Models.CodeGenerator.Structure
         [XmlAttribute]
         [DefaultValue(Location.Both)]
         public Location Location { get; set; } = Location.Both;
+
+        [XmlAttribute]
+        [DefaultValue(false)]
+        public bool IsRequired { get; set; } = false;
     }
 
     [XmlRoot]

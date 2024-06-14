@@ -56,9 +56,15 @@ namespace KomberNet.UI.WEB.Client.Auth
         {
             // When we are logging out, we need to call the logout endpoint to invalidate the refresh token
             // Otherwise, it will be done automatically when the refresh token expires
-            await this.authClient.LogoutAsync(new LogoutRequest());
-
-            await this.internalLogoutService.LogoutInternallyAsync();
+            try
+            {
+                // If something went wrong, we need to logout internally anyway
+                await this.authClient.LogoutAsync(new LogoutRequest());
+            }
+            finally
+            {
+                await this.internalLogoutService.LogoutInternallyAsync();
+            }
         }
     }
 }

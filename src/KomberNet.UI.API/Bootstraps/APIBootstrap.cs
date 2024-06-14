@@ -8,6 +8,7 @@ namespace KomberNet.UI.API.Bootstraps
     using System.Globalization;
     using System.Reflection;
     using System.Text;
+    using System.Text.Json.Serialization;
     using FluentValidation;
     using FluentValidation.AspNetCore;
     using KomberNet.Contracts;
@@ -36,6 +37,8 @@ namespace KomberNet.UI.API.Bootstraps
         {
             var mvcBuilder = builder.Services.AddControllers();
 
+            ConfigureJson(mvcBuilder);
+
             ConfigureSwagger(builder);
 
             ConfigureLocalization(builder, mvcBuilder);
@@ -59,6 +62,14 @@ namespace KomberNet.UI.API.Bootstraps
             await StartDatabase(app);
 
             app.Run();
+        }
+
+        private static void ConfigureJson(IMvcBuilder mvcBuilder)
+        {
+            mvcBuilder.AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
         }
 
         private static void ConfigureSwagger(WebApplicationBuilder builder)

@@ -15,7 +15,7 @@ namespace KomberNet.UI.API.Controllers.Organization
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
-    [Route("/api/[controller]/[action]")]
+    [Route("/api/Organization/[controller]/[action]")]
 
     public partial class OrganizationGroupController : ControllerBase
     {
